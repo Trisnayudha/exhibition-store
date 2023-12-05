@@ -425,7 +425,7 @@
                 </div>
             </div>
             <div class="card-footer text-muted">
-                <button type="button" class="btn btn-secondary">Previous</button>
+
                 <button type="button" class="btn btn-primary">Save</button>
                 <a href="{{ url('form?type=indonesia-miner-directory') }}" class="btn btn-info">Next</a>
             </div>

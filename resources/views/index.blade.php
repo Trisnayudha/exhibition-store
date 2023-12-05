@@ -13,6 +13,9 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <!-- Add this to your <head> section -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
     <title>Hello, world!</title>
 </head>
 
@@ -25,7 +28,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
@@ -44,45 +47,53 @@
         </div>
     </nav>
 
-    <div class="container-fluid mt-2">
-        <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                <div class="card text-white bg-info mb-3">
-                    <div class="card-body">
-                        <h5 class="card-title">1. Company Information</h5>
+    @if (Request::is('form'))
+        <div class="container-fluid mt-2">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                    <div
+                        class="card text-white {{ $type == 'company-information' ? ' bg-info ' : ' bg-secondary ' }} mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">1. Company Information</h5>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                <div class="card text-white bg-secondary mb-3">
-                    <div class="card-body">
-                        <h5 class="card-title">2. Indonesia Miner Directory</h5>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                    <div
+                        class="card text-white {{ $type == 'indonesia-miner-directory' ? ' bg-info ' : ' bg-secondary ' }} mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">2. Indonesia Miner Directory</h5>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                <div class="card text-white bg-secondary mb-3">
-                    <div class="card-body">
-                        <h5 class="card-title">3. Promotional</h5>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                    <div
+                        class="card text-white {{ Request::is('/form?type=promotional') ? ' bg-info ' : ' bg-secondary ' }} mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">3. Promotional</h5>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                <div class="card text-white bg-secondary mb-3">
-                    <div class="card-body">
-                        <h5 class="card-title">4. Event Pass</h5>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                    <div
+                        class="card text-white {{ Request::is('/form?type=event-pass') ? ' bg-info ' : ' bg-secondary ' }} mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">4. Event Pass</h5>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                <div class="card text-white bg-secondary mb-3">
-                    <div class="card-body">
-                        <h5 class="card-title">5. Exhibition</h5>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                    <div
+                        class="card text-white {{ Request::is('/form?type=exhibition') ? ' bg-info ' : ' bg-secondary ' }} mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">5. Exhibition</h5>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    @endif
+
     @yield('content')
 
     <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">

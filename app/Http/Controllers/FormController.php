@@ -22,6 +22,7 @@ class FormController extends Controller
     {
         $type = $request->type;
         $data = [];
+        $data['type'] = $type;
         if ($type == 'company-information') {
             $data['prefix_name'] = MsPrefixCall::get();
             $data['company_type'] = MsCompanyType::get();
@@ -37,13 +38,13 @@ class FormController extends Controller
             $data['ms_company_class'] = MsCompanyClass::get();
             return view('frontend.form.form-1.form-1', $data);
         } elseif ($type == 'indonesia-miner-directory') {
-            return view('frontend.form.form-2.form-2');
+            return view('frontend.form.form-2.form-2', $data);
         } elseif ($type == 'promotional') {
-            return view('frontend.form.form-3.form-3');
+            return view('frontend.form.form-3.form-3', $data);
         } elseif ($type == 'event-pass') {
-            return view('frontend.form.form-4.form-4');
+            return view('frontend.form.form-4.form-4', $data);
         } elseif ($type == 'exhibition') {
-            return view('frontend.form.form-5.form-5');
+            return view('frontend.form.form-5.form-5', $data);
         } else {
             dd('data tidak ada');
         }
