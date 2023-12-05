@@ -15,8 +15,8 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <!-- Add this to your <head> section -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
-
-    <title>Hello, world!</title>
+    @stack('top')
+    <title>Exhibition Portal</title>
 </head>
 
 <body>
