@@ -15,6 +15,8 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <!-- Add this to your <head> section -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
     @stack('top')
     <title>Exhibition Portal</title>
 </head>
@@ -67,24 +69,21 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                    <div
-                        class="card text-white {{ Request::is('/form?type=promotional') ? ' bg-info ' : ' bg-secondary ' }} mb-3">
+                    <div class="card text-white {{ $type == 'promotional' ? ' bg-info ' : ' bg-secondary ' }} mb-3">
                         <div class="card-body">
                             <h5 class="card-title">3. Promotional</h5>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                    <div
-                        class="card text-white {{ Request::is('/form?type=event-pass') ? ' bg-info ' : ' bg-secondary ' }} mb-3">
+                    <div class="card text-white {{ $type == 'event-pass' ? ' bg-info ' : ' bg-secondary ' }} mb-3">
                         <div class="card-body">
                             <h5 class="card-title">4. Event Pass</h5>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                    <div
-                        class="card text-white {{ Request::is('/form?type=exhibition') ? ' bg-info ' : ' bg-secondary ' }} mb-3">
+                    <div class="card text-white {{ $type == 'exhibition' ? ' bg-info ' : ' bg-secondary ' }} mb-3">
                         <div class="card-body">
                             <h5 class="card-title">5. Exhibition</h5>
                         </div>
