@@ -1,7 +1,7 @@
 @extends('index')
 
 @section('content')
-    <div class="container">
+    <div class="container-fluid">
         <div class="card">
             <div class="card-body">
                 <div class="row">
@@ -52,7 +52,7 @@
                 </div>
             </div>
             <div class="card-footer d-flex justify-content-end">
-                <a href="{{ url('form?type=indonesia-miner-directory') }}" class="btn btn-secondary mr-2">Previous</a>
+                <a href="{{ url('form?type=company-information') }}" class="btn btn-secondary mr-2">Previous</a>
                 <a href="{{ url('form?type=promotional') }}" class="btn btn-info">Next</a>
             </div>
         </div>
