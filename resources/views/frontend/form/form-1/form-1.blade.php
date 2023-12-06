@@ -422,11 +422,13 @@
                             </div>
                         </div>
                     </div>
+                    <div class="d-flex justify-content-end">
+
+                        <button type="button" class="btn btn-primary mb-2">Save</button>
+                    </div>
                 </div>
             </div>
-            <div class="card-footer text-muted">
-
-                <button type="button" class="btn btn-primary">Save</button>
+            <div class="card-footer d-flex justify-content-end">
                 <a href="{{ url('form?type=indonesia-miner-directory') }}" class="btn btn-info">Next</a>
             </div>
         </div>
