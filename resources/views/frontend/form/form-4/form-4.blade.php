@@ -11,7 +11,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="pills-wishlist-tab" data-toggle="pill" href="#pills-wishlist" role="tab"
-                            aria-controls="pills-wishlist" aria-selected="false">Wishlist For Visitor</a>
+                            aria-controls="pills-wishlist" aria-selected="false">Mining Pass</a>
                     </li>
                 </ul>
                 <div class="tab-content" id="pills-tabContent">
@@ -69,7 +69,7 @@
                                     aria-orientation="vertical">
                                     <a class="nav-link active" id="v-pills-visitor-tab" data-toggle="pill"
                                         href="#v-pills-visitor" role="tab" aria-controls="v-pills-visitor"
-                                        aria-selected="true">Visitor</a>
+                                        aria-selected="true">Mining Pass</a>
                                 </div>
                             </div>
                             <div class="col-9">
