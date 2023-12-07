@@ -32,13 +32,14 @@
                         <div class="form-group">
                             <label for="imageSocial">Image (1080 x 1080 px)</label>
                             <input type="file" name="imageSocial" id="imageSocial" class="form-control"
-                                accept=".jpg, .jpeg, .png">
+                                accept=".jpg, .jpeg, .png" multiple>
                             <small class="form-text text-muted">Upload an image in JPEG or PNG format.</small>
                         </div>
 
                         <div class="form-group">
                             <label for="pdfSocial">PDF</label>
-                            <input type="file" name="pdfSocial" id="pdfSocial" class="form-control" accept=".pdf">
+                            <input type="file" name="pdfSocial" id="pdfSocial" class="form-control" accept=".pdf"
+                                multiple>
                             <small class="form-text text-muted">Upload a PDF file.</small>
                         </div>
 

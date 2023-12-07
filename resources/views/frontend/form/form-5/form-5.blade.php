@@ -166,7 +166,7 @@
                 for (var i = 0; i < cart.length; i++) {
                     $('#cartList').append(
                         '<li class="list-group-item d-flex justify-content-between lh-condensed">' +
-                        '<div class="col-10">' +
+                        '<div class="col-8">' +
                         '<h6 class="my-0">' + cart[i].name + '</h6>' +
                         '<small class="text-muted">IDR ' + cart[i].price.toLocaleString('id-ID') + '</small>' +
                         '</div>' +

@@ -59,7 +59,7 @@
                 </div>
                 <div class="form-group">
                     <label for="">Video URL</label>
-                    <input type="text" name="video" id="video">
+                    <input type="text" name="video" id="video" class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="descriptionInput">Deskripsi</label>

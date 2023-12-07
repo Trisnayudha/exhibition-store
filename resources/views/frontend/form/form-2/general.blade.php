@@ -87,5 +87,7 @@
             aria-describedby="inputGroup-sizing-default" name="video3" id="video3">
     </div>
 </div>
-
-<button class="btn btn-primary"> Save </button>
+<div class="alert alert-danger" role="alert">
+    Lu HARUS KLIK BUTTON SAVE BUAT NYIMPEN DATA ! !
+</div>
+<button class="btn btn-primary btn-lg btn-block"> SAVE </button>
