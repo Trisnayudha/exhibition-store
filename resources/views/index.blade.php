@@ -5,24 +5,61 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap4.min.css">
 
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <!-- Add this to your <head> section -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <!-- DataTables JS -->
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js">
+    </script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap4.min.js">
+    </script>
 
     @stack('top')
     <title>Exhibition Portal</title>
+    <style>
+        body {
+            padding-top: 56px;
+            /* Adjust based on the height of your fixed navbar */
+        }
+
+        .sidebar {
+            top: 56px;
+            /* Adjust based on the height of your fixed navbar */
+            bottom: 0;
+            overflow-y: auto;
+            /* Enable scrolling if the content exceeds the viewport height */
+        }
+
+        @media (min-width: 768px) {
+            body {
+                padding-top: 56px;
+                /* Adjust based on the height of your fixed navbar */
+            }
+
+            .sidebar {
+                top: 56px;
+                /* Adjust based on the height of your fixed navbar */
+                bottom: 0;
+                overflow-y: auto;
+                /* Enable scrolling if the content exceeds the viewport height */
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <a class="navbar-brand" href="#">Portal Exhibition</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
             aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,7 +68,7 @@
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="{{ url('/') }}">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('form?type=company-information') }}">Form</a>
@@ -49,51 +86,60 @@
         </div>
     </nav>
 
-    @if (Request::is('form'))
-        <div class="container-fluid mt-2">
-            <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                    <div
-                        class="card text-white {{ $type == 'company-information' ? ' bg-info ' : ' bg-secondary ' }} mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title">1. Company Information</h5>
-                        </div>
-                    </div>
+    <div class="container-fluid mt-5">
+        <div class="row">
+            @if (Request::is('form'))
+                <div class="col-sm-3">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <div
+                                class="card text-white {{ $type == 'company-information' ? ' bg-info ' : ' bg-secondary ' }} mb-3">
+                                <div class="card-body">
+                                    <h8 class="card-title">FORM 1 - Company Information</h8>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <div
+                                class="card text-white {{ $type == 'indonesia-miner-directory' ? ' bg-info ' : ' bg-secondary ' }} mb-3">
+                                <div class="card-body">
+                                    <h7 class="card-title">FORM 2 - Indonesia Miner Directory</h7>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <div
+                                class="card text-white {{ $type == 'promotional' ? ' bg-info ' : ' bg-secondary ' }} mb-3">
+                                <div class="card-body">
+                                    <h7 class="card-title">FORM 3 - Promotional</h7>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <div
+                                class="card text-white {{ $type == 'event-pass' ? ' bg-info ' : ' bg-secondary ' }} mb-3">
+                                <div class="card-body">
+                                    <h7 class="card-title">FORM 4 - Event Pass</h7>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <div
+                                class="card text-white {{ $type == 'exhibition' ? ' bg-info ' : ' bg-secondary ' }} mb-3">
+                                <div class="card-body">
+                                    <h7 class="card-title">FORM 5 - Exhibition</h7>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                    <div
-                        class="card text-white {{ $type == 'indonesia-miner-directory' ? ' bg-info ' : ' bg-secondary ' }} mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title">2. Indonesia Miner Directory</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                    <div class="card text-white {{ $type == 'promotional' ? ' bg-info ' : ' bg-secondary ' }} mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title">3. Promotional</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                    <div class="card text-white {{ $type == 'event-pass' ? ' bg-info ' : ' bg-secondary ' }} mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title">4. Event Pass</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                    <div class="card text-white {{ $type == 'exhibition' ? ' bg-info ' : ' bg-secondary ' }} mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title">5. Exhibition</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    @endif
+            @endif
+            @yield('content')
 
-    @yield('content')
+        </div>
+    </div>
+
+
 
     <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
         <div class="col-md-4 d-flex align-items-center">
@@ -117,11 +163,49 @@
                     </svg></a></li>
         </ul>
     </footer>
-    @stack('bottom')
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- Alert Modal -->
+    <div class="modal" tabindex="-1" role="dialog" id="deviceAlertModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Restricted Access</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>This website is optimized for desktop use. Please switch to a desktop or laptop for a better
+                        experience.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
+
+    <script>
+        // Detect device type
+        function isMobileDevice() {
+            return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+        }
+
+        // Show alert modal for mobile devices
+        if (isMobileDevice()) {
+            $(document).ready(function() {
+                $('#deviceAlertModal').modal('show');
+            });
+
+            // Close the website after showing the alert
+            setTimeout(function() {
+                window.close();
+            }, 5000); // Auto-close after 5 seconds (adjust as needed)
+        }
+    </script>
+
+    @stack('bottom')
 </body>
 
 </html>

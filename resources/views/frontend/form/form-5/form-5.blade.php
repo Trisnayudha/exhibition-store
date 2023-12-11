@@ -29,29 +29,64 @@
                         <div id="pic-exhibition" class="collapse show" aria-labelledby="card-exhibition"
                             data-parent="#accordion">
                             <div class="card-body">
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="">Contact Person</label>
-                                            <input type="text" name="contact_person" class="form-control">
+                                <div class="container">
+
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="">Contact Person</label>
+                                                <input type="text" name="contact_person" class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="">Email</label>
+                                                <input type="text" name="contact_email" class="form-control">
+                                            </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="">Email</label>
-                                            <input type="text" name="contact_email" class="form-control">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="">Job Title</label>
+                                                <input type="text" name="contact_job_title" class="form-control"
+                                                    id="">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for=""> Mobile</label>
+                                                <input type="text" name="contact_mobile" class="form-control"
+                                                    id="">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="">Job Title</label>
-                                            <input type="text" name="contact_job_title" class="form-control"
-                                                id="">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for=""> Mobile</label>
-                                            <input type="text" name="contact_mobile" class="form-control" id="">
+                                        <div class="col-sm-12">
+
+                                            <label for="">Fascia Name</label>
+                                            <div class="alert alert-danger" role="alert">
+                                                <ul>
+                                                    <li>Please write the Company Name below, based on what is needed in the
+                                                        fascia. Fill in block letters using the alphabet ( maximum 24
+                                                        letters).
+                                                        Fascia names longer than 24 letters will be displayed on 2 lines and
+                                                        the
+                                                        font size will be minimized accordingly</li>
+                                                    <li>The fascia name will follow based on this form. If it passes the
+                                                        deadline, any changes to the fascia will incur an additional fee
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="form-group fascia-container">
+                                                <?php
+                                                for ($i = 1; $i <= 24; $i++) {
+                                                    // Modify the style of the fascia-box
+                                                    echo '<input class="fascia-box" type="text" name="box[]" maxlength="1" oninput="moveToNext(this)" value="">';
+                                                }
+                                                ?>
+                                            </div>
+                                            <div class="form-group">
+                                                <canvas id="signatureCanvas" width="400" height="200"></canvas>
+                                                <button class="btn btn-primary mt-3" id="clearBtn">Clear Signature</button>
+                                                <button class="btn btn-primary mt-3" id="clearBtn">Clear Signature</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+
                                 <button class="btn btn-primary"> Save Contact</button>
                             </div>
                         </div>
@@ -74,7 +109,7 @@
                                     </h5>
                                 </div>
 
-                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                                <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
                                     data-parent="#accordion">
                                     <div class="card-body">
                                         @include('frontend.form.form-5.furniture')
@@ -90,7 +125,7 @@
                                         </button>
                                     </h5>
                                 </div>
-                                <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo"
+                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
                                     data-parent="#accordion">
                                     <div class="card-body">
                                         @include('frontend.form.form-5.lighting')
@@ -107,7 +142,7 @@
                                         </button>
                                     </h5>
                                 </div>
-                                <div id="collapseThree" class="collapse show" aria-labelledby="headingThree"
+                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
                                     data-parent="#accordion">
                                     <div class="card-body">
                                         @include('frontend.form.form-5.electricity')
@@ -135,6 +170,52 @@
     </div>
 @endsection
 @push('bottom')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/signature_pad/1.5.3/signature_pad.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var canvas = document.getElementById('signatureCanvas');
+            var signaturePad = new SignaturePad(canvas);
+
+            // Clear signature
+            document.getElementById('clearBtn').addEventListener('click', function() {
+                signaturePad.clear();
+            });
+
+            // Save signature
+            document.getElementById('saveBtn').addEventListener('click', function() {
+                if (signaturePad.isEmpty()) {
+                    alert("Tanda tangan kosong.");
+                } else {
+                    var dataURL = signaturePad.toDataURL();
+                    // Kirim dataURL ke server atau proses sesuai kebutuhan Anda
+                    console.log(dataURL);
+                }
+            });
+        });
+    </script>
+
+    <script>
+        function moveToNext(input) {
+            var maxLength = parseInt(input.maxLength, 10);
+
+            // Jika input telah mencapai maksimal panjang, pindah ke input berikutnya
+            if (input.value.length >= maxLength) {
+                var nextInput = input.nextElementSibling;
+
+                // Pindah ke input berikutnya jika ada
+                if (nextInput) {
+                    nextInput.focus();
+                }
+            }
+            input.value = input.value.toUpperCase();
+
+            // Memindahkan fokus ke elemen input berikutnya jika tersedia
+            var nextInput = input.nextElementSibling;
+            if (nextInput && nextInput.tagName === 'INPUT') {
+                nextInput.focus();
+            }
+        }
+    </script>
     <script>
         $(document).ready(function() {
             // Initialize cart as an empty array
@@ -219,6 +300,27 @@
 @endpush
 
 @push('top')
+    <style>
+        #signatureCanvas {
+            border: 1px solid #ccc;
+        }
+    </style>
+    <style>
+        .fascia-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .fascia-box {
+            width: 2em;
+            height: 2em;
+            border: 1px solid #000;
+            text-align: center;
+            line-height: 2em;
+            margin: 0 4.5px;
+        }
+    </style>
     <style>
         .product-grid {
             font-family: 'Roboto', sans-serif;

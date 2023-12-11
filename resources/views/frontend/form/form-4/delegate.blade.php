@@ -13,27 +13,29 @@
         Please Note: Company, Name and Position will be printed on the badge
     </div>
     <button class="btn btn-primary mb-2" data-toggle="modal" data-target="#addDelegateModal">Tambah</button>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>No</th>
-                <th>Company</th>
-                <th>Name</th>
-                <th>Position</th>
-                <th>Email</th>
-                <th>Mobile</th>
-                <th>Address</th>
-                <th>City</th>
-                <th>Country</th>
-                <th>Postal Code</th>
-                <th>Phone</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody id="tabel-delegate">
-            <!-- Isi tabel akan ditambahkan secara dinamis di sini -->
-        </tbody>
-    </table>
+    <div class="table-responsive">
+        <table class="table" id="TDelegate">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Company</th>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Email</th>
+                    <th>Mobile</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>Country</th>
+                    <th>Postal Code</th>
+                    <th>Phone</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="tabel-delegate">
+                <!-- Isi tabel akan ditambahkan secara dinamis di sini -->
+            </tbody>
+        </table>
+    </div>
 </section>
 
 <!-- Modal Part 1 -->
