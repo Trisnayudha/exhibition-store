@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use App\Models\Logs\ExhibitionLog;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -22,16 +24,13 @@ class CompanyController extends Controller
         $email_alternate = $request->alternative_email;
         $phone_code = $request->phone_code;
         $phone = $request->phone;
-
-
-
-
         $save = Company::where('id', $id)->first();
         $save->created_at = date('Y-m-d H:i:s');
         $save->ms_prefix_call_id = $prefix_name;
         $save->name = $name;
         $slug = date('Y-m-dHis') . '-' . Str::slug($company_name);
         $save->job_title = $job_title;
+        $save->phone = $phone;
         $save->ms_company_type_id = $company_type;
         $save->company_name = $company_name;
         $save->email_alternate = $email_alternate;
@@ -39,6 +38,15 @@ class CompanyController extends Controller
         $save->is_register = 1;
         $save->name_pic = $name;
         $save->save();
+
+        $log = ExhibitionLog::where('section', 'personal_information')->where('company_id', $id)->first();
+        if ($log == null) {
+            $log = new ExhibitionLog();
+            $log->section = 'personal_information';
+            $log->company_id = $id;
+        }
+        $log->updated_at = Carbon::now();
+        $log->save();
         return redirect()->back();
     }
 
@@ -49,7 +57,7 @@ class CompanyController extends Controller
         //Company Information
         $company_web = $request->company_web;
         $email = $request->email;
-
+        $desc =  $request->desc;
         $nonresidence = $request->nonresidence;
         $answerresidence = $request->answerresidence;
         $company_address = $request->company_address;
@@ -83,7 +91,7 @@ class CompanyController extends Controller
         $save->state = strtoupper($state);
         $save->city = strtoupper($city);
         $save->post_code = $post_code;
-
+        $save->desc = $desc;
         $save->company_phone = $company_phone;
         // $save->ms_company_category_other = $category_name;
         $save->ms_company_category_id = $category_id;

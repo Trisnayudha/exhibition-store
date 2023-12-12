@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Company;
 use App\Models\Company\CompanyService;
+use App\Models\Logs\ExhibitionLog;
 use App\Models\Ms\MsClassCompanyMinerals;
 use App\Models\Ms\MsClassCompanyMining;
 use App\Models\Ms\MsCommodCompanyMinerals;
@@ -44,7 +45,8 @@ class FormController extends Controller
             $data['origin_manufacturer'] = MsOriginManufacturCompany::get();
             $data['ms_company_class'] = MsCompanyClass::get();
             $data['data'] = $this->getDetail();
-            // dd($data['data']);
+            $data['section'] = $this->getLogs('personal_information');
+            // dd($data['section']);
             return view('frontend.form.form-1.form-1', $data);
         } elseif ($type == 'indonesia-miner-directory') {
             $data['data'] = $this->getDetail();
@@ -86,5 +88,14 @@ class FormController extends Controller
         }
         // dd($videos);
         return $videos;
+    }
+
+    private function getLogs($section)
+    {
+
+        $userId = auth()->id();
+
+        $data = ExhibitionLog::where('section', $section)->where('company_id', $userId)->first();
+        return $data;
     }
 }

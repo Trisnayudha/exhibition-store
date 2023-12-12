@@ -85,20 +85,37 @@
                 value="{{ $video['main_video'] ?? '' }}">
         </div>
         <!-- Other Videos -->
-        @foreach ($video as $key => $url)
-            @if (strpos($key, 'video_') === 0)
+        @if (count($video) > 0)
+            @foreach ($video as $key => $url)
+                @if (strpos($key, 'video_') === 0)
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">
+                                {{ ucfirst($key) }}
+                            </span>
+                        </div>
+                        <input type="text" class="form-control" aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-default" name="{{ $key }}"
+                            id="{{ $key }}" value="{{ $url }}">
+                    </div>
+                @endif
+            @endforeach
+        @else
+            @for ($i = 1; $i <= 3; $i++)
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroup-sizing-default">
-                            {{ ucfirst($key) }}
+                            Video {{ $i }}
                         </span>
                     </div>
                     <input type="text" class="form-control" aria-label="Sizing example input"
-                        aria-describedby="inputGroup-sizing-default" name="{{ $key }}"
-                        id="{{ $key }}" value="{{ $url }}">
+                        aria-describedby="inputGroup-sizing-default" name="video_{{ $i }}"
+                        id="video_{{ $i }}" value="">
                 </div>
-            @endif
-        @endforeach
+            @endfor
+        @endif
+
+
     </div>
     <div class="alert alert-danger" role="alert">
         Lu HARUS KLIK BUTTON SAVE BUAT NYIMPEN DATA ! !
