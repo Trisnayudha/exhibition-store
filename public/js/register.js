@@ -301,12 +301,12 @@ const runValidation = (validation) => {
 }
 
 $(function () {
-    $('form').submit(function (event) {
-        let valid = runValidation('.validation')
-        if(valid)
-            event.returnValue = false;
-        else
-            event.preventDefault();
+    // $('form').submit(function (event) {
+    //     let valid = runValidation('.validation')
+    //     if(valid)
+    //         event.returnValue = false;
+    //     else
+    //         event.preventDefault();
 
-    })
+    // })
 })
