@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company;
+use App\Models\Company\CompanyService;
 use App\Models\Ms\MsClassCompanyMinerals;
 use App\Models\Ms\MsClassCompanyMining;
 use App\Models\Ms\MsCommodCompanyMinerals;
@@ -18,6 +20,11 @@ use Illuminate\Http\Request;
 
 class FormController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index(Request $request)
     {
         $type = $request->type;
@@ -36,8 +43,13 @@ class FormController extends Controller
             $data['commodities_mining'] = MsCommodCompanyMining::get();
             $data['origin_manufacturer'] = MsOriginManufacturCompany::get();
             $data['ms_company_class'] = MsCompanyClass::get();
+            $data['data'] = $this->getDetail();
+            // dd($data['data']);
             return view('frontend.form.form-1.form-1', $data);
         } elseif ($type == 'indonesia-miner-directory') {
+            $data['data'] = $this->getDetail();
+            $data['video'] = $this->getDataVideo();
+            // dd($data['video']);
             return view('frontend.form.form-2.form-2', $data);
         } elseif ($type == 'promotional') {
             return view('frontend.form.form-3.form-3', $data);
@@ -48,5 +60,31 @@ class FormController extends Controller
         } else {
             dd('data tidak ada');
         }
+    }
+
+    private function getDetail()
+    {
+        $userId = auth()->id();
+        $data = CompanyService::detailForm($userId);
+        return $data;
+    }
+
+    private function getDataVideo()
+    {
+        $userId = auth()->id();
+        $videoData = CompanyService::detailVideo($userId);
+
+        $videos = [];
+        $count = 0;
+        foreach ($videoData as $video) {
+            if ($video->is_main) {
+                $videos['main_video'] = $video->url;
+            } else {
+                $videos["video_{$count}"] = $video->url;
+            }
+            $count++;
+        }
+        // dd($videos);
+        return $videos;
     }
 }

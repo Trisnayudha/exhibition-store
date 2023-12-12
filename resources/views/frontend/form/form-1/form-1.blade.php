@@ -21,7 +21,7 @@
                             <div class="row">
                                 <div class="col-lg-12 col-sm-12">
                                     <input type="text" name="name" id="name" class="form-control validation"
-                                        placeholder="Input name" value="{{ old('name') }}">
+                                        placeholder="Input name" value="{{ old('name', $data->name ?? '') }}">
                                 </div>
                             </div>
                         </div>
@@ -43,7 +43,7 @@
                                 <div class="col-lg-10 col-sm-12">
                                     <input type="text" name="company_name" id="company_name"
                                         class="form-control validation" placeholder="Input company name"
-                                        value="{{ old('company_name') }}">
+                                        value="{{ old('company_name', $data->company_name) }}">
                                 </div>
 
                             </div>
@@ -54,27 +54,16 @@
                             <div class="row">
                                 <div class="col-lg-12 col-sm-12">
                                     <input type="text" name="job_title" class="form-control validation"
-                                        placeholder="Input job title" value="{{ old('job_title') }}">
+                                        placeholder="Input job title" value="{{ old('job_title', $data->job_title) }}">
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-lg-6 col-sm-12">
-                                <div class="form-group">
-                                    <label>Email Address <i class="text-danger" title="This field is required">*</i></label>
-                                    <input type="email" name="company_email" id="company_email"
-                                        class="form-control validation" placeholder="Input your Company email"
-                                        value="{{ old('company_email') }}">
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-sm-12">
-                                <div class="form-group">
-                                    <label>Alternative Email</i></label>
-                                    <input type="email" name="alternative_email" id="alternative_email"
-                                        class="form-control validation" placeholder="Input your Alternative email"
-                                        value="{{ old('alternative_email') }}">
-                                </div>
-                            </div>
+                        <div class="form-group">
+                            <label for="alternative_email">Email <i class="text-danger"
+                                    title="This field is required">*</i></label>
+                            <input type="email" name="alternative_email" id="alternative_email"
+                                class="form-control validation" placeholder="Input your Alternative email"
+                                value="{{ old('alternative_email', $data->email_alternate) }}">
                         </div>
                         <div class="form-group">
                             <label>Mobile Number <i class="text-danger" title="This field is required">*</i></label>
@@ -91,9 +80,8 @@
                                     </select>
                                 </div>
                                 <div class="col-lg-10 col-sm-12">
-                                    <input type="number" name="users_phone" id="users_phone"
-                                        class="form-control validation" placeholder="Input mobile number"
-                                        value="{{ old('users_phone') }}">
+                                    <input type="number" name="phone" id="phone" class="form-control validation"
+                                        placeholder="Input mobile number" value="{{ old('phone', $data->phone) }}">
                                 </div>
                             </div>
                         </div>
@@ -115,9 +103,9 @@
                                 <div class="form-group">
                                     <label>Company Website <i class="text-danger"
                                             title="This field is required">*</i></label>
-                                    <input type="text" name="company_website" id="company_website"
+                                    <input type="text" name="company_web" id="company_web"
                                         class="form-control validation" placeholder="Input company website"
-                                        value="{{ old('company_website') }}">
+                                        value="{{ old('company_web', $data->company_web) }}">
                                     <small class="text-muted">Example : www.example.com</small>
                                 </div>
                             </div>
@@ -126,10 +114,8 @@
                                     <label>Company Email <small class="text-muted"> <i>(This Email will be used for
                                                 company
                                                 login)</i> </small> </label>
-                                    <input type="text" name="company_website" id="company_website"
-                                        class="form-control validation" placeholder="Input company website"
-                                        value="{{ old('company_website') }}">
-                                    <small class="text-muted">Example : www.example.com</small>
+                                    <input type="text" name="email" id="email" class="form-control validation"
+                                        placeholder="Input company website" value="{{ old('email', $data->email) }}">
                                 </div>
                             </div>
                             <div class="col-lg-12 col-sm-12">
@@ -137,8 +123,8 @@
                                     <label>Company Profile ( Max. 200 Words) </label>
                                     <small> <i>This Profile will also be used on Indonesia Miner Website and Event
                                             Booklet</i></small>
-                                    <textarea name="company_profile" id="company_profile" class="form-control validation"
-                                        placeholder="Input company website" value="{{ old('company_profile') }}" rows="5">
+                                    <textarea name="desc" id="desc" class="form-control validation" placeholder="Input company website"
+                                        rows="5" maxlength="200">{{ old('desc', $data->desc) }}
                                 </textarea>
                                 </div>
                             </div>
@@ -174,38 +160,38 @@
                                     <label>Company Address <span class="text-danger"
                                             title="This field is required">*</span></label>
                                     <textarea rows="5" name="company_address" id="company_address_another" class="form-control validation-summary"
-                                        placeholder="Input company address">
-                                </textarea>
+                                        placeholder="Input company address">{{ old('company_address', $data->company_address) }}</textarea>
                                 </div>
                             </div>
+
                             <div class="col-lg-6 col-sm-12">
                                 <div class="form-group">
                                     <label>Country <i class="text-danger" title="This field is required">*</i></label>
                                     <input type="text" name="country" id="country" class="form-control validation"
-                                        placeholder="Input Country" value="{{ old('country') }}">
+                                        placeholder="Input Country" value="{{ old('country', $data->country) }}">
                                 </div>
                             </div>
                             <div class="col-lg-6 col-sm-12">
                                 <div class="form-group">
                                     <label>State <i class="text-danger" title="This field is required">*</i></label>
                                     <input type="text" name="state" id="state" class="form-control validation"
-                                        placeholder="Input State" value="{{ old('state') }}">
+                                        placeholder="Input State" value="{{ old('state', $data->state) }}">
                                 </div>
                             </div>
                             <div class="col-lg-6 col-sm-12">
                                 <div class="form-group">
                                     <label>City <i class="text-danger" title="This field is required">*</i></label>
                                     <input type="text" name="city" id="city" class="form-control validation"
-                                        placeholder="Input City" value="{{ old('city') }}">
+                                        placeholder="Input City" value="{{ old('city', $data->city) }}">
                                 </div>
                             </div>
                             <div class="col-lg-6 col-sm-12">
                                 <div class="form-group">
                                     <label>Postal Code <span class="text-danger"
                                             title="This field is required">*</span></label>
-                                    <input type="number" name="postal_code" id="postal_code_another"
+                                    <input type="number" name="post_code" id="post_code"
                                         class="form-control validation-summary" placeholder="Input postal code"
-                                        v-model="form.post_code">
+                                        v-model="form.post_code" value="{{ old('post_code', $data->post_code) }}">
                                 </div>
                             </div>
                             <div class="col-lg-12 col-sm-12">
@@ -227,7 +213,7 @@
 
                                             <input type="number" name="company_phone" id="company_phone"
                                                 class="form-control validation" placeholder="Input company phone number"
-                                                value="{{ old('company_phone') }}">
+                                                value="{{ old('company_phone', $data->company_phone) }}">
                                         </div>
                                     </div>
                                 </div>
@@ -240,7 +226,8 @@
                                         placeholder="Company Category">
                                         <option value="">Choose category company</option>
                                         @foreach ($company_category as $o => $orow)
-                                            <option {{ old('company_category') == $orow->id ? 'selected' : '' }}
+                                            <option
+                                                {{ old('company_category', $data->ms_company_category_id) == $orow->id ? 'selected' : '' }}
                                                 value="{{ $orow->id }}" data-name="{{ $orow->name }}">
                                                 {{ $orow->name }}</option>
                                         @endforeach
@@ -258,7 +245,8 @@
                                         <option value="">Choose origin manufacturer and technology company
                                         </option>
                                         @foreach ($origin_manufacturer as $z => $zrow)
-                                            <option {{ old('origin_manufacturer') == $zrow->id ? 'selected' : '' }}
+                                            <option
+                                                {{ old('origin_manufacturer', $data->ms_origin_manufactur_company_id) == $zrow->id ? 'selected' : '' }}
                                                 value="{{ $zrow->id }}" data-name="{{ $zrow->name }}">
                                                 {{ $zrow->name }}</option>
                                         @endforeach
@@ -281,7 +269,8 @@
                                         class="form-control validation" placeholder="Company Category">
                                         <option value="">Choose classification company</option>
                                         @foreach ($ms_company_class as $o => $orow)
-                                            <option {{ old('ms_company_class') == $orow->id ? 'selected' : '' }}
+                                            <option
+                                                {{ old('ms_company_class', $data->ms_company_class_id) == $orow->id ? 'selected' : '' }}
                                                 value="{{ $orow->id }}" data-name="{{ $orow->name }}">
                                                 {{ $orow->name }}</option>
                                         @endforeach
@@ -292,11 +281,12 @@
                                 <div class="form-group selection_eighteen">
                                     <label>Project Type <i class="text-danger"
                                             title="This field is required">*</i></label>
-                                    <select name="project_type" id="project_type" class="form-control validation"
-                                        placeholder="Project Type" style="width: 100%">
+                                    <select name="project_type" id="ms_company_class_id" class="form-control validation"
+                                        placeholder="Project Type">
                                         <option value="">Choose project type</option>
                                         @foreach ($project_type as $m => $mrow)
-                                            <option {{ old('project_type') == $mrow->id ? 'selected' : '' }}
+                                            <option
+                                                {{ old('project_type', $data->ms_company_project_type_id) == $mrow->id ? 'selected' : '' }}
                                                 value="{{ $mrow->id }}" data-name="{{ $mrow->name }}">
                                                 {{ $mrow->name }}</option>
                                         @endforeach
@@ -309,17 +299,17 @@
                             <label>Classify Your Minerals Company <i class="text-danger"
                                     title="This field is required">*</i></label>
                             <select name="classify_minerals" id="classify_minerals" class="form-control validation"
-                                placeholder="classify your minerals company" style="width: 100%">
+                                placeholder="Classify Type" style="width: 100%">
                                 <option value="">Choose classify your minerals company</option>
                                 @foreach ($classify_minerals as $g => $grow)
-                                    <option {{ old('classify_minerals') == $grow->id ? 'selected' : '' }}
+                                    <option
+                                        {{ old('classify_minerals', $data->ms_class_company_minerals_id) == $grow->id ? 'selected' : '' }}
                                         value="{{ $grow->id }}" data-name="{{ $grow->name }}">
                                         {{ $grow->name }}
                                     </option>
                                 @endforeach
                                 <option value="Other">Other</option>
                             </select>
-
                             <input type="text" name="classify_minerals_other" class="form-control validation mt-3"
                                 placeholder="Other classify your minerals company">
                         </div>
@@ -330,7 +320,8 @@
                                 placeholder="classify your mining bussiness permit" style="width: 100%">
                                 <option value="">Choose classify your mining bussiness permit</option>
                                 @foreach ($classify_mining as $j => $jrow)
-                                    <option {{ old('classify_mining') == $jrow->id ? 'selected' : '' }}
+                                    <option
+                                        {{ old('classify_mining', $data->ms_class_company_mining_id) == $jrow->id ? 'selected' : '' }}
                                         value="{{ $jrow->id }}" data-name="{{ $jrow->name }}">
                                         {{ $jrow->name }}
                                     </option>
@@ -350,7 +341,8 @@
                                 placeholder="commodities for minerals producer company" style="width: 100%">
                                 <option value="">Choose commodities for minerals producer company</option>
                                 @foreach ($commodities_minerals as $k => $krow)
-                                    <option {{ old('commodities_minerals') == $krow->id ? 'selected' : '' }}
+                                    <option
+                                        {{ old('commodities_minerals', $data->ms_commod_company_minerals_id) == $krow->id ? 'selected' : '' }}
                                         value="{{ $krow->id }}" data-name="{{ $krow->name }}">
                                         {{ $krow->name }}
                                     </option>
@@ -370,7 +362,8 @@
                                 style="width: 100%">
                                 <option value="">Choose commodities for minerals processing company</option>
                                 @foreach ($commodities_minerals_coal as $i => $irow)
-                                    <option {{ old('commodities_minerals_coal') == $irow->id ? 'selected' : '' }}
+                                    <option
+                                        {{ old('commodities_minerals_coal', $data->ms_commod_company_minerals_coal_id) == $irow->id ? 'selected' : '' }}
                                         value="{{ $irow->id }}" data-name="{{ $irow->name }}">
                                         {{ $irow->name }}
                                     </option>
@@ -390,7 +383,8 @@
                                 placeholder="commodities for coal mining company" style="width: 100%">
                                 <option value="">Choose commodities for coal mining company</option>
                                 @foreach ($commodities_mining as $y => $yrow)
-                                    <option {{ old('commodities_mining') == $yrow->id ? 'selected' : '' }}
+                                    <option
+                                        {{ old('commodities_mining', $data->ms_commod_company_mining_id) == $yrow->id ? 'selected' : '' }}
                                         value="{{ $yrow->id }}" data-name="{{ $yrow->name }}">
                                         {{ $yrow->name }}
                                     </option>
@@ -410,7 +404,7 @@
                                     <div class="filter-type">
                                         <input type="checkbox" name="question_term" id="question_term" value="Yes"
                                             class="validation" placeholder="Agree term and privacy"
-                                            @if (old('question_term') === 'Yes') checked @endif>
+                                            @if (old('question_term', $data->with_information) === 'Yes') checked @endif>
                                         <label for="question_term">
                                             <div class="custom-radio-wrapper">
                                                 <i class="ri-check-line"></i>
@@ -431,7 +425,7 @@
                                         <input type="checkbox" name="question_would" id="question_would1" value="Yes"
                                             class="validation"
                                             placeholder="I agree to receive the emails to keep me updates"
-                                            @if (old('question_would') === 'Yes') checked @endif>
+                                            @if (old('question_would', $data->with_information) === 'Yes') checked @endif>
 
                                         <label for="question_would1">
                                             <div class="custom-radio-wrapper">

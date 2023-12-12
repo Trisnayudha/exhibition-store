@@ -18,14 +18,35 @@
 </head>
 
 <body class="text-center">
-    <form class="form-signin" action="{{ Route('login') }}" method="POST">
+    <form class="form-signin" action="{{ route('login') }}" method="POST">
         @csrf
         <img class="mb-4" src="https://indonesiaminer.com/vendor/front/images/indominer-icon.png" alt="">
         <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+
+        <!-- Display errors at the top of the form -->
+        @if (session('status'))
+            <div class="alert alert-danger" role="alert">
+                {{ session('status') }}
+            </div>
+        @endif
+        @error('email')
+            <div class="alert alert-danger" role="alert">
+                <strong>{{ $message }}</strong>
+            </div>
+        @enderror
+        @error('password')
+            <div class="alert alert-danger" role="alert">
+                <strong>{{ $message }}</strong>
+            </div>
+        @enderror
+
+        <label for="email" class="sr-only">Email address</label>
+        <input type="email" name="email" id="email" class="form-control" placeholder="Email address" required
+            autofocus>
+
+        <label for="password" class="sr-only">Password</label>
+        <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+
         <div class="checkbox mb-3">
 
         </div>

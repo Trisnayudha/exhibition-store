@@ -13,17 +13,23 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap4.min.css">
 
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <!-- DataTables JS -->
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js">
     </script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap4.min.js">
     </script>
+    <!-- Tambahkan ini ke dalam bagian head HTML Anda -->
+    <link rel="stylesheet" href="https://unpkg.com/cropperjs/dist/cropper.min.css">
+    <script src="https://unpkg.com/cropperjs/dist/cropper.min.js"></script>
 
     @stack('top')
     <title>Exhibition Portal</title>
@@ -81,7 +87,10 @@
                 </li>
             </ul>
             <span class="navbar-text">
-                <button class="btn btn-outline-danger" type="button">Log Out</button>
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button class="btn btn-outline-danger" type="submit">Log Out</button>
+                </form>
             </span>
         </div>
     </nav>
@@ -158,7 +167,8 @@
             <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24">
                         <use xlink:href="#instagram"></use>
                     </svg></a></li>
-            <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24">
+            <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24"
+                        height="24">
                         <use xlink:href="#facebook"></use>
                     </svg></a></li>
         </ul>
@@ -183,6 +193,7 @@
             </div>
         </div>
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
 
@@ -206,6 +217,7 @@
     </script>
 
     @stack('bottom')
+
 </body>
 
 </html>

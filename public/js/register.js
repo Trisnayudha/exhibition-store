@@ -48,16 +48,18 @@ $(document).ready(function () {
     hideSelection()
     hideSelectionOther()
 
-    if ($("#pic_prefix").length) {
-        $("#pic_prefix").select2()
-    }
-    if ($("#company_type").length) {
-        $("#company_type").select2()
-    }
+    // if ($("#pic_prefix").length) {
+    //     $("#pic_prefix").select2()
+    // }
+    // if ($("#company_type").length) {
+    //     $("#company_type").select2()
+    // }
     if ($("#phone_code").length) {
         $("#phone_code").select2()
     }
+    // console.log('company')
     if ($("#company_category").length) {
+
         $("#company_category").select2()
             .on('change.select2', function (e) {
                 const value = this.value;
@@ -163,9 +165,8 @@ const checkInSameArray = (array, search_value) => {
 }
 
 const selectCategory = async (value) => {
-    await clearSelectionValue()
+    // await clearSelectionValue()
     await hideSelection()
-
     const stateOne = ['Coal Mining', 'Coal Processing', 'Minerals Producer', 'Minerals Processing']
     if (await checkInSameArray(stateOne, value)) {
         if ($(".selection_one").length) $(".selection_one").show()

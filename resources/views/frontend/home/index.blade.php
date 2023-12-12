@@ -14,20 +14,47 @@
                             <div class="card-header">Company Information</div>
                             <div class="card-body position-relative">
                                 <canvas id="companyInformationChart" width="100" height="100"></canvas>
-                                <div class="progress-text">75%</div>
+                                <div class="progress-text"></div>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-3">
-
                         <div class="card border-success mb-2">
                             <div class="card-header">Indonesia Miner Directory</div>
                             <div class="card-body position-relative">
                                 <canvas id="minerDirectoryChart" width="100" height="100"></canvas>
-                                <div class="progress-text">50%</div>
+                                <div class="progress-text"></div>
                             </div>
                         </div>
                     </div>
+                    <div class="col-sm-3">
+                        <div class="card border-success mb-2">
+                            <div class="card-header">Promotional</div>
+                            <div class="card-body position-relative">
+                                <canvas id="promotionalChart" width="100" height="100"></canvas>
+                                <div class="progress-text"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="card border-success mb-2">
+                            <div class="card-header">Event Pass</div>
+                            <div class="card-body position-relative">
+                                <canvas id="eventPassChart" width="100" height="100"></canvas>
+                                <div class="progress-text"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="card border-success mb-2">
+                            <div class="card-header">Exhibition</div>
+                            <div class="card-body position-relative">
+                                <canvas id="exhibitionChart" width="100" height="100"></canvas>
+                                <div class="progress-text"></div>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Add similar blocks for other cards -->
 
                 </div>
@@ -40,7 +67,10 @@
     <script>
         // Function to create doughnut chart
         // Function to create doughnut chart
-        function createDoughnutChart(chartId, dataValue, label, backgroundColor) {
+        function createDoughnutChart(chartId, dataValue, label) {
+            // Tentukan warna berdasarkan persentase
+            var backgroundColor = getWarnaBerdasarkanPersentase(dataValue);
+
             var ctx = document.getElementById(chartId).getContext('2d');
             var myChart = new Chart(ctx, {
                 type: 'doughnut',
@@ -52,10 +82,10 @@
                     labels: [label, ''],
                 },
                 options: {
-                    cutout: '70%', // Adjust the cutout to control the size of the center hole
+                    cutout: '70%', // Sesuaikan cutout untuk mengontrol ukuran lubang tengah
                     plugins: {
                         datalabels: {
-                            display: false, // Hide the labels
+                            display: false, // Sembunyikan label
                             formatter: (value, context) => {
                                 return value + '%';
                             },
@@ -67,23 +97,39 @@
                         }
                     },
                     legend: {
-                        display: false // Hide the legend
+                        display: false // Sembunyikan legend
                     }
                 }
             });
 
-            // Ensure the legend is hidden
-            myChart.legend.options.display = false;
+            // Tampilkan persentase di tengah chart
+            var progressText = document.createElement('div');
+            progressText.className = 'progress-text';
+            progressText.innerHTML = dataValue + '%';
+            ctx.canvas.parentNode.appendChild(progressText);
+        }
+
+        // Fungsi untuk mendapatkan warna berdasarkan persentase
+        function getWarnaBerdasarkanPersentase(persentase) {
+            if (persentase < 30) {
+                return '#FF4F4F'; // Merah
+            } else if (persentase < 50) {
+                return '#FFD700'; // Kuning
+            } else if (persentase < 80) {
+                return '#4F94CD'; // Biru
+            } else {
+                return '#2ECC71'; // Hijau
+            }
         }
 
 
-
-
-
-        // Call the function for each chart
-        createDoughnutChart('companyInformationChart', 75, 'Company Info', '#007BFF'); // Change this color
-        createDoughnutChart('minerDirectoryChart', 50, 'Miner Directory', '#28A745'); // Change this color
-        // Call similar functions for other charts
+        // Panggil fungsi untuk setiap chart
+        createDoughnutChart('companyInformationChart', 81, 'Company Info');
+        createDoughnutChart('minerDirectoryChart', 50, 'Miner Directory');
+        createDoughnutChart('promotionalChart', 60, 'Promotional');
+        createDoughnutChart('eventPassChart', 30, 'Miner Directory');
+        createDoughnutChart('exhibitionChart', 10, 'Miner Directory');
+        // Panggil fungsi serupa untuk chart lainnya
     </script>
 
     <style>

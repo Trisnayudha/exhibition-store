@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,3 +34,6 @@ Route::get('/shoping/cart', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::post('/test', [TestController::class, 'test']);
