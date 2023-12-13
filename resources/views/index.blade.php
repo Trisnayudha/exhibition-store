@@ -5,6 +5,8 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
 
@@ -19,7 +21,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script> --}}
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <!-- DataTables JS -->
@@ -30,7 +32,6 @@
     <!-- Tambahkan ini ke dalam bagian head HTML Anda -->
     <link rel="stylesheet" href="https://unpkg.com/cropperjs/dist/cropper.min.css">
     <script src="https://unpkg.com/cropperjs/dist/cropper.min.js"></script>
-
     @stack('top')
     <title>Exhibition Portal</title>
     <style>
@@ -95,57 +96,54 @@
         </div>
     </nav>
 
-    <div class="container-fluid mt-5">
-        <div class="row">
-            @if (Request::is('form'))
-                <div class="col-sm-3">
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <div
-                                class="card text-white {{ $type == 'company-information' ? ' bg-info ' : ' bg-secondary ' }} mb-3">
-                                <div class="card-body">
-                                    <h8 class="card-title">FORM 1 - Company Information</h8>
-                                </div>
+    <div class="container-fluid mt-5"></div>
+    <div class="row">
+        @if (Request::is('form'))
+            <div class="col-sm-3">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <div
+                            class="card text-white {{ $type == 'company-information' ? ' bg-info ' : ' bg-secondary ' }} mb-3">
+                            <div class="card-body">
+                                <h8 class="card-title">FORM 1 - Company Information</h8>
                             </div>
-                        </li>
-                        <li class="nav-item">
-                            <div
-                                class="card text-white {{ $type == 'indonesia-miner-directory' ? ' bg-info ' : ' bg-secondary ' }} mb-3">
-                                <div class="card-body">
-                                    <h7 class="card-title">FORM 2 - Indonesia Miner Directory</h7>
-                                </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div
+                            class="card text-white {{ $type == 'indonesia-miner-directory' ? ' bg-info ' : ' bg-secondary ' }} mb-3">
+                            <div class="card-body">
+                                <h7 class="card-title">FORM 2 - Indonesia Miner Directory</h7>
                             </div>
-                        </li>
-                        <li class="nav-item">
-                            <div
-                                class="card text-white {{ $type == 'promotional' ? ' bg-info ' : ' bg-secondary ' }} mb-3">
-                                <div class="card-body">
-                                    <h7 class="card-title">FORM 3 - Promotional</h7>
-                                </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="card text-white {{ $type == 'promotional' ? ' bg-info ' : ' bg-secondary ' }} mb-3">
+                            <div class="card-body">
+                                <h7 class="card-title">FORM 3 - Promotional</h7>
                             </div>
-                        </li>
-                        <li class="nav-item">
-                            <div
-                                class="card text-white {{ $type == 'event-pass' ? ' bg-info ' : ' bg-secondary ' }} mb-3">
-                                <div class="card-body">
-                                    <h7 class="card-title">FORM 4 - Event Pass</h7>
-                                </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="card text-white {{ $type == 'event-pass' ? ' bg-info ' : ' bg-secondary ' }} mb-3">
+                            <div class="card-body">
+                                <h7 class="card-title">FORM 4 - Event Pass</h7>
                             </div>
-                        </li>
-                        <li class="nav-item">
-                            <div
-                                class="card text-white {{ $type == 'exhibition' ? ' bg-info ' : ' bg-secondary ' }} mb-3">
-                                <div class="card-body">
-                                    <h7 class="card-title">FORM 5 - Exhibition</h7>
-                                </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="card text-white {{ $type == 'exhibition' ? ' bg-info ' : ' bg-secondary ' }} mb-3">
+                            <div class="card-body">
+                                <h7 class="card-title">FORM 5 - Exhibition</h7>
                             </div>
-                        </li>
-                    </ul>
-                </div>
-            @endif
-            @yield('content')
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        @endif
+        @yield('content')
 
-        </div>
+    </div>
     </div>
 
 
@@ -193,7 +191,6 @@
             </div>
         </div>
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
 

@@ -14,6 +14,8 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
+    'image_base_url' => env('IMAGE_BASE_URL', 'https://indonesiaminer.com/'),
+
 
     /*
     |--------------------------------------------------------------------------

@@ -9,81 +9,335 @@
                 <th>No</th>
                 <th>Nama</th>
                 <th>Job Title</th>
-                <th>Email</th>
-                <th>Short Bio</th>
-                <th>LinkedIn</th>
                 <th>Foto</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody id="tabelRepresentative">
-            <!-- Isi tabel akan ditambahkan secara dinamis di sini -->
+            <!-- Table content will be dynamically added here -->
         </tbody>
     </table>
+
 </div>
+<!-- Modal for Input -->
+<div class="modal fade" id="representativeModal" tabindex="-1" role="dialog" aria-labelledby="representativeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="representativeModalLabel">Tambah Representative</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Input fields for representative data -->
+                <div class="form-group">
+                    <label for="inputNama">Nama</label>
+                    <input type="text" class="form-control" id="representative_name">
+                </div>
+                <div class="form-group">
+                    <label for="inputJobTitle">Job Title</label>
+                    <input type="text" class="form-control" id="representative_job_title">
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail">Email</label>
+                    <input type="email" class="form-control" id="representative_email">
+                </div>
+                <div class="form-group">
+                    <label for="inputShortBio">Short Bio</label>
+                    <input type="text" class="form-control" id="representative_short_bio">
+                </div>
+                <div class="form-group">
+                    <label for="inputLinkedIn">LinkedIn</label>
+                    <input type="text" class="form-control" id="representative_linkedin">
+                </div>
+                <div class="form-group">
+                    <label for="inputFoto">Foto</label>
+                    <input type="file" class="form-control" id="representative_image">
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="simpanRepresentative()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Edit -->
+<div class="modal fade" id="representativeEditModal" tabindex="-1" role="dialog"
+    aria-labelledby="representativeEditModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="representativeEditModalLabel">Edit Representative</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Input fields for editing representative data -->
+                <div class="form-group">
+                    <label for="editNama">Nama</label>
+                    <input type="text" class="form-control" id="representative_edit_name">
+                    <input type="hidden" class="form-control" id="representative_id">
+                </div>
+                <div class="form-group">
+                    <label for="editJobTitle">Job Title</label>
+                    <input type="text" class="form-control" id="representative_edit_job_title">
+                </div>
+                <div class="form-group">
+                    <label for="editEmail">Email</label>
+                    <input type="email" class="form-control" id="representative_edit_email">
+                </div>
+                <div class="form-group">
+                    <label for="editShortBio">Short Bio</label>
+                    <input type="text" class="form-control" id="representative_edit_short_bio">
+                </div>
+                <div class="form-group">
+                    <label for="editLinkedIn">LinkedIn</label>
+                    <input type="text" class="form-control" id="representative_edit_linkedin">
+                </div>
+                <div class="form-group">
+                    <label for="editFoto">Foto</label>
+                    <input type="file" class="form-control" id="representative_edit_image">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="updateRepresentative()">Update</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
+    // Load data on page load
+    $(document).ready(function() {
+        loadRepresentative();
+    });
     // Fungsi untuk menambahkan baris baru ke tabel
+    function editRepresentative(id) {
+        // Retrieve data for the selected representative using Ajax
+        $.ajax({
+            type: 'GET',
+            url: '{{ url('/representative') }}/' + id,
+            success: function(response) {
+                var representative = response.data;
+
+                // Populate the fields in the edit modal with existing data
+                $('#representative_id').val(representative.id);
+                $('#representative_edit_name').val(representative.name);
+                $('#representative_edit_job_title').val(representative.position);
+                $('#representative_edit_email').val(representative.email);
+                $('#representative_edit_short_bio').val(representative.bio);
+                $('#representative_edit_linkedin').val(representative.linkedin);
+                // $('#representative_edit_image').val(representative.image);
+
+                // Open the edit modal
+                $('#representativeEditModal').modal('show');
+            },
+            error: function(error) {
+                console.error('Error:', error);
+            }
+        });
+    }
+
+    function updateRepresentative() {
+        var id = $('#representative_id').val();
+        var name = $('#representative_edit_name').val();
+        var position = $('#representative_edit_job_title').val();
+        var email = $('#representative_edit_email').val();
+        var short_bio = $('#representative_edit_short_bio').val();
+        var linkedin = $('#representative_edit_linkedin').val();
+        var imageInput = $('#representative_edit_image')[0];
+
+        // Validasi input
+        if (!name || !position || !email || !short_bio || !linkedin) {
+            Swal.fire({
+                title: 'Peringatan',
+                text: 'Harap isi semua kolom dan pilih gambar!',
+                icon: 'warning',
+                confirmButtonText: 'OK'
+            });
+            return;
+        }
+
+        var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+        // Create a JSON object
+        var jsonData = {
+            id: id,
+            name: name,
+            position: position,
+            email: email,
+            short_bio: short_bio,
+            linkedin: linkedin
+        };
+
+        // Append image data if present
+        if (imageInput.files[0]) {
+            jsonData.image = imageInput.files[0];
+        }
+        // Send data to the server using Ajax
+        $.ajax({
+            type: 'PUT',
+            url: '{{ url('/representative') }}/' + id,
+            data: JSON.stringify(jsonData),
+            contentType: 'application/json',
+            headers: {
+                'X-CSRF-TOKEN': csrfToken
+            },
+            success: function(response) {
+                console.log('Data berhasil diupdate:', response);
+                loadRepresentative();
+                $('#representativeEditModal').modal('hide');
+            },
+            error: function(error) {
+                console.error('Error:', error);
+            }
+        });
+    }
+
+
+    // Function to open the input modal
     function tambahRepresentative() {
-        // Ambil elemen tbody
-        var tbody = document.getElementById('tabelRepresentative');
-
-        // Hitung jumlah baris saat ini
-        var rowCount = tbody.rows.length;
-
-        // Buat elemen baris baru
-        var row = tbody.insertRow(rowCount);
-
-        // Tambahkan sel-sel ke dalam baris
-        var cell1 = row.insertCell(0);
-        var cell2 = row.insertCell(1);
-        var cell3 = row.insertCell(2);
-        var cell4 = row.insertCell(3);
-        var cell5 = row.insertCell(4);
-        var cell6 = row.insertCell(5);
-        var cell7 = row.insertCell(6);
-        var cell8 = row.insertCell(7);
-
-        // Isi sel-sel dengan formulir input
-        cell1.innerHTML = rowCount + 1;
-        cell2.innerHTML = '<input type="text" class="form-control" name="nama[]">';
-        cell3.innerHTML = '<input type="text" class="form-control" name="job_title[]">';
-        cell4.innerHTML = '<input type="email" class="form-control" name="email[]">';
-        cell5.innerHTML = '<input type="text" class="form-control" name="short_bio[]">';
-        cell6.innerHTML = '<input type="text" class="form-control" name="linkedin[]">';
-        cell7.innerHTML = '<input type="file" class="form-control" name="foto[]">';
-        cell8.innerHTML = '<button class="btn btn-danger" onclick="hapusBaris(this)">Hapus</button> ' +
-            '<button class="btn btn-success" onclick="simpanData(this.parentNode.parentNode)">Save</button>';
+        $('#representativeModal').modal('show');
     }
 
-    // Fungsi untuk menghapus baris
-    function hapusBaris(btn) {
-        var row = btn.parentNode.parentNode;
-        row.parentNode.removeChild(row);
+    function hapusRepresentative(index) {
+        var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+        // Konfirmasi pengguna sebelum menghapus
+        Swal.fire({
+            title: 'Apakah Anda yakin?',
+            text: 'Data representative akan dihapus!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Ya, hapus!',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Kirim permintaan penghapusan ke server menggunakan Ajax
+                $.ajax({
+                    type: 'DELETE',
+                    url: '{{ url('/representative') }}/' + index,
+                    data: {
+                        _token: csrfToken
+                    },
+                    success: function(response) {
+                        console.log('Data berhasil dihapus:', response);
+                        loadRepresentative();
+                    },
+                    error: function(error) {
+                        console.error('Error:', error);
+                    }
+                });
+            }
+        });
     }
 
-    // Fungsi untuk menyimpan data menggunakan Ajax
-    function simpanData(row) {
-        var data = {};
+    function simpanRepresentative() {
+        var nama = $('#representative_name').val();
+        var position = $('#representative_job_title').val();
+        var email = $('#representative_email').val();
+        var short_bio = $('#representative_short_bio').val();
+        var linkedin = $('#representative_linkedin').val();
+        var imageInput = $('#representative_image')[0];
 
-        // Ambil nilai input dari setiap kolom pada baris tertentu
-        data.nama = row.cells[1].getElementsByTagName('input')[0].value;
-        data.jobTitle = row.cells[2].getElementsByTagName('input')[0].value;
-        data.email = row.cells[3].getElementsByTagName('input')[0].value;
-        data.shortBio = row.cells[4].getElementsByTagName('input')[0].value;
-        data.linkedin = row.cells[5].getElementsByTagName('input')[0].value;
+        // Validasi input
+        if (!nama || !position || !email || !short_bio || !linkedin) {
+            // Menampilkan swal menggunakan Swal 2
+            Swal.fire({
+                title: 'Peringatan',
+                text: 'Harap isi semua kolom dan pilih gambar!',
+                icon: 'warning',
+                confirmButtonText: 'OK'
+            });
+            return;
+        }
 
-        // (Opsional) Lakukan validasi data di sini sebelum dikirim ke server
+        var csrfToken = $('meta[name="csrf-token"]').attr('content');
 
-        // Kirim data ke server menggunakan Ajax (contoh dummy)
+        var formData = new FormData();
+        formData.append('name', nama);
+        formData.append('position', position);
+        formData.append('email', email);
+        formData.append('short_bio', short_bio);
+        formData.append('linkedin', linkedin);
+
+        // Cek apakah gambar diisi
+        if (imageInput.files[0]) {
+            formData.append('image', imageInput.files[0]);
+        }
+
+        // Kirim data ke server menggunakan Ajax dengan FormData
         $.ajax({
             type: 'POST',
-            url: 'simpan_data.php', // Ganti dengan URL penyimpanan data di server
-            data: {
-                data: JSON.stringify(data)
+            url: '{{ url('/representative') }}',
+            data: formData,
+            processData: false,
+            contentType: false,
+            headers: {
+                'X-CSRF-TOKEN': csrfToken
             },
             success: function(response) {
                 console.log('Data berhasil disimpan:', response);
-                // Tambahkan logika atau tindakan setelah data disimpan di sini
+                loadRepresentative();
+                $('#representativeModal').modal('hide');
+
+                // Membersihkan inputan modal
+                $('#representative_name').val('');
+                $('#representative_job_title').val('');
+                $('#representative_email').val('');
+                $('#representative_short_bio').val('');
+                $('#representative_linkedin').val('');
+                $('#representative_image').val(''); // Jika menggunakan input type file
+            },
+            error: function(error) {
+                console.error('Error:', error);
+            }
+        });
+    }
+
+
+
+    function loadRepresentative() {
+        // Clear existing table rows
+        $('#tabelRepresentative').empty();
+
+        // Retrieve data from the server using Ajax
+        $.ajax({
+            type: 'GET',
+            url: '{{ url('/representative') }}', // Replace with the actual API URL
+            success: function(response) {
+                var data = response.data;
+
+                // Get the image base URL from the configuration
+                var imageBaseUrl = '{{ config('app.image_base_url') }}';
+
+                // Iterate through the data and append rows to the table
+                for (var i = 0; i < data.length; i++) {
+                    var representative = data[i];
+                    var row = '<tr>' +
+                        '<td>' + (i + 1) + '</td>' +
+                        '<td>' + representative.name + '</td>' +
+                        '<td>' + representative.position + '</td>' +
+                        '<td><img src="' + imageBaseUrl + representative.image +
+                        '" alt="Foto" style="width:50px;height:50px;"></td>' +
+                        '<td>' +
+                        '<button class="btn btn-info" onclick="editRepresentative(' + representative.id +
+                        ')">Edit</button> ' +
+                        '<button class="btn btn-danger" onclick="hapusRepresentative(' + representative.id +
+                        ')">Hapus</button>' +
+                        '</td>' +
+                        '</tr>';
+
+                    // Append the row to the table body
+                    $('#tabelRepresentative').append(row);
+                }
             },
             error: function(error) {
                 console.error('Error:', error);

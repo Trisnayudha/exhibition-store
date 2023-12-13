@@ -3,6 +3,7 @@
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MiningDirectory\RepresentativeController;
 use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 
@@ -41,3 +42,5 @@ Route::post('/test', [TestController::class, 'test']);
 Route::post('/postPersonal', [CompanyController::class, 'postPersonal']);
 Route::post('/postCompany', [CompanyController::class, 'postCompany']);
 Route::post('/postGeneral', [CompanyController::class, 'postGeneral']);
+
+Route::resource('representative', RepresentativeController::class);
