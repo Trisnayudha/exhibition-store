@@ -97,54 +97,57 @@
         </div>
     </nav>
 
-    <div class="container-fluid mt-5"></div>
-    <div class="row">
-        @if (Request::is('form'))
-            <div class="col-sm-3">
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <div
-                            class="card text-white {{ $type == 'company-information' ? ' bg-info ' : ' bg-secondary ' }} mb-3">
-                            <div class="card-body">
-                                <h8 class="card-title">FORM 1 - Company Information</h8>
+    <div class="container-fluid mt-5">
+        <div class="row">
+            @if (Request::is('form'))
+                <div class="col-sm-3">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <div
+                                class="card text-white {{ $type == 'company-information' ? ' bg-info ' : ' bg-secondary ' }} mb-3">
+                                <div class="card-body">
+                                    <h8 class="card-title">FORM 1 - Company Information</h8>
+                                </div>
                             </div>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <div
-                            class="card text-white {{ $type == 'indonesia-miner-directory' ? ' bg-info ' : ' bg-secondary ' }} mb-3">
-                            <div class="card-body">
-                                <h7 class="card-title">FORM 2 - Indonesia Miner Directory</h7>
+                        </li>
+                        <li class="nav-item">
+                            <div
+                                class="card text-white {{ $type == 'indonesia-miner-directory' ? ' bg-info ' : ' bg-secondary ' }} mb-3">
+                                <div class="card-body">
+                                    <h7 class="card-title">FORM 2 - Indonesia Miner Directory</h7>
+                                </div>
                             </div>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <div class="card text-white {{ $type == 'promotional' ? ' bg-info ' : ' bg-secondary ' }} mb-3">
-                            <div class="card-body">
-                                <h7 class="card-title">FORM 3 - Promotional</h7>
+                        </li>
+                        <li class="nav-item">
+                            <div
+                                class="card text-white {{ $type == 'promotional' ? ' bg-info ' : ' bg-secondary ' }} mb-3">
+                                <div class="card-body">
+                                    <h7 class="card-title">FORM 3 - Promotional</h7>
+                                </div>
                             </div>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <div class="card text-white {{ $type == 'event-pass' ? ' bg-info ' : ' bg-secondary ' }} mb-3">
-                            <div class="card-body">
-                                <h7 class="card-title">FORM 4 - Event Pass</h7>
+                        </li>
+                        <li class="nav-item">
+                            <div
+                                class="card text-white {{ $type == 'event-pass' ? ' bg-info ' : ' bg-secondary ' }} mb-3">
+                                <div class="card-body">
+                                    <h7 class="card-title">FORM 4 - Event Pass</h7>
+                                </div>
                             </div>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <div class="card text-white {{ $type == 'exhibition' ? ' bg-info ' : ' bg-secondary ' }} mb-3">
-                            <div class="card-body">
-                                <h7 class="card-title">FORM 5 - Exhibition</h7>
+                        </li>
+                        <li class="nav-item">
+                            <div
+                                class="card text-white {{ $type == 'exhibition' ? ' bg-info ' : ' bg-secondary ' }} mb-3">
+                                <div class="card-body">
+                                    <h7 class="card-title">FORM 5 - Exhibition</h7>
+                                </div>
                             </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        @endif
-        @yield('content')
+                        </li>
+                    </ul>
+                </div>
+            @endif
+            @yield('content')
 
-    </div>
+        </div>
     </div>
 
 
