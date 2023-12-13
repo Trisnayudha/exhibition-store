@@ -4,6 +4,7 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MiningDirectory\MediaController;
+use App\Http\Controllers\MiningDirectory\ProductsController;
 use App\Http\Controllers\MiningDirectory\RepresentativeController;
 use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
@@ -46,3 +47,4 @@ Route::post('/postGeneral', [CompanyController::class, 'postGeneral']);
 
 Route::resource('representative', RepresentativeController::class);
 Route::resource('media', MediaController::class);
+Route::resource('product', ProductsController::class);
