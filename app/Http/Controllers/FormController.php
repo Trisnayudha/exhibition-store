@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Company;
 use App\Models\Company\CompanyService;
 use App\Models\Logs\ExhibitionLog;
+use App\Models\MiningDirectory\Media\MediaCategory;
 use App\Models\Ms\MsClassCompanyMinerals;
 use App\Models\Ms\MsClassCompanyMining;
 use App\Models\Ms\MsCommodCompanyMinerals;
@@ -53,6 +54,7 @@ class FormController extends Controller
             $data['data'] = $this->getDetail();
             $data['video'] = $this->getDataVideo();
             $data['general'] = $this->getLogs('general');
+            $data['media_category'] = $this->getMediaCategory();
             // dd($data['video']);
             // dd($data);
             return view('frontend.form.form-2.form-2', $data);
@@ -99,6 +101,12 @@ class FormController extends Controller
         $userId = auth()->id();
 
         $data = ExhibitionLog::where('section', $section)->where('company_id', $userId)->first();
+        return $data;
+    }
+
+    private function getMediaCategory()
+    {
+        $data = MediaCategory::get();
         return $data;
     }
 }

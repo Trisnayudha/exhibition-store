@@ -32,6 +32,7 @@
     <!-- Tambahkan ini ke dalam bagian head HTML Anda -->
     <link rel="stylesheet" href="https://unpkg.com/cropperjs/dist/cropper.min.css">
     <script src="https://unpkg.com/cropperjs/dist/cropper.min.js"></script>
+    <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
     @stack('top')
     <title>Exhibition Portal</title>
     <style>
@@ -193,8 +194,11 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
-
     <script>
+        CKEDITOR.replace('.ckeditor', {
+            allowedContent: true
+        });
+
         // Detect device type
         function isMobileDevice() {
             return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
