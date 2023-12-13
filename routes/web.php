@@ -8,6 +8,7 @@ use App\Http\Controllers\MiningDirectory\NewsController;
 use App\Http\Controllers\MiningDirectory\ProductsController;
 use App\Http\Controllers\MiningDirectory\ProjectController;
 use App\Http\Controllers\MiningDirectory\RepresentativeController;
+use App\Http\Controllers\PromotionalController;
 use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 
@@ -52,3 +53,6 @@ Route::resource('media', MediaController::class);
 Route::resource('product', ProductsController::class);
 Route::resource('project', ProjectController::class);
 Route::resource('news', NewsController::class);
+
+Route::post('promotional/advertisement', [PromotionalController::class, 'advertisement']);
+Route::post('promotional/sosmed', [PromotionalController::class, 'sosmed']);
