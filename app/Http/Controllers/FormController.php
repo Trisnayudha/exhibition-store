@@ -6,6 +6,7 @@ use App\Models\Company;
 use App\Models\Company\CompanyService;
 use App\Models\Logs\ExhibitionLog;
 use App\Models\MiningDirectory\Media\MediaCategory;
+use App\Models\MiningDirectory\Products\ProductCategory;
 use App\Models\Ms\MsClassCompanyMinerals;
 use App\Models\Ms\MsClassCompanyMining;
 use App\Models\Ms\MsCommodCompanyMinerals;
@@ -55,6 +56,7 @@ class FormController extends Controller
             $data['video'] = $this->getDataVideo();
             $data['general'] = $this->getLogs('general');
             $data['media_category'] = $this->getMediaCategory();
+            $data['product_category'] = $this->getProductCategory();
             // dd($data['video']);
             // dd($data);
             return view('frontend.form.form-2.form-2', $data);
@@ -107,6 +109,12 @@ class FormController extends Controller
     private function getMediaCategory()
     {
         $data = MediaCategory::get();
+        return $data;
+    }
+
+    private function getProductCategory()
+    {
+        $data = ProductCategory::get();
         return $data;
     }
 }
