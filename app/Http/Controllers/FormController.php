@@ -45,13 +45,16 @@ class FormController extends Controller
             $data['origin_manufacturer'] = MsOriginManufacturCompany::get();
             $data['ms_company_class'] = MsCompanyClass::get();
             $data['data'] = $this->getDetail();
-            $data['section'] = $this->getLogs('personal_information');
+            $data['personal_information'] = $this->getLogs('personal_information');
+            $data['company_information'] = $this->getLogs('company_information');
             // dd($data['section']);
             return view('frontend.form.form-1.form-1', $data);
         } elseif ($type == 'indonesia-miner-directory') {
             $data['data'] = $this->getDetail();
             $data['video'] = $this->getDataVideo();
+            $data['general'] = $this->getLogs('general');
             // dd($data['video']);
+            // dd($data);
             return view('frontend.form.form-2.form-2', $data);
         } elseif ($type == 'promotional') {
             return view('frontend.form.form-3.form-3', $data);

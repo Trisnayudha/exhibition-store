@@ -40,3 +40,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::post('/test', [TestController::class, 'test']);
 Route::post('/postPersonal', [CompanyController::class, 'postPersonal']);
 Route::post('/postCompany', [CompanyController::class, 'postCompany']);
+Route::post('/postGeneral', [CompanyController::class, 'postGeneral']);

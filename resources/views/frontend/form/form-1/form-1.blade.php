@@ -6,11 +6,11 @@
             <div class="container-fluid">
                 <div class="card border-info">
                     <div class="card-body" style="margin-bottom:-7px;">
-                        @if (optional($section)->updated_at != null)
+                        @if (optional($personal_information)->updated_at != null)
                             <div class="alert alert-warning alert-dismissible fade show" role="alert">
                                 Already updated at
                                 <strong>
-                                    {{ optional($section->updated_at)->format('d F Y, g:i A') }}
+                                    {{ optional($personal_information->updated_at)->format('d F Y, g:i A') }}
                                 </strong>
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
@@ -118,12 +118,18 @@
                             <div class="row">
 
                                 <div class="container-fluid">
-                                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                        Already updated at <strong>13 Desc 2023 12:00 PM</strong>
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
+                                    @if (optional($company_information)->updated_at != null)
+                                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                            Already updated at
+                                            <strong>
+                                                {{ optional($company_information->updated_at)->format('d F Y, g:i A') }}
+                                            </strong>
+                                            <button type="button" class="close" data-dismiss="alert"
+                                                aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                    @endif
                                     <h4 class="title-gray">Company Information</h4>
                                 </div>
                                 @csrf

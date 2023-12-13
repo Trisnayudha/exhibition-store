@@ -1,5 +1,16 @@
-<form action="{{ url('test') }}" method="POSt" enctype="multipart/form-data">
+<form action="{{ url('postGeneral') }}" method="POSt" enctype="multipart/form-data">
     @csrf
+    @if (optional($general)->updated_at != null)
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            Already updated at
+            <strong>
+                {{ optional($general->updated_at)->format('d F Y, g:i A') }}
+            </strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
     <div class="form-group">
         <label for="company_logo">Company Logo</label>
         <input type="file" class="form-control" name="company_logo" id="company_logo_input">
@@ -74,46 +85,23 @@
             <small>Please input URL (URL should include https://)</small>
         </p>
 
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroup-sizing-default">
-                    Main Video
-                </span>
-            </div>
-            <input type="text" class="form-control" aria-label="Sizing example input"
-                aria-describedby="inputGroup-sizing-default" name="main_video" id="main_video"
-                value="{{ $video['main_video'] ?? '' }}">
-        </div>
-        <!-- Other Videos -->
-        @if (count($video) > 0)
-            @foreach ($video as $key => $url)
-                @if (strpos($key, 'video_') === 0)
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroup-sizing-default">
-                                {{ ucfirst($key) }}
-                            </span>
-                        </div>
-                        <input type="text" class="form-control" aria-label="Sizing example input"
-                            aria-describedby="inputGroup-sizing-default" name="{{ $key }}"
-                            id="{{ $key }}" value="{{ $url }}">
-                    </div>
-                @endif
-            @endforeach
-        @else
-            @for ($i = 1; $i <= 3; $i++)
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroup-sizing-default">
+        @for ($i = 0; $i < 4; $i++)
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default">
+                        @if ($i == 0)
+                            Main Video
+                        @else
                             Video {{ $i }}
-                        </span>
-                    </div>
-                    <input type="text" class="form-control" aria-label="Sizing example input"
-                        aria-describedby="inputGroup-sizing-default" name="video_{{ $i }}"
-                        id="video_{{ $i }}" value="">
+                        @endif
+                    </span>
                 </div>
-            @endfor
-        @endif
+                <input type="text" class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default" name="{{ $i == 0 ? 'main_video' : 'video_' . $i }}"
+                    id="{{ $i == 0 ? 'main_video' : 'video_' . $i }}"
+                    value="{{ $video[$i == 0 ? 'main_video' : 'video_' . $i] ?? '' }}">
+            </div>
+        @endfor
 
 
     </div>

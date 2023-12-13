@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Company;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class CompanyVideo extends Model
 {
     use HasFactory;
+    protected $table = 'company_video';
 }
