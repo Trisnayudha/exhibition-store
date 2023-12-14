@@ -1,4 +1,7 @@
 <div class="container mt-5">
+    <div class="logger-product">
+
+    </div>
     <!-- Tombol Tambah -->
     <button class="btn btn-primary mb-3" onclick="tambahProduct()">Tambah</button>
 
@@ -139,6 +142,7 @@
 <script>
     // Load data on page load
     $(document).ready(function() {
+        loadLogProduct();
         loadProduct();
     });
     // Fungsi untuk menambahkan baris baru ke tabel
@@ -236,6 +240,7 @@
             },
             success: function(response) {
                 console.log('Data berhasil diupdate:', response);
+                loadLogProduct();
                 loadProduct();
                 $('#productEditModal').modal('hide');
             },
@@ -275,6 +280,7 @@
                     },
                     success: function(response) {
                         console.log('Data berhasil dihapus:', response);
+                        loadLogProduct();
                         loadProduct();
                     },
                     error: function(error) {
@@ -345,6 +351,7 @@
             success: function(response) {
                 console.log('Data berhasil disimpan:', response);
                 loadProduct();
+                loadLogProduct();
                 $('#productModal').modal('hide');
 
                 // Membersihkan inputan modal
@@ -396,6 +403,45 @@
 
                     // Append the row to the table body
                     $('#tabelProduct').append(row);
+                }
+            },
+            error: function(error) {
+                console.error('Error:', error);
+            }
+        });
+    }
+
+    function loadLogProduct() {
+        $.ajax({
+            type: 'GET',
+            url: '{{ url('product/log') }}', // Ganti dengan URL API yang sesuai
+            success: function(response) {
+                if (response) {
+                    // Parse tanggal dari format ISO
+                    var updatedAt = new Date(response.updated_at);
+                    console.log(updatedAt);
+                    // Buat elemen div untuk menampilkan log
+                    var logDiv = $(
+                        '<div class="alert alert-warning alert-dismissible fade show" role="alert">');
+
+                    // Tambahkan konten log ke dalam elemen div
+                    logDiv.html('Already updated at <strong>' +
+                        updatedAt.toLocaleDateString('en-US', {
+                            weekday: 'long',
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric',
+                            hour: 'numeric',
+                            minute: 'numeric',
+                            hour12: true
+                        }) +
+                        '</strong>' +
+                        '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+                        '<span aria-hidden="true">&times;</span>' +
+                        '</button>');
+
+                    // Tampilkan elemen div dalam elemen dengan class "logger-product"
+                    $('.logger-product').html(logDiv);
                 }
             },
             error: function(error) {

@@ -50,6 +50,10 @@ Route::post('/postGeneral', [CompanyController::class, 'postGeneral']);
 
 //Logger
 Route::get('/representative/log', [RepresentativeController::class, 'log']);
+Route::get('/media/log', [MediaController::class, 'log']);
+Route::get('/product/log', [ProductsController::class, 'log']);
+Route::get('/project/log', [ProjectController::class, 'log']);
+Route::get('/news/log', [NewsController::class, 'log']);
 
 
 //Crud

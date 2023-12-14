@@ -113,7 +113,22 @@ class NewsController extends Controller
     {
         $representative = News::findOrFail($id);
         $representative->delete();
-
+        $company_id = auth()->id();
+        $log = ExhibitionLog::where('section', 'news')->where('company_id', $company_id)->first();
+        if ($log == null) {
+            $log = new ExhibitionLog();
+            $log->section = 'news';
+            $log->company_id = $company_id;
+        }
+        $log->updated_at = Carbon::now();
+        $log->save();
         return response()->json(['message' => 'Data berhasil dihapus']);
+    }
+
+    public function log()
+    {
+        $userId = auth()->id();
+        $data = ExhibitionLog::where('section', 'news')->where('company_id', $userId)->first();
+        return $data;
     }
 }
