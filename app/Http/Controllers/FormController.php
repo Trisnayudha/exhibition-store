@@ -59,11 +59,6 @@ class FormController extends Controller
             $data['data'] = $this->getDetail();
             $data['video'] = $this->getDataVideo();
             $data['general'] = $this->getLogs('general');
-            $data['representative'] = $this->getLogs('representative');
-            $data['media'] = $this->getLogs('media');
-            $data['product'] = $this->getLogs('product');
-            $data['project'] = $this->getLogs('project');
-            $data['news'] = $this->getLogs('news');
             $data['media_category'] = $this->getMediaCategory();
             $data['product_category'] = $this->getProductCategory();
             $data['project_category'] = $this->getProjectCategory();
