@@ -72,6 +72,9 @@ class FormController extends Controller
             // dd($data);
             return view('frontend.form.form-3.form-3', $data);
         } elseif ($type == 'event-pass') {
+            $data['company_type'] = MsCompanyType::get();
+            $data['phone_code'] = MsPhoneCode::get();
+
             return view('frontend.form.form-4.form-4', $data);
         } elseif ($type == 'exhibition') {
             return view('frontend.form.form-5.form-5', $data);
