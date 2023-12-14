@@ -48,6 +48,11 @@ Route::post('/postPersonal', [CompanyController::class, 'postPersonal']);
 Route::post('/postCompany', [CompanyController::class, 'postCompany']);
 Route::post('/postGeneral', [CompanyController::class, 'postGeneral']);
 
+//Logger
+Route::get('/representative/log', [RepresentativeController::class, 'log']);
+
+
+//Crud
 Route::resource('representative', RepresentativeController::class);
 Route::resource('media', MediaController::class);
 Route::resource('product', ProductsController::class);

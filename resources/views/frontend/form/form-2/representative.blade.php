@@ -1,4 +1,7 @@
 <div class="container mt-5">
+    <div class="logger-representative">
+
+    </div>
     <!-- Tombol Tambah -->
     <button class="btn btn-primary mb-3" onclick="tambahRepresentative()">Tambah</button>
 
@@ -117,6 +120,7 @@
     // Load data on page load
     $(document).ready(function() {
         loadRepresentative();
+        loadLogRepresentative();
     });
     // Fungsi untuk menambahkan baris baru ke tabel
     function editRepresentative(id) {
@@ -193,6 +197,7 @@
             success: function(response) {
                 console.log('Data berhasil diupdate:', response);
                 loadRepresentative();
+                loadLogRepresentative();
                 $('#representativeEditModal').modal('hide');
             },
             error: function(error) {
@@ -230,6 +235,7 @@
                     success: function(response) {
                         console.log('Data berhasil dihapus:', response);
                         loadRepresentative();
+                        loadLogRepresentative();
                     },
                     error: function(error) {
                         console.error('Error:', error);
@@ -286,6 +292,7 @@
             success: function(response) {
                 console.log('Data berhasil disimpan:', response);
                 loadRepresentative();
+                loadLogRepresentative();
                 $('#representativeModal').modal('hide');
 
                 // Membersihkan inputan modal
@@ -301,8 +308,6 @@
             }
         });
     }
-
-
 
     function loadRepresentative() {
         // Clear existing table rows
@@ -337,6 +342,45 @@
 
                     // Append the row to the table body
                     $('#tabelRepresentative').append(row);
+                }
+            },
+            error: function(error) {
+                console.error('Error:', error);
+            }
+        });
+    }
+
+    function loadLogRepresentative() {
+        $.ajax({
+            type: 'GET',
+            url: '{{ url('representative/log') }}', // Ganti dengan URL API yang sesuai
+            success: function(response) {
+                if (response) {
+                    // Parse tanggal dari format ISO
+                    var updatedAt = new Date(response.updated_at);
+                    console.log(updatedAt);
+                    // Buat elemen div untuk menampilkan log
+                    var logDiv = $(
+                        '<div class="alert alert-warning alert-dismissible fade show" role="alert">');
+
+                    // Tambahkan konten log ke dalam elemen div
+                    logDiv.html('Already updated at <strong>' +
+                        updatedAt.toLocaleDateString('en-US', {
+                            weekday: 'long',
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric',
+                            hour: 'numeric',
+                            minute: 'numeric',
+                            hour12: true
+                        }) +
+                        '</strong>' +
+                        '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+                        '<span aria-hidden="true">&times;</span>' +
+                        '</button>');
+
+                    // Tampilkan elemen div dalam elemen dengan class "logger-representative"
+                    $('.logger-representative').html(logDiv);
                 }
             },
             error: function(error) {
