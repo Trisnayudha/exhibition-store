@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\MiningDirectory;
 
 use App\Http\Controllers\Controller;
+use App\Models\Logs\ExhibitionLog;
 use App\Models\MiningDirectory\Media\MediaResource;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
@@ -63,7 +65,15 @@ class MediaController extends Controller
         $media->slug = Str::slug($media->title); // Menggunakan helper Str untuk membuat URL yang bersih
 
         $media->save();
-
+        $company_id = auth()->id();
+        $log = ExhibitionLog::where('section', 'media')->where('company_id', $company_id)->first();
+        if ($log == null) {
+            $log = new ExhibitionLog();
+            $log->section = 'media';
+            $log->company_id = $company_id;
+        }
+        $log->updated_at = Carbon::now();
+        $log->save();
         return response()->json(['message' => 'Data berhasil disimpan', 'data' => $media]);
     }
 
@@ -121,7 +131,15 @@ class MediaController extends Controller
         $media->slug = Str::slug($media->title); // Menggunakan helper Str untuk membuat URL yang bersih
 
         $media->save();
-
+        $company_id = auth()->id();
+        $log = ExhibitionLog::where('section', 'media')->where('company_id', $company_id)->first();
+        if ($log == null) {
+            $log = new ExhibitionLog();
+            $log->section = 'media';
+            $log->company_id = $company_id;
+        }
+        $log->updated_at = Carbon::now();
+        $log->save();
         return response()->json(['message' => 'Data berhasil diperbarui', 'data' => $media]);
     }
 

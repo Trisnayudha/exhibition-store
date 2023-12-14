@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\MiningDirectory;
 
 use App\Http\Controllers\Controller;
+use App\Models\Logs\ExhibitionLog;
 use App\Models\MiningDirectory\CompanyRepresentative;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
@@ -44,8 +46,16 @@ class RepresentativeController extends Controller
             // Simpan path gambar ke dalam kolom image di tabel
             $save->image = $db;
         }
-
         $save->save();
+        $company_id = auth()->id();
+        $log = ExhibitionLog::where('section', 'representative')->where('company_id', $company_id)->first();
+        if ($log == null) {
+            $log = new ExhibitionLog();
+            $log->section = 'representative';
+            $log->company_id = $company_id;
+        }
+        $log->updated_at = Carbon::now();
+        $log->save();
         return response()->json(['message' => 'Berhasil disimpan']);
     }
 
@@ -77,6 +87,15 @@ class RepresentativeController extends Controller
         }
 
         $representative->save();
+        $company_id = auth()->id();
+        $log = ExhibitionLog::where('section', 'representative')->where('company_id', $company_id)->first();
+        if ($log == null) {
+            $log = new ExhibitionLog();
+            $log->section = 'representative';
+            $log->company_id = $company_id;
+        }
+        $log->updated_at = Carbon::now();
+        $log->save();
 
         return response()->json(['message' => $request->image]);
     }

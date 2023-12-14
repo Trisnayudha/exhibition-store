@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\MiningDirectory;
 
 use App\Http\Controllers\Controller;
+use App\Models\Logs\ExhibitionLog;
 use App\Models\MiningDirectory\News\News;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class NewsController extends Controller
 {
@@ -45,6 +47,15 @@ class NewsController extends Controller
         }
 
         $save->save();
+        $company_id = auth()->id();
+        $log = ExhibitionLog::where('section', 'news')->where('company_id', $company_id)->first();
+        if ($log == null) {
+            $log = new ExhibitionLog();
+            $log->section = 'news';
+            $log->company_id = $company_id;
+        }
+        $log->updated_at = Carbon::now();
+        $log->save();
         return response()->json(['message' => 'Berhasil disimpan']);
     }
 
@@ -86,7 +97,15 @@ class NewsController extends Controller
         }
 
         $save->save();
-
+        $company_id = auth()->id();
+        $log = ExhibitionLog::where('section', 'news')->where('company_id', $company_id)->first();
+        if ($log == null) {
+            $log = new ExhibitionLog();
+            $log->section = 'news';
+            $log->company_id = $company_id;
+        }
+        $log->updated_at = Carbon::now();
+        $log->save();
         return response()->json(['message' => $request->image]);
     }
 

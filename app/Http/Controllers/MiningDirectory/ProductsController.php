@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\MiningDirectory;
 
 use App\Http\Controllers\Controller;
+use App\Models\Logs\ExhibitionLog;
 use App\Models\MiningDirectory\Products\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
@@ -62,7 +64,15 @@ class ProductsController extends Controller
         $media->slug = Str::slug($media->title); // Menggunakan helper Str untuk membuat URL yang bersih
 
         $media->save();
-
+        $company_id = auth()->id();
+        $log = ExhibitionLog::where('section', 'product')->where('company_id', $company_id)->first();
+        if ($log == null) {
+            $log = new ExhibitionLog();
+            $log->section = 'product';
+            $log->company_id = $company_id;
+        }
+        $log->updated_at = Carbon::now();
+        $log->save();
         return response()->json(['message' => 'Data berhasil disimpan', 'data' => $media]);
     }
 
@@ -120,7 +130,15 @@ class ProductsController extends Controller
         $product->slug = Str::slug($product->title); // Menggunakan helper Str untuk membuat URL yang bersih
 
         $product->save();
-
+        $company_id = auth()->id();
+        $log = ExhibitionLog::where('section', 'product')->where('company_id', $company_id)->first();
+        if ($log == null) {
+            $log = new ExhibitionLog();
+            $log->section = 'product';
+            $log->company_id = $company_id;
+        }
+        $log->updated_at = Carbon::now();
+        $log->save();
         return response()->json(['message' => 'Data berhasil diperbarui', 'data' => $product]);
     }
 
