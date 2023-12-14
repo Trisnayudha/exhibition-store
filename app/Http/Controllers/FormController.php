@@ -22,6 +22,7 @@ use App\Models\Ms\MsOriginManufacturCompany;
 use App\Models\Ms\MsPhoneCode;
 use App\Models\Ms\MsPrefixCall;
 use App\Models\Promotional\ExhibitionPromotional;
+use App\Models\Promotional\ExhibitionPromotionalList;
 use Illuminate\Http\Request;
 
 class FormController extends Controller
@@ -67,6 +68,7 @@ class FormController extends Controller
             return view('frontend.form.form-2.form-2', $data);
         } elseif ($type == 'promotional') {
             $data['advertisement'] = $this->getAdvertisement();
+            $data['sosmed'] = $this->getSosmed();
             // dd($data);
             return view('frontend.form.form-3.form-3', $data);
         } elseif ($type == 'event-pass') {
@@ -142,5 +144,23 @@ class FormController extends Controller
         $userId = auth()->id();
         $data = ExhibitionPromotional::where('company_id', $userId)->where('section', 'advertisement')->first();
         return $data;
+    }
+
+    private function getSosmed()
+    {
+        $userId = auth()->id();
+        $list = [];
+        $data = ExhibitionPromotional::where('company_id', $userId)->where('section', 'sosmed')->first();
+        // dd($data);
+        if ($data) {
+            $listImages = ExhibitionPromotionalList::where('exhibition_promotional_id', $data->id)->where('section', 'image')->get();
+            $listPdf = ExhibitionPromotionalList::where('exhibition_promotional_id', $data->id)->where('section', 'pdf')->get();
+            $list = [
+                'data' => $data,
+                'listImages' => $listImages,
+                'listPdf' => $listPdf
+            ];
+        }
+        return $list;
     }
 }

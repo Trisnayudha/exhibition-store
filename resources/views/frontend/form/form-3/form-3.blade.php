@@ -17,7 +17,7 @@
                                     <input type="file" class="form-control" id="pdfFiles" name="pdfFiles"
                                         accept=".pdf">
                                     @if (!empty($advertisement->file))
-                                        <button type="button" class="btn btn-info mt-2"
+                                        <button type="button" class="btn btn-info mt-2 preview-pdf"
                                             data-pdf-url="{{ asset($advertisement->file) }}">Preview File</button>
                                     @endif
                                 </div>
@@ -44,26 +44,60 @@
 
                                 <div class="form-group">
                                     <label for="imageSocial">Wording <small>(Max 2.220 Words)</small></label>
-                                    <textarea name="desc" id="desc" class="form-group ckeditor"></textarea>
+                                    <textarea name="desc" id="desc" class="form-group ckeditor">{{ $sosmed['data']['desc'] }}</textarea>
+
                                 </div>
+
                                 <div class="form-group">
                                     <label for="imageSocial">Image (1080 x 1080 px) <small>Max Upload 5
                                             Image</small></label>
-                                    <input type="file" name="imageSocial[]" id="imageSocial[]" class="form-control"
-                                        accept=".jpg, .jpeg, .png" multiple>
-                                    <small class="form-text text-muted">Upload an image in JPEG or PNG format.</small>
+                                    @if (count($sosmed['listImages']) < 5)
+                                        <div id="imageUploadContainer">
+                                            <input type="file" name="imageSocial[]" id="imageSocial" class="form-control"
+                                                accept=".jpg, .jpeg, .png" multiple>
+                                            <small class="form-text text-muted">Upload an image in JPEG or PNG
+                                                format.</small>
+                                        </div>
+                                    @endif
+                                    @foreach ($sosmed['listImages'] as $key)
+                                        <div class="p-2 existing-images" id="imageListContainer">
+                                            <a href="{{ asset($key->file) }}" data-lightbox="image-gallery"
+                                                data-title="Image Title">
+                                                <img src="{{ asset($key->file) }}" alt="" width="100"
+                                                    height="56">
+                                            </a>
+                                            <button type="button" class="ml-2 btn btn-danger delete-btn"
+                                                data-id={{ $key->id }}>
+                                                Delete</button>
+                                        </div>
+                                    @endforeach
+                                    <div id="imagePreviewContainer"></div>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="pdfSocial">PDF <small>Max Upload 5 PDF</small></label>
-                                    <input type="file" name="pdfSocial[]" id="pdfSocial[]" class="form-control"
-                                        accept=".pdf" multiple>
-                                    <small class="form-text text-muted">Upload a PDF file.</small>
+                                    @if (count($sosmed['listPdf']) < 5)
+                                        <div id="pdfUploadContainer">
+                                            <input type="file" name="pdfSocial[]" id="pdfSocial" class="form-control"
+                                                accept=".pdf" multiple>
+                                            <small class="form-text text-muted">Upload a PDF file.</small>
+                                        </div>
+                                    @endif
+                                    @foreach ($sosmed['listPdf'] as $key)
+                                        <div class="existing-pdfs">
+                                            <button type="button" class="btn btn-info mt-2 preview-pdf"
+                                                data-pdf-url="{{ asset($key->file) }}">Preview File</button>
+                                            <button type="button" class="ml-2 btn btn-danger mt-2 delete-btn"
+                                                data-id="{{ $key->id }}">Delete</button>
+                                        </div>
+                                    @endforeach
+                                    <div id="pdfPreviewContainer"></div>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="linkSocialMedia">Linkable to (Please provide the URL with https://)</label>
-                                    <input type="text" name="linkSocialMedia" id="linkSocialMedia" class="form-control">
+                                    <input type="text" name="linkSocialMedia" id="linkSocialMedia" class="form-control"
+                                        value="{{ $sosmed['data']['link'] }}">
                                     <small class="form-text text-muted">Provide the URL starting with https://.</small>
                                 </div>
 
@@ -72,6 +106,8 @@
                                 </div>
                             </div>
                         </form>
+
+
                     </section>
 
 
@@ -107,10 +143,11 @@
             </div>
         </div>
     </div>
+
     <script>
         $(document).ready(function() {
             // Tangani klik pada tombol "Preview File"
-            $('.btn-info').on('click', function() {
+            $('.preview-pdf').on('click', function() {
                 // Ambil nilai dari atribut 'href' pada tombol
                 var pdfUrl = $(this).attr('data-pdf-url');
 
@@ -120,6 +157,84 @@
                 // Tampilkan modal
                 $('#previewModal').modal('show');
             });
+        });
+    </script>
+
+    //Delete file
+    <script>
+        $(document).ready(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $('.delete-btn').on('click', function() {
+                const imageId = $(this).data('id');
+
+                // Show SweetAlert confirmation dialog
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: 'You won\'t be able to revert this!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Send AJAX request to delete image by ID
+                        $.ajax({
+                            type: 'DELETE',
+                            url: `/promotional/${imageId}`, // Replace with your actual delete endpoint
+                            success: function(response) {
+                                // Handle success, for example, remove the deleted image from the DOM
+                                Swal.fire('Deleted!', 'Your file has been deleted.',
+                                    'success');
+                                location.reload(); // Corrected line to reload the page
+                            },
+                            error: function(error) {
+                                Swal.fire('Error!', 'Failed to delete the file.',
+                                    'error');
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+    {{-- Validation Total --}}
+    <script>
+        $(document).ready(function() {
+            $('#imageSocial').on('change', function() {
+                var totalImageFiles = this.files.length + $('.existing-images').length;
+
+                if (totalImageFiles > 5) {
+                    alert('Max 5 files allowed for images.');
+                    $(this).val(''); // Clear the selected files
+                }
+            });
+
+            $('#pdfSocial').on('change', function() {
+                var totalPdfFiles = this.files.length + $('.existing-pdfs').length;
+
+                if (totalPdfFiles > 5) {
+                    alert('Max 5 files allowed for PDFs.');
+                    $(this).val(''); // Clear the selected files
+                }
+            });
+        });
+    </script>
+
+
+    {{-- Show Image --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/css/lightbox.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/js/lightbox.min.js"></script>
+
+    <script>
+        lightbox.option({
+            'resizeDuration': 200,
+            'wrapAround': true
         });
     </script>
 @endpush

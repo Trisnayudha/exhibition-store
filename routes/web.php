@@ -56,3 +56,4 @@ Route::resource('news', NewsController::class);
 
 Route::post('promotional/advertisement', [PromotionalController::class, 'advertisement']);
 Route::post('promotional/sosmed', [PromotionalController::class, 'sosmed']);
+Route::delete('promotional/{id}', [PromotionalController::class, 'delete']);
