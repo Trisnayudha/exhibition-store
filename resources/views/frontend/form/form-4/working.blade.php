@@ -11,7 +11,7 @@
         Please Note: Company, Name and Position will be printed on the badge
     </div>
     <div class="logger-working"></div>
-    <button class="btn btn-primary mb-2" onclick="tambahDelegate()">Tambah</button>
+    <button class="btn btn-primary mb-2" onclick="tambahWorking()">Tambah</button>
     <div class="table-responsive">
 
         <table class="table">
@@ -369,7 +369,7 @@
 
 
     // Function to open the input modal
-    function tambahDelegate() {
+    function tambahWorking() {
         $('#workingModal').modal('show');
     }
 

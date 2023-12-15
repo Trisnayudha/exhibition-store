@@ -378,6 +378,7 @@
 
     // Function to open the input modal
     function tambahDelegate() {
+        console.log('tambah');
         $('#delegateModal').modal('show');
     }
 
