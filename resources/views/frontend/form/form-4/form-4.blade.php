@@ -79,7 +79,7 @@
                                     <div class="tab-content" id="v-pills-tabContent">
                                         <div class="tab-pane fade show active" id="v-pills-visitor" role="tabpanel"
                                             aria-labelledby="v-pills-visitor-tab">
-                                            @include('frontend.form.form-4.visitor')
+                                            @include('frontend.form.form-4.mining')
                                         </div>
                                     </div>
                                 </div>
