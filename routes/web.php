@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\EventPass\DelegateController;
+use App\Http\Controllers\EventPass\ExhibitorController;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MiningDirectory\MediaController;
@@ -45,6 +46,7 @@ Route::get('/product/log', [ProductsController::class, 'log']);
 Route::get('/project/log', [ProjectController::class, 'log']);
 Route::get('/news/log', [NewsController::class, 'log']);
 Route::get('/delegate/log', [DelegateController::class, 'log']);
+Route::get('/exhibitor/log', [ExhibitorController::class, 'log']);
 
 //Crud
 Route::resource('representative', RepresentativeController::class);
@@ -53,6 +55,7 @@ Route::resource('product', ProductsController::class);
 Route::resource('project', ProjectController::class);
 Route::resource('news', NewsController::class);
 Route::resource('delegate', DelegateController::class);
+Route::resource('exhibitor', ExhibitorController::class);
 
 Route::post('promotional/advertisement', [PromotionalController::class, 'advertisement']);
 Route::post('promotional/sosmed', [PromotionalController::class, 'sosmed']);

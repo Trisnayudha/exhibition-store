@@ -11,18 +11,21 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
-class DelegateController extends Controller
+class ExhibitorController extends Controller
 {
     public function index()
     {
         $id = auth()->id();
-        $data = Users::leftjoin('payment', 'users.id', 'payment.users_id')
+        $data = Users::leftjoin('payment', 'users.id', '=', 'payment.users_id')
             ->where('payment.company_id', $id)
-            ->where('payment.type', 'Exhibition Delegate')
+            ->whereIn('payment.type', ['Exhibition Upgrade', 'Exhibition Exhibitor'])
             ->orderby('payment.id', 'desc')
-            ->select('users.*', 'payment.*', 'users.id as id', 'payment.id as payment_id')->get();
+            ->select('users.*', 'payment.*', 'users.id as id', 'payment.id as payment_id')
+            ->get();
+
         return response()->json(['data' => $data]);
     }
+
 
     public function store(Request $request)
     {
@@ -38,11 +41,27 @@ class DelegateController extends Controller
         $city = $request->city;
         $country = $request->country;
         $post_code = $request->post_code;
-        $event_ticket = 69;
-        $type = 'Exhibition Delegate';
+        $upgradeExhibitor = $request->input('upgrade_exhibitor') !== 'false';
+        // Menentukan nilai berdasarkan status upgradeExhibitor
+        if ($upgradeExhibitor) {
+            // Logika untuk kasus checkbox upgradeExhibitor tercentang (true)
+            $event_ticket = 72;
+            $type = 'Exhibition Upgrade';
+            $package = 'Exhibitor Upgrade Pass';
+            $event_price = 4342002;
+            $event_price_dollar = 280;
+        } else {
+            // Logika untuk kasus checkbox upgradeExhibitor tidak tercentang (false)
+            $type = 'Exhibition Exhibitor';
+            $package = 'Exhibitor Pass';
+            $event_ticket = 69;
+            $event_price = 0;
+            $event_price_dollar = 0;
+        }
+        $total_price = $event_price;
+        $total_price_dollar = $event_price_dollar;
         $code_payment = strtoupper(Str::random(7));
         $events_id = 12;
-        $package = 'Delegate Pass';
         $payment_method = 'Exhibition Portal';
         $status = 'Waiting';
         $aproval_quota_users = 0;
@@ -103,7 +122,7 @@ class DelegateController extends Controller
 
     public function show($id)
     {
-        $users = Users::findOrFail($id);
+        $users = Users::join('payment', 'payment.users_id', 'users.id')->select('users.*', 'payment.type')->where('users.id', $id)->first();
 
         return response()->json(['data' => $users]);
     }
@@ -117,6 +136,7 @@ class DelegateController extends Controller
         if (!$user) {
             return response()->json(['message' => 'User not found'], 404);
         }
+        $upgradeExhibitor = $request->input('upgrade_edit_exhibitor');
 
         // Mengatur data user berdasarkan request
         $user->name = $request->name;
@@ -130,7 +150,33 @@ class DelegateController extends Controller
 
         // Simpan perubahan pada user
         $user->save();
-
+        $findPayment = Payment::where('users_id', $id)->where('events_id', '12')->first();
+        if ($findPayment) {
+            // Menentukan nilai berdasarkan status upgradeExhibitor
+            if ($upgradeExhibitor) {
+                // Logika untuk kasus checkbox upgradeExhibitor tercentang (true)
+                $event_ticket = 72;
+                $type = 'Exhibition Upgrade';
+                $package = 'Exhibitor Upgrade Pass';
+                $event_price = 4342002;
+                $event_price_dollar = 280;
+            } else {
+                // Logika untuk kasus checkbox upgradeExhibitor tidak tercentang (false)
+                $type = 'Exhibition Exhibitor';
+                $package = 'Exhibitor Pass';
+                $event_ticket = 69;
+                $event_price = 0;
+                $event_price_dollar = 0;
+            }
+            $findPayment->package_id = $event_ticket;
+            $findPayment->type = $type;
+            $findPayment->package = $package;
+            $findPayment->event_price = $event_price;
+            $findPayment->event_price_dollar = $event_price_dollar;
+            $findPayment->total_price = $event_price;
+            $findPayment->total_price_dollar = $event_price_dollar;
+            $findPayment->save();
+        }
         // Mengatur log
         $company_id = auth()->id();
         $log = ExhibitionLog::where('section', 'delegate')->where('company_id', $company_id)->first();
