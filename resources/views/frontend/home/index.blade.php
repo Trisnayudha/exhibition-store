@@ -124,7 +124,7 @@
 
 
         // Panggil fungsi untuk setiap chart
-        createDoughnutChart('companyInformationChart', 81, 'Company Info');
+        createDoughnutChart('companyInformationChart', {{ $countCompany }}, 'Company Info');
         createDoughnutChart('minerDirectoryChart', 50, 'Miner Directory');
         createDoughnutChart('promotionalChart', 60, 'Promotional');
         createDoughnutChart('eventPassChart', 30, 'Miner Directory');

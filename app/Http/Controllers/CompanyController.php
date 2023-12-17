@@ -68,12 +68,13 @@ class CompanyController extends Controller
         $company_phone = $request->company_phone;
         $post_code = $request->post_code;
         $category_id = $request->company_category;
-        // $category_name = $request->category_name;
-        $project_type = $request->project_type;
         $country = $request->country;
         $state = $request->state;
         $city = $request->city;
+
+        // $category_name = $request->category_name;
         $classify_minerals_id = $request->classify_minerals_id;
+        $project_type = $request->project_type;
         // $classify_minerals_name = $request->classify_minerals_name;
         $classify_mining_id = $request->classify_mining_id;
         $commodities_minerals_coal_id = $request->commodities_minerals_coal_id;
