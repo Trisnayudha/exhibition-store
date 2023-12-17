@@ -64,6 +64,41 @@
             }
         }
     </style>
+    <style>
+        .quantity-selector button {
+            width: 35px;
+            /* Lebar tombol */
+            height: 35px;
+            /* Tinggi tombol */
+            line-height: 35px;
+            /* Posisi vertikal teks di tombol */
+            padding: 0;
+            margin: 0 5px;
+            /* Jarak antar tombol */
+        }
+
+        .quantity-number {
+            display: inline-block;
+            width: 50px;
+            /* Lebar area jumlah */
+            text-align: center;
+            /* Teks jumlah di tengah */
+        }
+
+        .cart-item img {
+            width: 100%;
+            /* Membuat gambar responsif */
+            height: auto;
+            /* Mempertahankan rasio aspek */
+        }
+
+        .price {
+            font-size: 1.2em;
+            /* Ukuran font harga */
+            font-weight: bold;
+            /* Kegemukan font harga */
+        }
+    </style>
 </head>
 
 <body>
@@ -88,12 +123,24 @@
                     <a class="nav-link" href="#">FAQ</a>
                 </li>
             </ul>
+            <span class="navbar-text mr-4">
+                <button class="btn btn-outline-primary position-relative" type="button" data-toggle="modal"
+                    data-target="#shoppingCartModal">
+                    <i class="fas fa-shopping-cart"></i>
+                    <!-- Badge indikator jumlah item di keranjang -->
+                    <span class="badge badge-pill badge-danger position-absolute" style="top: -10px; right: -10px;"
+                        id="cartItemCount">0</span>
+                </button>
+            </span>
             <span class="navbar-text">
-                <form action="{{ route('logout') }}" method="POST">
+                <form id="logoutForm" action="{{ route('logout') }}" method="POST">
                     @csrf
-                    <button class="btn btn-outline-danger" type="submit">Log Out</button>
+                    <button type="button" class="btn btn-outline-danger" onclick="confirmLogout()">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
                 </form>
             </span>
+
         </div>
     </nav>
 
@@ -163,10 +210,12 @@
         </div>
 
         <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-            <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24">
+            <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24"
+                        height="24">
                         <use xlink:href="#twitter"></use>
                     </svg></a></li>
-            <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24">
+            <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24"
+                        height="24">
                         <use xlink:href="#instagram"></use>
                     </svg></a></li>
             <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24"
@@ -219,8 +268,78 @@
             }, 5000); // Auto-close after 5 seconds (adjust as needed)
         }
     </script>
+    <script>
+        function confirmLogout() {
+            Swal.fire({
+                title: 'Apakah Anda yakin?',
+                text: "Anda akan keluar dari akun Anda.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, logout!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Mengirim form logout jika pengguna mengkonfirmasi
+                    document.getElementById('logoutForm').submit();
+                }
+            });
+        }
+    </script>
 
     @stack('bottom')
+    <!-- Modal Keranjang Belanja -->
+    <div class="modal fade" id="shoppingCartModal" tabindex="-1" role="dialog"
+        aria-labelledby="shoppingCartModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="shoppingCartModalLabel">Keranjang Belanja</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="cart-item my-2 p-3 border rounded" id="item-cart">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <img src="{{ asset('assets/img/users.png') }}" alt="Nama Produk" class="img-fluid"
+                                    width="50" height="50">
+
+                            </div>
+                            <div class="col-md-4">
+                                <h5>Trisnayudha - IT Office</h5>
+                                <h7>Upgrade Delegate</h7>
+                            </div>
+                            <div class="col-md-2">
+                                <span class="price">Rp605.000</span>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="quantity-selector d-flex align-items-center">
+                                    {{-- <button class="btn btn-outline-secondary" onclick="changeQuantity('item1', -1)">
+                                        <i class="fas fa-minus"></i>
+                                    </button> --}}
+                                    <span id="item1-quantity" class="mx-2 quantity-number">1</span>
+                                    {{-- <button class="btn btn-outline-secondary" onclick="changeQuantity('item1', 1)">
+                                        <i class="fas fa-plus"></i>
+                                    </button> --}}
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <button class="btn btn-danger btn-sm" onclick="removeItem('item1')">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-primary">Checkout</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </body>
 
