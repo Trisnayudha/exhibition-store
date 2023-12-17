@@ -55,7 +55,7 @@ class HomeController extends Controller
             'email' => $data->email,
             'desc' => $data->desc,
             'nonresidence' => $data->nonresidence,
-            'answerresidence' => $data->answerresidence,
+            'answerresidence' => $data->nonresidence == 'No' ? 'Free data' : $data->answerresidence,
             'company_address' => $data->company_address,
             'company_phone' => $data->company_phone,
             'post_code' => $data->post_code,

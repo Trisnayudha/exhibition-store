@@ -98,6 +98,8 @@ class CompanyController extends Controller
         $save->post_code = $post_code;
         $save->desc = $desc;
         $save->company_phone = $company_phone;
+        $save->nonresidence = $nonresidence;
+        $save->answerresidence = $answerresidence;
         // $save->ms_company_category_other = $category_name;
         $save->ms_company_category_id = $category_id;
         $save->ms_company_project_type_id = $project_type;

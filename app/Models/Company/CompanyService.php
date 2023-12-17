@@ -72,6 +72,8 @@ class CompanyService extends Model
                 'company.company_web as company_web',
                 'company.company_phone',
                 'company.ms_company_class_id',
+                'company.nonresidence',
+                'company.answerresidence',
 
                 'company.ms_class_company_minerals_id',
                 'ms_class_company_minerals.name as classify_minerals_name',

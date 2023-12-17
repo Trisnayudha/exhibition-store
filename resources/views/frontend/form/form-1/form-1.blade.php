@@ -165,19 +165,21 @@
                                 </div>
                                 <div class="col-lg-12 col-sm-12">
                                     <div class="form-group">
-                                        <label>Non Residence <i class="text-danger" title="This field is required">*</i>
-                                        </label>
+                                        <label>Non Residence <i class="text-danger"
+                                                title="This field is required">*</i></label>
                                         <div class="d-flex">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="radio" name="nonresidence"
-                                                    id="nonresidence1">
+                                                    id="nonresidence1" value="Yes"
+                                                    {{ $data->nonresidence == 'Yes' ? 'checked' : '' }}>
                                                 <label class="form-check-label" for="nonresidence1">
                                                     Yes
                                                 </label>
                                             </div>
                                             <div class="form-check ml-5">
                                                 <input class="form-check-input" type="radio" name="nonresidence"
-                                                    id="nonresidence2" checked>
+                                                    id="nonresidence2" value="No"
+                                                    {{ $data->nonresidence == 'No' ? 'checked' : '' }}>
                                                 <label class="form-check-label" for="nonresidence2">
                                                     No
                                                 </label>
@@ -186,10 +188,11 @@
                                         <div class="answerresidence">
                                             <label for="answerresidence"> If Yes, please input company name &
                                                 address</label>
-                                            <textarea name="answerresidence" id="answerresidence" rows="5" class="form-control"></textarea>
+                                            <textarea name="answerresidence" id="answerresidence" rows="5" class="form-control">{{ $data->answerresidence }}</textarea>
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="col-lg-12 col-sm-12">
                                     <div class="form-group">
                                         <label>Company Address <span class="text-danger"
