@@ -153,7 +153,7 @@ class CompanyController extends Controller
         if ($image != null) {
 
             // Konversi gambar ke base64
-            $response = Http::post('http://127.0.0.1:6969/api/upload-image/exhibition', [
+            $response = Http::post('https://staging.indonesiaminer.com/api/upload-image/company', [
                 'image' => $image,
             ]);
 
