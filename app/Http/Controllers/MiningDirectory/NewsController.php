@@ -7,6 +7,7 @@ use App\Models\Logs\ExhibitionLog;
 use App\Models\MiningDirectory\News\News;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Http;
 
 class NewsController extends Controller
 {
@@ -36,14 +37,19 @@ class NewsController extends Controller
         $save->date_news = $date_news;
         $save->desc = $desc;
 
-        // Handle image upload if needed
-        if ($image) {
-            // Simpan gambar ke direktori yang diinginkan (public/images misalnya)
-            $imageName = time() . '.' . $request->image->extension();
-            $save_folder = $request->image->storeAs('public/images/news/', $imageName);
-            $db = '/storage/images/news/' . $imageName;
-            // Simpan path gambar ke dalam kolom image di tabel
-            $save->image = $db;
+        $image = $request->file('image'); // Gunakan file() untuk mendapatkan file yang di-upload
+        // Update image if provided
+        if ($request->hasFile('image')) {
+            // Konversi gambar ke base64
+            $base64Image = base64_encode(file_get_contents($image->getRealPath()));
+            // Konversi gambar ke base64
+            $response = Http::post('https://staging.indonesiaminer.com/api/upload-image/company', [
+                'image' => $base64Image,
+            ]);
+
+            // Ambil path URL dari respons
+            $fullPath = $response['image'];
+            $save->image = $fullPath;
         }
 
         $save->save();
@@ -85,15 +91,19 @@ class NewsController extends Controller
         $save->company_id = auth()->id();
         $save->date_news = $date_news;
         $save->desc = $desc;
+        $image = $request->file('image'); // Gunakan file() untuk mendapatkan file yang di-upload
+        // Update image if provided
+        if ($request->hasFile('image')) {
+            // Konversi gambar ke base64
+            $base64Image = base64_encode(file_get_contents($image->getRealPath()));
+            // Konversi gambar ke base64
+            $response = Http::post('https://staging.indonesiaminer.com/api/upload-image/company', [
+                'image' => $base64Image,
+            ]);
 
-        // Handle image upload if needed
-        if ($image) {
-            // Simpan gambar ke direktori yang diinginkan (public/images misalnya)
-            $imageName = time() . '.' . $request->image->extension();
-            $save_folder = $request->image->storeAs('public/images/news/', $imageName);
-            $db = '/storage/images/news/' . $imageName;
-            // Simpan path gambar ke dalam kolom image di tabel
-            $save->image = $db;
+            // Ambil path URL dari respons
+            $fullPath = $response['image'];
+            $save->image = $fullPath;
         }
 
         $save->save();

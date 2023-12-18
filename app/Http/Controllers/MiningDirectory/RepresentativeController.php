@@ -38,13 +38,17 @@ class RepresentativeController extends Controller
         $save->bio = $bio;
         $save->linkedin = $linkedin;
         // Handle image upload if needed
-        if ($image) {
-            // Simpan gambar ke direktori yang diinginkan (public/images misalnya)
-            $imageName = time() . '.' . $request->image->extension();
-            $save_folder = $request->image->storeAs('public/images/representative/', $imageName);
-            $db = '/storage/images/representative/' . $imageName;
-            // Simpan path gambar ke dalam kolom image di tabel
-            $save->image = $db;
+        if ($image != null) {
+
+            $base64Image = base64_encode(file_get_contents($image->getRealPath()));
+            // Konversi gambar ke base64
+            $response = Http::post('https://staging.indonesiaminer.com/api/upload-image/company', [
+                'image' => $base64Image,
+            ]);
+
+            // Ambil path URL dari respons
+            $fullPath = $response['image'];
+            $save->image = $fullPath;
         }
         $save->save();
         $company_id = auth()->id();
@@ -76,14 +80,19 @@ class RepresentativeController extends Controller
         $representative->email = $request->input('email');
         $representative->bio = $request->input('short_bio');
         $representative->linkedin = $request->input('linkedin');
-
+        $image = $request->file('image'); // Gunakan file() untuk mendapatkan file yang di-upload
         // Update image if provided
         if ($request->hasFile('image')) {
-            $imageName = time() . '.' . $request->image->extension();
-            $save_folder = $request->image->storeAs('public/images/representative/', $imageName);
-            $db = '/storage/images/representative/' . $imageName;
-            // Simpan path gambar ke dalam kolom image di tabel
-            $representative->image = $db;
+            // Konversi gambar ke base64
+            $base64Image = base64_encode(file_get_contents($image->getRealPath()));
+            // Konversi gambar ke base64
+            $response = Http::post('https://staging.indonesiaminer.com/api/upload-image/company', [
+                'image' => $base64Image,
+            ]);
+
+            // Ambil path URL dari respons
+            $fullPath = $response['image'];
+            $representative->image = $fullPath;
         }
 
         $representative->save();

@@ -7,6 +7,7 @@ use App\Models\Logs\ExhibitionLog;
 use App\Models\MiningDirectory\Project\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
@@ -40,12 +41,19 @@ class ProjectController extends Controller
         $project->project_category_id = $request->category;
         $project->desc = $request->desc;
 
-        // Simpan gambar jika ada
+        $image = $request->file('image'); // Gunakan file() untuk mendapatkan file yang di-upload
+        // Update image if provided
         if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('images'), $imageName);
-            $project->image = 'images/' . $imageName;
+            // Konversi gambar ke base64
+            $base64Image = base64_encode(file_get_contents($image->getRealPath()));
+            // Konversi gambar ke base64
+            $response = Http::post('https://staging.indonesiaminer.com/api/upload-image/company', [
+                'image' => $base64Image,
+            ]);
+
+            // Ambil path URL dari respons
+            $fullPath = $response['image'];
+            $project->image = $fullPath;
         }
         // Pengaturan tambahan
         $project->company_id = auth()->id(); // Misalnya, menyimpan ID perusahaan dari pengguna yang terautentikasi
@@ -93,11 +101,19 @@ class ProjectController extends Controller
         $project->project_category_id = $request->category;
         $project->desc = $request->description;
         // Update gambar jika disediakan
+        $image = $request->file('image'); // Gunakan file() untuk mendapatkan file yang di-upload
+        // Update image if provided
         if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('images'), $imageName);
-            $project->image = 'images/' . $imageName;
+            // Konversi gambar ke base64
+            $base64Image = base64_encode(file_get_contents($image->getRealPath()));
+            // Konversi gambar ke base64
+            $response = Http::post('https://staging.indonesiaminer.com/api/upload-image/company', [
+                'image' => $base64Image,
+            ]);
+
+            // Ambil path URL dari respons
+            $fullPath = $response['image'];
+            $project->image = $fullPath;
         }
         // Pengaturan tambahan
         $project->company_id = auth()->id(); // Misalnya, menyimpan ID perusahaan dari pengguna yang terautentikasi

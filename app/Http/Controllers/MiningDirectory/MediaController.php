@@ -7,6 +7,7 @@ use App\Models\Logs\ExhibitionLog;
 use App\Models\MiningDirectory\Media\MediaResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
@@ -43,20 +44,34 @@ class MediaController extends Controller
         $media->desc = $request->desc;
         // ... tambahkan atribut lainnya sesuai kebutuhan
 
-        // Simpan gambar
+        $image = $request->file('image'); // Gunakan file() untuk mendapatkan file yang di-upload
+        // Update image if provided
         if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('images'), $imageName);
-            $media->image = 'images/' . $imageName;
+            // Konversi gambar ke base64
+            $base64Image = base64_encode(file_get_contents($image->getRealPath()));
+            // Konversi gambar ke base64
+            $response = Http::post('https://staging.indonesiaminer.com/api/upload-image/company', [
+                'image' => $base64Image,
+            ]);
+
+            // Ambil path URL dari respons
+            $fullPath = $response['image'];
+            $media->image = $fullPath;
         }
 
-        // Simpan file
+        $file = $request->file('file');
         if ($request->hasFile('file')) {
-            $file = $request->file('file');
-            $fileName = time() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('files'), $fileName);
-            $media->file = 'files/' . $fileName;
+            // Konversi file PDF ke base64
+            $base64File = base64_encode(file_get_contents($file->getRealPath()));
+
+            // Kirim file base64 ke API
+            $responseFile = Http::post('https://staging.indonesiaminer.com/api/upload-file/company', [
+                'file' => $base64File,
+            ]);
+
+            // Ambil path URL dari respons
+            $fullPathFile = $responseFile['file'];
+            $media->file = $fullPathFile;
         }
 
         // Pengaturan tambahan
@@ -109,20 +124,34 @@ class MediaController extends Controller
         $media->location = $request->location;
         $media->desc = $request->description;
 
-        // Update gambar jika disediakan
+        $image = $request->file('image'); // Gunakan file() untuk mendapatkan file yang di-upload
+        // Update image if provided
         if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('images'), $imageName);
-            $media->image = 'images/' . $imageName;
+            // Konversi gambar ke base64
+            $base64Image = base64_encode(file_get_contents($image->getRealPath()));
+            // Konversi gambar ke base64
+            $response = Http::post('https://staging.indonesiaminer.com/api/upload-image/company', [
+                'image' => $base64Image,
+            ]);
+
+            // Ambil path URL dari respons
+            $fullPath = $response['image'];
+            $media->image = $fullPath;
         }
 
-        // Update file jika disediakan
+        $file = $request->file('file'); // Gunakan file() untuk mendapatkan file yang di-upload
+        // Update image if provided
         if ($request->hasFile('file')) {
-            $file = $request->file('file');
-            $fileName = time() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('files'), $fileName);
-            $media->file = 'files/' . $fileName;
+            // Konversi gambar ke base64
+            $base64File = base64_encode(file_get_contents($file->getRealPath()));
+            // Konversi gambar ke base64
+            $responseFile = Http::post('https://staging.indonesiaminer.com/api/upload-file/company', [
+                'file' => $base64File,
+            ]);
+
+            // Ambil path URL dari respons
+            $fullPathFile = $responseFile['image'];
+            $media->file = $fullPathFile;
         }
 
         // Pengaturan tambahan
