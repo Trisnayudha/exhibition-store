@@ -44,7 +44,13 @@
 
                                 <div class="form-group">
                                     <label for="imageSocial">Wording <small>(Max 2.220 Words)</small></label>
-                                    <textarea name="desc" id="desc" class="form-group ckeditor">{{ $sosmed['data']['desc'] }}</textarea>
+                                    <textarea name="desc" id="desc" class="form-group ckeditor">
+                                        @if (!empty($sosmed['data']['desc']))
+{{ $sosmed['data']['desc'] }}
+@else
+<!-- Deskripsi kosong -->
+@endif
+                                    </textarea>
 
                                 </div>
 
