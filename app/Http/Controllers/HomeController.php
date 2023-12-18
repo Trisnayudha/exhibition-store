@@ -24,6 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {
+        // $name = auth()->user(); // Mengambil nama pengguna dari objek auth
+        // dd($name);
         $data = [];
         $companyData = $this->getCompanyInformation();
         $presentaseCompany = $this->hitungPersentaseKemajuan($companyData);
