@@ -65,7 +65,7 @@
                                                 format.</small>
                                         </div>
                                     @endif
-                                    @if (!empty($sosmed['listImages']))
+                                    @if (isset($sosmed['listImages']))
                                         @foreach ($sosmed['listImages'] as $key)
                                             <div class="p-2 existing-images" id="imageListContainer">
                                                 <a href="{{ asset($key->file) }}" data-lightbox="image-gallery"
@@ -91,7 +91,7 @@
                                             <small class="form-text text-muted">Upload a PDF file.</small>
                                         </div>
                                     @endif
-                                    @if (!empty($sosmed['listPdf']))
+                                    @if (isset($sosmed['listPdf']))
                                         @foreach ($sosmed['listPdf'] as $key)
                                             <div class="existing-pdfs">
                                                 <button type="button" class="btn btn-info mt-2 preview-pdf"
