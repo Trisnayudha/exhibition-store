@@ -91,8 +91,8 @@
                                         @foreach ($sosmed['listPdf'] as $key)
                                             <div class="existing-pdfs">
                                                 <button type="button" class="btn btn-info mt-2 preview-pdf"
-                                                    data-pdf-url="{{ env('IMAGE_BASE_URL') . $key->file }}">Preview
-                                                    File </button>
+                                                    data-pdf-url="https://docs.google.com/gview?url={{ urlencode(env('IMAGE_BASE_URL') . $key->file) }}&embedded=true">Preview
+                                                    File</button>
                                                 <button type="button" class="ml-2 btn btn-danger mt-2 delete-btn"
                                                     data-id="{{ $key->id }}">Delete</button>
                                             </div>
