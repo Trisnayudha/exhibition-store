@@ -65,18 +65,20 @@
                                                 format.</small>
                                         </div>
                                     @endif
-                                    @foreach ($sosmed['listImages'] as $key)
-                                        <div class="p-2 existing-images" id="imageListContainer">
-                                            <a href="{{ asset($key->file) }}" data-lightbox="image-gallery"
-                                                data-title="Image Title">
-                                                <img src="{{ asset($key->file) }}" alt="" width="100"
-                                                    height="56">
-                                            </a>
-                                            <button type="button" class="ml-2 btn btn-danger delete-btn"
-                                                data-id={{ $key->id }}>
-                                                Delete</button>
-                                        </div>
-                                    @endforeach
+                                    @if (!empty($sosmed['listImages']))
+                                        @foreach ($sosmed['listImages'] as $key)
+                                            <div class="p-2 existing-images" id="imageListContainer">
+                                                <a href="{{ asset($key->file) }}" data-lightbox="image-gallery"
+                                                    data-title="Image Title">
+                                                    <img src="{{ asset($key->file) }}" alt="" width="100"
+                                                        height="56">
+                                                </a>
+                                                <button type="button" class="ml-2 btn btn-danger delete-btn"
+                                                    data-id={{ $key->id }}>
+                                                    Delete</button>
+                                            </div>
+                                        @endforeach
+                                    @endif
                                     <div id="imagePreviewContainer"></div>
                                 </div>
 
@@ -89,21 +91,23 @@
                                             <small class="form-text text-muted">Upload a PDF file.</small>
                                         </div>
                                     @endif
-                                    @foreach ($sosmed['listPdf'] as $key)
-                                        <div class="existing-pdfs">
-                                            <button type="button" class="btn btn-info mt-2 preview-pdf"
-                                                data-pdf-url="{{ asset($key->file) }}">Preview File</button>
-                                            <button type="button" class="ml-2 btn btn-danger mt-2 delete-btn"
-                                                data-id="{{ $key->id }}">Delete</button>
-                                        </div>
-                                    @endforeach
+                                    @if (!empty($sosmed['listPdf']))
+                                        @foreach ($sosmed['listPdf'] as $key)
+                                            <div class="existing-pdfs">
+                                                <button type="button" class="btn btn-info mt-2 preview-pdf"
+                                                    data-pdf-url="{{ asset($key->file) }}">Preview File</button>
+                                                <button type="button" class="ml-2 btn btn-danger mt-2 delete-btn"
+                                                    data-id="{{ $key->id }}">Delete</button>
+                                            </div>
+                                        @endforeach
+                                    @endif
                                     <div id="pdfPreviewContainer"></div>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="linkSocialMedia">Linkable to (Please provide the URL with https://)</label>
                                     <input type="text" name="linkSocialMedia" id="linkSocialMedia" class="form-control"
-                                        value="{{ $sosmed['data']['link'] }}">
+                                        value="{{ !empty($sosmed['data']['link']) ? $sosmed['data']['link'] : '' }}">
                                     <small class="form-text text-muted">Provide the URL starting with https://.</small>
                                 </div>
 
