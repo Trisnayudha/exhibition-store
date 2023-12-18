@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Promotional\ExhibitionPromotional;
 use App\Models\Promotional\ExhibitionPromotionalList;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class PromotionalController extends Controller
 {
@@ -63,13 +64,19 @@ class PromotionalController extends Controller
         // Process images
         if ($images) {
             foreach ($images as $image) {
-                $fileName = time() . '_' . $image->getClientOriginalName();
-                $filePath = $image->storeAs('public/files/promotional/sosmed/', $fileName);
-                $dbPath = '/storage/files/promotional/sosmed/' . $fileName;
+                // Konversi gambar ke base64
+                $base64Image = base64_encode(file_get_contents($image->getRealPath()));
+                // Konversi gambar ke base64
+                $response = Http::post('https://staging.indonesiaminer.com/api/upload-image/company', [
+                    'image' => $base64Image,
+                ]);
+
+                // Ambil path URL dari respons
+                $fullPath = $response['image'];
 
                 // Save image record to ExhibitionPromotionalList
                 $saveImage = new ExhibitionPromotionalList();
-                $saveImage->file = $dbPath;
+                $saveImage->file = $fullPath;
                 $saveImage->section = 'image';
                 $saveImage->exhibition_promotional_id = $save->id; // Link to the main record
                 $saveImage->save();
@@ -79,13 +86,18 @@ class PromotionalController extends Controller
         // Process PDF files
         if ($pdfs) {
             foreach ($pdfs as $pdf) {
-                $fileName = time() . '_' . $pdf->getClientOriginalName();
-                $filePath = $pdf->storeAs('public/files/promotional/sosmed/', $fileName);
-                $dbPath = '/storage/files/promotional/sosmed/' . $fileName;
+                $base64File = base64_encode(file_get_contents($pdf->getRealPath()));
+
+                // Kirim file base64 ke API
+                $responseFile = Http::post('https://staging.indonesiaminer.com/api/upload-file/company', [
+                    'file' => $base64File,
+                ]);
+                // Ambil path URL dari respons
+                $fullPathFile = $responseFile['file'];
 
                 // Save PDF record to ExhibitionPromotionalList
                 $savePdf = new ExhibitionPromotionalList();
-                $savePdf->file = $dbPath;
+                $savePdf->file = $fullPathFile;
                 $savePdf->section = 'pdf';
                 $savePdf->exhibition_promotional_id = $save->id; // Link to the main record
                 $savePdf->save();

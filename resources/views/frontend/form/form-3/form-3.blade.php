@@ -64,10 +64,10 @@
                                     @if (isset($sosmed['listImages']))
                                         @foreach ($sosmed['listImages'] as $key)
                                             <div class="p-2 existing-images" id="imageListContainer">
-                                                <a href="{{ asset($key->file) }}" data-lightbox="image-gallery"
-                                                    data-title="Image Title">
-                                                    <img src="{{ asset($key->file) }}" alt="" width="100"
-                                                        height="56">
+                                                <a href="{{ env('IMAGE_BASE_URL') . $key->file }}"
+                                                    data-lightbox="image-gallery" data-title="Image Title">
+                                                    <img src="{{ env('IMAGE_BASE_URL') . $key->file }}" alt=""
+                                                        width="100" height="56">
                                                 </a>
                                                 <button type="button" class="ml-2 btn btn-danger delete-btn"
                                                     data-id={{ $key->id }}>
@@ -91,7 +91,8 @@
                                         @foreach ($sosmed['listPdf'] as $key)
                                             <div class="existing-pdfs">
                                                 <button type="button" class="btn btn-info mt-2 preview-pdf"
-                                                    data-pdf-url="{{ asset($key->file) }}">Preview File</button>
+                                                    data-pdf-url="{{ env('IMAGE_BASE_URL') . $key->file }}">Preview
+                                                    File </button>
                                                 <button type="button" class="ml-2 btn btn-danger mt-2 delete-btn"
                                                     data-id="{{ $key->id }}">Delete</button>
                                             </div>
