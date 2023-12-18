@@ -158,12 +158,12 @@ class FormController extends Controller
         if ($data) {
             $listImages = ExhibitionPromotionalList::where('exhibition_promotional_id', $data->id)->where('section', 'image')->get();
             $listPdf = ExhibitionPromotionalList::where('exhibition_promotional_id', $data->id)->where('section', 'pdf')->get();
-            $list = [
-                'data' => $data,
-                'listImages' => $listImages,
-                'listPdf' => $listPdf
-            ];
         }
+        $list = [
+            'data' => $data ?? null,
+            'listImages' => $listImages ?? null,
+            'listPdf' => $listPdf ?? null
+        ];
         return $list;
     }
 }

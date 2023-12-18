@@ -45,11 +45,7 @@
                                 <div class="form-group">
                                     <label for="imageSocial">Wording <small>(Max 2.220 Words)</small></label>
                                     <textarea name="desc" id="desc" class="form-group ckeditor">
-                                        @if (!empty($sosmed['data']['desc']))
-{{ $sosmed['data']['desc'] }}
-@else
-<!-- Deskripsi kosong -->
-@endif
+                                        {{ !empty($sosmed['data']['desc']) ? $sosmed['data']['desc'] : '' }}
                                     </textarea>
 
                                 </div>
@@ -57,7 +53,7 @@
                                 <div class="form-group">
                                     <label for="imageSocial">Image (1080 x 1080 px) <small>Max Upload 5
                                             Image</small></label>
-                                    @if (isset($sosmed['listImages']) && count($sosmed['listImages']) < 5)
+                                    @if (!isset($sosmed['listImages']) || count($sosmed['listImages']) < 5)
                                         <div id="imageUploadContainer">
                                             <input type="file" name="imageSocial[]" id="imageSocial" class="form-control"
                                                 accept=".jpg, .jpeg, .png" multiple>
@@ -84,7 +80,7 @@
 
                                 <div class="form-group">
                                     <label for="pdfSocial">PDF <small>Max Upload 5 PDF</small></label>
-                                    @if (isset($sosmed['listPdf']) && count($sosmed['listPdf']) < 5)
+                                    @if (!isset($sosmed['listPdf']) || count($sosmed['listPdf']) < 5)
                                         <div id="pdfUploadContainer">
                                             <input type="file" name="pdfSocial[]" id="pdfSocial" class="form-control"
                                                 accept=".pdf" multiple>

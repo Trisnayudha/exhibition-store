@@ -56,6 +56,8 @@ class PromotionalController extends Controller
         $save->desc = $desc;
         $save->section = 'sosmed';
         $save->company_id = $userId;
+        $save->file = 'null';
+        $save->type = 'null';
         $save->save();
 
         // Process images
