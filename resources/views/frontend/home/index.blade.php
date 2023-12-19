@@ -145,9 +145,16 @@
         // Panggil fungsi untuk setiap chart
         createDoughnutChart('companyInformationChart', {{ $countCompany }}, 'Company Info');
         createDoughnutChart('minerDirectoryChart', {{ $countMiningDirectory }}, 'Miner Directory');
-        createDoughnutChart('promotionalChart', {{ $countPromotional }}, 'Promotional');
-        createDoughnutChart('eventPassChart', 30, 'Miner Directory');
-        createDoughnutChart('exhibitionChart', 10, 'Exhibition');
+        @if ($access['promotional_access'] == 1)
+            createDoughnutChart('promotionalChart', {{ $countPromotional }}, 'Promotional');
+        @endif
+        @if ($access['eventpass_access'] == 1)
+            createDoughnutChart('eventPassChart', 30, 'Miner Directory');
+        @endif
+        @if ($access['exhibition_access'] == 1)
+            createDoughnutChart('exhibitionChart', 10, 'Exhibition');
+        @endif
+
         // Panggil fungsi serupa untuk chart lainnya
     </script>
 

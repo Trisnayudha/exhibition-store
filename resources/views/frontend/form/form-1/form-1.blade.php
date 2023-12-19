@@ -494,9 +494,7 @@
 
                     </div>
                 </div>
-                <div class="card-footer d-flex justify-content-end">
-                    <a href="{{ url('form?type=indonesia-miner-directory') }}" class="btn btn-info">Next</a>
-                </div>
+                @include('frontend.form.button_dynamic')
             </div>
 
         </div>

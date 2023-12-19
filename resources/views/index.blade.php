@@ -153,7 +153,7 @@
                             <div
                                 class="card text-white {{ $type == 'company-information' ? ' bg-info ' : ' bg-secondary ' }} mb-3">
                                 <div class="card-body">
-                                    <h8 class="card-title">FORM 1 - Company Information</h8>
+                                    <h8 class="card-title">FORM {{ $form_number++ }} - Company Information</h8>
                                 </div>
                             </div>
                         </li>
@@ -161,34 +161,41 @@
                             <div
                                 class="card text-white {{ $type == 'indonesia-miner-directory' ? ' bg-info ' : ' bg-secondary ' }} mb-3">
                                 <div class="card-body">
-                                    <h7 class="card-title">FORM 2 - Indonesia Miner Directory</h7>
+                                    <h7 class="card-title">FORM {{ $form_number++ }} - Indonesia Miner Directory</h7>
                                 </div>
                             </div>
                         </li>
-                        <li class="nav-item">
-                            <div
-                                class="card text-white {{ $type == 'promotional' ? ' bg-info ' : ' bg-secondary ' }} mb-3">
-                                <div class="card-body">
-                                    <h7 class="card-title">FORM 3 - Promotional</h7>
+                        @if ($access['promotional_access'] == 1)
+                            <li class="nav-item">
+                                <div
+                                    class="card text-white {{ $type == 'promotional' ? ' bg-info ' : ' bg-secondary ' }} mb-3">
+                                    <div class="card-body">
+                                        <h7 class="card-title">FORM {{ $form_number++ }} - Promotional</h7>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <div
-                                class="card text-white {{ $type == 'event-pass' ? ' bg-info ' : ' bg-secondary ' }} mb-3">
-                                <div class="card-body">
-                                    <h7 class="card-title">FORM 4 - Event Pass</h7>
+                            </li>
+                        @endif
+                        @if ($access['eventpass_access'] == 1)
+                            <li class="nav-item">
+                                <div
+                                    class="card text-white {{ $type == 'event-pass' ? ' bg-info ' : ' bg-secondary ' }} mb-3">
+                                    <div class="card-body">
+                                        <h7 class="card-title">FORM {{ $form_number++ }} - Event Pass</h7>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <div
-                                class="card text-white {{ $type == 'exhibition' ? ' bg-info ' : ' bg-secondary ' }} mb-3">
-                                <div class="card-body">
-                                    <h7 class="card-title">FORM 5 - Exhibition</h7>
+                            </li>
+                        @endif
+                        @if ($access['exhibition_access'] == 1)
+                            <li class="nav-item">
+                                <div
+                                    class="card text-white {{ $type == 'exhibition' ? ' bg-info ' : ' bg-secondary ' }} mb-3">
+                                    <div class="card-body">
+                                        <h7 class="card-title">FORM {{ $form_number++ }} - Exhibition</h7>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
+                            </li>
+                        @endif
+
                     </ul>
                 </div>
             @endif

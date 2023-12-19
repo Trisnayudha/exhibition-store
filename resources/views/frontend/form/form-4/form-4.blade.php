@@ -89,10 +89,8 @@
 
 
                 </div>
-                <div class="card-footer d-flex justify-content-end">
-                    <a href="{{ url('form?type=promotional') }}" class="btn btn-secondary mr-2">Previous</a>
-                    <a href="{{ url('form?type=exhibition') }}" class="btn btn-info">Next</a>
-                </div>
+                @include('frontend.form.button_dynamic')
+
             </div>
         </div>
     </div>

@@ -36,7 +36,9 @@ class FormController extends Controller
     {
         $type = $request->type;
         $data = [];
+        $data['form_number'] = 1;
         $data['type'] = $type;
+        $data['access'] = $this->getAccess();
         if ($type == 'company-information') {
             $data['prefix_name'] = MsPrefixCall::get();
             $data['company_type'] = MsCompanyType::get();
@@ -81,6 +83,16 @@ class FormController extends Controller
         } else {
             dd('data tidak ada');
         }
+    }
+
+    private function getAccess()
+    {
+        $data = auth()->user(); // Mengambil nama pengguna dari objek auth
+        return [
+            'promotional_access' => $data->promotional_access ?? 0,
+            'eventpass_access' => $data->eventpass_access ?? 0,
+            'exhibition_access' => $data->exhibition_access ?? 0,
+        ];
     }
 
     private function getDetail()
