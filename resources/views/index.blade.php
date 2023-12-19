@@ -300,6 +300,7 @@
         }
 
         function loadCart() {
+            console.log('load-cart')
             getCountCart();
             getListCart();
         }
@@ -448,7 +449,8 @@
                             // Handle the success scenario
                             console.log('Item removed successfully');
                             loadCart();
-
+                            loadExhibitor();
+                            loadAdditional();
                             // Display SweetAlert confirmation
                             Swal.fire({
                                 title: 'Success!',
