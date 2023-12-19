@@ -183,6 +183,10 @@ class ExhibitorController extends Controller
             $findPayment->save();
         }
         $findExhibition = ExhibitionCartList::where('delegate_id', $findPayment->id)->first();
+        if (!empty($findExhibition)) {
+            $findExhibition->name_product = $request->name;
+            $findExhibition->save();
+        }
         // Mengatur log
         $company_id = auth()->id();
         $log = ExhibitionLog::where('section', 'delegate')->where('company_id', $company_id)->first();

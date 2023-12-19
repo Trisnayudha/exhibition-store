@@ -46,14 +46,18 @@ class ExhibitionCartController extends Controller
         $delete = ExhibitionCartList::findOrFail($id);
         if ($delete) {
             $changeDelegate = Payment::where('id', $delete->delegate_id)->first();
-            $changeDelegate->type = 'Exhibition Exhibitor';
-            $changeDelegate->package = 'Exhibitor Pass';
-            $changeDelegate->package_id = 70;
-            $changeDelegate->event_price = 0;
-            $changeDelegate->event_price_dollar = 0;
-            $changeDelegate->total_price = 0;
-            $changeDelegate->total_price_dollar = 0;
-            $changeDelegate->save();
+            if ($changeDelegate->type == 'Exhibition Upgrade') {
+                $changeDelegate->type = 'Exhibition Exhibitor';
+                $changeDelegate->package = 'Exhibitor Pass';
+                $changeDelegate->package_id = 70;
+                $changeDelegate->event_price = 0;
+                $changeDelegate->event_price_dollar = 0;
+                $changeDelegate->total_price = 0;
+                $changeDelegate->total_price_dollar = 0;
+                $changeDelegate->save();
+            } else {
+                $changeDelegate->delete();
+            }
             $delete->delete();
         }
         return response()->json(['message' => 'Deleted data success']);
