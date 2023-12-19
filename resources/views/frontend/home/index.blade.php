@@ -125,10 +125,10 @@
 
         // Panggil fungsi untuk setiap chart
         createDoughnutChart('companyInformationChart', {{ $countCompany }}, 'Company Info');
-        createDoughnutChart('minerDirectoryChart', 50, 'Miner Directory');
-        createDoughnutChart('promotionalChart', 60, 'Promotional');
+        createDoughnutChart('minerDirectoryChart', {{ $countMiningDirectory }}, 'Miner Directory');
+        createDoughnutChart('promotionalChart', {{ $countPromotional }}, 'Promotional');
         createDoughnutChart('eventPassChart', 30, 'Miner Directory');
-        createDoughnutChart('exhibitionChart', 10, 'Miner Directory');
+        createDoughnutChart('exhibitionChart', 10, 'Exhibition');
         // Panggil fungsi serupa untuk chart lainnya
     </script>
 
