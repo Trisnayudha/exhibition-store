@@ -570,7 +570,7 @@
     function loadLogExhibitor() {
         $.ajax({
             type: 'GET',
-            url: '{{ url('delegate/log') }}', // Ganti dengan URL API yang sesuai
+            url: '{{ url('exhibitor/log') }}', // Ganti dengan URL API yang sesuai
             success: function(response) {
                 if (response) {
                     // Parse tanggal dari format ISO

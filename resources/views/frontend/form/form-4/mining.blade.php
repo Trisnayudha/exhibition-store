@@ -529,7 +529,7 @@
     function loadLogMining() {
         $.ajax({
             type: 'GET',
-            url: '{{ url('delegate/log') }}', // Ganti dengan URL API yang sesuai
+            url: '{{ url('mining/log') }}', // Ganti dengan URL API yang sesuai
             success: function(response) {
                 if (response) {
                     // Parse tanggal dari format ISO

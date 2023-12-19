@@ -528,7 +528,7 @@
     function loadLogWorking() {
         $.ajax({
             type: 'GET',
-            url: '{{ url('delegate/log') }}', // Ganti dengan URL API yang sesuai
+            url: '{{ url('working/log') }}', // Ganti dengan URL API yang sesuai
             success: function(response) {
                 if (response) {
                     // Parse tanggal dari format ISO
