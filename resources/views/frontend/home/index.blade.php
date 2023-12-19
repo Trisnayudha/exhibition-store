@@ -9,51 +9,70 @@
                 <h1>Form Progress</h1>
                 <div class="row">
                     <div class="col-sm-3">
+                        <a href="{{ url('form?type=company-information') }}">
+                            <div class="card border-primary mb-2">
+                                <div class="card-header">Company Information</div>
+                                <div class="card-body position-relative">
+                                    <canvas id="companyInformationChart" width="100" height="100"></canvas>
+                                    <div class="progress-text"></div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-sm-3">
+                        <a href="{{ url('form?type=indonesia-miner-directory') }}">
+                            <div class="card border-success mb-2">
+                                <div class="card-header">Indonesia Miner Directory</div>
+                                <div class="card-body position-relative">
+                                    <canvas id="minerDirectoryChart" width="100" height="100"></canvas>
+                                    <div class="progress-text"></div>
+                                </div>
+                            </div>
+                        </a>
 
-                        <div class="card border-primary mb-2">
-                            <div class="card-header">Company Information</div>
-                            <div class="card-body position-relative">
-                                <canvas id="companyInformationChart" width="100" height="100"></canvas>
-                                <div class="progress-text"></div>
-                            </div>
-                        </div>
                     </div>
-                    <div class="col-sm-3">
-                        <div class="card border-success mb-2">
-                            <div class="card-header">Indonesia Miner Directory</div>
-                            <div class="card-body position-relative">
-                                <canvas id="minerDirectoryChart" width="100" height="100"></canvas>
-                                <div class="progress-text"></div>
-                            </div>
+                    @if ($access['promotional_access'] == 1)
+                        <div class="col-sm-3">
+                            <a href="form?type=promotional">
+                                <div class="card border-success mb-2">
+                                    <div class="card-header">Promotional</div>
+                                    <div class="card-body position-relative">
+                                        <canvas id="promotionalChart" width="100" height="100"></canvas>
+                                        <div class="progress-text"></div>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="card border-success mb-2">
-                            <div class="card-header">Promotional</div>
-                            <div class="card-body position-relative">
-                                <canvas id="promotionalChart" width="100" height="100"></canvas>
-                                <div class="progress-text"></div>
-                            </div>
+                    @endif
+                    @if ($access['eventpass_access'] == 1)
+                        <div class="col-sm-3">
+                            <a href="{{ url('form?type=event-pass') }}">
+                                <div class="card border-success mb-2">
+                                    <div class="card-header">Event Pass</div>
+                                    <div class="card-body position-relative">
+                                        <canvas id="eventPassChart" width="100" height="100"></canvas>
+                                        <div class="progress-text"></div>
+                                    </div>
+                                </div>
+                            </a>
+
                         </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="card border-success mb-2">
-                            <div class="card-header">Event Pass</div>
-                            <div class="card-body position-relative">
-                                <canvas id="eventPassChart" width="100" height="100"></canvas>
-                                <div class="progress-text"></div>
-                            </div>
+                    @endif
+                    @if ($access['exhibition_access'] == 1)
+                        <div class="col-sm-3">
+                            <a href="{{ url('form?type=exhibition') }}">
+
+                                <div class="card border-success mb-2">
+                                    <div class="card-header">Exhibition</div>
+                                    <div class="card-body position-relative">
+                                        <canvas id="exhibitionChart" width="100" height="100"></canvas>
+                                        <div class="progress-text"></div>
+                                    </div>
+                                </div>
+                            </a>
+
                         </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="card border-success mb-2">
-                            <div class="card-header">Exhibition</div>
-                            <div class="card-body position-relative">
-                                <canvas id="exhibitionChart" width="100" height="100"></canvas>
-                                <div class="progress-text"></div>
-                            </div>
-                        </div>
-                    </div>
+                    @endif
 
                     <!-- Add similar blocks for other cards -->
 

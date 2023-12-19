@@ -32,8 +32,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // $name = auth()->user(); // Mengambil nama pengguna dari objek auth
-        // dd($name);
+
         $data = [];
         $companyData = $this->getCompanyInformation();
         $presentaseCompany = $this->countPercen($companyData);
@@ -44,11 +43,21 @@ class HomeController extends Controller
         $data['countCompany'] = $presentaseCompany;
         $data['countMiningDirectory'] = $presentaseMiningDirectory;
         $data['countPromotional'] = $presentasePromotional;
-        // dd($data);
+        $data['access'] = $this->getAccess();
+        // dd($data['access']);
         return view('frontend.home.index', $data);
     }
 
 
+    private function getAccess()
+    {
+        $data = auth()->user(); // Mengambil nama pengguna dari objek auth
+        return [
+            'promotional_access' => $data->promotional_access ?? 0,
+            'eventpass_access' => $data->eventpass_access ?? 0,
+            'exhibition_access' => $data->exhibition_access ?? 0,
+        ];
+    }
     private function getPromotional()
     {
         $id = auth()->id();
