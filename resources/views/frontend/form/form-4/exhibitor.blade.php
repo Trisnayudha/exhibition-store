@@ -195,7 +195,6 @@
                                     class="form-control validation" placeholder="Input company name"
                                     value="{{ old('companyEditExhibitor') }}" required>
                             </div>
-
                         </div>
                     </div>
                     <div class="form-group">
@@ -387,6 +386,13 @@
             },
             success: function(response) {
                 console.log('Data berhasil diupdate:', response);
+                if (upgradeExhibitor == true) {
+                    delegateCart(response.payment, response.user);
+                } else {
+                    if (response.exhibitor != null) {
+                        removeDelegate(response.exhibitor.id)
+                    }
+                }
                 loadExhibitor(); // Aktifkan fungsi untuk memuat data delegate
                 loadLogExhibitor(); // Aktifkan fungsi untuk memuat data log delegate
                 $('#exhibitorEditModal').modal('hide');
@@ -449,7 +455,6 @@
         var country = $('#countryExhibitor').val();
         var postalCode = $('#postalCodeExhibitor').val();
         var upgradeExhibitor = $('#upgradeExhibitor').is(':checked');
-        console.log(upgradeExhibitor)
         // Validasi input
         if (!companyType || !companyName || !phoneCode || !phoneNumber || !name || !email || !position) {
             // Menampilkan swal menggunakan Swal 2
@@ -490,7 +495,6 @@
                 'X-CSRF-TOKEN': csrfToken
             },
             success: function(response) {
-                console.log('Data berhasil disimpan:', response);
                 loadExhibitor();
                 loadLogExhibitor();
                 $('#exhibitorModal').modal('hide');
@@ -508,11 +512,15 @@
                 $('#countryDelegate').val('');
                 $('#postalCodeDelegate').val('');
                 $('#upgradeExhibitor').prop('checked', false);
+                if (upgradeExhibitor == true) {
+                    delegateCart(response.payment, response.user);
+                }
             },
             error: function(error) {
                 console.error('Error:', error);
             }
         });
+
     }
 
 

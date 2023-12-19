@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\EventPass;
 
 use App\Http\Controllers\Controller;
+use App\Models\Exhibition\ExhibitionCartList;
 use App\Models\Logs\ExhibitionLog;
 use App\Models\Payment;
 use App\Models\Users;
@@ -106,6 +107,10 @@ class ExhibitorController extends Controller
         $payment->status = $status;
         $payment->aproval_quota_users = $aproval_quota_users;
         $payment->company_id = $company_id;
+        $payment->event_price = $total_price;
+        $payment->event_price_dollar = $total_price_dollar;
+        $payment->total_price = $total_price;
+        $payment->total_price_dollar = $total_price_dollar;
         $payment->save();
 
         // $company_id = auth()->id();
@@ -117,7 +122,7 @@ class ExhibitorController extends Controller
         }
         $log->updated_at = Carbon::now();
         $log->save();
-        return response()->json(['message' => 'Berhasil disimpan']);
+        return response()->json(['message' => 'Berhasil disimpan', 'payment' => $payment, 'user' => $user]);
     }
 
     public function show($id)
@@ -177,6 +182,7 @@ class ExhibitorController extends Controller
             $findPayment->total_price_dollar = $event_price_dollar;
             $findPayment->save();
         }
+        $findExhibition = ExhibitionCartList::where('delegate_id', $findPayment->id)->first();
         // Mengatur log
         $company_id = auth()->id();
         $log = ExhibitionLog::where('section', 'delegate')->where('company_id', $company_id)->first();
@@ -189,7 +195,7 @@ class ExhibitorController extends Controller
         $log->save();
 
         // Mengembalikan respons JSON
-        return response()->json(['message' => 'User updated successfully', 'user' => $user]);
+        return response()->json(['message' => 'User updated successfully', 'user' => $user, 'payment' => $findPayment, 'exhibitor' => $findExhibition ?? null]);
     }
 
 

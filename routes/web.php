@@ -5,6 +5,7 @@ use App\Http\Controllers\EventPass\DelegateController;
 use App\Http\Controllers\EventPass\ExhibitorController;
 use App\Http\Controllers\EventPass\MiningController;
 use App\Http\Controllers\EventPass\WorkingController;
+use App\Http\Controllers\ExhibitionCartController;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MiningDirectory\MediaController;
@@ -66,3 +67,8 @@ Route::resource('mining', MiningController::class);
 Route::post('promotional/advertisement', [PromotionalController::class, 'advertisement']);
 Route::post('promotional/sosmed', [PromotionalController::class, 'sosmed']);
 Route::delete('promotional/{id}', [PromotionalController::class, 'delete']);
+
+Route::post('cart', [ExhibitionCartController::class, 'store']);
+Route::get('cart', [ExhibitionCartController::class, 'getData']);
+Route::get('cart-count', [ExhibitionCartController::class, 'getCount']);
+Route::delete('cart-item/{id}', [ExhibitionCartController::class, 'destroyDelegate']);
