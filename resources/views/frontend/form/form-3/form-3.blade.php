@@ -6,116 +6,122 @@
         <div class="container">
             <div class="card border-info">
                 <div class="card-body">
-
-                    <section id="advertisement">
-                        <form action="{{ url('promotional/advertisement') }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-                            <div class="container-fluid">
-                                <h4>Advertisement Artwork On Event Booklet</h4>
-                                <div class="form-group">
-                                    <label for="">File Input</label>
-                                    <input type="file" class="form-control" id="pdfFiles" name="pdfFiles"
-                                        accept=".pdf">
-                                    @if (!empty($advertisement->file))
-                                        <button type="button" class="btn btn-info mt-2 preview-pdf"
-                                            data-pdf-url="{{ asset($advertisement->file) }}">Preview File</button>
-                                    @endif
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Linkeable to ( Please provide the URL with https:// )</label>
-                                    <input type="text" name="linkAdvertisement" id="linkAdvertisement"
-                                        class="form-control" value="{{ $advertisement->link ?? '' }}">
-                                </div>
-                                <div class="form-group">
-                                    <div class="d-flex justify-content-end">
-                                        <button class="btn btn-primary btn-lg btn-block"> SAVE ADVERTISEMENT ARTWORK
-                                        </button>
+                    @if (auth()->user()->level != 'sponsor')
+                        <section id="advertisement">
+                            <form action="{{ url('promotional/advertisement') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <div class="container-fluid">
+                                    <h4>Advertisement Artwork On Event Booklet</h4>
+                                    <div class="form-group">
+                                        <label for="">File Input</label>
+                                        <input type="file" class="form-control" id="pdfFiles" name="pdfFiles"
+                                            accept=".pdf">
+                                        @if (!empty($advertisement->file))
+                                            <button type="button" class="btn btn-info mt-2 preview-pdf"
+                                                data-pdf-url="https://docs.google.com/gview?url={{ urlencode(env('IMAGE_BASE_URL') . $advertisement->file) }}&embedded=true">Preview
+                                                File</button>
+                                        @endif
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Linkeable to ( Please provide the URL with https:// )</label>
+                                        <input type="text" name="linkAdvertisement" id="linkAdvertisement"
+                                            class="form-control" value="{{ $advertisement->link ?? '' }}">
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="d-flex justify-content-end">
+                                            <button class="btn btn-primary btn-lg btn-block"> SAVE ADVERTISEMENT ARTWORK
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </form>
-                    </section>
+                            </form>
+                        </section>
+                    @endif
+                    @if (auth()->user()->level == 'sponsor')
 
-                    <section id="social-media">
-                        <form action="{{ url('promotional/sosmed') }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-                            <div class="container-fluid">
-                                <h4>Social Media Promotional Content</h4>
+                        <section id="social-media">
+                            <form action="{{ url('promotional/sosmed') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <div class="container-fluid">
+                                    <h4>Social Media Promotional Content</h4>
 
-                                <div class="form-group">
-                                    <label for="imageSocial">Wording <small>(Max 2.220 Words)</small></label>
-                                    <textarea name="desc" id="desc" class="form-group ckeditor">
+                                    <div class="form-group">
+                                        <label for="imageSocial">Wording <small>(Max 2.220 Words)</small></label>
+                                        <textarea name="desc" id="desc" class="form-group ckeditor">
                                         {{ !empty($sosmed['data']['desc']) ? $sosmed['data']['desc'] : '' }}
                                     </textarea>
 
-                                </div>
+                                    </div>
 
-                                <div class="form-group">
-                                    <label for="imageSocial">Image (1080 x 1080 px) <small>Max Upload 5
-                                            Image</small></label>
-                                    @if (!isset($sosmed['listImages']) || count($sosmed['listImages']) < 5)
-                                        <div id="imageUploadContainer">
-                                            <input type="file" name="imageSocial[]" id="imageSocial" class="form-control"
-                                                accept=".jpg, .jpeg, .png" multiple>
-                                            <small class="form-text text-muted">Upload an image in JPEG or PNG
-                                                format.</small>
-                                        </div>
-                                    @endif
-                                    @if (isset($sosmed['listImages']))
-                                        @foreach ($sosmed['listImages'] as $key)
-                                            <div class="p-2 existing-images" id="imageListContainer">
-                                                <a href="{{ env('IMAGE_BASE_URL') . $key->file }}"
-                                                    data-lightbox="image-gallery" data-title="Image Title">
-                                                    <img src="{{ env('IMAGE_BASE_URL') . $key->file }}" alt=""
-                                                        width="100" height="56">
-                                                </a>
-                                                <button type="button" class="ml-2 btn btn-danger delete-btn"
-                                                    data-id={{ $key->id }}>
-                                                    Delete</button>
+                                    <div class="form-group">
+                                        <label for="imageSocial">Image (1080 x 1080 px) <small>Max Upload 5
+                                                Image</small></label>
+                                        @if (!isset($sosmed['listImages']) || count($sosmed['listImages']) < 5)
+                                            <div id="imageUploadContainer">
+                                                <input type="file" name="imageSocial[]" id="imageSocial"
+                                                    class="form-control" accept=".jpg, .jpeg, .png" multiple>
+                                                <small class="form-text text-muted">Upload an image in JPEG or PNG
+                                                    format.</small>
                                             </div>
-                                        @endforeach
-                                    @endif
-                                    <div id="imagePreviewContainer"></div>
-                                </div>
+                                        @endif
+                                        @if (isset($sosmed['listImages']))
+                                            @foreach ($sosmed['listImages'] as $key)
+                                                <div class="p-2 existing-images" id="imageListContainer">
+                                                    <a href="{{ env('IMAGE_BASE_URL') . $key->file }}"
+                                                        data-lightbox="image-gallery" data-title="Image Title">
+                                                        <img src="{{ env('IMAGE_BASE_URL') . $key->file }}" alt=""
+                                                            width="100" height="56">
+                                                    </a>
+                                                    <button type="button" class="ml-2 btn btn-danger delete-btn"
+                                                        data-id={{ $key->id }}>
+                                                        Delete</button>
+                                                </div>
+                                            @endforeach
+                                        @endif
+                                        <div id="imagePreviewContainer"></div>
+                                    </div>
 
-                                <div class="form-group">
-                                    <label for="pdfSocial">PDF <small>Max Upload 5 PDF</small></label>
-                                    @if (!isset($sosmed['listPdf']) || count($sosmed['listPdf']) < 5)
-                                        <div id="pdfUploadContainer">
-                                            <input type="file" name="pdfSocial[]" id="pdfSocial" class="form-control"
-                                                accept=".pdf" multiple>
-                                            <small class="form-text text-muted">Upload a PDF file.</small>
-                                        </div>
-                                    @endif
-                                    @if (isset($sosmed['listPdf']))
-                                        @foreach ($sosmed['listPdf'] as $key)
-                                            <div class="existing-pdfs">
-                                                <button type="button" class="btn btn-info mt-2 preview-pdf"
-                                                    data-pdf-url="https://docs.google.com/gview?url={{ urlencode(env('IMAGE_BASE_URL') . $key->file) }}&embedded=true">Preview
-                                                    File</button>
-                                                <button type="button" class="ml-2 btn btn-danger mt-2 delete-btn"
-                                                    data-id="{{ $key->id }}">Delete</button>
+                                    <div class="form-group">
+                                        <label for="pdfSocial">PDF <small>Max Upload 5 PDF</small></label>
+                                        @if (!isset($sosmed['listPdf']) || count($sosmed['listPdf']) < 5)
+                                            <div id="pdfUploadContainer">
+                                                <input type="file" name="pdfSocial[]" id="pdfSocial" class="form-control"
+                                                    accept=".pdf" multiple>
+                                                <small class="form-text text-muted">Upload a PDF file.</small>
                                             </div>
-                                        @endforeach
-                                    @endif
-                                    <div id="pdfPreviewContainer"></div>
+                                        @endif
+                                        @if (isset($sosmed['listPdf']))
+                                            @foreach ($sosmed['listPdf'] as $key)
+                                                <div class="existing-pdfs">
+                                                    <button type="button" class="btn btn-info mt-2 preview-pdf"
+                                                        data-pdf-url="https://docs.google.com/gview?url={{ urlencode(env('IMAGE_BASE_URL') . $key->file) }}&embedded=true">Preview
+                                                        File</button>
+                                                    <button type="button" class="ml-2 btn btn-danger mt-2 delete-btn"
+                                                        data-id="{{ $key->id }}">Delete</button>
+                                                </div>
+                                            @endforeach
+                                        @endif
+                                        <div id="pdfPreviewContainer"></div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="linkSocialMedia">Linkable to (Please provide the URL with
+                                            https://)</label>
+                                        <input type="text" name="linkSocialMedia" id="linkSocialMedia"
+                                            class="form-control"
+                                            value="{{ !empty($sosmed['data']['link']) ? $sosmed['data']['link'] : '' }}">
+                                        <small class="form-text text-muted">Provide the URL starting with https://.</small>
+                                    </div>
+
+                                    <div class="d-flex justify-content-end">
+                                        <button class="btn btn-primary btn-lg btn-block"> SAVE SOCIAL MEDIA </button>
+                                    </div>
                                 </div>
-
-                                <div class="form-group">
-                                    <label for="linkSocialMedia">Linkable to (Please provide the URL with https://)</label>
-                                    <input type="text" name="linkSocialMedia" id="linkSocialMedia" class="form-control"
-                                        value="{{ !empty($sosmed['data']['link']) ? $sosmed['data']['link'] : '' }}">
-                                    <small class="form-text text-muted">Provide the URL starting with https://.</small>
-                                </div>
-
-                                <div class="d-flex justify-content-end">
-                                    <button class="btn btn-primary btn-lg btn-block"> SAVE SOCIAL MEDIA </button>
-                                </div>
-                            </div>
-                        </form>
+                            </form>
 
 
-                    </section>
+                        </section>
+                    @endif
 
 
                 </div>

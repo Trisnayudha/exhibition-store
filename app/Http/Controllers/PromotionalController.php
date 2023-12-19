@@ -26,12 +26,15 @@ class PromotionalController extends Controller
 
         if ($file) {
             // Check if a file has been uploaded
-            if ($request->hasFile('pdfFiles')) {
-                $fileName = time() . '.' . $request->file('pdfFiles')->extension();
-                $save_folder = $request->file('pdfFiles')->storeAs('public/files/promotional/advertisement/', $fileName);
-                $db = '/storage/files/promotional/advertisement/' . $fileName;
-                $save->file = $db;
-            }
+            $base64File = base64_encode(file_get_contents($file->getRealPath()));
+
+            // Kirim file base64 ke API
+            $responseFile = Http::post('https://staging.indonesiaminer.com/api/upload-file/company', [
+                'file' => $base64File,
+            ]);
+            // Ambil path URL dari respons
+            $fullPathFile = $responseFile['file'];
+            $save->file = $fullPathFile;
         }
 
         $save->save();

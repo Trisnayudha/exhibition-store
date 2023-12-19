@@ -56,7 +56,8 @@ class HomeController extends Controller
         if ($level == 'sponsors') {
             $data = $this->getAdvertisement();
             return [
-                // ...
+                'link' => $data->file ?? null,
+                'link' => $data->link ?? null
             ];
         } else {
             $data = $this->getSosmed();
