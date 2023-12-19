@@ -73,8 +73,8 @@ class HomeController extends Controller
             // dd($data);
 
             $response = [
-                'desc' => $data['data']->desc,
-                'link' => $data['data']->link,
+                'desc' => $data['data']->desc ?? null,
+                'link' => $data['data']->link ?? null,
             ];
 
             // Mengisi array image
