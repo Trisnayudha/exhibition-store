@@ -272,7 +272,7 @@
         loadLogWorking();
     });
     // Fungsi untuk menambahkan baris baru ke tabel
-    function editDelegate(id) {
+    function editWorking(id) {
         // Retrieve data for the selected delegate using Ajax
         $.ajax({
             type: 'GET',
@@ -373,7 +373,7 @@
         $('#workingModal').modal('show');
     }
 
-    function hapusDelegate(index) {
+    function hapusWorking(index) {
         var csrfToken = $('meta[name="csrf-token"]').attr('content');
 
         // Konfirmasi pengguna sebelum menghapus
@@ -507,9 +507,9 @@
                         '<td>' + representative.phone + '</td>' +
                         '<td>' + representative.status + '</td>' +
                         '<td>' +
-                        '<button class="btn btn-info" onclick="editDelegate(' + representative.id +
+                        '<button class="btn btn-info" onclick="editWorking(' + representative.id +
                         ')">Edit</button> ' +
-                        '<button class="btn btn-danger" onclick="hapusDelegate(' + representative
+                        '<button class="btn btn-danger" onclick="hapusWorking(' + representative
                         .payment_id +
                         ')">Hapus</button>' +
                         '</td>' +
