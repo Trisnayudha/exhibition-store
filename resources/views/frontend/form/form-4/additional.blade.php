@@ -402,6 +402,7 @@
                     },
                     success: function(response) {
                         console.log('Data berhasil dihapus:', response);
+                        loadCart();
                         loadAdditional();
                         loadLogAdditional();
                     },

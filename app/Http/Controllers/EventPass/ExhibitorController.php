@@ -206,6 +206,10 @@ class ExhibitorController extends Controller
     public function destroy($id)
     {
         $representative = Payment::findOrFail($id);
+        $cart = ExhibitionCartList::where('delegate_id', $representative->id)->first();
+        if ($cart) {
+            $cart->delete();
+        }
         $representative->delete();
         $company_id = auth()->id();
         $log = ExhibitionLog::where('section', 'delegate')->where('company_id', $company_id)->first();

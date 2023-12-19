@@ -387,7 +387,7 @@
             success: function(response) {
                 console.log('Data berhasil diupdate:', response);
                 if (upgradeExhibitor == true) {
-                    delegateCart(response.payment, response.user);
+                    loadCart();
                 } else {
                     if (response.exhibitor != null) {
                         removeDelegate(response.exhibitor.id)
@@ -431,6 +431,7 @@
                     },
                     success: function(response) {
                         console.log('Data berhasil dihapus:', response);
+                        loadCart();
                         loadExhibitor();
                         loadLogExhibitor();
                     },

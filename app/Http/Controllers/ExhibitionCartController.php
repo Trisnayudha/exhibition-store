@@ -28,7 +28,10 @@ class ExhibitionCartController extends Controller
     {
         $company_id = auth()->id();
 
-        $save = new ExhibitionCartList();
+        $save = ExhibitionCartList::where('delegate_id', $request->delegate_id)->first();
+        if (empty($save)) {
+            $save = new ExhibitionCartList();
+        }
         $save->name_product = $request->name_product;
         $save->section_product = $request->section_product;
         $save->price = $request->price;
