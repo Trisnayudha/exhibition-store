@@ -1,7 +1,7 @@
 <section id="exhibitor-pass">
     <h4>Exhibitor Pass</h4>
     <div class="alert alert-info" role="alert">
-        You Have 4 Exhibitor Pass
+        You Have {{ $access['exhibitor_pass'] }} Exhibitor Pass
         <p>Access to</p>
         <ul>
             <li>Exhibition</li>
@@ -14,7 +14,7 @@
         Please Note: Company, Name and Position will be printed on the badge
     </div>
     <div class="logger-exhibitor"></div>
-    <button class="btn btn-primary mb-2" onclick="tambahExhibitor()">Tambah</button>
+    <button class="btn btn-primary mb-2" onclick="tambahExhibitor()" id="exhibitorButton">Tambah</button>
     <div class="table-responsive">
         <table class="table">
             <thead>
@@ -535,7 +535,8 @@
             url: '{{ url('/exhibitor') }}', // Replace with the actual API URL
             success: function(response) {
                 var data = response.data;
-
+                var accessData = {{ $access['exhibitor_pass'] }}
+                console.log(accessData)
                 // Get the image base URL from the configuration
                 var imageBaseUrl = '{{ config('app.image_base_url') }}';
 
@@ -560,6 +561,16 @@
 
                     // Append the row to the table body
                     $('#tabelExhibitor').append(row);
+                }
+                if (accessData <= data.length) {
+                    console.log(data.length);
+                    // Disable the button or show a notification
+                    $('#exhibitorButton').prop('disabled', true);
+                    // You can also display a notification here
+                    // Example: $('#notification').text('You cannot add more data.').show();
+                } else {
+                    $('#exhibitorButton').prop('disabled', false);
+
                 }
             },
             error: function(error) {

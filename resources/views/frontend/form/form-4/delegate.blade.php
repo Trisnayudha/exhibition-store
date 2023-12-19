@@ -1,7 +1,7 @@
 <section id="delegate-pass">
     <h4>Delegate Pass</h4>
     <div class="alert alert-info alert-dismissible fade show" role="alert">
-        You Have 3 Delegate Pass
+        You Have {{ $access['delegate_pass'] }} Delegate Pass
         <p>Access to: </p>
         <ul>
             <li>Conference</li>
@@ -19,7 +19,7 @@
         </button>
     </div>
     <div class="logger-delegate"></div>
-    <button class="btn btn-primary mb-2" onclick="tambahDelegate()">Tambah</button>
+    <button class="btn btn-primary mb-2" onclick="tambahDelegate()" id="delegateButton">Tambah</button>
     <div class="table-responsive">
         <table class="table">
             <thead>
@@ -504,7 +504,7 @@
 
                 // Get the image base URL from the configuration
                 var imageBaseUrl = '{{ config('app.image_base_url') }}';
-
+                var accessData = {{ $access['delegate_pass'] }}
                 // Iterate through the data and append rows to the table
                 for (var i = 0; i < data.length; i++) {
                     var representative = data[i];
@@ -526,6 +526,16 @@
 
                     // Append the row to the table body
                     $('#tabelDelegate').append(row);
+                }
+                if (accessData <= data.length) {
+                    console.log(data.length);
+                    // Disable the button or show a notification
+                    $('#delegateButton').prop('disabled', true);
+                    // You can also display a notification here
+                    // Example: $('#notification').text('You cannot add more data.').show();
+                } else {
+                    $('#delegateButton').prop('disabled', false);
+
                 }
             },
             error: function(error) {
