@@ -318,9 +318,11 @@
                         var formattedPrice = new Intl.NumberFormat('id-ID', {
                             style: 'currency',
                             currency: 'IDR'
-                        }).format(item.price);
+                        }).format(item.total_price);
+                        if (item.section_product == 'Exhibition Upgrade' || item.section_product ==
+                            'Exhibition Delegate Additional') {
 
-                        itemsHtml += `
+                            itemsHtml += `
                     <div class="cart-item my-2 p-3 border rounded">
                         <div class="row">
                             <div class="col-md-2">
@@ -346,6 +348,42 @@
                             </div>
                         </div>
                     </div>`;
+                        } else {
+                            itemsHtml += `
+                    <div class="cart-item my-2 p-3 border rounded">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <img src="${item.image}" alt="${item.name_product}"
+                                    class="img-fluid" width="50" height="50">
+                            </div>
+                            <div class="col-md-4">
+                                <h5>${item.name_product}</h5>
+                                <h7>${item.section_product}</h7>
+                            </div>
+                            <div class="col-md-2">
+                                <span class="price">${formattedPrice}</span>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="quantity-selector d-flex align-items-center">
+                                        <button class="btn btn-outline-secondary"
+                                            onclick="changeQuantity('${item.id}', -1)">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        <span id="item1-quantity" class="mx-2 quantity-number">${item.quantity}</span>
+                                        <button class="btn btn-outline-secondary"
+                                            onclick="changeQuantity('${item.id}', 1)">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                            </div>
+                            <div class="col-md-1">
+                                <button class="btn btn-danger btn-sm" onclick="removeExhibition('${item.id}')">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>`;
+                        }
                     });
 
                     $('#item-delegate').html(itemsHtml);

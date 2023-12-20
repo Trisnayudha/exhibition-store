@@ -72,6 +72,9 @@ Route::post('promotional/sosmed', [PromotionalController::class, 'sosmed']);
 Route::delete('promotional/{id}', [PromotionalController::class, 'delete']);
 
 Route::post('cart', [ExhibitionCartController::class, 'store']);
+Route::post('cart-exhibition', [ExhibitionCartController::class, 'storeExhibition']);
 Route::get('cart', [ExhibitionCartController::class, 'getData']);
 Route::get('cart-count', [ExhibitionCartController::class, 'getCount']);
 Route::delete('cart-item/{id}', [ExhibitionCartController::class, 'destroyDelegate']);
+Route::delete('cart-item-exhibition/{id}', [ExhibitionCartController::class, 'destroyExhibition']);
+Route::post('cart/change', [ExhibitionCartController::class, 'changeQuantity']);

@@ -1,169 +1,178 @@
 @extends('index')
 
 @section('content')
-    <div class="container-fluid">
-        <div class="card mb-3">
-            <div class="card-body">
-                <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                    <strong>Please note that the Organizer will not be responsible for: </strong>
-                    <ul>
-                        <li>Any Information, material or data that is not included in the guarantee after the specified time
-                            limit</li>
-                        <li>Lack of equipment or service caused by late return of the order form</li>
-                    </ul>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div id="accordion">
-                    <div class="card">
-                        <div class="card-header" id="card-exhibition">
-                            <h5 class="mb-0">
-                                <button class="btn btn-link" data-toggle="collapse" data-target="#pic-exhibition"
-                                    aria-expanded="true" aria-controls="pic-exhibition">
-                                    PIC Exhibition
-                                </button>
-                            </h5>
-                        </div>
+    <div class="col-sm-9">
+        <div class="container-fluid">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <strong>Please note that the Organizer will not be responsible for: </strong>
+                        <ul>
+                            <li>Any Information, material or data that is not included in the guarantee after the specified
+                                time
+                                limit</li>
+                            <li>Lack of equipment or service caused by late return of the order form</li>
+                        </ul>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div id="accordion">
+                        <div class="card">
+                            <div class="card-header" id="card-exhibition">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link" data-toggle="collapse" data-target="#pic-exhibition"
+                                        aria-expanded="true" aria-controls="pic-exhibition">
+                                        PIC Exhibition
+                                    </button>
+                                </h5>
+                            </div>
 
-                        <div id="pic-exhibition" class="collapse show" aria-labelledby="card-exhibition"
-                            data-parent="#accordion">
-                            <div class="card-body">
-                                <div class="container">
+                            <div id="pic-exhibition" class="collapse show" aria-labelledby="card-exhibition"
+                                data-parent="#accordion">
+                                <div class="card-body">
+                                    <div class="container">
 
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label for="">Contact Person</label>
-                                                <input type="text" name="contact_person" class="form-control">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label for="">Contact Person</label>
+                                                    <input type="text" name="contact_person" class="form-control">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="">Email</label>
+                                                    <input type="text" name="contact_email" class="form-control">
+                                                </div>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="">Email</label>
-                                                <input type="text" name="contact_email" class="form-control">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label for="">Job Title</label>
+                                                    <input type="text" name="contact_job_title" class="form-control"
+                                                        id="">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for=""> Mobile</label>
+                                                    <input type="text" name="contact_mobile" class="form-control"
+                                                        id="">
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label for="">Job Title</label>
-                                                <input type="text" name="contact_job_title" class="form-control"
-                                                    id="">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for=""> Mobile</label>
-                                                <input type="text" name="contact_mobile" class="form-control"
-                                                    id="">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-12">
+                                            <div class="col-sm-12">
 
-                                            <label for="">Fascia Name</label>
-                                            <div class="alert alert-danger" role="alert">
-                                                <ul>
-                                                    <li>Please write the Company Name below, based on what is needed in the
-                                                        fascia. Fill in block letters using the alphabet ( maximum 24
-                                                        letters).
-                                                        Fascia names longer than 24 letters will be displayed on 2 lines and
-                                                        the
-                                                        font size will be minimized accordingly</li>
-                                                    <li>The fascia name will follow based on this form. If it passes the
-                                                        deadline, any changes to the fascia will incur an additional fee
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="form-group fascia-container">
-                                                <?php
-                                                for ($i = 1; $i <= 24; $i++) {
-                                                    // Modify the style of the fascia-box
-                                                    echo '<input class="fascia-box" type="text" name="box[]" maxlength="1" oninput="moveToNext(this)" value="">';
-                                                }
-                                                ?>
-                                            </div>
-                                            <div class="form-group">
-                                                <canvas id="signatureCanvas" width="400" height="200"></canvas>
-                                                <button class="btn btn-primary mt-3" id="clearBtn">Clear Signature</button>
-                                                <button class="btn btn-primary mt-3" id="clearBtn">Clear Signature</button>
+                                                <label for="">Fascia Name</label>
+                                                <div class="alert alert-danger" role="alert">
+                                                    <ul>
+                                                        <li>Please write the Company Name below, based on what is needed in
+                                                            the
+                                                            fascia. Fill in block letters using the alphabet ( maximum 24
+                                                            letters).
+                                                            Fascia names longer than 24 letters will be displayed on 2 lines
+                                                            and
+                                                            the
+                                                            font size will be minimized accordingly</li>
+                                                        <li>The fascia name will follow based on this form. If it passes the
+                                                            deadline, any changes to the fascia will incur an additional fee
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="form-group fascia-container">
+                                                    <?php
+                                                    for ($i = 1; $i <= 24; $i++) {
+                                                        // Modify the style of the fascia-box
+                                                        echo '<input class="fascia-box" type="text" name="box[]" maxlength="1" oninput="moveToNext(this)" value="">';
+                                                    }
+                                                    ?>
+                                                </div>
+                                                <div class="form-group">
+                                                    <canvas id="signatureCanvas" width="400" height="200"></canvas>
+                                                    <div>
+                                                        <button class="btn btn-warning mt-3" id="clearBtn">Clear
+                                                            Signature</button>
+                                                    </div>
+
+                                                </div>
+                                                <button class="btn btn-primary btn-lg btn-block"> Save Contact</button>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <button class="btn btn-primary"> Save Contact</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-sm-9">
-                        <div id="accordion">
-                            <div class="card">
-                                <div class="card-header" id="headingOne">
-                                    <h5 class="mb-0">
-                                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne"
-                                            aria-expanded="true" aria-controls="collapseOne">
-                                            Furniture
-                                        </button>
-                                    </h5>
-                                </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div id="accordion">
+                                <div class="card">
+                                    <div class="card-header" id="headingOne">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne"
+                                                aria-expanded="true" aria-controls="collapseOne">
+                                                Furniture
+                                            </button>
+                                        </h5>
+                                    </div>
 
-                                <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
-                                    data-parent="#accordion">
-                                    <div class="card-body">
-                                        @include('frontend.form.form-5.furniture')
+                                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
+                                        data-parent="#accordion">
+                                        <div class="card-body">
+                                            @include('frontend.form.form-5.furniture')
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-header" id="headingTwo">
-                                    <h5 class="mb-0">
-                                        <button class="btn btn-link collapsed" data-toggle="collapse"
-                                            data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                            Lighting Service and Other Tools
-                                        </button>
-                                    </h5>
-                                </div>
-                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-                                    data-parent="#accordion">
-                                    <div class="card-body">
-                                        @include('frontend.form.form-5.lighting')
+                                <div class="card">
+                                    <div class="card-header" id="headingTwo">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link collapsed" data-toggle="collapse"
+                                                data-target="#collapseTwo" aria-expanded="false"
+                                                aria-controls="collapseTwo">
+                                                Lighting Service and Other Tools
+                                            </button>
+                                        </h5>
+                                    </div>
+                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                        data-parent="#accordion">
+                                        <div class="card-body">
+                                            @include('frontend.form.form-5.lighting')
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-header" id="headingThree">
-                                    <h5 class="mb-0">
-                                        <button class="btn btn-link collapsed" data-toggle="collapse"
-                                            data-target="#collapseThree" aria-expanded="false"
-                                            aria-controls="collapseThree">
-                                            Electrical Services
-                                        </button>
-                                    </h5>
-                                </div>
-                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
-                                    data-parent="#accordion">
-                                    <div class="card-body">
-                                        @include('frontend.form.form-5.electricity')
+                                <div class="card">
+                                    <div class="card-header" id="headingThree">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link collapsed" data-toggle="collapse"
+                                                data-target="#collapseThree" aria-expanded="false"
+                                                aria-controls="collapseThree">
+                                                Electrical Services
+                                            </button>
+                                        </h5>
+                                    </div>
+                                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                                        data-parent="#accordion">
+                                        <div class="card-body">
+                                            @include('frontend.form.form-5.electricity')
 
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-sm-3 col-md-3 order-md-2 mb-4">
-                        <h4 class="d-flex justify-content-between align-items-center mb-3">
-                            <span class="text-muted">Your cart</span>
-                            <span class="badge badge-secondary badge-pill">1</span>
-                        </h4>
-                        <ul id="cartList" class="list-group mb-3">
-                            <!-- Cart items will be dynamically added here -->
-                        </ul>
-                        <div>Total (IDR): <strong id="totalPrice">0.00</strong></div>
-                        <button id="checkoutBtn" class="btn btn-primary btn-lg btn-block" disabled>Checkout</button>
-                    </div>
+                        {{-- <div class="col-sm-3 col-md-3 order-md-2 mb-4">
+                            <h4 class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="text-muted">Your cart</span>
+                                <span class="badge badge-secondary badge-pill">1</span>
+                            </h4>
+                            <ul id="cartList" class="list-group mb-3">
+                                <!-- Cart items will be dynamically added here -->
+                            </ul>
+                            <div>Total (IDR): <strong id="totalPrice">0.00</strong></div>
+                            <button id="checkoutBtn" class="btn btn-primary btn-lg btn-block" disabled>Checkout</button>
+                        </div> --}}
 
+                    </div>
                 </div>
             </div>
         </div>
@@ -171,6 +180,7 @@
 @endsection
 @push('bottom')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/signature_pad/1.5.3/signature_pad.min.js"></script>
+    {{-- signature --}}
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var canvas = document.getElementById('signatureCanvas');
@@ -194,6 +204,7 @@
         });
     </script>
 
+    {{-- facia name --}}
     <script>
         function moveToNext(input) {
             var maxLength = parseInt(input.maxLength, 10);
@@ -216,86 +227,130 @@
             }
         }
     </script>
+
+    {{-- to cart --}}
     <script>
-        $(document).ready(function() {
-            // Initialize cart as an empty array
-            var cart = [];
-            // Event handler for deleting a product from the cart
-            $(document).on('click', '.delete-item', function() {
-                var index = $(this).data('index');
-                cart.splice(index, 1); // Remove the item from the cart array
-                updateCart(); // Update the cart and UI
-            });
-            // Function to update the cart and UI
-            function updateCart() {
-                // Update the cart total and enable/disable the checkout button
-                var total = 0;
-                for (var i = 0; i < cart.length; i++) {
-                    total += cart[i].quantity * cart[i].price;
-                }
+        function exhibitionCart(name_product, section_product, price, total_price, quantity, image) {
 
-                if (cart.length > 0) {
-                    // Enable the checkout button
-                    $('#checkoutBtn').prop('disabled', false);
-                } else {
-                    // Disable the checkout button
-                    $('#checkoutBtn').prop('disabled', true);
-                }
+            var csrfToken = $('meta[name="csrf-token"]').attr('content');
 
-                // Update the UI with the cart items and total
-                $('#cartList').empty();
-                for (var i = 0; i < cart.length; i++) {
-                    $('#cartList').append(
-                        '<li class="list-group-item d-flex justify-content-between lh-condensed">' +
-                        '<div class="col-8">' +
-                        '<h6 class="my-0">' + cart[i].name + '</h6>' +
-                        '<small class="text-muted">IDR ' + cart[i].price.toLocaleString('id-ID') + '</small>' +
-                        '</div>' +
-                        '<div class="input-group input-group-sm">' +
-                        '<input type="number" class="form-control quantity" value="' + cart[i].quantity +
-                        '" min="1" data-index="' + i + '">' +
-                        '</div>' +
-                        '<button type="button" class="btn btn-outline-danger btn-sm ml-2 delete-item" data-index="' +
-                        i + '">' +
-                        '<i class="fas fa-trash-alt"></i>' +
-                        '</button>' +
-                        '</li>'
-                    );
-                }
+            var formData = new FormData();
+            formData.append('name_product', name_product);
+            formData.append('section_product', section_product);
+            formData.append('price', price);
+            formData.append('total_price', total_price);
+            formData.append('quantity', quantity);
+            formData.append('image', image)
 
-                $('#totalPrice').text('IDR ' + total.toLocaleString('id-ID'));
-            }
+            console.log(formData)
+            // Kirim data ke server menggunakan Ajax dengan FormData
 
-            // Event handler for adding a product to the cart
-            $('.add-to-cart').click(function() {
-                var productName = $(this).data('name');
-                var productPrice = parseFloat($(this).data('price'));
-                var existingItem = cart.find(item => item.name === productName);
-
-                if (existingItem) {
-                    existingItem.quantity++;
-                } else {
-                    cart.push({
-                        name: productName,
-                        price: productPrice,
-                        quantity: 1
+            $.ajax({
+                type: 'POST',
+                url: '{{ url('/cart-exhibition') }}',
+                data: formData,
+                processData: false,
+                contentType: false,
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken
+                },
+                success: function(response) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Added item to cart",
+                        showConfirmButton: false,
+                        timer: 1500,
                     });
+
+                    loadCart();
+                },
+                error: function(error) {
+                    console.error('Error:', error);
                 }
+            });
+        }
 
-                updateCart();
+        function removeExhibition(id) {
+            var csrfToken = $('meta[name="csrf-token"]').attr('content');
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: 'cart-item-exhibition/' + id,
+                        type: 'DELETE',
+                        processData: false,
+                        contentType: false,
+                        headers: {
+                            'X-CSRF-TOKEN': csrfToken
+                        },
+                        success: function(result) {
+                            // Handle the success scenario
+                            console.log('Item removed successfully');
+                            loadCart();
+                            loadExhibitor();
+                            loadAdditional();
+                            // Display SweetAlert confirmation
+                            Swal.fire({
+                                title: 'Success!',
+                                text: 'Item removed successfully',
+                                icon: 'success',
+                                confirmButtonText: 'OK'
+                            });
+                        },
+                        error: function(xhr, status, error) {
+                            // Handle errors here
+                            console.log('Error in removal: ' + error);
+
+                            // Optionally, display an error message using SweetAlert
+                            Swal.fire({
+                                title: 'Error!',
+                                text: 'Failed to remove the item: ' + error,
+                                icon: 'error',
+                                confirmButtonText: 'OK'
+                            });
+                        }
+                    })
+                }
             });
 
-            // Event handler for changing quantity in the cart
-            $(document).on('change', '.quantity', function() {
-                var index = $(this).data('index');
-                cart[index].quantity = parseInt($(this).val());
-                updateCart();
+        }
+
+        function changeQuantity(id, quantity) {
+            var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+            var formData = new FormData();
+            formData.append('id', id);
+            formData.append('quantity', quantity);
+            console.log(id)
+            console.log(quantity)
+            // Kirim data ke server menggunakan Ajax dengan FormData
+
+            $.ajax({
+                type: 'POST',
+                url: '{{ url('/cart/change') }}',
+                data: formData,
+                processData: false,
+                contentType: false,
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken
+                },
+                success: function(response) {
+                    console.log(response)
+                    loadCart();
+                },
+                error: function(error) {
+                    console.error('Error:', error);
+                }
             });
-
-
-            // Initial cart update
-            updateCart();
-        });
+        }
     </script>
 @endpush
 
@@ -304,8 +359,7 @@
         #signatureCanvas {
             border: 1px solid #ccc;
         }
-    </style>
-    <style>
+
         .fascia-container {
             display: flex;
             justify-content: center;
@@ -318,10 +372,9 @@
             border: 1px solid #000;
             text-align: center;
             line-height: 2em;
-            margin: 0 4.5px;
+            margin: 0 2px;
         }
-    </style>
-    <style>
+
         .product-grid {
             font-family: 'Roboto', sans-serif;
             text-align: center;

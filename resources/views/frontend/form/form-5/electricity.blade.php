@@ -14,7 +14,10 @@
                         <li><a href="product-details.html" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
                         <!-- Add the following lines for the "Add to Cart" button -->
                         <li><a href="javascript:void(0);" class="add-to-cart" data-name="60A / 3 ph / 22800 watt"
-                                data-price="56400000" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a>
+                                data-price="56400000" data-tip="Add to Cart"
+                                onclick="exhibitionCart(`60A / 3 ph /
+                                22800 watt`,'Additional Electrical',56400000,56400000,1,'https://cdn.pixabay.com/photo/2019/09/27/08/06/electricity-4507838_1280.png')"><i
+                                    class="fa fa-shopping-cart"></i></a>
                         </li>
                     </ul>
                 </div>
@@ -37,7 +40,9 @@
                     <ul class="social">
                         <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
                         <li><a href="javascript:void(0);" class="add-to-cart" data-name="2A / 1 ph / 440 watt"
-                                data-price="1650000" data-tip="Add to wishlist"><i class="fa fa-shopping-cart"></i></a>
+                                data-price="1650000" data-tip="Add to wishlist"
+                                onclick="exhibitionCart(`2A / 1 ph / 440 watt`,'Additional Electrical',1650000,1650000,1,'https://cdn.pixabay.com/photo/2019/09/27/08/06/electricity-4507838_1280.png')"><i
+                                    class="fa fa-shopping-cart"></i></a>
                         </li>
                     </ul>
                 </div>

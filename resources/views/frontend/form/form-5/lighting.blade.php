@@ -13,7 +13,9 @@
                     <ul class="social">
                         <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
                         <li><a href="javascript:void(0);" class="add-to-cart" data-name="LED TV 43 Inch + Standing"
-                                data-price="4500000" data-tip="Add to wishlist"><i class="fa fa-shopping-cart"></i></a>
+                                data-price="4500000" data-tip="Add to wishlist"
+                                onclick="exhibitionCart('LED TV 43 Inch + Standing','Additional Lighting',4500000,4500000,1,'https://image1ws.indotrading.com/s3/productimages/webp/co170930/p1108732/w425-h425/45b3f586-e193-471f-b28e-e4e4a5ac7a6f.png')"><i
+                                    class="fa fa-shopping-cart"></i></a>
                         </li>
                     </ul>
                 </div>
@@ -35,7 +37,9 @@
                     <ul class="social">
                         <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
                         <li><a href="javascript:void(0);" class="add-to-cart" data-name="Long Arm Spot Light White"
-                                data-price="675000" data-tip="Add to wishlist"><i class="fa fa-shopping-cart"></i></a>
+                                data-price="675000" data-tip="Add to wishlist"
+                                onclick="exhibitionCart('Long Arm Spot Light White','Additional Lighting',675000,675000,1,'https://i.pinimg.com/736x/9c/29/93/9c2993d52e25b02e5287cef5f384f4e0.jpg')"><i
+                                    class="fa fa-shopping-cart"></i></a>
                         </li>
                     </ul>
                 </div>
