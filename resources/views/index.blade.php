@@ -478,6 +478,17 @@
         }
     </script>
     @stack('bottom')
+
+    {{-- Show Image --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/css/lightbox.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/js/lightbox.min.js"></script>
+
+    <script>
+        lightbox.option({
+            'resizeDuration': 200,
+            'wrapAround': true
+        });
+    </script>
     <!-- Modal Keranjang Belanja -->
     <div class="modal fade" id="shoppingCartModal" tabindex="-1" role="dialog"
         aria-labelledby="shoppingCartModalLabel" aria-hidden="true">

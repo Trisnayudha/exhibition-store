@@ -236,16 +236,4 @@
             });
         });
     </script>
-
-
-    {{-- Show Image --}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/css/lightbox.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/js/lightbox.min.js"></script>
-
-    <script>
-        lightbox.option({
-            'resizeDuration': 200,
-            'wrapAround': true
-        });
-    </script>
 @endpush
