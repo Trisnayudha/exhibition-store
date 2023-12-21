@@ -129,7 +129,7 @@
             createDoughnutChart('promotionalChart', {{ $countPromotional }}, 'Promotional');
         @endif
         @if ($access['eventpass_access'] == 1)
-            createDoughnutChart('eventPassChart', 30, 'Miner Directory');
+            createDoughnutChart('eventPassChart', {{ $countEventPass }}, 'Miner Directory');
         @endif
         @if ($access['exhibition_access'] == 1)
             createDoughnutChart('exhibitionChart', 10, 'Exhibition');

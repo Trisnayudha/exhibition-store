@@ -41,13 +41,17 @@ class HomeController extends Controller
         $presentaseMiningDirectory = $this->countPercen($miningDirectory);
         $promotional = $this->getPromotional();
         $presentasePromotional = $this->countPercen($promotional);
-        $presentaseEventPass = $this->getEventPass();
-        // dd($presentaseEventPass);
+        $eventPass = $this->getEventPass();
+        $presentaseEventPass = $this->countPercen($eventPass);
+        $data['access'] = $this->getAccess();
         $data['countCompany'] = $presentaseCompany;
         $data['countMiningDirectory'] = $presentaseMiningDirectory;
-        $data['countPromotional'] = $presentasePromotional;
-        $data['countEventPass'] = $presentaseEventPass;
-        $data['access'] = $this->getAccess();
+        if ($data['access']['promotional_access'] == 1) {
+            $data['countPromotional'] = $presentasePromotional;
+        }
+        if ($data['access']['eventpass_access'] == 1) {
+            $data['countEventPass'] = $presentaseEventPass;
+        }
         // dd($data['access']);
         return view('frontend.home.index', $data);
     }
@@ -56,32 +60,36 @@ class HomeController extends Controller
     {
         $id = auth()->id();
         $countPass = $this->getCountPass();
-        $delegatePass = [];
-        $exhibitionPass = [];
 
-        // Menghasilkan delegatePass_1, delegatePass_2, dst.
+        // Mendapatkan jumlah delegatePass dan exhibitionPass aktif dari database
+        $delegatePassCount = Payment::where('payment.company_id', $id)
+            ->where('payment.type', 'Exhibition Delegate')->count();
+        $exhibitorPassCount = Payment::where('payment.company_id', $id)
+            ->whereIn('payment.type', ['Exhibition Upgrade', 'Exhibition Exhibitor'])->count();
+
+        $result = [];
+
+        // Mengisi delegatePass
         for ($i = 1; $i <= $countPass['delegate_pass']; $i++) {
-            $delegatePass[] = 'delegatePass_' . $i;
+            $delegatePassKey = 'delegatePass_' . $i;
+            $result[$delegatePassKey] = ($i <= $delegatePassCount) ? true : null;
         }
 
-        // Menghasilkan exhibitorPass_1, exhibitorPass_2, dst.
+        // Mengisi exhibitionPass
         for ($i = 1; $i <= $countPass['exhibitor_pass']; $i++) {
-            $exhibitionPass[] = 'exhibitorPass_' . $i;
+            $exhibitionPassKey = 'exhibitorPass_' . $i;
+            $result[$exhibitionPassKey] = ($i <= $exhibitorPassCount) ? true : null;
         }
 
         $workingPass = Payment::where('payment.company_id', $id)
             ->where('payment.type', 'Exhibition Working')->first();
-        $miningPass = Payment::where('payment.company_id', $id)
+
+        $miningPass =  Payment::where('payment.company_id', $id)
             ->where('payment.type', 'Exhibition Mining')->first();
-
-        return [
-            'delegatePass' => $delegatePass,
-            'exhibitionPass' => $exhibitionPass,
-            'workingPass' => $workingPass ?? null,
-            'miningPass' => $miningPass ?? null,
-        ];
+        $result['workingPass'] = $workingPass ? true : null;
+        $result['miningPass'] = $miningPass ? true : null;
+        return $result;
     }
-
 
     private function getCountPass()
     {
