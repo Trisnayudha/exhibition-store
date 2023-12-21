@@ -132,7 +132,7 @@
             createDoughnutChart('eventPassChart', {{ $countEventPass }}, 'Miner Directory');
         @endif
         @if ($access['exhibition_access'] == 1)
-            createDoughnutChart('exhibitionChart', 10, 'Exhibition');
+            createDoughnutChart('exhibitionChart', {{ $countExhibition }}, 'Exhibition');
         @endif
     </script>
 @endsection

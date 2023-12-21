@@ -39,21 +39,40 @@ class HomeController extends Controller
         $presentaseCompany = $this->countPercen($companyData);
         $miningDirectory = $this->getIndonesiaMinerDirectory();
         $presentaseMiningDirectory = $this->countPercen($miningDirectory);
-        $promotional = $this->getPromotional();
-        $presentasePromotional = $this->countPercen($promotional);
-        $eventPass = $this->getEventPass();
-        $presentaseEventPass = $this->countPercen($eventPass);
         $data['access'] = $this->getAccess();
         $data['countCompany'] = $presentaseCompany;
         $data['countMiningDirectory'] = $presentaseMiningDirectory;
         if ($data['access']['promotional_access'] == 1) {
+            $promotional = $this->getPromotional();
+            $presentasePromotional = $this->countPercen($promotional);
             $data['countPromotional'] = $presentasePromotional;
         }
         if ($data['access']['eventpass_access'] == 1) {
+            $eventPass = $this->getEventPass();
+            $presentaseEventPass = $this->countPercen($eventPass);
             $data['countEventPass'] = $presentaseEventPass;
+        }
+        if ($data['access']['exhibition_access'] == 1) {
+            $exhibition = $this->getExhibition();
+            $presentaseExhibition = $this->countPercen($exhibition);
+            $data['countExhibition'] = $presentaseExhibition;
         }
         // dd($data['access']);
         return view('frontend.home.index', $data);
+    }
+
+    private function getExhibition()
+    {
+        $id = auth()->id();
+        $data =  Company::where('id', $id)->first();
+        return [
+            'pic_name' => $data->pic_name ?? null,
+            'pic_job_title' => $data->pic_job_title ?? null,
+            'pic_phone' => $data->pic_phone ?? null,
+            'pic_email' => $data->pic_email ?? null,
+            'pic_signature' => $data->pic_signature ?? null,
+            'fascia_name' => $data->exhibition_design == 1 ? ($data->fascia_name ?? null) : true,
+        ];
     }
 
     private function getEventPass()
