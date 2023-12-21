@@ -1,10 +1,17 @@
 <form action="{{ url('postGeneral') }}" method="POSt" enctype="multipart/form-data">
     @csrf
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+        Please don't forget to save your data after filling out the form.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
     @if (optional($general)->updated_at != null)
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            Already updated at
+            Last update :
             <strong>
-                {{ optional($general->updated_at)->format('d F Y, g:i A') }}
+                {{ optional($general->updated_at)->format('d F Y, g:i A') }} GMT + 7
             </strong>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -24,6 +31,7 @@
             <input type="hidden" name="cropped_image" id="cropped_image_input">
 
         </div>
+        <img src="{{ env('IMAGE_BASE_URL') . $data->image }}" alt="" height="100">
     </div>
 
     <div class="form-group">
@@ -104,9 +112,6 @@
         @endfor
 
 
-    </div>
-    <div class="alert alert-danger" role="alert">
-        Lu HARUS KLIK BUTTON SAVE BUAT NYIMPEN DATA ! !
     </div>
     <button class="btn btn-primary btn-lg btn-block" id="saveGeneral"> SAVE </button>
 </form>

@@ -29,6 +29,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('test', function () {
+    return view('test');
+});
 Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/form', [FormController::class, 'index']);

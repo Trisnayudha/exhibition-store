@@ -70,7 +70,10 @@ class FormController extends Controller
             return view('frontend.form.form-2.form-2', $data);
         } elseif ($type == 'promotional') {
             $data['advertisement'] = $this->getAdvertisement();
+            $data['log_advertisement'] = $this->getLogs('advertisement');
+
             $data['sosmed'] = $this->getSosmed();
+            $data['log_sosmed'] = $this->getLogs('sosmed');
             // dd($data);
             return view('frontend.form.form-3.form-3', $data);
         } elseif ($type == 'event-pass') {

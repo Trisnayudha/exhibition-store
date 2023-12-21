@@ -81,7 +81,7 @@
                     if (URL) {
                         image.src = URL.createObjectURL(file);
                         cropper = new Cropper(image, {
-                            aspectRatio: 600 / 400, // Dimensi tetap 600 x 400
+                            aspectRatio: 800 / 500, // Dimensi tetap 600 x 400
                             viewMode: 1, // Fixed crop box
                             autoCropArea: 1,
                             background: false

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Logs\ExhibitionLog;
 use App\Models\Promotional\ExhibitionPromotional;
 use App\Models\Promotional\ExhibitionPromotionalList;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
@@ -38,6 +40,14 @@ class PromotionalController extends Controller
         }
 
         $save->save();
+        $log = ExhibitionLog::where('section', 'advertisement')->where('company_id', $userId)->first();
+        if ($log == null) {
+            $log = new ExhibitionLog();
+            $log->section = 'advertisement';
+            $log->company_id = $userId;
+        }
+        $log->updated_at = Carbon::now();
+        $log->save();
         return redirect()->back();
     }
 
@@ -106,15 +116,30 @@ class PromotionalController extends Controller
                 $savePdf->save();
             }
         }
-
+        $log = ExhibitionLog::where('section', 'sosmed')->where('company_id', $userId)->first();
+        if ($log == null) {
+            $log = new ExhibitionLog();
+            $log->section = 'sosmed';
+            $log->company_id = $userId;
+        }
+        $log->updated_at = Carbon::now();
+        $log->save();
         return redirect()->back();
     }
 
     public function delete($id)
     {
+        $userId = auth()->id();
         $data = ExhibitionPromotionalList::findOrFail($id);
         $data->delete();
-
+        $log = ExhibitionLog::where('section', 'advertisement')->where('company_id', $userId)->first();
+        if ($log == null) {
+            $log = new ExhibitionLog();
+            $log->section = 'advertisement';
+            $log->company_id = $userId;
+        }
+        $log->updated_at = Carbon::now();
+        $log->save();
         return response()->json(['message' => 'success deleted']);
     }
 }

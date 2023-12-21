@@ -29,7 +29,7 @@
                     <th>Position</th>
                     <th>Email</th>
                     <th>Mobile</th>
-                    <th>Status</th>
+                    {{-- <th>Status</th> --}}
                     <th>Action</th>
                 </tr>
             </thead>
@@ -514,7 +514,7 @@
                         '<td>' + representative.job_title + '</td>' +
                         '<td>' + representative.email + '</td>' +
                         '<td>' + representative.phone + '</td>' +
-                        '<td>' + representative.status + '</td>' +
+                        // '<td>' + representative.status + '</td>' +
                         '<td>' +
                         '<button class="btn btn-info" onclick="editDelegate(' + representative.id +
                         ')">Edit</button> ' +
@@ -558,7 +558,7 @@
                         '<div class="alert alert-warning alert-dismissible fade show" role="alert">');
 
                     // Tambahkan konten log ke dalam elemen div
-                    logDiv.html('Already updated at <strong>' +
+                    logDiv.html(' Last update : <strong>' +
                         updatedAt.toLocaleDateString('en-US', {
                             weekday: 'long',
                             year: 'numeric',
@@ -568,7 +568,7 @@
                             minute: 'numeric',
                             hour12: true
                         }) +
-                        '</strong>' +
+                        '</strong> GMT + 7' +
                         '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
                         '<span aria-hidden="true">&times;</span>' +
                         '</button>');

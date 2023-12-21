@@ -6,11 +6,23 @@
         <div class="container">
             <div class="card border-info">
                 <div class="card-body">
-                    @if (auth()->user()->level != 'sponsor')
+                    @if (auth()->user()->level != 'exhibition')
                         <section id="advertisement">
                             <form action="{{ url('promotional/advertisement') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="container-fluid">
+                                    @if (optional($log_advertisement)->updated_at != null)
+                                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                            Last update :
+                                            <strong>
+                                                {{ optional($log_advertisement->updated_at)->format('d F Y, g:i A') }}
+                                                GMT + 7
+                                            </strong>
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                    @endif
                                     <h4>Advertisement Artwork On Event Booklet</h4>
                                     <div class="form-group">
                                         <label for="">File Input</label>
@@ -25,7 +37,7 @@
                                     <div class="form-group">
                                         <label for="">Linkeable to ( Please provide the URL with https:// )</label>
                                         <input type="text" name="linkAdvertisement" id="linkAdvertisement"
-                                            class="form-control" value="{{ $advertisement->link ?? '' }}">
+                                            class="form-control" value="{{ $advertisement->link ?? '' }}" required>
                                     </div>
                                     <div class="form-group">
                                         <div class="d-flex justify-content-end">
@@ -37,12 +49,24 @@
                             </form>
                         </section>
                     @endif
-                    @if (auth()->user()->level == 'sponsor')
+                    @if (auth()->user()->level == 'exhibition')
 
                         <section id="social-media">
                             <form action="{{ url('promotional/sosmed') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="container-fluid">
+                                    @if (optional($log_sosmed)->updated_at != null)
+                                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                            Last update :
+                                            <strong>
+                                                {{ optional($log_sosmed->updated_at)->format('d F Y, g:i A') }}
+                                                GMT + 7
+                                            </strong>
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                    @endif
                                     <h4>Social Media Promotional Content</h4>
 
                                     <div class="form-group">
@@ -109,7 +133,8 @@
                                             https://)</label>
                                         <input type="text" name="linkSocialMedia" id="linkSocialMedia"
                                             class="form-control"
-                                            value="{{ !empty($sosmed['data']['link']) ? $sosmed['data']['link'] : '' }}">
+                                            value="{{ !empty($sosmed['data']['link']) ? $sosmed['data']['link'] : '' }}"
+                                            required>
                                         <small class="form-text text-muted">Provide the URL starting with https://.</small>
                                     </div>
 

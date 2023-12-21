@@ -65,6 +65,13 @@
         }
     </style>
     <style>
+        .contact-icon {
+            font-size: 24px;
+            /* Ukuran ikon */
+            margin: 5px;
+            /* Margin antara ikon */
+        }
+
         .quantity-selector button {
             width: 35px;
             /* Lebar tombol */
@@ -543,40 +550,7 @@
 
                     </div>
                     <div class="item-exhibition">
-                        {{-- <div class="cart-item my-2 p-3 border rounded">
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <img src="{{ asset('assets/img/users.png') }}" alt="Nama Produk"
-                                        class="img-fluid" width="50" height="50">
 
-                                </div>
-                                <div class="col-md-4">
-                                    <h5>Trisnayudha - IT Office</h5>
-                                    <h7>Upgrade Delegate</h7>
-                                </div>
-                                <div class="col-md-2">
-                                    <span class="price">Rp605.000</span>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="quantity-selector d-flex align-items-center">
-                                        <button class="btn btn-outline-secondary"
-                                            onclick="changeQuantity('item1', -1)">
-                                            <i class="fas fa-minus"></i>
-                                        </button>
-                                        <span id="item1-quantity" class="mx-2 quantity-number">1</span>
-                                        <button class="btn btn-outline-secondary"
-                                            onclick="changeQuantity('item1', 1)">
-                                            <i class="fas fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="col-md-1">
-                                    <button class="btn btn-danger btn-sm" onclick="removeDelegate('item1')">
-                                        <i class="fa fa-trash"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div> --}}
                     </div>
                 </div>
                 <div class="modal-footer">

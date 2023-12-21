@@ -9,6 +9,7 @@ use App\Models\MiningDirectory\Media\MediaResource;
 use App\Models\MiningDirectory\News\News;
 use App\Models\MiningDirectory\Products\Product;
 use App\Models\MiningDirectory\Project\Project;
+use App\Models\Payment;
 use App\Models\Promotional\ExhibitionPromotional;
 use App\Models\Promotional\ExhibitionPromotionalList;
 use Illuminate\Http\Request;
@@ -40,15 +41,56 @@ class HomeController extends Controller
         $presentaseMiningDirectory = $this->countPercen($miningDirectory);
         $promotional = $this->getPromotional();
         $presentasePromotional = $this->countPercen($promotional);
+        $presentaseEventPass = $this->getEventPass();
+        // dd($presentaseEventPass);
         $data['countCompany'] = $presentaseCompany;
         $data['countMiningDirectory'] = $presentaseMiningDirectory;
         $data['countPromotional'] = $presentasePromotional;
+        $data['countEventPass'] = $presentaseEventPass;
         $data['access'] = $this->getAccess();
         // dd($data['access']);
         return view('frontend.home.index', $data);
     }
 
+    private function getEventPass()
+    {
+        $id = auth()->id();
+        $countPass = $this->getCountPass();
+        $delegatePass = [];
+        $exhibitionPass = [];
 
+        // Menghasilkan delegatePass_1, delegatePass_2, dst.
+        for ($i = 1; $i <= $countPass['delegate_pass']; $i++) {
+            $delegatePass[] = 'delegatePass_' . $i;
+        }
+
+        // Menghasilkan exhibitorPass_1, exhibitorPass_2, dst.
+        for ($i = 1; $i <= $countPass['exhibitor_pass']; $i++) {
+            $exhibitionPass[] = 'exhibitorPass_' . $i;
+        }
+
+        $workingPass = Payment::where('payment.company_id', $id)
+            ->where('payment.type', 'Exhibition Working')->first();
+        $miningPass = Payment::where('payment.company_id', $id)
+            ->where('payment.type', 'Exhibition Mining')->first();
+
+        return [
+            'delegatePass' => $delegatePass,
+            'exhibitionPass' => $exhibitionPass,
+            'workingPass' => $workingPass ?? null,
+            'miningPass' => $miningPass ?? null,
+        ];
+    }
+
+
+    private function getCountPass()
+    {
+        $data = auth()->user(); // Mengambil nama pengguna dari objek auth
+        return [
+            'delegate_pass' => $data->delegate_pass ?? 0,
+            'exhibitor_pass' => $data->exhibitor_pass ?? 0,
+        ];
+    }
     private function getAccess()
     {
         $data = auth()->user(); // Mengambil nama pengguna dari objek auth

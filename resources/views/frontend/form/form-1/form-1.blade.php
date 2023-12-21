@@ -8,9 +8,9 @@
                     <div class="card-body" style="margin-bottom:-7px;">
                         @if (optional($personal_information)->updated_at != null)
                             <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                Already updated at
+                                Last update :
                                 <strong>
-                                    {{ optional($personal_information->updated_at)->format('d F Y, g:i A') }}
+                                    {{ optional($personal_information->updated_at)->format('d F Y, g:i A') }} GMT + 7
                                 </strong>
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
@@ -120,9 +120,10 @@
                                 <div class="container-fluid">
                                     @if (optional($company_information)->updated_at != null)
                                         <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                            Already updated at
+                                            Last update :
                                             <strong>
                                                 {{ optional($company_information->updated_at)->format('d F Y, g:i A') }}
+                                                GMT + 7
                                             </strong>
                                             <button type="button" class="close" data-dismiss="alert"
                                                 aria-label="Close">
