@@ -45,7 +45,7 @@
                                             <a href="mailto:niema@indonesiaminer.com">E: niema@indonesiaminer.com</a>
                                         </p>
                                         <a href="https://wa.me/+6281315946224" target="_blank">M:
-                                            ++6281315946224</a>
+                                            +6281315946224</a>
                                     </div>
                                     <div class="card-footer bg-transparent border-success text-center">
                                     </div>
@@ -60,8 +60,9 @@
                                         <p>Event
                                             Cordinator</p>
                                         <p>Mrs. Riska Noviyanti</p>
-                                        <p><a href="mailto:riska@indonesiaminer.com">E: izom@indonesiaminer.com </a></p>
-                                        <a href="https://wa.me/+6287884320900" target="_blank">M: +6287884320900</a>
+                                        <p><a href="mailto:riska@indonesiaminer.com">E: riska@indonesiaminer.com </a>
+                                        </p>
+                                        <a href="https://wa.me/+6281398670330" target="_blank">M: +6281398670330</a>
 
                                     </div>
                                 </div>
@@ -81,8 +82,6 @@
                                         </p>
                                         <a href="https://wa.me/+6281213606360" target="_blank">M: +6281213606360</a>
 
-                                    </div>
-                                    <div class="card-footer bg-transparent border-success text-center">
                                     </div>
                                 </div>
                             </div>
