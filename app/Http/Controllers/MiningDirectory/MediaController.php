@@ -50,7 +50,7 @@ class MediaController extends Controller
             // Konversi gambar ke base64
             $base64Image = base64_encode(file_get_contents($image->getRealPath()));
             // Konversi gambar ke base64
-            $response = Http::post('https://staging.indonesiaminer.com/api/upload-image/company', [
+            $response = Http::post('https://indonesiaminer.com/api/upload-image/company', [
                 'image' => $base64Image,
             ]);
 
@@ -65,7 +65,7 @@ class MediaController extends Controller
             $base64File = base64_encode(file_get_contents($file->getRealPath()));
 
             // Kirim file base64 ke API
-            $responseFile = Http::post('https://staging.indonesiaminer.com/api/upload-file/company', [
+            $responseFile = Http::post('https://indonesiaminer.com/api/upload-file/company', [
                 'file' => $base64File,
             ]);
 
@@ -130,7 +130,7 @@ class MediaController extends Controller
             // Konversi gambar ke base64
             $base64Image = base64_encode(file_get_contents($image->getRealPath()));
             // Konversi gambar ke base64
-            $response = Http::post('https://staging.indonesiaminer.com/api/upload-image/company', [
+            $response = Http::post('https://indonesiaminer.com/api/upload-image/company', [
                 'image' => $base64Image,
             ]);
 
@@ -145,7 +145,7 @@ class MediaController extends Controller
             // Konversi gambar ke base64
             $base64File = base64_encode(file_get_contents($file->getRealPath()));
             // Konversi gambar ke base64
-            $responseFile = Http::post('https://staging.indonesiaminer.com/api/upload-file/company', [
+            $responseFile = Http::post('https://indonesiaminer.com/api/upload-file/company', [
                 'file' => $base64File,
             ]);
 

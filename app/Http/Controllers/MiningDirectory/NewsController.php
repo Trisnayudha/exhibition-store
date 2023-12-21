@@ -43,7 +43,7 @@ class NewsController extends Controller
             // Konversi gambar ke base64
             $base64Image = base64_encode(file_get_contents($image->getRealPath()));
             // Konversi gambar ke base64
-            $response = Http::post('https://staging.indonesiaminer.com/api/upload-image/company', [
+            $response = Http::post('https://indonesiaminer.com/api/upload-image/company', [
                 'image' => $base64Image,
             ]);
 
@@ -97,7 +97,7 @@ class NewsController extends Controller
             // Konversi gambar ke base64
             $base64Image = base64_encode(file_get_contents($image->getRealPath()));
             // Konversi gambar ke base64
-            $response = Http::post('https://staging.indonesiaminer.com/api/upload-image/company', [
+            $response = Http::post('https://indonesiaminer.com/api/upload-image/company', [
                 'image' => $base64Image,
             ]);
 
