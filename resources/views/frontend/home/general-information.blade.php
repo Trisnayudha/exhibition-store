@@ -34,56 +34,55 @@
                         <div class="row">
                             <div class="col">
                                 <div class="card border-info mb-3">
+                                    <div class="card-header bg-transparent border-info text-center">
+                                        CONFERENCE
+                                    </div>
                                     <div class="card-body text-info text-center">
-                                        <h5 class="card-title">CONFERENCE</h5>
+                                        <p>Event Manager</p>
                                         <p>Mrs. Niema Lubis</p>
-                                        <img src="{{ asset('assets/img/A7C00503.JPG') }}" alt=""
-                                            class="img-fluid rounded mx-auto d-block" height="100" width="100">
-                                        <div class="contact-icons">
-                                            <a href="https://wa.me/+6281315946224" target="_blank"><i
-                                                    class="fab fa-whatsapp contact-icon"></i></a>
-                                            <a href="mailto:niema@indonesiaminer.com"><i
-                                                    class="fas fa-envelope contact-icon"></i></a>
-                                        </div>
+
+                                        <p>
+                                            <a href="mailto:niema@indonesiaminer.com">E: niema@indonesiaminer.com</a>
+                                        </p>
+                                        <a href="https://wa.me/+6281315946224" target="_blank">M:
+                                            ++6281315946224</a>
                                     </div>
-                                    <div class="card-footer bg-transparent border-success text-center">Event Manager
+                                    <div class="card-footer bg-transparent border-success text-center">
                                     </div>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="card border-info mb-3">
-                                    <div class="card-body text-info text-center">
-                                        <h5 class="card-title">EXHIBITION</h5>
-                                        <p>Mr. Izom Khair</p>
-                                        <img src="{{ asset('assets/img/A7C00503.JPG') }}" alt=""
-                                            class="img-fluid rounded mx-auto d-block" height="100" width="100">
-                                        <div class="contact-icons">
-                                            <a href="https://wa.me/+6287884320900" target="_blank"><i
-                                                    class="fab fa-whatsapp contact-icon"></i></a>
-                                            <a href="mailto:izom@indonesiaminer.com"><i
-                                                    class="fas fa-envelope contact-icon"></i></a>
-                                        </div>
+                                    <div class="card-header bg-transparent border-info text-center">
+                                        EXHIBITION
                                     </div>
-                                    <div class="card-footer bg-transparent border-success text-center">Event
-                                        Cordinator</div>
+                                    <div class="card-body text-info text-center">
+                                        <p>Event
+                                            Cordinator</p>
+                                        <p>Mrs. Riska Noviyanti</p>
+                                        <p><a href="mailto:riska@indonesiaminer.com">E: izom@indonesiaminer.com </a></p>
+                                        <a href="https://wa.me/+6287884320900" target="_blank">M: +6287884320900</a>
+
+                                    </div>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="card border-info mb-3">
-                                    <div class="card-body text-info text-center">
-                                        <h5 class="card-title">DELEGATE</h5>
-                                        <p>Mrs. Callula Aisyah</p>
-                                        <img src="{{ asset('assets/img/A7C00503.JPG') }}" alt=""
-                                            class="img-fluid rounded mx-auto d-block" height="100" width="100">
-                                        <div class="contact-icons">
-                                            <a href="https://wa.me/+6281213606360" target="_blank"><i
-                                                    class="fab fa-whatsapp contact-icon"></i></a>
-                                            <a href="mailto:damun@indonesiaminer.com"><i
-                                                    class="fas fa-envelope contact-icon"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="card-footer bg-transparent border-success text-center">Marketing
+                                    <div class="card-header bg-transparent border-info text-center">
+                                        Marketing
                                         Executive
+                                    </div>
+                                    <div class="card-body text-info text-center">
+                                        <p>DELEGATE</p>
+                                        <p>Mrs. Callula Aisyah</p>
+                                        <p>
+                                            <a href="mailto: calulla@indonesiaminer.com">E: calulla@indonesiaminer.com
+                                            </a>
+                                        </p>
+                                        <a href="https://wa.me/+6281213606360" target="_blank">M: +6281213606360</a>
+
+                                    </div>
+                                    <div class="card-footer bg-transparent border-success text-center">
                                     </div>
                                 </div>
                             </div>
@@ -91,11 +90,15 @@
                         <div class="row">
                             <div class="col">
                                 <div class="card border-info mb-3">
+                                    <div class="card-header bg-transparent border-info text-center">
+                                        VENUE
+                                    </div>
                                     <div class="card-body text-info text-center">
-                                        <h5 class="card-title">VENUE</h5>
+                                        <p> Senior Catering Sales Manager
+                                        </p>
                                         <p>Mrs.Feni Imelda</p>
                                         <p>
-                                            <a href="mailto:Feni.Imelda@westin.com"> E:Feni.Imelda@westin.com</a>
+                                            <a href="mailto:Feni.Imelda@westin.com"> E: Feni.Imelda@westin.com</a>
 
                                         </p>
                                         <p>
@@ -103,18 +106,20 @@
                                                 +6281290910348 </a>
                                         </p>
                                     </div>
-                                    <div class="card-footer bg-transparent border-success text-center">
-                                        Senior Catering Sales Manager
-                                    </div>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="card border-info mb-3">
+                                    <div class="card-header bg-transparent border-info text-center">
+                                        OFFICIAL STAND CONTRACTOR
+                                    </div>
                                     <div class="card-body text-info text-center">
-                                        <h5 class="card-title">OFFICIAL STAND CONTRACTOR</h5>
+                                        <p>
+                                            PT. Parama Arsa
+                                        </p>
                                         <p>Mr. Nugraha Winasis(Inu)</p>
                                         <p>
-                                            <a href="mailto:info@parama-arsa.com"> E:info@parama-arsa.com</a> /
+                                            <a href="mailto:info@parama-arsa.com"> E: info@parama-arsa.com</a> /
                                             <a
                                                 href="mailto:parama.arsa.multikreasi@gmail.com">parama.arsa.multikreasi@gmail.com</a>
 
@@ -124,25 +129,22 @@
                                                 +6287777368791 </a>
                                         </p>
                                     </div>
-                                    <div class="card-footer bg-transparent border-success text-center">
-                                        PT. Parama Arsa
-                                    </div>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="card border-info mb-3">
+                                    <div class="card-header bg-transparent border-info text-center">
+                                        FREIGHT FORWARDER
+                                    </div>
                                     <div class="card-body text-info text-center">
-                                        <h5 class="card-title">FREIGHT FORWARDER</h5>
+                                        <p> PT. Vissasa Parama Nati</p>
                                         <p>Mr. Andi Mulyadi</p>
-                                        <p><a href="mailto:andi@vissasa.co.id" target="_blank">E:andi@vissasa.co.id</a>
+                                        <p><a href="mailto:andi@vissasa.co.id" target="_blank">E: andi@vissasa.co.id</a>
 
                                         </p>
                                         <p>
-                                            <a href="https://wa.me/+628128404335">M:+628128404335</a>
+                                            <a href="https://wa.me/+628128404335">M: +628128404335</a>
                                         </p>
-                                    </div>
-                                    <div class="card-footer bg-transparent border-success text-center">
-                                        PT. Vissasa Parama Nati
                                     </div>
                                 </div>
                             </div>
