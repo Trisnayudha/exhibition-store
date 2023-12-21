@@ -74,6 +74,13 @@ class CompanyService extends Model
                 'company.ms_company_class_id',
                 'company.nonresidence',
                 'company.answerresidence',
+                'company.pic_name',
+                'company.pic_job_title',
+                'company.pic_phone',
+                'company.pic_email',
+                'company.fascia_name',
+                'company.pic_signature',
+                'company.exhibition_design',
 
                 'company.ms_class_company_minerals_id',
                 'ms_class_company_minerals.name as classify_minerals_name',

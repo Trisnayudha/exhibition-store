@@ -32,67 +32,139 @@
                                 data-parent="#accordion">
                                 <div class="card-body">
                                     <div class="container">
-
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label for="">Contact Person</label>
-                                                    <input type="text" name="contact_person" class="form-control">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="">Email</label>
-                                                    <input type="text" name="contact_email" class="form-control">
-                                                </div>
+                                        @if (optional($log_pic)->updated_at != null)
+                                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                                Last update :
+                                                <strong>
+                                                    {{ optional($log_pic->updated_at)->format('d F Y, g:i A') }}
+                                                    GMT + 7
+                                                </strong>
+                                                <button type="button" class="close" data-dismiss="alert"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
                                             </div>
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label for="">Job Title</label>
-                                                    <input type="text" name="contact_job_title" class="form-control"
-                                                        id="">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for=""> Mobile</label>
-                                                    <input type="text" name="contact_mobile" class="form-control"
-                                                        id="">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-12">
-
-                                                <label for="">Fascia Name</label>
-                                                <div class="alert alert-danger" role="alert">
-                                                    <ul>
-                                                        <li>Please write the Company Name below, based on what is needed in
-                                                            the
-                                                            fascia. Fill in block letters using the alphabet ( maximum 24
-                                                            letters).
-                                                            Fascia names longer than 24 letters will be displayed on 2 lines
-                                                            and
-                                                            the
-                                                            font size will be minimized accordingly</li>
-                                                        <li>The fascia name will follow based on this form. If it passes the
-                                                            deadline, any changes to the fascia will incur an additional fee
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="form-group fascia-container">
-                                                    <?php
-                                                    for ($i = 1; $i <= 24; $i++) {
-                                                        // Modify the style of the fascia-box
-                                                        echo '<input class="fascia-box" type="text" name="box[]" maxlength="1" oninput="moveToNext(this)" value="">';
-                                                    }
-                                                    ?>
-                                                </div>
-                                                <div class="form-group">
-                                                    <canvas id="signatureCanvas" width="400" height="200"></canvas>
-                                                    <div>
-                                                        <button class="btn btn-warning mt-3" id="clearBtn">Clear
-                                                            Signature</button>
+                                        @endif
+                                        <form action="{{ url('pic') }}" method="POST" enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="">Contact Person</label>
+                                                        <input type="text" name="pic_name" class="form-control"
+                                                            value="{{ $data->pic_name }}" required>
                                                     </div>
-
+                                                    <div class="form-group">
+                                                        <label for="">Email</label>
+                                                        <input type="text" name="pic_email" class="form-control"
+                                                            value="{{ $data->pic_email }}" required>
+                                                    </div>
                                                 </div>
-                                                <button class="btn btn-primary btn-lg btn-block"> Save Contact</button>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label for="">Job Title</label>
+                                                        <input type="text" name="pic_job_title" class="form-control"
+                                                            value="{{ $data->pic_job_title }}" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for=""> Mobile</label>
+                                                        <input type="text" name="pic_phone" class="form-control"
+                                                            value="{{ $data->pic_phone }}" required>
+                                                    </div>
+                                                </div>
+                                                @if ($data->exhibition_design == 1)
+                                                    <div class="col-sm-12">
+                                                        <label for="">Fascia Name</label>
+                                                        <div class="alert alert-danger" role="alert">
+                                                            <ul>
+                                                                <li>Please write the Company Name below, based on what is
+                                                                    needed
+                                                                    in
+                                                                    the
+                                                                    fascia. Fill in block letters using the alphabet (
+                                                                    maximum
+                                                                    24
+                                                                    letters).
+                                                                    Fascia names longer than 24 letters will be displayed on
+                                                                    2
+                                                                    lines
+                                                                    and
+                                                                    the
+                                                                    font size will be minimized accordingly</li>
+                                                                <li>The fascia name will follow based on this form. If it
+                                                                    passes
+                                                                    the
+                                                                    deadline, any changes to the fascia will incur an
+                                                                    additional
+                                                                    fee
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="form-group fascia-container">
+                                                            <?php
+                                                            $fascia_name = $fascia_name; // Mengakses properti fascia_name dari objek $data
+                                                            if (is_array($fascia_name)) {
+                                                                for ($i = 0; $i < 24; $i++) {
+                                                                    // Modify the style of the fascia-box and set the value from the controller's data if it exists
+                                                                    $value = isset($fascia_name[$i]) ? $fascia_name[$i] : '';
+                                                                    echo '<input class="fascia-box" type="text" name="fascia_name[]" maxlength="1" oninput="moveToNext(this)" value="' . $value . '">';
+                                                                }
+                                                            }
+                                                            ?>
+                                                        </div>
+
+                                                    </div>
+                                                @endif
+
+                                                <div class="col-5">
+                                                    <div class="form-group">
+                                                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                                            <li class="nav-item">
+                                                                <a class="nav-link active" id="home-tab" data-toggle="tab"
+                                                                    href="#home" role="tab" aria-controls="home"
+                                                                    aria-selected="true">Draw</a>
+                                                            </li>
+                                                            <li class="nav-item">
+                                                                <a class="nav-link" id="profile-tab" data-toggle="tab"
+                                                                    href="#profile" role="tab" aria-controls="profile"
+                                                                    aria-selected="false">Upload Signature</a>
+                                                            </li>
+                                                        </ul>
+                                                        <div class="tab-content" id="myTabContent">
+                                                            <div class="tab-pane fade show active" id="home"
+                                                                role="tabpanel" aria-labelledby="home-tab"> <canvas
+                                                                    id="signatureCanvas" width="400"
+                                                                    height="200"></canvas>
+                                                            </div>
+                                                            <div class="tab-pane fade" id="profile" role="tabpanel"
+                                                                aria-labelledby="profile-tab"> <input type="file"
+                                                                    id="uploadBtn" accept="image/*" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div>
+                                                            <button type="button" class="btn btn-warning mt-3"
+                                                                id="clearBtn">Clear
+                                                                Signature</button>
+                                                            <button type="button" class="btn btn-success mt-3"
+                                                                id="saveBtn">Save
+                                                                Signature</button>
+
+                                                        </div>
+                                                        <div>
+                                                            <img id="signatureImage" style="display:none;"
+                                                                src="{{ env('IMAGE_BASE_URL') . $data->pic_signature }}">
+                                                            <input type="hidden" name="pic_signature"
+                                                                id="pic_signature">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
                                             </div>
-                                        </div>
+                                            <button type="submit" class="btn btn-primary btn-lg btn-block"> Save
+                                                Contact</button>
+                                        </form>
+
                                     </div>
 
                                 </div>
@@ -109,8 +181,9 @@
                                 <div class="card">
                                     <div class="card-header" id="headingOne">
                                         <h5 class="mb-0">
-                                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne"
-                                                aria-expanded="true" aria-controls="collapseOne">
+                                            <button class="btn btn-link" data-toggle="collapse"
+                                                data-target="#collapseOne" aria-expanded="true"
+                                                aria-controls="collapseOne">
                                                 Furniture
                                             </button>
                                         </h5>
@@ -182,25 +255,51 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/signature_pad/1.5.3/signature_pad.min.js"></script>
     {{-- signature --}}
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var canvas = document.getElementById('signatureCanvas');
-            var signaturePad = new SignaturePad(canvas);
-
+        $(document).ready(function() {
+            var canvas = $('#signatureCanvas');
+            var signaturePad = new SignaturePad(canvas[0]);
+            var signatureImage = $('#signatureImage');
+            // Set the display of the signature image based on whether it has a src attribute
+            if (signatureImage.attr('src') === "" || signatureImage.attr('src') === undefined) {
+                signatureImage.hide();
+            } else {
+                signatureImage.show();
+            }
             // Clear signature
-            document.getElementById('clearBtn').addEventListener('click', function() {
+            $('#clearBtn').click(function() {
                 signaturePad.clear();
             });
 
             // Save signature
-            document.getElementById('saveBtn').addEventListener('click', function() {
+            $('#saveBtn').click(function() {
                 if (signaturePad.isEmpty()) {
                     alert("Tanda tangan kosong.");
                 } else {
                     var dataURL = signaturePad.toDataURL();
+                    signatureImage.attr('src', dataURL).show();
+
                     // Kirim dataURL ke server atau proses sesuai kebutuhan Anda
                     console.log(dataURL);
+                    $("#pic_signature").val(dataURL)
                 }
             });
+
+            // Handle uploaded image
+            $('#uploadBtn').change(function(e) {
+                if (this.files && this.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function(event) {
+                        var base64Data = event.target.result;
+                        signatureImage.attr('src', base64Data).show();
+                        // Clear the canvas or process the uploaded image
+                        signaturePad.clear();
+                        // Assuming #pic_signature is a hidden input field where you want to store the base64 string
+                        $("#pic_signature").val(base64Data);
+                    }
+                    reader.readAsDataURL(this.files[0]);
+                }
+            });
+
         });
     </script>
 
@@ -209,16 +308,16 @@
         function moveToNext(input) {
             var maxLength = parseInt(input.maxLength, 10);
 
-            // Jika input telah mencapai maksimal panjang, pindah ke input berikutnya
-            if (input.value.length >= maxLength) {
-                var nextInput = input.nextElementSibling;
+            // Jika panjang input saat ini adalah 0, maka hapus teks dari input sebelumnya
+            if (input.value.length === 0) {
+                var prevInput = input.previousElementSibling;
 
-                // Pindah ke input berikutnya jika ada
-                if (nextInput) {
-                    nextInput.focus();
+                // Hapus teks dari input sebelumnya jika ada
+                if (prevInput && prevInput.tagName === 'INPUT') {
+                    prevInput.value = '';
+                    prevInput.focus();
                 }
             }
-            input.value = input.value.toUpperCase();
 
             // Memindahkan fokus ke elemen input berikutnya jika tersedia
             var nextInput = input.nextElementSibling;
@@ -227,6 +326,7 @@
             }
         }
     </script>
+
 
     {{-- to cart --}}
     <script>

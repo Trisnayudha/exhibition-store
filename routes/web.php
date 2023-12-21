@@ -7,6 +7,7 @@ use App\Http\Controllers\EventPass\ExhibitorController;
 use App\Http\Controllers\EventPass\MiningController;
 use App\Http\Controllers\EventPass\WorkingController;
 use App\Http\Controllers\ExhibitionCartController;
+use App\Http\Controllers\ExhibitionController;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MiningDirectory\MediaController;
@@ -29,9 +30,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('test', function () {
-    return view('test');
-});
 Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/form', [FormController::class, 'index']);
@@ -81,3 +79,6 @@ Route::get('cart-count', [ExhibitionCartController::class, 'getCount']);
 Route::delete('cart-item/{id}', [ExhibitionCartController::class, 'destroyDelegate']);
 Route::delete('cart-item-exhibition/{id}', [ExhibitionCartController::class, 'destroyExhibition']);
 Route::post('cart/change', [ExhibitionCartController::class, 'changeQuantity']);
+
+//Exhibition
+Route::post('pic', [ExhibitionController::class, 'storePic']);

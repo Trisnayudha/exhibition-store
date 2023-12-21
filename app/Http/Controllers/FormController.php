@@ -82,12 +82,22 @@ class FormController extends Controller
 
             return view('frontend.form.form-4.form-4', $data);
         } elseif ($type == 'exhibition') {
+            $data['data'] = $this->getDetail();
+            $data['log_pic'] = $this->getLogs('pic');
+            $data['fascia_name'] = $this->fasciaName();
             return view('frontend.form.form-5.form-5', $data);
         } else {
             dd('data tidak ada');
         }
     }
 
+    private function fasciaName()
+    {
+        $data = $this->getDetail();
+        // Membagi teks menjadi array dengan setiap karakter menjadi elemen array
+        $fasciaNameArray = str_split($data->fascia_name);
+        return $fasciaNameArray;
+    }
     private function getAccess()
     {
         $data = auth()->user(); // Mengambil nama pengguna dari objek auth
