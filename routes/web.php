@@ -34,6 +34,13 @@ Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/form', [FormController::class, 'index']);
 
+Route::get('/travel-information', function () {
+    return view('frontend.travel-information.travel');
+});
+Route::get('/faq', function () {
+    return view('frontend.faq.faq');
+});
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

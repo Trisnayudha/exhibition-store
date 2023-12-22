@@ -124,10 +124,10 @@
                     <a class="nav-link" href="{{ url('form?type=company-information') }}">Form</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Travel Information</a>
+                    <a class="nav-link" href="{{ url('travel-information') }}">Travel Information</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">FAQ</a>
+                    <a class="nav-link" href="{{ url('faq') }}">FAQ</a>
                 </li>
             </ul>
             <span class="navbar-text mr-4">
