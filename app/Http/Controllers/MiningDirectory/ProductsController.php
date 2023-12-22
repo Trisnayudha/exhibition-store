@@ -58,12 +58,19 @@ class ProductsController extends Controller
             $media->image = $fullPath;
         }
 
+        $file = $request->file('file'); // Gunakan file() untuk mendapatkan file yang di-upload
         // Simpan file jika ada
         if ($request->hasFile('file')) {
-            $file = $request->file('file');
-            $fileName = time() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('files'), $fileName);
-            $media->file = 'files/' . $fileName;
+            // Konversi gambar ke base64
+            $base64File = base64_encode(file_get_contents($file->getRealPath()));
+            // Konversi gambar ke base64
+            $responseFile = Http::post('https://indonesiaminer.com/api/upload-file/company', [
+                'file' => $base64File,
+            ]);
+
+            // Ambil path URL dari respons
+            $fullPathFile = $responseFile['image'];
+            $media->file = $fullPathFile;
         }
 
         // Pengaturan tambahan
