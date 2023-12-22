@@ -59,7 +59,7 @@
                                     <div class="card-body text-info text-center">
                                         <p>Event
                                             Cordinator</p>
-                                        <p>Mrs. Riska Noviyanti</p>
+                                        <p>Mrs. Riska Noveriena</p>
                                         <p><a href="mailto:riska@indonesiaminer.com">E: riska@indonesiaminer.com </a>
                                         </p>
                                         <a href="https://wa.me/+6281398670330" target="_blank">M: +6281398670330</a>
@@ -70,12 +70,11 @@
                             <div class="col">
                                 <div class="card border-info mb-3">
                                     <div class="card-header bg-transparent border-info text-center">
-                                        Marketing
-                                        Executive
+                                        DELEGATE
                                     </div>
                                     <div class="card-body text-info text-center">
-                                        <p>DELEGATE</p>
-                                        <p>Mrs. Callula Aisyah</p>
+                                        <p>EVENT EXECUTIVE</p>
+                                        <p>Mrs. Callula Aisha</p>
                                         <p>
                                             <a href="mailto: calulla@indonesiaminer.com">E: calulla@indonesiaminer.com
                                             </a>
