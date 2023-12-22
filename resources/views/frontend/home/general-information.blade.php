@@ -73,7 +73,7 @@
                                         DELEGATE
                                     </div>
                                     <div class="card-body text-info text-center">
-                                        <p>EVENT EXECUTIVE</p>
+                                        <p>Event Executive</p>
                                         <p>Mrs. Callula Aisha</p>
                                         <p>
                                             <a href="mailto: calulla@indonesiaminer.com">E: calulla@indonesiaminer.com
