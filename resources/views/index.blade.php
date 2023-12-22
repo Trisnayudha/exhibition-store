@@ -142,7 +142,7 @@
             <span class="navbar-text">
                 <form id="logoutForm" action="{{ route('logout') }}" method="POST">
                     @csrf
-                    <button type="button" class="btn btn-outline-danger">
+                    <button type="button" class="btn btn-outline-danger" onclick="confirmLogout()">
                         <i class="fas fa-sign-out-alt"></i>
                     </button>
                 </form>
@@ -224,7 +224,8 @@
         </div>
 
         <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-            <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24">
+            <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24"
+                        height="24">
                         <use xlink:href="#twitter"></use>
                     </svg></a></li>
             <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24"
