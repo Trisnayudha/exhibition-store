@@ -12,7 +12,7 @@ class ExhibitionCartController extends Controller
     {
         $company_id = auth()->id();
 
-        $data = ExhibitionCartList::where('company_id', $company_id)->get();
+        $data = ExhibitionCartList::where('company_id', $company_id)->whereNull('payment_id')->get();
         return response()->json(['meesage' => 'success show data', 'data' => $data]);
     }
 
@@ -20,7 +20,7 @@ class ExhibitionCartController extends Controller
     {
         $company_id = auth()->id();
 
-        $data = ExhibitionCartList::where('company_id', $company_id)->get()->count();
+        $data = ExhibitionCartList::where('company_id', $company_id)->whereNull('payment_id')->get()->count();
         return response()->json(['meesage' => 'success show data', 'data' => $data]);
     }
 

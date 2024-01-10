@@ -10,11 +10,13 @@ use App\Http\Controllers\ExhibitionCartController;
 use App\Http\Controllers\ExhibitionController;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\MiningDirectory\MediaController;
 use App\Http\Controllers\MiningDirectory\NewsController;
 use App\Http\Controllers\MiningDirectory\ProductsController;
 use App\Http\Controllers\MiningDirectory\ProjectController;
 use App\Http\Controllers\MiningDirectory\RepresentativeController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PromotionalController;
 use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
@@ -41,6 +43,12 @@ Route::get('/faq', function () {
     return view('frontend.faq.faq');
 });
 
+Route::get('invoice', [InvoiceController::class, 'index'])->name('invoice');
+Route::get('invoice/detail/', [InvoiceController::class, 'summary']);
+Route::get('dl/invoice/', [InvoiceController::class, 'downloadInvoice']);
+Route::post('payment/request', [PaymentController::class, 'payment']);
+
+Route::get('create/invoice', [PaymentController::class, 'create']);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -129,6 +129,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('faq') }}">FAQ</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('invoice') }}">My Invoices</a>
+                </li>
             </ul>
             <span class="navbar-text mr-4">
                 <button class="btn btn-outline-primary position-relative" type="button" data-toggle="modal"
@@ -523,6 +526,130 @@
 
         }
     </script>
+
+    <script>
+        function exhibitionCart(name_product, section_product, price, total_price, quantity, image) {
+
+            var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+            var formData = new FormData();
+            formData.append('name_product', name_product);
+            formData.append('section_product', section_product);
+            formData.append('price', price);
+            formData.append('total_price', total_price);
+            formData.append('quantity', quantity);
+            formData.append('image', image)
+
+            console.log(formData)
+            // Kirim data ke server menggunakan Ajax dengan FormData
+
+            $.ajax({
+                type: 'POST',
+                url: '{{ url('/cart-exhibition') }}',
+                data: formData,
+                processData: false,
+                contentType: false,
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken
+                },
+                success: function(response) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Added item to cart",
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+
+                    loadCart();
+                },
+                error: function(error) {
+                    console.error('Error:', error);
+                }
+            });
+        }
+
+        function removeExhibition(id) {
+            var csrfToken = $('meta[name="csrf-token"]').attr('content');
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: 'cart-item-exhibition/' + id,
+                        type: 'DELETE',
+                        processData: false,
+                        contentType: false,
+                        headers: {
+                            'X-CSRF-TOKEN': csrfToken
+                        },
+                        success: function(result) {
+                            // Handle the success scenario
+                            console.log('Item removed successfully');
+                            loadCart();
+                            loadExhibitor();
+                            loadAdditional();
+                            // Display SweetAlert confirmation
+                            Swal.fire({
+                                title: 'Success!',
+                                text: 'Item removed successfully',
+                                icon: 'success',
+                                confirmButtonText: 'OK'
+                            });
+                        },
+                        error: function(xhr, status, error) {
+                            // Handle errors here
+                            console.log('Error in removal: ' + error);
+
+                            // Optionally, display an error message using SweetAlert
+                            Swal.fire({
+                                title: 'Error!',
+                                text: 'Failed to remove the item: ' + error,
+                                icon: 'error',
+                                confirmButtonText: 'OK'
+                            });
+                        }
+                    })
+                }
+            });
+
+        }
+
+        function changeQuantity(id, quantity) {
+            var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+            var formData = new FormData();
+            formData.append('id', id);
+            formData.append('quantity', quantity);
+            console.log(id)
+            console.log(quantity)
+            // Kirim data ke server menggunakan Ajax dengan FormData
+
+            $.ajax({
+                type: 'POST',
+                url: '{{ url('/cart/change') }}',
+                data: formData,
+                processData: false,
+                contentType: false,
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken
+                },
+                success: function(response) {
+                    console.log(response)
+                    loadCart();
+                },
+                error: function(error) {
+                    console.error('Error:', error);
+                }
+            });
+        }
+    </script>
     @stack('bottom')
 
     {{-- Show Image --}}
@@ -546,18 +673,21 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <div id="item-delegate">
+                <form action="{{ url('invoice/detail?code_payment=') }}" method="Get">
+                    <div class="modal-body">
+                        <div id="item-delegate">
 
-                    </div>
-                    <div class="item-exhibition">
+                        </div>
+                        <div class="item-exhibition">
 
+                        </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    <button type="button" class="btn btn-primary">Checkout</button>
-                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-primary">Checkout</button>
+                    </div>
+                </form>
+
             </div>
         </div>
     </div>
