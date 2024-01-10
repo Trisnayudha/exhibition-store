@@ -43,9 +43,11 @@
                                         <td>Rp. {{ number_format($item->total_price, 2, ',', '.') }}</td>
                                         <td>
                                             @if ($item->status == 'draft')
-                                                Invoice on Process
+                                                <span class="badge badge-pill badge-secondary"> Invoice on Process</span>
                                             @else
-                                                {{ $item->status }}
+                                                <span
+                                                    class="badge badge-pill badge-{{ $item->status == 'paid' ? 'primary' : 'danger' }} text-uppercase">
+                                                    {{ $item->status }}</span>
                                             @endif
                                         </td>
                                         <td>

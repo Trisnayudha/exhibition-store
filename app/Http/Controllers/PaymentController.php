@@ -30,12 +30,18 @@ class PaymentController extends Controller
 
         $date = date('Y-m-d\TH:i:s.000\Z'); // Format yang sesuai dengan Xendit
         $dueDate = date('Y-m-d\TH:i:s.000\Z', strtotime('+7 days')); // Tambahkan 7 hari dari saat ini
-
+        $total_price = 0;
+        if ($findCompany->npwp != null) {
+            $totalPPN = $findPayment->total_price * $findPayment->ppn;
+            $total = $findPayment->total_price + $totalPPN;
+        } else {
+            $total = $findPayment->total_price;
+        }
         $params = [
             'external_id' => $code_payment,
             'payer_email' => $findCompany->pic_email ?? $findCompany->email,
             'description' => 'Invoice Exhibition Indonesia Miner',
-            'amount' => $findPayment->total_price,
+            'amount' => $total,
             'success_redirect_url' => 'https://portal.indonesiaminer.com/success/payment',
             'failure_redirect_url' => url(''),
             'due_date' => $dueDate,
@@ -66,6 +72,7 @@ class PaymentController extends Controller
         $savePayment->code_payment = $code_payment;
         $savePayment->status = 'draft';
         $savePayment->total_price = $total_price;
+        $savePayment->ppn = 0.11;
         $savePayment->save();
 
         foreach ($data['items'] as $item) {
@@ -82,7 +89,8 @@ class PaymentController extends Controller
         Storage::put($pdfPath, $pdf->output());
         // Download the PDF with the specified filename
         $sendwa = new WhatsappApi();
-        $sendwa->phone = '081398670330';
+        // $sendwa->phone = '081398670330';
+        $sendwa->phone = '083829314436';
         $sendwa->text = 'Hai Mba Riska. Company *' . $data['company']->company_name . '* sudah melakukan request invoice di Exhibition Portal,
 
 Mohon tolong dicheck kembali apakah sudah sesuai atau belum, Jika sudah klik link Generate Payment Link, jika belum sesuai mohon contact company tersebut

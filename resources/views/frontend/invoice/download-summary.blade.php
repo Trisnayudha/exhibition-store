@@ -140,23 +140,57 @@
                 {{ $company->company_address }}
 
             <h2>Description</h2>
-            <table>
-                <tr>
-                    <th>Description</th>
-                    <th>Amount</th>
-                    <th>Quantity</th>
-                    <th class="text-right">Total Amount</th>
-                </tr>
-                @foreach ($items as $key)
+            <table class="table" style="font-size: 14px">
+                <thead>
                     <tr>
-                        <td>{{ $key->name_product . ' - ' . $key->section_product }}</td>
-                        <td>Rp. {{ number_format($key->price, 2, ',', '.') }}</td>
-                        <td class="text-center">{{ $key->quantity }}</td>
-                        <td class="text-right">Rp. {{ number_format($key->total_price, 2, ',', '.') }}</td>
+                        <th>Description</th>
+                        <th>Amount</th>
+                        <th>Quantity</th>
+                        <th class="text-right">Total Amount</th>
                     </tr>
-                @endforeach
-                <!-- Additional items here -->
+                </thead>
+                <tbody>
+                    @foreach ($items as $key)
+                        <tr>
+                            <td>{{ $key->name_product . ' - ' . $key->section_product }}</td>
+                            <td>Rp. {{ number_format($key->price, 2, ',', '.') }}</td>
+                            <td class="text-center">{{ $key->quantity }}</td>
+                            <td class="text-right">Rp. {{ number_format($key->price * $key->quantity, 2, ',', '.') }}
+                            </td>
+                        </tr>
+                    @endforeach
+                    <?php
+                    $totalDue = 0;
+                    $countPPN = 0.11; // 11% tax as a decimal
+                    $npwp = $company->npwp;
+                    $tax = $npwp ? $countPPN : 0; // Tax is 11% if NPWP exists, else 0
+                    
+                    foreach ($items as $key) {
+                        $totalDue += $key->price * $key->quantity;
+                    }
+                    
+                    $totalPPN = $totalDue * $tax;
+                    $totalDueWithTax = $totalDue + $totalPPN;
+                    ?>
+
+                    <tr>
+                        <th colspan="2" class="text-right">Sub Total</th>
+                        <th colspan="2" class="text-right">Rp. {{ number_format($totalDue, 2, ',', '.') }}</th>
+                    </tr>
+                    @if ($tax != 0)
+                        <tr>
+                            <th colspan="2" class="text-right">VAT 11%</th>
+                            <th colspan="2" class="text-right">Rp. {{ number_format($totalPPN, 2, ',', '.') }}</th>
+                        </tr>
+                    @endif
+                    <tr>
+                        <th colspan="2" class="text-right">Total</th>
+                        <th colspan="2" class="text-right">Rp. {{ number_format($totalDueWithTax, 2, ',', '.') }}
+                        </th>
+                    </tr>
+                </tbody>
             </table>
+
         </div>
         <div class="footer">
             <p>This is a computer generated invoice. No signature is required.</p>

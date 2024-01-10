@@ -40,12 +40,44 @@
                                         <td>{{ $key->name_product . ' - ' . $key->section_product }}</td>
                                         <td>Rp. {{ number_format($key->price, 2, ',', '.') }}</td>
                                         <td class="text-center">{{ $key->quantity }}</td>
-                                        <td class="text-right">Rp. {{ number_format($key->total_price, 2, ',', '.') }}</td>
+                                        <td class="text-right">Rp.
+                                            {{ number_format($key->price * $key->quantity, 2, ',', '.') }}</td>
                                     </tr>
                                 @endforeach
-                            </tbody>
+                                <?php
+                                $totalDue = 0;
+                                $countPPN = 0.11; // 11% tax as a decimal
+                                $npwp = $company->npwp;
+                                $tax = $npwp ? $countPPN : 0; // Tax is 11% if NPWP exists, else 0
+                                
+                                foreach ($items as $key) {
+                                    $totalDue += $key->price * $key->quantity;
+                                }
+                                
+                                $totalPPN = $totalDue * $tax;
+                                $totalDueWithTax = $totalDue + $totalPPN;
+                                ?>
 
+                                <tr>
+                                    <th colspan="2" class="text-right">Sub Total</th>
+                                    <th colspan="2" class="text-right">Rp. {{ number_format($totalDue, 2, ',', '.') }}
+                                    </th>
+                                </tr>
+                                @if ($tax != 0)
+                                    <tr>
+                                        <th colspan="2" class="text-right">VAT 11%</th>
+                                        <th colspan="2" class="text-right">Rp.
+                                            {{ number_format($totalPPN, 2, ',', '.') }}</th>
+                                    </tr>
+                                @endif
+                                <tr>
+                                    <th colspan="2" class="text-right">Total</th>
+                                    <th colspan="2" class="text-right">Rp.
+                                        {{ number_format($totalDueWithTax, 2, ',', '.') }}</th>
+                                </tr>
+                            </tbody>
                         </table>
+
                     </div>
                 </div>
             </div>
@@ -56,15 +88,11 @@
                         <div class="card-body">
 
                             @if ($items[0]->status != 'paid')
+                                <span class="badge badge-pill badge-danger">Unpaid</span>
                                 <h3>Total Due</h3>
-                                <?php
-                                $totalDue = 0;
-                                foreach ($items as $key) {
-                                    $totalDue += $key->total_price;
-                                    $code_payment = $key->code_payment;
-                                }
-                                ?>
-                                <h2>Rp. {{ number_format($totalDue, 2, ',', '.') }}</h2>
+                                <h2>Rp. {{ number_format($totalDueWithTax, 2, ',', '.') }}</h2>
+                            @elseif ($items[0]->status)
+                                <span class="badge badge-pill badge-light">PAID OFF</span>
                             @endif
                             @if ($items[0]->status == null)
                                 <p class="mt-4">Payment Method:</p>
@@ -83,7 +111,7 @@
                                     class="btn btn-light btn-block mt-2">Pay</a>
                             @endif
 
-                            <div class="mt-4">
+                            <div class="mt-2">
                                 <h4>Actions</h4>
                                 <a href="{{ url('dl/invoice?code_payment=' . $items[0]->code_payment) }}"
                                     class="btn btn-light btn-block">Download</a>
