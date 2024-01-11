@@ -71,6 +71,7 @@ class CompanyController extends Controller
         $country = $request->country;
         $state = $request->state;
         $city = $request->city;
+        $npwp = $request->npwp;
 
         // $category_name = $request->category_name;
         $classify_minerals_id = $request->classify_minerals_id;
@@ -111,6 +112,7 @@ class CompanyController extends Controller
         $save->ms_origin_manufactur_company_id = $origin_manufacturer_id;
         $save->with_information = $question_would;
         $save->ms_company_class_id = $ms_company_class_id;
+        $save->npwp = $npwp;
         // $save->type = 'Trial';
         // $save->class_company_minerals_other = $classify_minerals_name;
         // $save->class_company_mining_other = $classify_mining_name;

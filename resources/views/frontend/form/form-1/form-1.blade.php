@@ -136,6 +136,15 @@
                                 @csrf
                                 <div class="col-lg-12 col-sm-12">
                                     <div class="form-group">
+                                        <label>NPWP</label>
+                                        <input type="text" name="npwp" id="npwp"
+                                            class="form-control validation" placeholder="Input company website"
+                                            value="{{ old('npwp', $data->npwp) }}">
+                                        <small class="text-muted"> <i>No Required</i></small>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-sm-12">
+                                    <div class="form-group">
                                         <label>Company Website <i class="text-danger"
                                                 title="This field is required">*</i></label>
                                         <input type="text" name="company_web" id="company_web"
@@ -456,7 +465,7 @@
                                                     <div class="title-icon">
                                                         <span style="max-width: 100%">I agree to the <a
                                                                 href="{{ url('term-condition') }}" target="_blank">Term &
-                                                                Conditions</a> And
+                                                                Conditions</a> and
                                                             <a href="{{ url('privacy-policy') }}" target="_blank">Privacy
                                                                 Policy</a><span class="text-danger"
                                                                 title="This field is required">*</span></span>

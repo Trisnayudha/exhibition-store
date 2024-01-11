@@ -81,6 +81,7 @@ class CompanyService extends Model
                 'company.fascia_name',
                 'company.pic_signature',
                 'company.exhibition_design',
+                'company.npwp',
 
                 'company.ms_class_company_minerals_id',
                 'ms_class_company_minerals.name as classify_minerals_name',
