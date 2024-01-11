@@ -43,7 +43,7 @@ class PaymentController extends Controller
             'payer_email' => $findCompany->pic_email ?? $findCompany->email,
             'description' => 'Invoice Exhibition Indonesia Miner',
             'amount' => $total,
-            'success_redirect_url' => 'https://portal.indonesiaminer.com/success/payment',
+            'success_redirect_url' => 'https://portal.indonesiaminer.com/invoice',
             'failure_redirect_url' => url(''),
             'due_date' => $dueDate,
         ];
