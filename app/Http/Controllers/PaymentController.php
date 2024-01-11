@@ -9,6 +9,7 @@ use App\Models\Exhibition\ExhibitionPayment;
 use App\Models\Logs\ExhibitionLog;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Xendit\Xendit;
 use Xendit\Invoice;
@@ -58,6 +59,18 @@ class PaymentController extends Controller
         $findPayment->link = $linkPay;
         $findPayment->status = 'unpaid';
         $findPayment->save();
+
+        $data['items'] = ExhibitionCartList::join('exhibition_payment', 'exhibition_payment.id', 'exhibition_cart_list.payment_id')
+            ->where('company_id', $findCompany->id)->where('exhibition_payment.code_payment', $code_payment)->get();
+        $data['company'] = Company::where('id', $findCompany->id)->first();
+        $pdf = Pdf::loadView('frontend.invoice.download-summary', $data);
+        Mail::send('email.payment', $data, function ($message) use ($pdf, $code_payment) {
+            $message->from(env('EMAIL_SENDER'));
+            // $message->to($email);
+            $message->to('yudha@indonesiaminer.com');
+            $message->subject('Payment Exhibition Portal Success Generate ' . $code_payment);
+            $message->attachData($pdf->output(), $code_payment . '-' . time() . '.pdf');
+        });
         return view('frontend.invoice.success-create');
     }
 

@@ -34,6 +34,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index']);
 
+Route::get('test', function () {
+    return view('email.payment');
+});
 Route::get('/form', [FormController::class, 'index']);
 
 Route::get('/travel-information', function () {
