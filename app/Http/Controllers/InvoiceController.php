@@ -52,7 +52,8 @@ class InvoiceController extends Controller
     public function downloadInvoice(Request $request)
     {
         $code_payment = $request->code_payment;
-        $id = auth()->id();
+        $findPayment = ExhibitionPayment::where('code_payment', $code_payment)->first();
+        $id = $findPayment->company_id;
         $data['company'] = Company::where('id', $id)->first();
         $data['codePayment'] = strtoupper(Str::random(7));
         if (empty($code_payment)) {
