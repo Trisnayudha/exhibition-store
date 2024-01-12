@@ -53,7 +53,8 @@ class InvoiceController extends Controller
     {
         $code_payment = $request->code_payment;
         $findPayment = ExhibitionPayment::where('code_payment', $code_payment)->first();
-        $id = $findPayment->company_id;
+        $findCompany = ExhibitionCartList::where('payment_id', $findPayment->id)->first();
+        $id = $findCompany->company_id;
         $data['company'] = Company::where('id', $id)->first();
         $data['codePayment'] = strtoupper(Str::random(7));
         if (empty($code_payment)) {
