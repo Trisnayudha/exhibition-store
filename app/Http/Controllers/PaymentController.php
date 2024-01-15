@@ -64,10 +64,11 @@ class PaymentController extends Controller
             ->where('company_id', $findCompany->id)->where('exhibition_payment.code_payment', $code_payment)->get();
         $data['company'] = Company::where('id', $findCompany->id)->first();
         $pdf = Pdf::loadView('frontend.invoice.download-summary', $data);
-        Mail::send('email.payment', $data, function ($message) use ($pdf, $code_payment) {
+        $email = $data['company']->pic_email ?? $data['company']->email_alternate;
+        Mail::send('email.payment', $data, function ($message) use ($pdf, $code_payment, $email) {
             $message->from(env('EMAIL_SENDER'));
-            // $message->to($email);
-            $message->to('yudha@indonesiaminer.com');
+            $message->to($email);
+            // $message->to('yudha@indonesiaminer.com');
             $message->subject('Payment Exhibition Portal Success Generate ' . $code_payment);
             $message->attachData($pdf->output(), $code_payment . '-' . time() . '.pdf');
         });
@@ -102,8 +103,8 @@ class PaymentController extends Controller
         Storage::put($pdfPath, $pdf->output());
         // Download the PDF with the specified filename
         $sendwa = new WhatsappApi();
-        // $sendwa->phone = '081398670330';
-        $sendwa->phone = '083829314436';
+        $sendwa->phone = '081398670330';
+        // $sendwa->phone = '083829314436';
         $sendwa->text = 'Hai Mba Riska. Company *' . $data['company']->company_name . '* sudah melakukan request invoice di Exhibition Portal,
 
 Mohon tolong dicheck kembali apakah sudah sesuai atau belum, Jika sudah klik link Generate Payment Link, jika belum sesuai mohon contact company tersebut
