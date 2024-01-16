@@ -110,7 +110,7 @@
                     <input type="text" name="product_edit_video" id="product_edit_video" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label for="product_edit_document_name">Docoment Name</label>
+                    <label for="product_edit_document_name">Document Name</label>
                     <input type="text" name="product_edit_document_name" id="product_edit_document_name"
                         class="form-control">
                 </div>
