@@ -273,7 +273,7 @@
                                                 <h5 class="mb-0">
                                                     <button class="btn btn-link collapsed" data-toggle="collapse"
                                                         data-target="#eFour" aria-expanded="false" aria-controls="eFour">
-                                                        Can we distribute marketing materialsto event attendeesin event
+                                                        Can we distribute marketing materials to event attendees in event
                                                         area?
                                                     </button>
                                                 </h5>
@@ -308,7 +308,7 @@
                                                     <button class="btn btn-link collapsed" data-toggle="collapse"
                                                         data-target="#eSix" aria-expanded="false" aria-controls="eSix">
                                                         Are there any services provided by the Organizer to print the
-                                                        brochure/ flyer/ roll up banner?
+                                                        brochure/flyer/roll up banner?
                                                     </button>
                                                 </h5>
                                             </div>
@@ -401,7 +401,7 @@
                                                     <button class="btn btn-link collapsed" data-toggle="collapse"
                                                         data-target="#imdFour" aria-expanded="false"
                                                         aria-controls="imdFour">
-                                                        How many contentscan we upload on each section?
+                                                        How many contents can we upload on each section?
                                                     </button>
                                                 </h5>
                                             </div>
@@ -409,13 +409,13 @@
                                                 data-parent="#IMD">
                                                 <div class="card-body">
                                                     <ul>
-                                                        <li>Media/ Resources
-                                                            <p>Each Media/ Resource section is allowed to add one Image and
+                                                        <li>Media/Resources
+                                                            <p>Each Media/Resource section is allowed to add one Image and
                                                                 one File.</p>
                                                         </li>
-                                                        <li>Products/ Services
-                                                            <p>Each Products/ Services section is allowed to add Multiple
-                                                                Images and one Catalogue/ Brochure.</p>
+                                                        <li>Products/Services
+                                                            <p>Each Products/Services section is allowed to add Multiple
+                                                                Images and one Catalogue/Brochure.</p>
                                                         </li>
                                                         <li>Projects
                                                             <p>Each Projects section is allowed to add one Image.</p>
@@ -462,10 +462,10 @@
                                             <div id="imdSix" class="collapse" aria-labelledby="eventPassThree"
                                                 data-parent="#IMD">
                                                 <div class="card-body">
-                                                    Click Profile YouTube > Click "YourChannel" > Click "Upload Videos" >
+                                                    Click Profile YouTube > Click "Your Channel" > Click "Upload Videos" >
                                                     Please follow the steps > on "Visibility" step, choose who can see your
                                                     video
-                                                    save as"Unlisted"(your video will not come up in search results or on
+                                                    save as "Unlisted"(your video will not come up in search results or on
                                                     your channel) or as"Public: (anybody can see your video).
                                                 </div>
                                             </div>
