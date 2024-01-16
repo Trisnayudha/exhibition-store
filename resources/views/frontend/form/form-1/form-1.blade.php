@@ -4,6 +4,12 @@
     <div class="col-sm-9">
         <div class="container">
             <div class="container-fluid">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    Deadline Reminder: Please complete the required form by 23 March 2024.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
                 <div class="card border-info">
                     <div class="card-body" style="margin-bottom:-7px;">
                         @if (optional($personal_information)->updated_at != null)
@@ -165,7 +171,7 @@
                                 </div>
                                 <div class="col-lg-12 col-sm-12">
                                     <div class="form-group">
-                                        <label>Company Profile ( Max. 200 Words) </label>
+                                        <label>Company Profile (Max. 200 Words) </label>
                                         <small> <i>This Profile will also be used on Indonesia Miner Website and Event
                                                 Booklet</i></small>
                                         <textarea name="desc" id="desc" class="form-control validation" placeholder="Input company website"

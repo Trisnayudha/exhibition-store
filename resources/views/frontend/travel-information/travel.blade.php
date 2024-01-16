@@ -13,14 +13,14 @@
                     <p>
                     <h1>AIRPORT</h1>
                     </p>
-                    <p>Soekarno-Hatta International Airport (CGK) is located at Cengkareng (West Jakarta), Tangerang, It is
+                    <p>Soekarno-Hatta International Airport (CGK) is located at Cengkareng (West Jakarta), Tangerang. It is
                         22 km away to event
                         venue It is approximately 1 hour drive.</p>
                     <p>
-                    <h1>ACCOMODATION</h1>
+                    <h1>ACCOMMODATION</h1>
                     </p>
                     <div class="text-center">
-                        OFFICIAL HOTEL OFTHE INDONESIA MINER 2023
+                        OFFICIAL HOTEL OF THE INDONESIA MINER 2024
                         <div>
                             <img src="https://indonesiaminer.com/img/logowestin.png" alt="" height="70"
                                 class="mt-2">
@@ -31,7 +31,7 @@
                         city’s leading business, commercial, and shopping district. Its central location gives guests of the
                         hotel an advantage during sightseeing, with many
                         places of interest and tourist attractions located within close proximity to the hotel.</p>
-                    <p>Please find the special room rate for Indonesia Miner 2023 Participants</p>
+                    <p>Please find the special room rate for Indonesia Miner 2024 Participants</p>
                     <div class="row">
                         <div class="col" style="max-width: 25rem">
                             <img src="https://indonesiaminer.com/img/BEDROOM.jpg" alt="" height="250">
@@ -57,7 +57,7 @@
                         </div>
                     </div>
                     <hr>
-                    <p>Accomodation Option near Indonesia Miner 2023 Venue</p>
+                    <p>Accommodation Options near Indonesia Miner 2024 Venue</p>
                     <div class="row">
                         <div class="col" style="max-width: 25rem">
                             <img src="https://static51.com-hotel.com/uploads/hotel/60134/photo/js-luwansa-hotel-convention-center_15572948901.jpg"
@@ -75,7 +75,7 @@
                                 </div>
                                 <div>
 
-                                    <p>Webstie</p>
+                                    <p>Website</p>
                                     <p>https://www.jsluwansa.com</p>
                                 </div>
                             </div>

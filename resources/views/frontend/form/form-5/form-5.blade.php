@@ -3,12 +3,18 @@
 @section('content')
     <div class="col-sm-9">
         <div class="container-fluid">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                Deadline Reminder: Please complete the required form by 23 March 2024.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
             <div class="card mb-3">
                 <div class="card-body">
                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
                         <strong>Please note that the Organizer will not be responsible for: </strong>
                         <ul>
-                            <li>Any Information, material or data that is not included in the guarantee after the specified
+                            <li>Any information, material or data that is not included in the guarantee after the specified
                                 time
                                 limit</li>
                             <li>Lack of equipment or service caused by late return of the order form</li>

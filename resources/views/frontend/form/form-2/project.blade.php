@@ -3,7 +3,7 @@
 
     </div>
     <!-- Tombol Tambah -->
-    <button class="btn btn-primary mb-3" onclick="tambahProject()">Tambah</button>
+    <button class="btn btn-primary mb-3" onclick="tambahProject()">Add</button>
 
     <!-- Tabel -->
     <table class="table">

@@ -58,8 +58,8 @@
                                     </div>
                                     <div class="card-body text-info text-center">
                                         <p>Event
-                                            Cordinator</p>
-                                        <p>Mrs. Riska Noveriena</p>
+                                            Executive</p>
+                                        <p>Ms. Riska Noveriena</p>
                                         <p><a href="mailto:riska@indonesiaminer.com">E: riska@indonesiaminer.com </a>
                                         </p>
                                         <a href="https://wa.me/+6281398670330" target="_blank">M: +6281398670330</a>
@@ -74,7 +74,7 @@
                                     </div>
                                     <div class="card-body text-info text-center">
                                         <p>Event Executive</p>
-                                        <p>Mrs. Callula Aisha</p>
+                                        <p>Ms. Callula Aisha</p>
                                         <p>
                                             <a href="mailto: calulla@indonesiaminer.com">E: calulla@indonesiaminer.com
                                             </a>
@@ -94,7 +94,7 @@
                                     <div class="card-body text-info text-center">
                                         <p> Senior Catering Sales Manager
                                         </p>
-                                        <p>Mrs.Feni Imelda</p>
+                                        <p>Mrs. Feni Imelda</p>
                                         <p>
                                             <a href="mailto:Feni.Imelda@westin.com"> E: Feni.Imelda@westin.com</a>
 
@@ -183,11 +183,11 @@
                             <div class="card-body text-info">
                                 <h5 class="card-title">SHOW DAYS</h5>
                                 <p><b>June 4, 2024</b></p>
-                                <p>08.00 - 17.00:Conference & Exhibition Day 1</p>
+                                <p>08.00 - 17.00: Conference & Exhibition Day 1</p>
                                 <p><b>June 5, 2024</b></p>
-                                <p>09.00 - 17.00:Conference & Exhibition Day 2</p>
+                                <p>09.00 - 17.00: Conference & Exhibition Day 2</p>
                                 <p><b>June 6, 2024</b></p>
-                                <p>09.00 - 17.00:Conference & Exhibition Day 3</p>
+                                <p>09.00 - 17.00: Conference & Exhibition Day 3</p>
                             </div>
                         </div>
                         <div class="card border-info mb-3">

@@ -95,7 +95,7 @@
                                                 data-parent="#eventPass">
                                                 <div class="card-body">
                                                     To collect your badge, please show the barcode we send to your
-                                                    registered email at the registration area starts June 5, 2023 at 5 pm
+                                                    registered email at the registration area starts June 5, 2024 at 5 pm
                                                     (Jakarta time).
                                                 </div>
                                             </div>
@@ -234,7 +234,7 @@
                                                 <h5 class="mb-0">
                                                     <button class="btn btn-link collapsed" data-toggle="collapse"
                                                         data-target="#eTwo" aria-expanded="false" aria-controls="eTwo">
-                                                        Is it possible to customize the counter/ table?
+                                                        Is it possible to customize the counter/table?
                                                     </button>
                                                 </h5>
                                             </div>

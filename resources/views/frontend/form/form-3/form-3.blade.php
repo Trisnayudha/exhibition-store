@@ -4,11 +4,18 @@
     <div class="col-sm-9">
 
         <div class="container">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                Deadline Reminder: Please complete the required form by 23 March 2024.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
             <div class="card border-info">
                 <div class="card-body">
                     @if (auth()->user()->level != 'exhibition')
                         <section id="advertisement">
-                            <form action="{{ url('promotional/advertisement') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ url('promotional/advertisement') }}" method="POST"
+                                enctype="multipart/form-data">
                                 @csrf
                                 <div class="container-fluid">
                                     @if (optional($log_advertisement)->updated_at != null)
