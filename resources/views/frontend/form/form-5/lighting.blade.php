@@ -9,7 +9,7 @@
                         <img class="pic-2"
                             src="https://image1ws.indotrading.com/s3/productimages/webp/co170930/p1108732/w425-h425/45b3f586-e193-471f-b28e-e4e4a5ac7a6f.png">
                     </a>
-                    <span class="product-sale-label">HOT!</span>
+                    {{-- <span class="product-sale-label">HOT!</span> --}}
                     <ul class="social">
                         <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
                         <li><a href="javascript:void(0);" class="add-to-cart" data-name="LED TV 43 Inch + Standing"

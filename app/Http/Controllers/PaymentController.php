@@ -122,6 +122,6 @@ Terimakasih
         $log->company_id = $id;
         $log->section = 'invoice';
         $log->save();
-        return redirect()->route('invoice')->with('success', 'Success Request Payment');
+        return redirect()->route('invoice')->with('success', 'Your order has been received. Please await, the invoice is currently being processed.');
     }
 }

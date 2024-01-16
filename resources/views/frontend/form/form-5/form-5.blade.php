@@ -34,6 +34,7 @@
                                 </h5>
                             </div>
 
+
                             <div id="pic-exhibition" class="collapse show" aria-labelledby="card-exhibition"
                                 data-parent="#accordion">
                                 <div class="card-body">
@@ -78,50 +79,6 @@
                                                             value="{{ $data->pic_phone }}" required>
                                                     </div>
                                                 </div>
-                                                @if ($data->exhibition_design == 1)
-                                                    <div class="col-sm-12">
-                                                        <label for="">Fascia Name</label>
-                                                        <div class="alert alert-danger" role="alert">
-                                                            <ul>
-                                                                <li>Please write the Company Name below, based on what is
-                                                                    needed
-                                                                    in
-                                                                    the
-                                                                    fascia. Fill in block letters using the alphabet (
-                                                                    maximum
-                                                                    24
-                                                                    letters).
-                                                                    Fascia names longer than 24 letters will be displayed on
-                                                                    2
-                                                                    lines
-                                                                    and
-                                                                    the
-                                                                    font size will be minimized accordingly</li>
-                                                                <li>The fascia name will follow based on this form. If it
-                                                                    passes
-                                                                    the
-                                                                    deadline, any changes to the fascia will incur an
-                                                                    additional
-                                                                    fee
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                        <div class="form-group fascia-container">
-                                                            <?php
-                                                            $fascia_name = $fascia_name; // Mengakses properti fascia_name dari objek $data
-                                                            if (is_array($fascia_name)) {
-                                                                for ($i = 0; $i < 24; $i++) {
-                                                                    // Modify the style of the fascia-box and set the value from the controller's data if it exists
-                                                                    $value = isset($fascia_name[$i]) ? $fascia_name[$i] : '';
-                                                                    echo '<input class="fascia-box" type="text" name="fascia_name[]" maxlength="1" oninput="moveToNext(this)" value="' . $value . '">';
-                                                                }
-                                                            }
-                                                            ?>
-                                                        </div>
-
-                                                    </div>
-                                                @endif
-
                                                 <div class="col-5">
                                                     <div class="form-group">
                                                         <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -133,7 +90,8 @@
                                                             <li class="nav-item">
                                                                 <a class="nav-link" id="profile-tab" data-toggle="tab"
                                                                     href="#profile" role="tab" aria-controls="profile"
-                                                                    aria-selected="false">Upload Signature</a>
+                                                                    aria-selected="false">Upload
+                                                                    Signature</a>
                                                             </li>
                                                         </ul>
                                                         <div class="tab-content" id="myTabContent">
@@ -175,71 +133,152 @@
 
                                 </div>
                             </div>
+
+                        </div>
+                        <div class="card">
+                            @if ($data->exhibition_design == 1)
+                                <div class="card-header" id="card-exhibition">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link" data-toggle="collapse" data-target="#fascia-name"
+                                            aria-expanded="true" aria-controls="fascia-name">
+                                            Fascia Name
+                                        </button>
+                                    </h5>
+                                </div>
+                            @endif
+                            @if ($data->exhibition_design == 1)
+                                <div id="fascia-name" class="collapse show" aria-labelledby="card-exhibition"
+                                    data-parent="#accordion">
+                                    <div class="card-body">
+                                        <div class="container">
+                                            @if (optional($log_pic)->updated_at != null)
+                                                <div class="alert alert-warning alert-dismissible fade show"
+                                                    role="alert">
+                                                    Last update :
+                                                    <strong>
+                                                        {{ optional($log_pic->updated_at)->format('d F Y, g:i A') }}
+                                                        GMT + 7
+                                                    </strong>
+                                                    <button type="button" class="close" data-dismiss="alert"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                            @endif
+                                            <div class="col-sm-12">
+                                                <label for="">Fascia Name</label>
+                                                <div class="alert alert-danger" role="alert">
+                                                    <ul>
+                                                        <li>Please write the Company Name below, based on what is
+                                                            needed
+                                                            in
+                                                            the
+                                                            fascia. Fill in block letters using the alphabet (
+                                                            maximum
+                                                            24
+                                                            letters).
+                                                            Fascia names longer than 24 letters will be displayed on
+                                                            2
+                                                            lines
+                                                            and
+                                                            the
+                                                            font size will be minimized accordingly</li>
+                                                        <li>The fascia name will follow based on this form. If it
+                                                            passes
+                                                            the
+                                                            deadline, any changes to the fascia will incur an
+                                                            additional
+                                                            fee
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="form-group fascia-container">
+                                                    <?php
+                                                    $fascia_name = $fascia_name; // Mengakses properti fascia_name dari objek $data
+                                                    if (is_array($fascia_name)) {
+                                                        for ($i = 0; $i < 24; $i++) {
+                                                            // Modify the style of the fascia-box and set the value from the controller's data if it exists
+                                                            $value = isset($fascia_name[$i]) ? $fascia_name[$i] : '';
+                                                            echo '<input class="fascia-box" type="text" name="fascia_name[]" maxlength="1" oninput="moveToNext(this)" value="' . $value . '">';
+                                                        }
+                                                    }
+                                                    ?>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary btn-lg btn-block"> Save
+                                            Fascia Name</button>
+                                        </form>
+
+                                    </div>
+
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div id="accordion">
-                                <div class="card">
-                                    <div class="card-header" id="headingOne">
-                                        <h5 class="mb-0">
-                                            <button class="btn btn-link" data-toggle="collapse"
-                                                data-target="#collapseOne" aria-expanded="true"
-                                                aria-controls="collapseOne">
-                                                Furniture
-                                            </button>
-                                        </h5>
-                                    </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div id="accordion">
+                            <div class="card">
+                                <div class="card-header" id="headingOne">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne"
+                                            aria-expanded="true" aria-controls="collapseOne">
+                                            Additional Order - Furniture
+                                        </button>
+                                    </h5>
+                                </div>
 
-                                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
-                                        data-parent="#accordion">
-                                        <div class="card-body">
-                                            @include('frontend.form.form-5.furniture')
-                                        </div>
+                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                                    data-parent="#accordion">
+                                    <div class="card-body">
+                                        @include('frontend.form.form-5.furniture')
                                     </div>
                                 </div>
-                                <div class="card">
-                                    <div class="card-header" id="headingTwo">
-                                        <h5 class="mb-0">
-                                            <button class="btn btn-link collapsed" data-toggle="collapse"
-                                                data-target="#collapseTwo" aria-expanded="false"
-                                                aria-controls="collapseTwo">
-                                                Lighting Service and Other Tools
-                                            </button>
-                                        </h5>
-                                    </div>
-                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-                                        data-parent="#accordion">
-                                        <div class="card-body">
-                                            @include('frontend.form.form-5.lighting')
-                                        </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="headingTwo">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link collapsed" data-toggle="collapse"
+                                            data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            Additional Order - Lighting Service and Other Tools
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo"
+                                    data-parent="#accordion">
+                                    <div class="card-body">
+                                        @include('frontend.form.form-5.lighting')
                                     </div>
                                 </div>
-                                <div class="card">
-                                    <div class="card-header" id="headingThree">
-                                        <h5 class="mb-0">
-                                            <button class="btn btn-link collapsed" data-toggle="collapse"
-                                                data-target="#collapseThree" aria-expanded="false"
-                                                aria-controls="collapseThree">
-                                                Electrical Services
-                                            </button>
-                                        </h5>
-                                    </div>
-                                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
-                                        data-parent="#accordion">
-                                        <div class="card-body">
-                                            @include('frontend.form.form-5.electricity')
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="headingThree">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link collapsed" data-toggle="collapse"
+                                            data-target="#collapseThree" aria-expanded="false"
+                                            aria-controls="collapseThree">
+                                            Additional Order - Electrical Services
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="collapseThree" class="collapse show" aria-labelledby="headingThree"
+                                    data-parent="#accordion">
+                                    <div class="card-body">
+                                        @include('frontend.form.form-5.electricity')
 
-                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        {{-- <div class="col-sm-3 col-md-3 order-md-2 mb-4">
+                    </div>
+                    {{-- <div class="col-sm-3 col-md-3 order-md-2 mb-4">
                             <h4 class="d-flex justify-content-between align-items-center mb-3">
                                 <span class="text-muted">Your cart</span>
                                 <span class="badge badge-secondary badge-pill">1</span>
@@ -251,10 +290,11 @@
                             <button id="checkoutBtn" class="btn btn-primary btn-lg btn-block" disabled>Checkout</button>
                         </div> --}}
 
-                    </div>
                 </div>
             </div>
         </div>
+        @include('frontend.form.button_dynamic')
+
     </div>
 @endsection
 @push('bottom')

@@ -63,7 +63,8 @@
                                                     <input type="hidden" name="code_payment"
                                                         value="{{ $item->code_payment }}">
                                                     <button class="btn btn-primary ml-2"
-                                                        {{ $item->status === 'draft' ? 'disabled' : '' }}>Manage</button>
+                                                        {{ $item->status === 'draft' ? 'disabled' : '' }}>Payment
+                                                        Link</button>
                                                 </form>
                                             </div>
                                         </td>

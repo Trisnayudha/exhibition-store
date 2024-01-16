@@ -9,7 +9,7 @@
                         <img class="pic-2"
                             src="https://cdn.pixabay.com/photo/2019/09/27/08/06/electricity-4507838_1280.png">
                     </a>
-                    <span class="product-sale-label">HOT!</span>
+                    {{-- <span class="product-sale-label">HOT!</span> --}}
                     <ul class="social">
                         <li><a href="product-details.html" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
                         <!-- Add the following lines for the "Add to Cart" button -->

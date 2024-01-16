@@ -146,7 +146,7 @@
                                         <input type="text" name="npwp" id="npwp"
                                             class="form-control validation" placeholder="Input company website"
                                             value="{{ old('npwp', $data->npwp) }}">
-                                        <small class="text-muted"> <i>No Required</i></small>
+                                        <small class="text-muted"> Only for Indonesian Company, <i>No Required</i></small>
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-sm-12">

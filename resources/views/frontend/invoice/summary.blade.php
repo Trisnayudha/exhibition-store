@@ -104,7 +104,8 @@
                                     @csrf
                                     <input type="hidden" name="code_payment" value="{{ $codePayment }}">
                                     <input type="hidden" name="total_price" value="{{ $totalDue }}">
-                                    <button type="submit" class="btn btn-light btn-block">Request Payment</button>
+                                    <button type="submit" class="btn btn-light btn-block">Request invoice/payment
+                                        link</button>
                                 </form>
                             @elseif($items[0]->status == 'unpaid')
                                 <a href="{{ $items[0]->link }}" target="_blank"

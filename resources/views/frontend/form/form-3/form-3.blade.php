@@ -32,9 +32,12 @@
                                     @endif
                                     <h4>Advertisement Artwork On Event Booklet</h4>
                                     <div class="form-group">
-                                        <label for="">File Input</label>
+                                        <label for="">File Input <small class="form-text text-muted">Half Page -
+                                                Landscape (A5: 2480 x 1748
+                                                px)</small></label>
                                         <input type="file" class="form-control" id="pdfFiles" name="pdfFiles"
                                             accept=".pdf">
+
                                         @if (!empty($advertisement->file))
                                             <button type="button" class="btn btn-info mt-2 preview-pdf"
                                                 data-pdf-url="https://docs.google.com/gview?url={{ urlencode(env('IMAGE_BASE_URL') . $advertisement->file) }}&embedded=true">Preview

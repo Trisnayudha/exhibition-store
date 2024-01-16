@@ -7,7 +7,7 @@
                         <img class="pic-1" src="https://www.sprintexpo.com/uploads/1423944889.jpg">
                         <img class="pic-2" src="https://www.stablecroft.com/media/uploads/cat-347/fs8450-4.jpg">
                     </a>
-                    <span class="product-sale-label">HOT!</span>
+                    {{-- <span class="product-sale-label">HOT!</span> --}}
                     <ul class="social">
                         <li><a href="https://www.stablecroft.com/media/uploads/cat-347/fs8450-4.jpg"
                                 data-lightbox="image-gallery" data-title="Rack Brochure Zigzag"><i
@@ -22,7 +22,7 @@
                 </div>
                 <div class="product-content">
                     <h3 class="title"><a href="#">Rack Brochure Zigzag</a></h3>
-                    <div class="price"><span>IDR 800.000 </span>IDR 600.000</div>
+                    <div class="price">IDR 600.000</div>
                 </div>
             </div>
         </div>

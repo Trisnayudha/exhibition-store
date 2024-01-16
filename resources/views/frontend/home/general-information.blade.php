@@ -92,6 +92,7 @@
                                         VENUE
                                     </div>
                                     <div class="card-body text-info text-center">
+                                        <p>The Westin Hotel</p>
                                         <p> Senior Catering Sales Manager
                                         </p>
                                         <p>Mrs. Feni Imelda</p>
@@ -126,6 +127,7 @@
                                             <a href="https://wa.me/+6287777368791" target="_blank">M:
                                                 +6287777368791 </a>
                                         </p>
+                                        <p style="color:white">.</p>
                                     </div>
                                 </div>
                             </div>
@@ -143,6 +145,7 @@
                                         <p>
                                             <a href="https://wa.me/+628128404335">M: +628128404335</a>
                                         </p>
+                                        <p style="color:white">.</p>
                                     </div>
                                 </div>
                             </div>
@@ -160,19 +163,10 @@
                                         <div class="row">
                                             <div class="col-2">
                                                 <p><b>June 3, 2024</b></p>
-                                                <p><b>00.00 - 24.00</b></p>
+                                                <p><b>12.00 AM - 12.00 PM - Jakarta Time</b></p>
                                                 <p>Set Up by Stand Contractor</p>
-                                                <p><b>18.00 - 24.00</b></p>
+                                                <p><b>05:00 AM - 12:00 AM - Jakarta Time</b></p>
                                                 <p>Set Up by Exhibitor</p>
-                                            </div>
-                                            <div class="col">
-                                                <p><b>June 4, 2024*</b></p>
-                                                <p><b>00.00 - 07.00</b></p>
-                                                <p>Set Up by Stand Contractor</p>
-                                                <p>06.00 - 08.00</p>
-                                                <p>Set Up by Exhibitor</p>
-                                                <p><small><i>*All exhibits must be completely installed and ready
-                                                            for viewing by 08.00 am</i></small></p>
                                             </div>
                                         </div>
                                     </div>
@@ -183,18 +177,18 @@
                             <div class="card-body text-info">
                                 <h5 class="card-title">SHOW DAYS</h5>
                                 <p><b>June 4, 2024</b></p>
-                                <p>08.00 - 17.00: Conference & Exhibition Day 1</p>
+                                <p>08.00 AM - 05.00 PM - Jakarta Time: Conference & Exhibition Day 1</p>
                                 <p><b>June 5, 2024</b></p>
-                                <p>09.00 - 17.00: Conference & Exhibition Day 2</p>
+                                <p>09.00 AM - 05.00 PM - Jakarta Time: Conference & Exhibition Day 2</p>
                                 <p><b>June 6, 2024</b></p>
-                                <p>09.00 - 17.00: Conference & Exhibition Day 3</p>
+                                <p>09.00 AM - 05.00 PM - Jakarta Time: Conference & Exhibition Day 3</p>
                             </div>
                         </div>
                         <div class="card border-info mb-3">
                             <div class="card-body text-info">
                                 <h5 class="card-title">DISMANTLING DAY</h5>
-                                <p><b>June 7, 2024</b></p>
-                                <p>17.00 - 21.00: Dismissal Booth Display</p>
+                                <p><b>June 6, 2024</b></p>
+                                <p>05.00 PM - 9.00 PM - Jakarta Time: Dismissal Booth Display</p>
                                 <p><small><i>No exhibits may be dismantled prior to closing time</i></small></p>
                             </div>
                         </div>

@@ -32,6 +32,14 @@
         @if ($access['exhibition_access'] == 1)
             <a href="{{ url('form?type=exhibition') }}" class="btn btn-info">Next</a>
         @endif
+    @else
+        @if ($access['eventpass_access'] == 1)
+            <a href="{{ url('form?type=event-pass') }}" class="btn btn-secondary mr-2">Previous</a>
+        @elseif($access['promotional_access'] == 1)
+            <a href="{{ url('form?type=promotional') }}" class="btn btn-secondary mr-2">Previous</a>
+        @else
+            <a href="{{ url('form?type=indonesia-miner-directory') }}" class="btn btn-secondary mr-2">Previous</a>
+        @endif
     @endif
 
     {{-- Ulangi logika serupa untuk tipe form lainnya sesuai kebutuhan --}}
