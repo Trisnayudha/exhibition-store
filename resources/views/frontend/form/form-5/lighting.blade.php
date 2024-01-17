@@ -171,24 +171,24 @@
             <div class="product-grid">
                 <div class="product-image">
                     <a href="#" class="image">
-                        <img class="pic-1" src="{{ asset('form5/lighting/Water-Dispenser -1-Galoon-Water.png') }}">
-                        <img class="pic-2" src="{{ asset('form5/lighting/Water-Dispenser -1-Galoon-Water.png') }}">
+                        <img class="pic-1" src="{{ asset('form5/lighting/Water-Dispenser-1-Galoon-Water.png') }}">
+                        <img class="pic-2" src="{{ asset('form5/lighting/Water-Dispenser-1-Galoon-Water.png') }}">
                     </a>
                     <ul class="social">
-                        <li><a href="{{ asset('form5/lighting/Water-Dispenser -1-Galoon-Water.png') }}"
+                        <li><a href="{{ asset('form5/lighting/Water-Dispenser-1-Galoon-Water.png') }}"
                                 data-lightbox="image-gallery" data-title="Water Dispenser + 1 Galoon Water"><i
                                     class="fa fa-eye"></i></a>
                         </li>
                         <li><a href="javascript:void(0);" class="add-to-cart"
-                                data-name="Water Dispenser + 1 Galoon Water " data-price="1977000"
+                                data-name="Water Dispenser + 1 Galoon Water " data-price="1525000"
                                 data-tip="Add to wishlist"
-                                onclick="exhibitionCart('Water Dispenser + 1 Galoon Water','Additional Lighting',1977000,1977000,1,'{{ asset('form5/lighting/Water-Dispenser -1-Galoon-Water.png') }}')"><i
+                                onclick="exhibitionCart('Water Dispenser + 1 Galoon Water','Additional Lighting',1525000,1525000,1,'{{ asset('form5/lighting/Water-Dispenser-1-Galoon-Water.png') }}')"><i
                                     class="fa fa-shopping-cart"></i></a></li>
                     </ul>
                 </div>
                 <div class="product-content">
                     <h3 class="title"><a href="#">Water Dispenser + 1 Galoon Water</a></h3>
-                    <div class="price">IDR 1.977.000</div>
+                    <div class="price">IDR 1.525.000</div>
                 </div>
             </div>
         </div>
