@@ -416,7 +416,7 @@
 
         .product-grid .product-image img {
             width: 100%;
-            height: auto;
+            height: 300px;
         }
 
         .product-image .pic-1 {
