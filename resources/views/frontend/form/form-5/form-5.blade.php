@@ -340,7 +340,7 @@
             // Save signature
             $('#saveBtn').click(function() {
                 if (signaturePad.isEmpty()) {
-                    alert("Tanda tangan kosong.");
+                    alert("Signature is empty.");
                 } else {
                     var dataURL = signaturePad.toDataURL();
                     signatureImage.attr('src', dataURL).show();

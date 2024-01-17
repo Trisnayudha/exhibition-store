@@ -295,13 +295,13 @@
 
         function confirmLogout() {
             Swal.fire({
-                title: 'Apakah Anda yakin?',
-                text: "Anda akan keluar dari akun Anda.",
+                title: 'Are you sure?',
+                text: "You will log out of your account.",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Ya, logout!'
+                confirmButtonText: 'Logout'
             }).then((result) => {
                 if (result.isConfirmed) {
                     // Mengirim form logout jika pengguna mengkonfirmasi
@@ -556,7 +556,7 @@
                     Swal.fire({
                         position: "top-end",
                         icon: "success",
-                        title: "Added item to cart",
+                        title: "Item added to cart",
                         showConfirmButton: false,
                         timer: 1500,
                     });
