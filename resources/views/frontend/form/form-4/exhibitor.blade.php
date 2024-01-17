@@ -14,7 +14,7 @@
         Please Note: Company, Name and Position will be printed on the badge
     </div>
     <div class="logger-exhibitor"></div>
-    <button class="btn btn-primary mb-2" onclick="tambahExhibitor()" id="exhibitorButton">Tambah</button>
+    <button class="btn btn-primary mb-2" onclick="tambahExhibitor()" id="exhibitorButton">Add</button>
     <div class="table-responsive">
         <table class="table">
             <thead>
@@ -154,7 +154,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" onclick="simpanExhibitor()">Tambah</button>
+                <button type="button" class="btn btn-success" onclick="simpanExhibitor()">Add</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>

@@ -19,7 +19,7 @@
         </button>
     </div>
     <div class="logger-delegate"></div>
-    <button class="btn btn-primary mb-2" onclick="tambahDelegate()" id="delegateButton">Tambah</button>
+    <button class="btn btn-primary mb-2" onclick="tambahDelegate()" id="delegateButton">Add</button>
     <div class="table-responsive">
         <table class="table">
             <thead>
@@ -46,7 +46,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="addDelegateModalLabel">Tambah Delegate</h5>
+                <h5 class="modal-title" id="addDelegateModalLabel">Add Delegate</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -148,7 +148,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" onclick="simpanDelegate()">Tambah</button>
+                <button type="button" class="btn btn-success" onclick="simpanDelegate()">Add</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>

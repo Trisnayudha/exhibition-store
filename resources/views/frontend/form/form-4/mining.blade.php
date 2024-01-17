@@ -12,7 +12,7 @@
         Please Note: Company, Name and Position will be printed on the badge
     </div>
     <div class="logger-mining"></div>
-    <button class="btn btn-primary mb-2" onclick="tambahMining()">Tambah</button>
+    <button class="btn btn-primary mb-2" onclick="tambahMining()">Add</button>
     <div class="table-responsive">
 
         <table class="table">
@@ -141,7 +141,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" onclick="simpanMining()">Tambah</button>
+                <button type="button" class="btn btn-success" onclick="simpanMining()">Add</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>

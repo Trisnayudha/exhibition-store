@@ -26,7 +26,7 @@
         <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Tambah Data</h4>
+                <h4 class="modal-title">Add Data</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
@@ -70,7 +70,7 @@
 
             <!-- Modal Footer -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" onclick="simpanProduct()">Tambah</button>
+                <button type="button" class="btn btn-success" onclick="simpanProduct()">Add</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
             </div>
 
@@ -84,7 +84,7 @@
         <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Tambah Data</h4>
+                <h4 class="modal-title">Edit Data</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
@@ -131,7 +131,7 @@
 
             <!-- Modal Footer -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" onclick="updateProduct()">Tambah</button>
+                <button type="button" class="btn btn-success" onclick="updateProduct()">Update</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
             </div>
 

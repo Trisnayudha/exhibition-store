@@ -11,7 +11,7 @@
         Please Note: Company, Name and Position will be printed on the badge
     </div>
     <div class="logger-working"></div>
-    <button class="btn btn-primary mb-2" onclick="tambahWorking()">Tambah</button>
+    <button class="btn btn-primary mb-2" onclick="tambahWorking()">Add</button>
     <div class="table-responsive">
 
         <table class="table">
@@ -140,7 +140,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" onclick="simpanWorking()">Tambah</button>
+                <button type="button" class="btn btn-success" onclick="simpanWorking()">Add</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>
