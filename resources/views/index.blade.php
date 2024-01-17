@@ -353,9 +353,9 @@
                                 </div>
                             </div>
                             <div class="col-md-1">
-                                <button class="btn btn-danger btn-sm" onclick="removeDelegate('${item.id}')">
+                                <a href="javascript:void(0)" class="btn btn-danger btn-sm" onclick="removeDelegate('${item.id}')">
                                     <i class="fa fa-trash"></i>
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </div>`;
@@ -673,15 +673,15 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('invoice/detail?code_payment=') }}" method="Get">
-                    <div class="modal-body">
-                        <div id="item-delegate">
+                <div class="modal-body">
+                    <div id="item-delegate">
 
-                        </div>
-                        <div class="item-exhibition">
-
-                        </div>
                     </div>
+                    <div class="item-exhibition">
+
+                    </div>
+                </div>
+                <form action="{{ url('invoice/detail?code_payment=') }}" method="Get">
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                         <button type="submit" class="btn btn-primary">Checkout</button>
