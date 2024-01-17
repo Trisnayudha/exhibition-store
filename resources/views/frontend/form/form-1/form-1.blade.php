@@ -42,7 +42,8 @@
                                 <div class="row">
                                     <div class="col-lg-12 col-sm-12">
                                         <input type="text" name="name" id="name" class="form-control validation"
-                                            placeholder="Input name" value="{{ old('name', $data->name ?? '') }}" required>
+                                            placeholder="Input name" value="{{ old('name', $data->company_name ?? '') }}"
+                                            required>
                                     </div>
                                 </div>
                             </div>
@@ -64,7 +65,7 @@
                                     <div class="col-lg-10 col-sm-12">
                                         <input type="text" name="company_name" id="company_name"
                                             class="form-control validation" placeholder="Input company name"
-                                            value="{{ old('company_name', $data->company_name) }}" required>
+                                            value="{{ old('company_name', $data->name) }}" required>
                                     </div>
 
                                 </div>

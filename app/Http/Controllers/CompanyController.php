@@ -21,9 +21,9 @@ class CompanyController extends Controller
 
         //Personal Information
         $prefix_name = $request->prefix_name;
-        $name = $request->name;
+        $name = $request->company_name;
         $company_type = $request->company_type;
-        $company_name = $request->company_name;
+        $company_name = $request->name;
         $job_title = $request->job_title;
         $email_alternate = $request->alternative_email;
         $phone_code = $request->phone_code;

@@ -219,77 +219,98 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div id="accordion">
-                            <div class="card">
-                                <div class="card-header" id="headingOne">
-                                    <h5 class="mb-0">
-                                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne"
-                                            aria-expanded="true" aria-controls="collapseOne">
-                                            Additional Order - Furniture
-                                        </button>
-                                    </h5>
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div id="accordion">
+                                <div class="card">
+                                    <div class="card-header" id="headingOne">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link" data-toggle="collapse"
+                                                data-target="#collapseOne" aria-expanded="true"
+                                                aria-controls="collapseOne">
+                                                Additional Order - Furniture
+                                            </button>
+                                        </h5>
+                                    </div>
+
+                                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                                        data-parent="#accordion">
+                                        <div class="card-body">
+                                            @include('frontend.form.form-5.furniture')
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" id="headingTwo">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link collapsed" data-toggle="collapse"
+                                                data-target="#collapseTwo" aria-expanded="false"
+                                                aria-controls="collapseTwo">
+                                                Additional Order - Lighting Service and Other Tools
+                                            </button>
+                                        </h5>
+                                    </div>
+                                    <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo"
+                                        data-parent="#accordion">
+                                        <div class="card-body">
+                                            @include('frontend.form.form-5.lighting')
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" id="headingThree">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link collapsed" data-toggle="collapse"
+                                                data-target="#collapseThree" aria-expanded="false"
+                                                aria-controls="collapseThree">
+                                                Additional Order - Electrical Services
+                                            </button>
+                                        </h5>
+                                    </div>
+                                    <div id="collapseThree" class="collapse show" aria-labelledby="headingThree"
+                                        data-parent="#accordion">
+                                        <div class="card-body">
+                                            @include('frontend.form.form-5.electricity')
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" id="headingThree">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link collapsed" data-toggle="collapse"
+                                                data-target="#collapseThree" aria-expanded="false"
+                                                aria-controls="collapseThree">
+                                                Additional Order - Wall Sticker Printing
+                                            </button>
+                                        </h5>
+                                    </div>
+                                    <div id="collapseThree" class="collapse show" aria-labelledby="headingThree"
+                                        data-parent="#accordion">
+                                        <div class="card-body">
+                                            @include('frontend.form.form-5.design')
+
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
-                                    data-parent="#accordion">
-                                    <div class="card-body">
-                                        @include('frontend.form.form-5.furniture')
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-header" id="headingTwo">
-                                    <h5 class="mb-0">
-                                        <button class="btn btn-link collapsed" data-toggle="collapse"
-                                            data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                            Additional Order - Lighting Service and Other Tools
-                                        </button>
-                                    </h5>
-                                </div>
-                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-                                    data-parent="#accordion">
-                                    <div class="card-body">
-                                        @include('frontend.form.form-5.lighting')
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-header" id="headingThree">
-                                    <h5 class="mb-0">
-                                        <button class="btn btn-link collapsed" data-toggle="collapse"
-                                            data-target="#collapseThree" aria-expanded="false"
-                                            aria-controls="collapseThree">
-                                            Additional Order - Electrical Services
-                                        </button>
-                                    </h5>
-                                </div>
-                                <div id="collapseThree" class="collapse show" aria-labelledby="headingThree"
-                                    data-parent="#accordion">
-                                    <div class="card-body">
-                                        @include('frontend.form.form-5.electricity')
-
-                                    </div>
-                                </div>
                             </div>
                         </div>
-                    </div>
-                    {{-- <div class="col-sm-3 col-md-3 order-md-2 mb-4">
-                            <h4 class="d-flex justify-content-between align-items-center mb-3">
-                                <span class="text-muted">Your cart</span>
-                                <span class="badge badge-secondary badge-pill">1</span>
-                            </h4>
-                            <ul id="cartList" class="list-group mb-3">
-                                <!-- Cart items will be dynamically added here -->
-                            </ul>
-                            <div>Total (IDR): <strong id="totalPrice">0.00</strong></div>
-                            <button id="checkoutBtn" class="btn btn-primary btn-lg btn-block" disabled>Checkout</button>
-                        </div> --}}
+                        {{-- <div class="col-sm-3 col-md-3 order-md-2 mb-4">
+                                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                                    <span class="text-muted">Your cart</span>
+                                    <span class="badge badge-secondary badge-pill">1</span>
+                                </h4>
+                                <ul id="cartList" class="list-group mb-3">
+                                    <!-- Cart items will be dynamically added here -->
+                                </ul>
+                                <div>Total (IDR): <strong id="totalPrice">0.00</strong></div>
+                                <button id="checkoutBtn" class="btn btn-primary btn-lg btn-block" disabled>Checkout</button>
+                            </div> --}}
 
+                    </div>
                 </div>
             </div>
         </div>
