@@ -5,7 +5,7 @@
 
         <div class="container">
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                Deadline Reminder: Please complete the required form by 23 March 2024.
+                Deadline: Please complete the required form by 23 March 2024.
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

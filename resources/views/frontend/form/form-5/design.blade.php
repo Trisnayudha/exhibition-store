@@ -1,5 +1,18 @@
 <div class="container">
     <div class="row">
-        <h1>INI TAMPILAN PEMILIHAN STIKER</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Printing</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
