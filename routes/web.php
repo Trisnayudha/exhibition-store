@@ -98,5 +98,7 @@ Route::delete('cart-item/{id}', [ExhibitionCartController::class, 'destroyDelega
 Route::delete('cart-item-exhibition/{id}', [ExhibitionCartController::class, 'destroyExhibition']);
 Route::post('cart/change', [ExhibitionCartController::class, 'changeQuantity']);
 
+Route::post('sticker', [ExhibitionController::class, 'storeSticker']);
+
 //Exhibition
 Route::post('pic', [ExhibitionController::class, 'storePic']);

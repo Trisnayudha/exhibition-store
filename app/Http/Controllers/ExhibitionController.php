@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use App\Models\Exhibition\ExhibitionCartList;
+use App\Models\Exhibition\ExhibitionSticker;
 use App\Models\Logs\ExhibitionLog;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -60,5 +62,146 @@ class ExhibitionController extends Controller
         $log->updated_at = Carbon::now();
         $log->save();
         return redirect()->back()->with('success', 'Success Adding data');
+    }
+
+    public function storeSticker(Request $request)
+    {
+        $company_id = auth()->id();
+
+        if (request('back-doff-basic') != 0) {
+            $cart = new ExhibitionCartList();
+            $cart->name_product = "BACK - Doff Laminated Indoor Vinyl Sticker 100x250cm + Polyfoam"; // Ubah sesuai dengan nama produk yang sesuai
+            $cart->quantity = request('back-doff-basic');
+            $cart->section_product = request('back-doof-section-basic');
+            $cart->price = request('back-doof-price-basic');
+            $cart->total_price = $cart->quantity * $cart->price;
+            $cart->image = request('back-doof-image-basic');
+            $cart->company_id = $company_id;
+            $cart->save();
+        }
+
+        if (request('side-doff-basic') != 0) {
+            $cart = new ExhibitionCartList(); // Buat instance baru jika nilai side-doff-basic tidak 0
+            $cart->name_product = "SIDE - Doff Laminated Indoor Vinyl Sticker 100x250cm + Polyfoam"; // Ubah sesuai dengan nama produk yang sesuai
+            $cart->quantity = request('side-doff-basic');
+            $cart->section_product = request('side-doof-section-basic');
+            $cart->price = request('side-doof-price-basic');
+            $cart->total_price = $cart->quantity * $cart->price;
+            $cart->image = request('side-doof-image-basic');
+            $cart->company_id = $company_id;
+            $cart->save();
+        }
+
+        if (request('table-basic') != 0) {
+            $cart = new ExhibitionCartList(); // Buat instance baru jika nilai table-basic tidak 0
+            $cart->name_product = "TABLE - Doff Laminated Indoor Vinyl Sticker 100x60cm + Polyfoam"; // Ubah sesuai dengan nama produk yang sesuai
+            $cart->quantity = request('table-basic');
+            $cart->section_product = request('table-doof-section-basic');
+            $cart->price = request('table-doof-price-basic');
+            $cart->total_price = $cart->quantity * $cart->price;
+            $cart->image = request('table-doof-image-basic');
+            $cart->company_id = $company_id;
+            $cart->save();
+        }
+
+        if (request('basicA') == "on") {
+            $stickerA = new ExhibitionSticker(); // Gantilah dengan model yang sesuai
+            $stickerA->printing_position = 'A';
+            $stickerA->section_sticker = 'basic';
+            $stickerA->note = request('note-basicA');
+            $stickerA->company_id = $company_id;
+
+            // Handle file upload for basicA
+            if (request()->hasFile('file-basicA')) {
+                $file = request()->file('file-basicA');
+                $filename = time() . '_' . $file->getClientOriginalName();
+                $file->storeAs('uploads', $filename); // Simpan file ke direktori yang sesuai
+                $stickerA->file = $filename;
+            }
+
+            $stickerA->save();
+        }
+
+        if (request('basicB') == "on") {
+            $stickerB = new ExhibitionSticker(); // Gantilah dengan model yang sesuai
+            $stickerB->printing_position = 'B';
+            $stickerB->section_sticker = 'basic';
+            $stickerB->note = request('note-basicB');
+            $stickerB->company_id = $company_id;
+
+            // Handle file upload for basicB
+            if (request()->hasFile('file-basicB')) {
+                $file = request()->file('file-basicB');
+                $filename = time() . '_' . $file->getClientOriginalName();
+                $file->storeAs('uploads', $filename); // Simpan file ke direktori yang sesuai
+                $stickerB->file = $filename;
+            }
+
+            $stickerB->save();
+        }
+
+        if (request('basicC') == "on") {
+            $stickerC = new ExhibitionSticker(); // Gantilah dengan model yang sesuai
+            $stickerC->printing_position = 'C';
+            $stickerC->section_sticker = 'basic';
+            $stickerC->note = request('note-basicC');
+            $stickerC->company_id = $company_id;
+
+            // Handle file upload for basicC
+            if (request()->hasFile('file-basicC')) {
+                $file = request()->file('file-basicC');
+                $filename = time() . '_' . $file->getClientOriginalName();
+                $file->storeAs('uploads', $filename); // Simpan file ke direktori yang sesuai
+                $stickerC->file = $filename;
+            }
+
+            $stickerC->save();
+        }
+
+        if (request('basicD') == "on") {
+            $stickerD = new ExhibitionSticker(); // Gantilah dengan model yang sesuai
+            $stickerD->printing_position = 'D';
+            $stickerD->section_sticker = 'basic';
+            $stickerD->note = request('note-basicD');
+            $stickerD->company_id = $company_id;
+
+            // Handle file upload for basicD
+            if (request()->hasFile('file-basicD')) {
+                $file = request()->file('file-basicD');
+                $filename = time() . '_' . $file->getClientOriginalName();
+                $file->storeAs('uploads', $filename); // Simpan file ke direktori yang sesuai
+                $stickerD->file = $filename;
+            }
+
+            $stickerD->save();
+        }
+
+        if (request('basicE') == "on") {
+            $stickerE = new ExhibitionSticker(); // Gantilah dengan model yang sesuai
+            $stickerE->printing_position = 'E';
+            $stickerE->section_sticker = 'basic';
+            $stickerE->note = request('note-basicE');
+            $stickerE->company_id = $company_id;
+
+            // Handle file upload for basicE
+            if (request()->hasFile('file-basicE')) {
+                $file = request()->file('file-basicE');
+                $filename = time() . '_' . $file->getClientOriginalName();
+                $file->storeAs('uploads', $filename); // Simpan file ke direktori yang sesuai
+                $stickerE->file = $filename;
+            }
+
+            $stickerE->save();
+        }
+
+        $log = ExhibitionLog::where('section', 'sticker')->where('company_id', $company_id)->first();
+        if ($log == null) {
+            $log = new ExhibitionLog();
+            $log->section = 'sticker';
+            $log->company_id = $company_id;
+        }
+        $log->updated_at = Carbon::now();
+        $log->save();
+        return redirect()->back()->with('success', 'Success added Additional Sticker');
     }
 }

@@ -35,7 +35,7 @@
                             </div>
 
 
-                            <div id="pic-exhibition" class="collapse show" aria-labelledby="card-exhibition"
+                            <div id="pic-exhibition" class="collapse" aria-labelledby="card-exhibition"
                                 data-parent="#accordion">
                                 <div class="card-body">
                                     <div class="container">
@@ -147,7 +147,7 @@
                                 </div>
                             @endif
                             @if ($data->exhibition_design == 1)
-                                <div id="fascia-name" class="collapse show" aria-labelledby="card-exhibition"
+                                <div id="fascia-name" class="collapse" aria-labelledby="card-exhibition"
                                     data-parent="#accordion">
                                     <div class="card-body">
                                         <div class="container">
@@ -235,7 +235,7 @@
                                         </h5>
                                     </div>
 
-                                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
                                         data-parent="#accordion">
                                         <div class="card-body">
                                             @include('frontend.form.form-5.furniture')
@@ -252,7 +252,7 @@
                                             </button>
                                         </h5>
                                     </div>
-                                    <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo"
+                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
                                         data-parent="#accordion">
                                         <div class="card-body">
                                             @include('frontend.form.form-5.lighting')
@@ -269,7 +269,7 @@
                                             </button>
                                         </h5>
                                     </div>
-                                    <div id="collapseThree" class="collapse show" aria-labelledby="headingThree"
+                                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
                                         data-parent="#accordion">
                                         <div class="card-body">
                                             @include('frontend.form.form-5.electricity')
