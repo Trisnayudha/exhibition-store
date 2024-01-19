@@ -104,3 +104,14 @@
 
 @push('bottom')
 @endpush
+
+@push('top')
+    <style>
+        #myIframe {
+            width: 100%;
+            height: 100vh;
+            border: none;
+            /* Ini akan menghilangkan border jika ada */
+        }
+    </style>
+@endpush

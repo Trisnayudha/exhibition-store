@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Company;
 use App\Models\Company\CompanyService;
+use App\Models\Exhibition\ExhibitionMiningPassProgress;
 use App\Models\Logs\ExhibitionLog;
 use App\Models\MiningDirectory\Media\MediaCategory;
 use App\Models\MiningDirectory\News\NewsCategory;
@@ -79,7 +80,7 @@ class FormController extends Controller
         } elseif ($type == 'event-pass') {
             $data['company_type'] = MsCompanyType::get();
             $data['phone_code'] = MsPhoneCode::get();
-
+            $data['progress'] = $this->getEventPassProgress();
             return view('frontend.form.form-4.form-4', $data);
         } elseif ($type == 'exhibition') {
             $data['data'] = $this->getDetail();
@@ -89,6 +90,12 @@ class FormController extends Controller
         } else {
             dd('data tidak ada');
         }
+    }
+
+    private function getEventPassProgress()
+    {
+        $userId = auth()->id();
+        return ExhibitionMiningPassProgress::where('company_id', $userId)->first();
     }
 
     private function fasciaName()
