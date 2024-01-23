@@ -102,7 +102,7 @@
                     <input type="date" name="news_edit_date" id="news_edit_date" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label for="news_edit_desc">Deskripsi</label>
+                    <label for="news_edit_desc">Description</label>
                     <textarea class="form-control ckeditor" id="news_edit_desc"></textarea>
                 </div>
                 <div class="form-group">
