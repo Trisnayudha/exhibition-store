@@ -390,7 +390,7 @@
                 var data = response.data;
 
                 // Get the image base URL from the configuration
-                var imageBaseUrl = '{{ config('app.image_base_url') }}';
+                var imageBaseUrl = 'https://indonesiaminer.com/';
 
                 // Iterate through the data and append rows to the table
                 for (var i = 0; i < data.length; i++) {
