@@ -725,7 +725,7 @@
                 </div>
                 <form action="{{ url('invoice/detail?code_payment=') }}" method="Get" id="checkoutForm">
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary" onclick="confirmCheckout()">Checkout</button>
 
                     </div>
