@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="">
+    <link rel="icon" href="{{ asset('logo.png') }}">
 
-    <title>Signin Exhibition Form</title>
+    <title>Signin Sponsor & Exhibitor Portal</title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -20,7 +20,7 @@
 <body class="text-center">
     <form class="form-signin" action="{{ route('login') }}" method="POST">
         @csrf
-        <img class="mb-4" src="https://indonesiaminer.com/vendor/front/images/indominer-icon.png" alt="">
+        <img class="mb-4" src="{{ asset('logo.png') }}" alt="" height="100px">
         <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 
         <!-- Display errors at the top of the form -->

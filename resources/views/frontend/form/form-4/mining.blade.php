@@ -1,6 +1,10 @@
 <section id="delegate-pass">
     <h4>Mining Pass</h4>
     <div class="alert alert-info" role="alert">
+        <p>Please complete the form with the people you would like to invite both internally and externally. When we
+            receive a complete list, we will invite them via email representing your company. We will also follow up on
+            them regularly and will provide updates to you. If the invitee list declines, you are welcomed to provide
+            replacement data.</p>
         <p>Access to: </p>
         <ul>
             <li>Exhibition</li>

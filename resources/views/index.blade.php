@@ -34,7 +34,7 @@
     <script src="https://unpkg.com/cropperjs/dist/cropper.min.js"></script>
     <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
     @stack('top')
-    <title>Indonesia Miner Portal</title>
+    <title>Sponsor & Exhibitor Portal</title>
     <style>
         body {
             padding-top: 56px;
@@ -110,7 +110,7 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <a class="navbar-brand" href="#">Indonesia Miner Portal</a>
+        <a class="navbar-brand" href="#">Sponsor & Exhibitor Portal</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
             aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
