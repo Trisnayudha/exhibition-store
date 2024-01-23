@@ -5,7 +5,7 @@
 
         <div class="container">
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <p>Deadline: Please complete the required form by 23 March 2024.</p>
+                <p><b> Deadline: Please complete the required form by 23 March 2024.</b></p>
                 <p>If additional time is needed for completion after the deadline, please confirm with the Operational
                     Team of Indonesia Miner in advance.</p>
                 <p>All data will be considered final unless there is further confirmation indicating the need for
@@ -93,7 +93,7 @@
                                     <h4>Social Media Promotional Content</h4>
 
                                     <div class="form-group">
-                                        <label for="imageSocial">Wording <small>(Max 2.220 Words)</small></label>
+                                        <label for="imageSocial">Wording <small>(Max 2.200 Words)</small></label>
                                         <textarea name="desc" id="desc" class="form-group ckeditor">
                                         {{ !empty($sosmed['data']['desc']) ? $sosmed['data']['desc'] : '' }}
                                     </textarea>

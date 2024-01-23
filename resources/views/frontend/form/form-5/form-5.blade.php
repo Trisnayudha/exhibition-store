@@ -4,7 +4,7 @@
     <div class="col-sm-9">
         <div class="container-fluid">
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <p>Deadline: Please complete the required form by 23 March 2024.</p>
+                <p><b> Deadline: Please complete the required form by 23 March 2024.</b></p>
                 <p>If additional time is needed for completion after the deadline, please confirm with the Operational
                     Team of Indonesia Miner in advance.</p>
                 <p>All data will be considered final unless there is further confirmation indicating the need for

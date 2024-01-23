@@ -265,7 +265,23 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
     <script>
         CKEDITOR.replace('.ckeditor', {
-            allowedContent: true
+            maxLength: 2200,
+            on: {
+                key: function(event) {
+                    var editor = event.editor;
+                    var content = editor.getData();
+                    var contentLength = content.replace(/<[^>]*>/g, '')
+                        .length; // Menghitung karakter tanpa tag HTML
+
+                    if (contentLength > 2200) {
+                        var overflow = contentLength - 2200;
+                        var truncatedContent = content.substring(0, content.length - overflow);
+                        editor.setData(truncatedContent);
+                        event.cancel();
+                        console.log('sudah lebih');
+                    }
+                }
+            }
         });
 
         // Detect device type
