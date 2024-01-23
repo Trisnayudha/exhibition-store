@@ -1,7 +1,7 @@
 <section id="delegate-pass">
     <h4>Delegate Pass</h4>
     <div class="alert alert-info alert-dismissible fade show" role="alert">
-        You Have {{ $access['delegate_pass'] }} Delegate Pass
+        Please be informed that you are entitled to {{ $access['delegate_pass'] }} Delegate passes
         <p>Access to: </p>
         <ul>
             <li>Conference</li>

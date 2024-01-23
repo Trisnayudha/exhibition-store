@@ -687,12 +687,23 @@
         <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="shoppingCartModalLabel">Keranjang Belanja</h5>
+                    <h5 class="modal-title" id="shoppingCartModalLabel">Cart</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
+                    <div class="alert alert-info alert-dismissible fade show" role="alert">
+                        <p>Please take note that all items in your cart will be included in one invoice.
+                        </p>
+                        <p>
+                            If you require separate invoices based on specific items, please proceed with separate
+                            checkouts.
+                        </p>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
                     <div id="item-delegate">
 
                     </div>
@@ -700,10 +711,11 @@
 
                     </div>
                 </div>
-                <form action="{{ url('invoice/detail?code_payment=') }}" method="Get">
+                <form action="{{ url('invoice/detail?code_payment=') }}" method="Get" id="checkoutForm">
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                        <button type="submit" class="btn btn-primary">Checkout</button>
+                        <button type="button" class="btn btn-primary" onclick="confirmCheckout()">Checkout</button>
+
                     </div>
                 </form>
 
@@ -711,6 +723,23 @@
         </div>
     </div>
 
+    <script>
+        function confirmCheckout() {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: 'Are you sure you want to checkout all items in your cart?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, Checkout',
+                cancelButtonText: 'Cancel'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Jika pengguna mengonfirmasi, lanjutkan ke form checkout
+                    document.forms["checkoutForm"].submit();
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>

@@ -95,11 +95,11 @@
                                 <span class="badge badge-pill badge-light">PAID OFF</span>
                             @endif
                             @if ($items[0]->status == null)
-                                <p class="mt-4">Payment Method:</p>
-                                <select class="form-control mb-3">
+                                <p class="mt-2">Payment Method:</p>
+                                {{-- <select class="form-control mb-3">
                                     <option>Link Xendit</option>
                                     <!-- Add more payment methods here -->
-                                </select>
+                                </select> --}}
                                 <form action="{{ url('payment/request') }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="code_payment" value="{{ $codePayment }}">

@@ -4,6 +4,25 @@
     <div class="container-fluid mt-2">
         <div class="card">
             <div class="card-body">
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <p>Indonesia Miner Portal is a dedicated platform for exhibitors and sponsors to input information
+                        related
+                        to the operational requirements of Indonesia Miner 2024. This portal enables you to input company
+                        data,
+                        promotional materials, event passes, and exhibition-related data. Furthermore, the portal also
+                        allows
+                        for the purchase of additional Event Passes and the rental of Exhibition items.
+                    </p>
+
+                    <p>Please take note that the deadline for submitting this form is one month from the time the portal
+                        link is
+                        provided. Therefore, we kindly request that you complete all necessary forms well in advance of the
+                        specified deadline. If you intend to complete it after the deadline, kindly request confirmation in
+                        advance from the Operational Team of Indonesia Miner 2024.</p>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
                 <h1>Form Progress</h1>
                 <div class="row justify-content-center"> <!-- Menyelaraskan ke tengah -->
                     <div class="col-sm-2 mb-2">

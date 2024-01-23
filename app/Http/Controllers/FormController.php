@@ -113,7 +113,8 @@ class FormController extends Controller
             'eventpass_access' => $data->eventpass_access ?? 0,
             'exhibition_access' => $data->exhibition_access ?? 0,
             'delegate_pass' => $data->delegate_pass ?? 0,
-            'exhibitor_pass' => $data->exhibitor_pass ?? 0
+            'exhibitor_pass' => $data->exhibitor_pass ?? 0,
+            'working_pass' => $data->working_pass ?? 0,
         ];
     }
 

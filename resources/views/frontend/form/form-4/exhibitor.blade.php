@@ -1,7 +1,7 @@
 <section id="exhibitor-pass">
     <h4>Exhibitor Pass</h4>
     <div class="alert alert-info" role="alert">
-        You Have {{ $access['exhibitor_pass'] }} Exhibitor Pass
+        Please be informed that you are entitled to {{ $access['exhibitor_pass'] }} Exhibitor passes
         <p>Access to</p>
         <ul>
             <li>Exhibition</li>
@@ -316,7 +316,7 @@
                 $('#cityEditExhibitor').val(exhibitor.city);
                 $('#countryEditExhibitor').val(exhibitor.country);
                 $('#postalEditCodeExhibitor').val(exhibitor.post_code);
-                if (exhibitor.type == 'Exhibition Upgrade') {
+                if (exhibitor.type == 'Exhibition Pass Upgrade') {
                     $('#upgradeEditExhibitor').prop('checked', true);
                 } else {
                     $('#upgradeEditExhibitor').prop('checked', false);

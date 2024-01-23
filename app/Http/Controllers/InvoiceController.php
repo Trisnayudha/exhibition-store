@@ -39,7 +39,7 @@ class InvoiceController extends Controller
         $code_payment = $request->code_payment;
         $id = auth()->id();
         $data['company'] = Company::where('id', $id)->first();
-        $data['codePayment'] = 'EXHIBITION-' . strtoupper(Str::random(7));
+        $data['codePayment'] = 'ADDITIONAL-' . strtoupper(Str::random(7));
         if (empty($code_payment)) {
             $data['items'] = ExhibitionCartList::where('company_id', $id)->whereNull('payment_id')->get();
         } else {

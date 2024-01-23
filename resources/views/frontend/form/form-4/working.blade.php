@@ -1,7 +1,7 @@
 <section id="delegate-pass">
     <h4>Working Pass (Only If Needed)</h4>
     <div class="alert alert-info" role="alert">
-        You Have 4 Working Pass
+        Please be informed that you are entitled to {{ $access['working_pass'] }} Working passes
         <ul>
             <li>Working pass is only valid during the setup and dismantling period</li>
             <li>Working pass can only be obtained by exchanging the ID Card (KTP/SIM/Passport)</li>

@@ -5,7 +5,11 @@
 
         <div class="container">
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                Deadline: Please complete the required form by 23 March 2024.
+                <p>Deadline: Please complete the required form by 23 March 2024.</p>
+                <p>If additional time is needed for completion after the deadline, please confirm with the Operational
+                    Team of Indonesia Miner in advance.</p>
+                <p>All data will be considered final unless there is further confirmation indicating the need for
+                    additional time.</p>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -77,6 +81,15 @@
                                             </button>
                                         </div>
                                     @endif
+                                    <div class="alert alert-info alert-dismissible fade show" role="alert">
+                                        <p>Promotional content will be published on our social media, Instagram
+                                            (@indonesia_miner) and LinkedIn (Indonesia Miner). The publication timing will
+                                            align with the form submission and the marketing team's publication schedule.
+                                        </p>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
                                     <h4>Social Media Promotional Content</h4>
 
                                     <div class="form-group">
