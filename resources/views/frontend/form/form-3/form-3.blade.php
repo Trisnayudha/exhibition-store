@@ -101,6 +101,7 @@
                                     <div class="form-group">
                                         <label for="imageSocial">Image (1080 x 1080 px) <small>Max Upload 5
                                                 Image</small></label>
+                                        <p> <small><i>For Instagram (@indonesia_miner)</i></small> </p>
                                         @if (!isset($sosmed['listImages']) || count($sosmed['listImages']) < 5)
                                             <div id="imageUploadContainer">
                                                 <input type="file" name="imageSocial[]" id="imageSocial"
@@ -128,6 +129,7 @@
 
                                     <div class="form-group">
                                         <label for="pdfSocial">PDF <small>Max Upload 5 PDF</small></label>
+                                        <p><small><i>For LinkedIn (Indonesia Miner)</i></small> </p>
                                         @if (!isset($sosmed['listPdf']) || count($sosmed['listPdf']) < 5)
                                             <div id="pdfUploadContainer">
                                                 <input type="file" name="pdfSocial[]" id="pdfSocial" class="form-control"

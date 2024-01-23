@@ -4,23 +4,45 @@
             <div class="product-grid">
                 <div class="product-image">
                     <a href="#" class="image">
-                        <img class="pic-1" src="{{ asset('form5/furniture/Acrylic-Rack-Brochure-ZigZag.png') }}">
-                        <img class="pic-2" src="{{ asset('form5/furniture/Acrylic-Rack-Brochure-ZigZag.png') }}">
+                        <img class="pic-1" src="{{ asset('form5/furniture/Black-Rack-Brochure-ZigZag.png') }}">
+                        <img class="pic-2" src="{{ asset('form5/furniture/Black-Rack-Brochure-ZigZag.png') }}">
                     </a>
                     <ul class="social">
-                        <li><a href="{{ asset('form5/furniture/Acrylic-Rack-Brochure-ZigZag.png') }}"
+                        <li><a href="{{ asset('form5/furniture/Black-Rack-Brochure-ZigZag.png') }}"
                                 data-lightbox="image-gallery" data-title="Rack Brochure Zigzag"><i
                                     class="fa fa-eye"></i></a>
                         </li>
                         <li><a href="javascript:void(0);" class="add-to-cart" data-name="Rack Brochure Zigzag"
                                 data-price="600000" data-tip="Add to wishlist"
-                                onclick="exhibitionCart('Acrylic-Rack-Brochure-ZigZag','Additional Furniture',600000,600000,1,'{{ asset('form5/furniture/Acrylic-Rack-Brochure-ZigZag.png') }}')"><i
+                                onclick="exhibitionCart('Acrylic-Rack-Brochure-ZigZag','Additional Furniture',600000,600000,1,'{{ asset('form5/furniture/Black-Rack-Brochure-ZigZag.png') }}')"><i
                                     class="fa fa-shopping-cart"></i></a>
                         </li>
                     </ul>
                 </div>
                 <div class="product-content">
                     <h3 class="title"><a href="#">Acrylic-Rack-Brochure-ZigZag</a></h3>
+                    <div class="price">IDR 600.000</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="product-grid">
+                <div class="product-image">
+                    <a href="#" class="image">
+                        <img class="pic-1" src="{{ asset('form5/furniture/Acrylic-Rack-Brochure-ZigZag.png') }}">
+                        <img class="pic-2" src="{{ asset('form5/furniture/Acrylic-Rack-Brochure-ZigZag.png') }}">
+                    </a>
+                    <ul class="social">
+                        <li><a href="{{ asset('form5/furniture/Acrylic-Rack-Brochure-ZigZag.png') }}"
+                                data-lightbox="image-gallery" data-title="Fish Bowl"><i class="fa fa-eye"></i></a></li>
+                        <li><a href="javascript:void(0);" class="add-to-cart" data-name="Fish Bowl" data-price="600000"
+                                data-tip="Add to wishlist"
+                                onclick="exhibitionCart('Black Rack Brochure ZigZag','Additional Furniture',600000,600000,1,'{{ asset('form5/furniture/Acrylic-Rack-Brochure-ZigZag.png') }}')"><i
+                                    class="fa fa-shopping-cart"></i></a></li>
+                    </ul>
+                </div>
+                <div class="product-content">
+                    <h3 class="title"><a href="#">Black Rack Brochure ZigZag</a></h3>
                     <div class="price">IDR 600.000</div>
                 </div>
             </div>
@@ -51,46 +73,26 @@
             <div class="product-grid">
                 <div class="product-image">
                     <a href="#" class="image">
-                        <img class="pic-1" src="{{ asset('form5/furniture/Black-Rack-Brochure-ZigZag.png') }}">
-                        <img class="pic-2" src="{{ asset('form5/furniture/Black-Rack-Brochure-ZigZag.png') }}">
+                        <img class="pic-1" src="{{ asset('form5/furniture/Side-Chair.png') }}">
+                        <img class="pic-2" src="{{ asset('form5/furniture/Side-Chair.png') }}">
                     </a>
                     <ul class="social">
-                        <li><a href="{{ asset('form5/furniture/Black-Rack-Brochure-ZigZag.png') }}"
-                                data-lightbox="image-gallery" data-title="Fish Bowl"><i class="fa fa-eye"></i></a></li>
-                        <li><a href="javascript:void(0);" class="add-to-cart" data-name="Fish Bowl" data-price="600000"
+                        <li><a href="{{ asset('form5/furniture/Side-Chair.png') }}" data-lightbox="image-gallery"
+                                data-title="Side Chair"><i class="fa fa-eye"></i></a>
+                        </li>
+                        <li><a href="javascript:void(0);" class="add-to-cart" data-name="Side Chair" data-price="400000"
                                 data-tip="Add to wishlist"
-                                onclick="exhibitionCart('Black Rack Brochure ZigZag','Additional Furniture',600000,600000,1,'{{ asset('form5/furniture/Black-Rack-Brochure-ZigZag.png') }}')"><i
+                                onclick="exhibitionCart('Side Chair','Additional Furniture',400000,400000,1,'{{ asset('form5/furniture/Side-Chair.png') }}')"><i
                                     class="fa fa-shopping-cart"></i></a></li>
                     </ul>
                 </div>
                 <div class="product-content">
-                    <h3 class="title"><a href="#">Black Rack Brochure ZigZag</a></h3>
-                    <div class="price">IDR 600.000</div>
+                    <h3 class="title"><a href="#">Side Chair</a></h3>
+                    <div class="price">IDR 400.000</div>
                 </div>
             </div>
         </div>
-        <div class="col-md-3 col-sm-6">
-            <div class="product-grid">
-                <div class="product-image">
-                    <a href="#" class="image">
-                        <img class="pic-1" src="{{ asset('form5/furniture/Black-Puff-Chair.png') }}">
-                        <img class="pic-2" src="{{ asset('form5/furniture/Black-Puff-Chair.png') }}">
-                    </a>
-                    <ul class="social">
-                        <li><a href="{{ asset('form5/furniture/Black-Puff-Chair.png') }}" data-lightbox="image-gallery"
-                                data-title="Fish Bowl"><i class="fa fa-eye"></i></a></li>
-                        <li><a href="javascript:void(0);" class="add-to-cart" data-name="Fish Bowl" data-price="300000"
-                                data-tip="Add to wishlist"
-                                onclick="exhibitionCart('Black Puff Chair','Additional Furniture',300000,300000,1,'{{ asset('form5/furniture/Black-Puff-Chair.png') }}')"><i
-                                    class="fa fa-shopping-cart"></i></a></li>
-                    </ul>
-                </div>
-                <div class="product-content">
-                    <h3 class="title"><a href="#">Black Puff Chair</a></h3>
-                    <div class="price">IDR 300.000</div>
-                </div>
-            </div>
-        </div>
+
         <div class="col-md-3 col-sm-6">
             <div class="product-grid">
                 <div class="product-image">
@@ -114,29 +116,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-3 col-sm-6">
-            <div class="product-grid">
-                <div class="product-image">
-                    <a href="#" class="image">
-                        <img class="pic-1" src="{{ asset('form5/furniture/Fish-Bowl.png') }}">
-                        <img class="pic-2" src="{{ asset('form5/furniture/Fish-Bowl.png') }}">
-                    </a>
-                    <ul class="social">
-                        <li><a href="{{ asset('form5/furniture/Fish-Bowl.png') }}" data-lightbox="image-gallery"
-                                data-title="Fish Bowl"><i class="fa fa-eye"></i></a>
-                        </li>
-                        <li><a href="javascript:void(0);" class="add-to-cart" data-name="Fish Bowl"
-                                data-price="225000" data-tip="Add to wishlist"
-                                onclick="exhibitionCart('Fish Bowl','Additional Furniture',225000,225000,1,'{{ asset('form5/furniture/Fish-Bowl.png') }}')"><i
-                                    class="fa fa-shopping-cart"></i></a></li>
-                    </ul>
-                </div>
-                <div class="product-content">
-                    <h3 class="title"><a href="#">Fish Bowl</a></h3>
-                    <div class="price">IDR 225.000</div>
-                </div>
-            </div>
-        </div>
+
         <div class="col-md-3 col-sm-6">
             <div class="product-grid">
                 <div class="product-image">
@@ -160,6 +140,7 @@
                 </div>
             </div>
         </div>
+
         <div class="col-md-3 col-sm-6">
             <div class="product-grid">
                 <div class="product-image">
@@ -205,6 +186,29 @@
                 <div class="product-content">
                     <h3 class="title"><a href="#">High Glass Round Table</a></h3>
                     <div class="price">IDR 775.000</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="product-grid">
+                <div class="product-image">
+                    <a href="#" class="image">
+                        <img class="pic-1" src="{{ asset('form5/furniture/Fish-Bowl.png') }}">
+                        <img class="pic-2" src="{{ asset('form5/furniture/Fish-Bowl.png') }}">
+                    </a>
+                    <ul class="social">
+                        <li><a href="{{ asset('form5/furniture/Fish-Bowl.png') }}" data-lightbox="image-gallery"
+                                data-title="Fish Bowl"><i class="fa fa-eye"></i></a>
+                        </li>
+                        <li><a href="javascript:void(0);" class="add-to-cart" data-name="Fish Bowl"
+                                data-price="225000" data-tip="Add to wishlist"
+                                onclick="exhibitionCart('Fish Bowl','Additional Furniture',225000,225000,1,'{{ asset('form5/furniture/Fish-Bowl.png') }}')"><i
+                                    class="fa fa-shopping-cart"></i></a></li>
+                    </ul>
+                </div>
+                <div class="product-content">
+                    <h3 class="title"><a href="#">Fish Bowl</a></h3>
+                    <div class="price">IDR 225.000</div>
                 </div>
             </div>
         </div>
@@ -260,22 +264,22 @@
             <div class="product-grid">
                 <div class="product-image">
                     <a href="#" class="image">
-                        <img class="pic-1" src="{{ asset('form5/furniture/Side-Chair.png') }}">
-                        <img class="pic-2" src="{{ asset('form5/furniture/Side-Chair.png') }}">
+                        <img class="pic-1" src="{{ asset('form5/furniture/Black-Puff-Chair.png') }}">
+                        <img class="pic-2" src="{{ asset('form5/furniture/Black-Puff-Chair.png') }}">
                     </a>
                     <ul class="social">
-                        <li><a href="{{ asset('form5/furniture/Side-Chair.png') }}" data-lightbox="image-gallery"
-                                data-title="Side Chair"><i class="fa fa-eye"></i></a>
+                        <li><a href="{{ asset('form5/furniture/Black-Puff-Chair.png') }}"
+                                data-lightbox="image-gallery" data-title="Fish Bowl"><i class="fa fa-eye"></i></a>
                         </li>
-                        <li><a href="javascript:void(0);" class="add-to-cart" data-name="Side Chair"
-                                data-price="400000" data-tip="Add to wishlist"
-                                onclick="exhibitionCart('Side Chair','Additional Furniture',400000,400000,1,'{{ asset('form5/furniture/Side-Chair.png') }}')"><i
+                        <li><a href="javascript:void(0);" class="add-to-cart" data-name="Fish Bowl"
+                                data-price="300000" data-tip="Add to wishlist"
+                                onclick="exhibitionCart('Black Puff Chair','Additional Furniture',300000,300000,1,'{{ asset('form5/furniture/Black-Puff-Chair.png') }}')"><i
                                     class="fa fa-shopping-cart"></i></a></li>
                     </ul>
                 </div>
                 <div class="product-content">
-                    <h3 class="title"><a href="#">Side Chair</a></h3>
-                    <div class="price">IDR 400.000</div>
+                    <h3 class="title"><a href="#">Black Puff Chair</a></h3>
+                    <div class="price">IDR 300.000</div>
                 </div>
             </div>
         </div>
