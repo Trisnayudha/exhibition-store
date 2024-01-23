@@ -95,7 +95,7 @@
         <table class="header-table">
             <tr>
                 <td>
-                    <img src="https://indonesiaminer.com/vendor/front/images/indominer-icon.png" alt="Exabytes" />
+                    <img src="{{ asset('logo.png') }}" alt="Exabytes" />
                 </td>
                 <td class="company-info">
                     PT MITRA KARYA INDONESIA<br>
