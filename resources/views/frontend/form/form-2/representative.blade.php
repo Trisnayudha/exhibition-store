@@ -10,9 +10,9 @@
         <thead>
             <tr>
                 <th>No</th>
-                <th>Nama</th>
+                <th>Name</th>
                 <th>Job Title</th>
-                <th>Foto</th>
+                <th>Image</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -36,7 +36,7 @@
             <div class="modal-body">
                 <!-- Input fields for representative data -->
                 <div class="form-group">
-                    <label for="inputNama">Nama</label>
+                    <label for="inputNama">Name</label>
                     <input type="text" class="form-control" id="representative_name">
                 </div>
                 <div class="form-group">
@@ -56,7 +56,7 @@
                     <input type="text" class="form-control" id="representative_linkedin">
                 </div>
                 <div class="form-group">
-                    <label for="inputFoto">Foto</label>
+                    <label for="inputFoto">Image</label>
                     <input type="file" class="form-control" id="representative_image">
                 </div>
 
@@ -83,7 +83,7 @@
             <div class="modal-body">
                 <!-- Input fields for editing representative data -->
                 <div class="form-group">
-                    <label for="editNama">Nama</label>
+                    <label for="editNama">Name</label>
                     <input type="text" class="form-control" id="representative_edit_name">
                     <input type="hidden" class="form-control" id="representative_id">
                 </div>
@@ -104,7 +104,7 @@
                     <input type="text" class="form-control" id="representative_edit_linkedin">
                 </div>
                 <div class="form-group">
-                    <label for="editFoto">Foto</label>
+                    <label for="editFoto">Image</label>
                     <input type="file" class="form-control" id="representative_edit_image">
                 </div>
             </div>
@@ -217,12 +217,12 @@
 
         // Konfirmasi pengguna sebelum menghapus
         Swal.fire({
-            title: 'Apakah Anda yakin?',
-            text: 'Data representative akan dihapus!',
+            title: 'Are you sure you want to delete this?',
+            text: 'This action cannot be undone',
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonText: 'Ya, hapus!',
-            cancelButtonText: 'Batal'
+            confirmButtonText: 'Delete',
+            cancelButtonText: 'Cancel'
         }).then((result) => {
             if (result.isConfirmed) {
                 // Kirim permintaan penghapusan ke server menggunakan Ajax
@@ -405,7 +405,7 @@
                         '<button class="btn btn-info" onclick="editRepresentative(' + representative.id +
                         ')">Edit</button> ' +
                         '<button class="btn btn-danger" onclick="hapusRepresentative(' + representative.id +
-                        ')">Hapus</button>' +
+                        ')">Delete</button>' +
                         '</td>' +
                         '</tr>';
 

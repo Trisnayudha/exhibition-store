@@ -51,7 +51,7 @@
                     <input type="date" name="project_date" id="project_date" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label for="project_desc">Deskripsi</label>
+                    <label for="project_desc">Description</label>
                     <textarea class="form-control ckeditor" id="project_desc"></textarea>
                 </div>
                 <div class="form-group">
@@ -102,7 +102,7 @@
                     <input type="date" name="project_edit_date" id="project_edit_date" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label for="project_edit_desc">Deskripsi</label>
+                    <label for="project_edit_desc">Description</label>
                     <textarea class="form-control ckeditor" id="project_edit_desc"></textarea>
                 </div>
                 <div class="form-group">
@@ -229,12 +229,12 @@
 
         // Konfirmasi pengguna sebelum menghapus
         Swal.fire({
-            title: 'Apakah Anda yakin?',
-            text: 'Data product akan dihapus!',
+            title: 'Are you sure you want to delete this?',
+            text: 'This action cannot be undone',
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonText: 'Ya, hapus!',
-            cancelButtonText: 'Batal'
+            confirmButtonText: 'Delete',
+            cancelButtonText: 'Cancel'
         }).then((result) => {
             if (result.isConfirmed) {
                 // Kirim permintaan penghapusan ke server menggunakan Ajax
@@ -341,7 +341,7 @@
                         '<button class="btn btn-info" onclick="editProject(' + project.id +
                         ')">Edit</button> ' +
                         '<button class="btn btn-danger" onclick="hapusProject(' + project.id +
-                        ')">Hapus</button>' +
+                        ')">Delete</button>' +
                         '</td>' +
                         '</tr>';
 

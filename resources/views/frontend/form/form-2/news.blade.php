@@ -51,7 +51,7 @@
                     <input type="date" name="news_date" id="news_date" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label for="news_desc">Deskripsi</label>
+                    <label for="news_desc">Description</label>
                     <textarea class="form-control ckeditor" id="news_desc"></textarea>
                 </div>
                 <div class="form-group">
@@ -229,12 +229,12 @@
 
         // Konfirmasi pengguna sebelum menghapus
         Swal.fire({
-            title: 'Apakah Anda yakin?',
-            text: 'Data product akan dihapus!',
+            title: 'Are you sure you want to delete this?',
+            text: 'This action cannot be undone',
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonText: 'Ya, hapus!',
-            cancelButtonText: 'Batal'
+            confirmButtonText: 'Delete',
+            cancelButtonText: 'Cancel'
         }).then((result) => {
             if (result.isConfirmed) {
                 // Kirim permintaan penghapusan ke server menggunakan Ajax
@@ -341,7 +341,7 @@
                         '<button class="btn btn-info" onclick="editNews(' + news.id +
                         ')">Edit</button> ' +
                         '<button class="btn btn-danger" onclick="hapusNews(' + news.id +
-                        ')">Hapus</button>' +
+                        ')">Delete</button>' +
                         '</td>' +
                         '</tr>';
 

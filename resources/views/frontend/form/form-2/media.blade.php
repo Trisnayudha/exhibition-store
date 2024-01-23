@@ -57,7 +57,7 @@
                     <input type="text" class="form-control" id="media_location">
                 </div>
                 <div class="form-group">
-                    <label for="media_desc">Deskripsi</label>
+                    <label for="media_desc">Description</label>
                     <textarea class="form-control ckeditor" id="media_desc"></textarea>
                 </div>
                 <div class="form-group">
@@ -118,7 +118,7 @@
                     <input type="text" class="form-control" id="media_edit_location">
                 </div>
                 <div class="form-group">
-                    <label for="media_edit_desc">Deskripsi</label>
+                    <label for="media_edit_desc">Description</label>
                     <textarea class="form-control ckeditor" id="media_edit_desc"></textarea>
                 </div>
                 <div class="form-group">
@@ -254,12 +254,12 @@
 
         // Konfirmasi pengguna sebelum menghapus
         Swal.fire({
-            title: 'Apakah Anda yakin?',
-            text: 'Data media akan dihapus!',
+            title: 'Are you sure you want to delete this?',
+            text: 'This action cannot be undone',
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonText: 'Ya, hapus!',
-            cancelButtonText: 'Batal'
+            confirmButtonText: 'Delete',
+            cancelButtonText: 'Cancel'
         }).then((result) => {
             if (result.isConfirmed) {
                 // Kirim permintaan penghapusan ke server menggunakan Ajax
@@ -368,7 +368,7 @@
                         '<button class="btn btn-info" onclick="editMedia(' + media.id +
                         ')">Edit</button> ' +
                         '<button class="btn btn-danger" onclick="hapusMedia(' + media.id +
-                        ')">Hapus</button>' +
+                        ')">Delete</button>' +
                         '</td>' +
                         '</tr>';
 

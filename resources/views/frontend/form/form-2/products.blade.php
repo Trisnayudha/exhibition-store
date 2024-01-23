@@ -51,7 +51,7 @@
                     <input type="text" name="product_video" id="product_video" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label for="product_document_name">Docoment Name</label>
+                    <label for="product_document_name">Document Name</label>
                     <input type="text" name="product_document_name" id="product_document_name" class="form-control">
                 </div>
                 <div class="form-group">
@@ -59,7 +59,7 @@
                     <input type="file" class="form-control" id="product_file" accept=".pdf">
                 </div>
                 <div class="form-group">
-                    <label for="product_desc">Deskripsi</label>
+                    <label for="product_desc">Description</label>
                     <textarea class="form-control ckeditor" id="product_desc"></textarea>
                 </div>
                 <div class="form-group">
@@ -119,7 +119,7 @@
                     <input type="file" class="form-control" id="product_edit_file" accept=".pdf">
                 </div>
                 <div class="form-group">
-                    <label for="product_edit_desc">Deskripsi</label>
+                    <label for="product_edit_desc">Description</label>
                     <textarea class="form-control ckeditor" id="product_edit_desc"></textarea>
                 </div>
                 <div class="form-group">
@@ -263,12 +263,12 @@
 
         // Konfirmasi pengguna sebelum menghapus
         Swal.fire({
-            title: 'Apakah Anda yakin?',
-            text: 'Data product akan dihapus!',
+            title: 'Are you sure you want to delete this?',
+            text: 'This action cannot be undone',
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonText: 'Ya, hapus!',
-            cancelButtonText: 'Batal'
+            confirmButtonText: 'Delete',
+            cancelButtonText: 'Cancel'
         }).then((result) => {
             if (result.isConfirmed) {
                 // Kirim permintaan penghapusan ke server menggunakan Ajax
@@ -397,7 +397,7 @@
                         '<button class="btn btn-info" onclick="editProduct(' + product.id +
                         ')">Edit</button> ' +
                         '<button class="btn btn-danger" onclick="hapusProduct(' + product.id +
-                        ')">Hapus</button>' +
+                        ')">Delete</button>' +
                         '</td>' +
                         '</tr>';
 
