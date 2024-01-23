@@ -73,7 +73,7 @@
             <!-- Modal Footer -->
             <div class="modal-footer">
                 <button type="button" class="btn btn-success" onclick="simpanMedia()">Add</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
             </div>
 
         </div>
@@ -134,7 +134,7 @@
             <!-- Modal Footer -->
             <div class="modal-footer">
                 <button type="button" class="btn btn-success" onclick="updateMedia()">Update</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
             </div>
 
         </div>
