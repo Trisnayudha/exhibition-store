@@ -14,7 +14,7 @@
                         </li>
                         <li><a href="javascript:void(0);" class="add-to-cart" data-name="Rack Brochure Zigzag"
                                 data-price="600000" data-tip="Add to wishlist"
-                                onclick="exhibitionCart('Acrylic-Rack-Brochure-ZigZag','Additional Furniture',600000,600000,1,'{{ asset('form5/furniture/Acrylic-Rack-Brochure-ZigZag.pngg') }}')"><i
+                                onclick="exhibitionCart('Acrylic-Rack-Brochure-ZigZag','Additional Furniture',600000,600000,1,'{{ asset('form5/furniture/Acrylic-Rack-Brochure-ZigZag.png') }}')"><i
                                     class="fa fa-shopping-cart"></i></a>
                         </li>
                     </ul>
