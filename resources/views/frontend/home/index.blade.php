@@ -7,24 +7,21 @@
                 <img src="https://indonesiaminer.com/img/topbannerwestin.png" alt="" width="100%"
                     style="border-radius:20px" height="0%" class="mb-2">
                 <div class="alert alert-primary" role="alert">
-                    <h4 class="alert-heading">Welcome!</h4>
-                    <p>Indonesia Miner Portal is a dedicated platform for exhibitors and sponsors to input information
-                        related
-                        to the operational requirements of Indonesia Miner 2024. This portal enables you to input
-                        company
-                        data,
-                        promotional materials, event passes, and exhibition-related data. Furthermore, the portal also
-                        allows
-                        for the purchase of additional Event Passes and the rental of Exhibition items.</p>
+                    <h4 class="alert-heading">Welcome to Indonesia Miner Conference & Exhibition 2024 - Sponsor & Exhibitor
+                        Portal!</h4>
+                    <p>This portal is a dedicated platform for sponsors and exhibitors to submit information related to the
+                        operational requirements of Indonesia Miner Conference & Exhibition 2024. This portal enables you to
+                        submit company information, promotional materials, event passes, and exhibition-related information.
+                        Furthermore, the portal also allows for the purchase of additional event passes with special price
+                        and the rental of exhibition items.</p>
+                    <p>Please note that each form has a submission deadline. We kindly ask you to fill out the form before
+                        the deadline. In case there are urgent conditions that require you to submit afterwards, please
+                        confirm beforehand with our operational team. Late submission may cause delays for our team in
+                        processing your request.</p>
+                    <p>Once again, thank you for your support and understanding. We look forward to working with you.</p>
                     <hr>
-                    <p class="mb-0">Please take note that the deadline for submitting this form is one month from the time
-                        the portal
-                        link is
-                        provided. Therefore, we kindly request that you complete all necessary forms well in advance of
-                        the
-                        specified deadline. If you intend to complete it after the deadline, kindly request confirmation
-                        in
-                        advance from the Operational Team of Indonesia Miner 2024.</p>
+                    <p class="mb-0">The Operational Team</p>
+                    <p>Indonesia Miner Conference & Exhibition 2024</p>
                 </div>
                 <h1>Form Progress</h1>
                 <div class="row justify-content-center"> <!-- Menyelaraskan ke tengah -->

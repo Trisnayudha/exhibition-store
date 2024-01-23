@@ -709,13 +709,9 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="alert alert-info alert-dismissible fade show" role="alert">
-                        <p>Please take note that all items in your cart will be included in one invoice.
-                        </p>
-                        <p>
-                            If you require separate invoices based on specific items, please proceed with separate
-                            checkouts.
-                        </p>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <b>Please be informed that items checked out at one time will be issued in one invoice. If you
+                            require separate invoices with specific items, please check out separately.</b>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -742,8 +738,8 @@
     <script>
         function confirmCheckout() {
             Swal.fire({
-                title: 'Are you sure?',
-                text: 'Are you sure you want to checkout all items in your cart?',
+                // title: 'Are you sure?',
+                title: 'Are you sure you want to checkout all items in your cart?',
                 icon: 'question',
                 showCancelButton: true,
                 confirmButtonText: 'Yes, Checkout',

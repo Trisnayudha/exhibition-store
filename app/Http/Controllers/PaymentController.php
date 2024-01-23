@@ -63,6 +63,7 @@ class PaymentController extends Controller
         $data['items'] = ExhibitionCartList::join('exhibition_payment', 'exhibition_payment.id', 'exhibition_cart_list.payment_id')
             ->where('company_id', $findCompany->id)->where('exhibition_payment.code_payment', $code_payment)->get();
         $data['company'] = Company::where('id', $findCompany->id)->first();
+        $data['code_payment'] = $code_payment;
         $pdf = Pdf::loadView('frontend.invoice.download-summary', $data);
         $email = $data['company']->pic_email ?? $data['company']->email_alternate;
         Mail::send('email.payment', $data, function ($message) use ($pdf, $code_payment, $email) {
@@ -82,6 +83,7 @@ class PaymentController extends Controller
         $id = auth()->id();
         $data['items'] = ExhibitionCartList::where('company_id', $id)->whereNull('payment_id')->get();
         $data['company'] = Company::where('id', $id)->first();
+        $data['code_payment'] = $code_payment;
         $savePayment = new ExhibitionPayment();
         $savePayment->code_payment = $code_payment;
         $savePayment->status = 'draft';

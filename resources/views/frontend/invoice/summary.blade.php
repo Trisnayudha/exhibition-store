@@ -114,7 +114,7 @@
 
                             <div class="mt-2">
                                 <h4>Actions</h4>
-                                <a href="{{ url('dl/invoice?code_payment=' . $items[0]->code_payment) }}"
+                                <a href="{{ url('dl/invoice?code_payment=' . $items[0]->code_payment . '&company_id=' . $items[0]->company_id) }}"
                                     class="btn btn-light btn-block">Download</a>
                             </div>
                         </div>

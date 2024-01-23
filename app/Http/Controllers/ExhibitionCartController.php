@@ -48,7 +48,7 @@ class ExhibitionCartController extends Controller
     {
         $company_id = auth()->id();
 
-        $save = ExhibitionCartList::where('name_product', $request->name_product)->where('company_id', $company_id)->first();
+        $save = ExhibitionCartList::where('name_product', $request->name_product)->where('company_id', $company_id)->whereNull('payment_id')->first();
 
         if (empty($save)) {
             $save = new ExhibitionCartList();

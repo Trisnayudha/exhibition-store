@@ -35,12 +35,24 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php
+                                $totalDue = 0;
+                                $countPPN = 0.11; // 11% tax as a decimal
+                                $npwp = $company->npwp;
+                                $tax = $npwp ? $countPPN : 0; // Tax is 11% if NPWP exists, else 0
+                                
+                                ?>
                                 @foreach ($list as $item)
+                                    <?php
+                                    $totalDue = $item->total_price;
+                                    $totalPPN = $totalDue * $tax;
+                                    $totalDueWithTax = $totalDue + $totalPPN;
+                                    ?>
                                     <tr>
                                         <td>{{ $item->code_payment }}</td>
                                         <td> {{ $item->invoice_date ? $item->invoice_date : '-' }} </td>
                                         <td> {{ $item->invoice_due_date ? $item->invoice_due_date : '-' }} </td>
-                                        <td>Rp. {{ number_format($item->total_price, 2, ',', '.') }}</td>
+                                        <td>Rp. {{ number_format($totalDueWithTax, 2, ',', '.') }}</td>
                                         <td>
                                             @if ($item->status == 'draft')
                                                 <span class="badge badge-pill badge-secondary"> Invoice on Process</span>
@@ -56,8 +68,10 @@
                                                 <form action="{{ url('dl/invoice') }}">
                                                     <input type="hidden" name="code_payment"
                                                         value="{{ $item->code_payment }}">
+                                                    <input type="hidden" name="company_id" value="{{ $company->id }}">
                                                     <button class="btn btn-warning"
-                                                        {{ $item->status === 'draft' ? 'disabled' : '' }}>Download </button>
+                                                        {{ $item->status === 'draft' ? 'disabled' : '' }}>Download
+                                                    </button>
                                                 </form>
                                                 <form action="{{ url('invoice/detail') }}">
                                                     <input type="hidden" name="code_payment"
