@@ -58,20 +58,20 @@ class ProductsController extends Controller
             $media->image = $fullPath;
         }
 
-        // $file = $request->file('file');
-        // if ($request->hasFile('file')) {
-        //     // Konversi file PDF ke base64
-        //     $base64File = base64_encode(file_get_contents($file->getRealPath()));
+        $file = $request->file('file');
+        if ($request->hasFile('file')) {
+            // Konversi file PDF ke base64
+            $base64File = base64_encode(file_get_contents($file->getRealPath()));
 
-        //     // Kirim file base64 ke API
-        //     $responseFile = Http::post('https://indonesiaminer.com/api/upload-file/company', [
-        //         'file' => $base64File,
-        //     ]);
+            // Kirim file base64 ke API
+            $responseFile = Http::post('https://indonesiaminer.com/api/upload-file/company', [
+                'file' => $base64File,
+            ]);
 
-        //     // Ambil path URL dari respons
-        //     $fullPathFile = $responseFile['file'];
-        //     $media->file = $fullPathFile;
-        // }
+            // Ambil path URL dari respons
+            $fullPathFile = $responseFile['file'];
+            $media->file = $fullPathFile;
+        }
 
         // Pengaturan tambahan
         $media->company_id = auth()->id(); // Misalnya, menyimpan ID perusahaan dari pengguna yang terautentikasi
