@@ -70,7 +70,7 @@ class ExhibitionController extends Controller
 
         if (request('back-doff-basic') != 0) {
             $cart = new ExhibitionCartList();
-            $cart->name_product = "BACK - Doff Laminated Indoor Vinyl Sticker 100x250cm + Polyfoam"; // Ubah sesuai dengan nama produk yang sesuai
+            $cart->name_product = request('back-doof-product-basic'); // Ubah sesuai dengan nama produk yang sesuai
             $cart->quantity = request('back-doff-basic');
             $cart->section_product = request('back-doof-section-basic');
             $cart->price = request('back-doof-price-basic');
@@ -82,7 +82,7 @@ class ExhibitionController extends Controller
 
         if (request('side-doff-basic') != 0) {
             $cart = new ExhibitionCartList(); // Buat instance baru jika nilai side-doff-basic tidak 0
-            $cart->name_product = "SIDE - Doff Laminated Indoor Vinyl Sticker 100x250cm + Polyfoam"; // Ubah sesuai dengan nama produk yang sesuai
+            $cart->name_product = request('side-doof-product-basic'); // Ubah sesuai dengan nama produk yang sesuai
             $cart->quantity = request('side-doff-basic');
             $cart->section_product = request('side-doof-section-basic');
             $cart->price = request('side-doof-price-basic');
@@ -94,7 +94,7 @@ class ExhibitionController extends Controller
 
         if (request('table-basic') != 0) {
             $cart = new ExhibitionCartList(); // Buat instance baru jika nilai table-basic tidak 0
-            $cart->name_product = "TABLE - Doff Laminated Indoor Vinyl Sticker 100x60cm + Polyfoam"; // Ubah sesuai dengan nama produk yang sesuai
+            $cart->name_product = request('table-doof-product-basic'); // Ubah sesuai dengan nama produk yang sesuai
             $cart->quantity = request('table-basic');
             $cart->section_product = request('table-doof-section-basic');
             $cart->price = request('table-doof-price-basic');
@@ -115,8 +115,9 @@ class ExhibitionController extends Controller
             if (request()->hasFile('file-basicA')) {
                 $file = request()->file('file-basicA');
                 $filename = time() . '_' . $file->getClientOriginalName();
-                $file->storeAs('uploads', $filename); // Simpan file ke direktori yang sesuai
-                $stickerA->file = $filename;
+                $file->storeAs('public/uploads', $filename); // Simpan file ke direktori yang sesuai
+                $db = 'storage/uploads/' . $filename;
+                $stickerA->file = $db;
             }
 
             $stickerA->save();
@@ -133,8 +134,9 @@ class ExhibitionController extends Controller
             if (request()->hasFile('file-basicB')) {
                 $file = request()->file('file-basicB');
                 $filename = time() . '_' . $file->getClientOriginalName();
-                $file->storeAs('uploads', $filename); // Simpan file ke direktori yang sesuai
-                $stickerB->file = $filename;
+                $file->storeAs('public/uploads', $filename); // Simpan file ke direktori yang sesuai
+                $db = 'storage/uploads/' . $filename;
+                $stickerB->file = $db;
             }
 
             $stickerB->save();
@@ -151,8 +153,9 @@ class ExhibitionController extends Controller
             if (request()->hasFile('file-basicC')) {
                 $file = request()->file('file-basicC');
                 $filename = time() . '_' . $file->getClientOriginalName();
-                $file->storeAs('uploads', $filename); // Simpan file ke direktori yang sesuai
-                $stickerC->file = $filename;
+                $file->storeAs('public/uploads', $filename); // Simpan file ke direktori yang sesuai
+                $db = 'storage/uploads/' . $filename;
+                $stickerC->file = $db;
             }
 
             $stickerC->save();
@@ -169,8 +172,9 @@ class ExhibitionController extends Controller
             if (request()->hasFile('file-basicD')) {
                 $file = request()->file('file-basicD');
                 $filename = time() . '_' . $file->getClientOriginalName();
-                $file->storeAs('uploads', $filename); // Simpan file ke direktori yang sesuai
-                $stickerD->file = $filename;
+                $file->storeAs('public/uploads', $filename); // Simpan file ke direktori yang sesuai
+                $db = 'storage/uploads/' . $filename;
+                $stickerD->file = $db;
             }
 
             $stickerD->save();
@@ -187,8 +191,104 @@ class ExhibitionController extends Controller
             if (request()->hasFile('file-basicE')) {
                 $file = request()->file('file-basicE');
                 $filename = time() . '_' . $file->getClientOriginalName();
-                $file->storeAs('uploads', $filename); // Simpan file ke direktori yang sesuai
-                $stickerE->file = $filename;
+                $file->storeAs('public/uploads', $filename); // Simpan file ke direktori yang sesuai
+                $db = 'storage/uploads/' . $filename;
+                $stickerE->file = $db;
+            }
+
+            $stickerE->save();
+        }
+
+        if (request('basicF') == "on") {
+            $stickerE = new ExhibitionSticker(); // Gantilah dengan model yang sesuai
+            $stickerE->printing_position = 'F';
+            $stickerE->section_sticker = 'basic';
+            $stickerE->note = request('note-basicF');
+            $stickerE->company_id = $company_id;
+
+            // Handle file upload for basicE
+            if (request()->hasFile('file-basicF')) {
+                $file = request()->file('file-basicF');
+                $filename = time() . '_' . $file->getClientOriginalName();
+                $file->storeAs('public/uploads', $filename); // Simpan file ke direktori yang sesuai
+                $db = 'storage/uploads/' . $filename;
+                $stickerE->file = $db;
+            }
+
+            $stickerE->save();
+        }
+
+        if (request('basicG') == "on") {
+            $stickerE = new ExhibitionSticker(); // Gantilah dengan model yang sesuai
+            $stickerE->printing_position = 'G';
+            $stickerE->section_sticker = 'basic';
+            $stickerE->note = request('note-basicG');
+            $stickerE->company_id = $company_id;
+
+            // Handle file upload for basicG
+            if (request()->hasFile('file-basicG')) {
+                $file = request()->file('file-basicG');
+                $filename = time() . '_' . $file->getClientOriginalName();
+                $file->storeAs('public/uploads', $filename); // Simpan file ke direktori yang sesuai
+                $db = 'storage/uploads/' . $filename;
+                $stickerE->file = $db;
+            }
+
+            $stickerE->save();
+        }
+
+        if (request('basicH') == "on") {
+            $stickerE = new ExhibitionSticker(); // Gantilah dengan model yang sesuai
+            $stickerE->printing_position = 'H';
+            $stickerE->section_sticker = 'basic';
+            $stickerE->note = request('note-basicH');
+            $stickerE->company_id = $company_id;
+
+            // Handle file upload for basicH
+            if (request()->hasFile('file-basicH')) {
+                $file = request()->file('file-basicH');
+                $filename = time() . '_' . $file->getClientOriginalName();
+                $file->storeAs('public/uploads', $filename); // Simpan file ke direktori yang sesuai
+                $db = 'storage/uploads/' . $filename;
+                $stickerE->file = $db;
+            }
+
+            $stickerE->save();
+        }
+
+        if (request('basicI') == "on") {
+            $stickerE = new ExhibitionSticker(); // Gantilah dengan model yang sesuai
+            $stickerE->printing_position = 'I';
+            $stickerE->section_sticker = 'basic';
+            $stickerE->note = request('note-basicI');
+            $stickerE->company_id = $company_id;
+
+            // Handle file upload for basicI
+            if (request()->hasFile('file-basicI')) {
+                $file = request()->file('file-basicI');
+                $filename = time() . '_' . $file->getClientOriginalName();
+                $file->storeAs('public/uploads', $filename); // Simpan file ke direktori yang sesuai
+                $db = 'storage/uploads/' . $filename;
+                $stickerE->file = $db;
+            }
+
+            $stickerE->save();
+        }
+
+        if (request('basicJ') == "on") {
+            $stickerE = new ExhibitionSticker(); // Gantilah dengan model yang sesuai
+            $stickerE->printing_position = 'E';
+            $stickerE->section_sticker = 'basic';
+            $stickerE->note = request('note-basicJ');
+            $stickerE->company_id = $company_id;
+
+            // Handle file upload for basicJ
+            if (request()->hasFile('file-basicJ')) {
+                $file = request()->file('file-basicJ');
+                $filename = time() . '_' . $file->getClientOriginalName();
+                $file->storeAs('public/uploads', $filename); // Simpan file ke direktori yang sesuai
+                $db = 'storage/uploads/' . $filename;
+                $stickerE->file = $db;
             }
 
             $stickerE->save();

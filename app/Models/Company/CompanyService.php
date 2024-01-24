@@ -82,6 +82,9 @@ class CompanyService extends Model
                 'company.pic_signature',
                 'company.exhibition_design',
                 'company.npwp',
+                'company.booth',
+                'company.inclusion',
+                'company.deadline',
 
                 'company.ms_class_company_minerals_id',
                 'ms_class_company_minerals.name as classify_minerals_name',
