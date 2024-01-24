@@ -3,14 +3,17 @@
 @section('content')
     <div class="col-sm-9">
         <div class="container-fluid">
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <p><b> Deadline: Please complete the required form by 23 March 2024.</b></p>
-                <p>If you submit or change the form after the deadline, make sure to confirm beforehand with our
-                    operational team. This is important to ensure we process the final details.</p>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
+            @if ($data->deadline != null)
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <p><b> Deadline: Please complete the required form by
+                            {{ \Carbon\Carbon::parse($data->deadline)->format('d F Y') }}.</b></p>
+                    <p>If you submit or change the form after the deadline, make sure to confirm beforehand with our
+                        operational team. This is important to ensure we process the final details.</p>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
             <div class="card mb-3">
                 <div class="card-body">
                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
