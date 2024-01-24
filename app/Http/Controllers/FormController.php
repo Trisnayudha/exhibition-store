@@ -72,7 +72,7 @@ class FormController extends Controller
         } elseif ($type == 'promotional') {
             $data['advertisement'] = $this->getAdvertisement();
             $data['log_advertisement'] = $this->getLogs('advertisement');
-
+            $data['data'] = $this->getDetail();
             $data['sosmed'] = $this->getSosmed();
             $data['log_sosmed'] = $this->getLogs('sosmed');
             // dd($data);
