@@ -201,17 +201,19 @@
                     </a>
                     <ul class="social">
                         <li><a href="{{ asset('form5/lighting/hp.jpg') }}" data-lightbox="image-gallery"
-                                data-title="Handphone"><i class="fa fa-eye"></i></a>
+                                data-title="Mobile Device for Badge Scanner"><i class="fa fa-eye"></i></a>
                         </li>
-                        <li><a href="javascript:void(0);" class="add-to-cart" data-name="Handphone "
-                                data-price="1525000" data-tip="Add to wishlist"
-                                onclick="exhibitionCart('Handphone','Additional Lighting',1525000,1525000,1,'{{ asset('form5/lighting/hp.jpg') }}')"><i
+                        <li><a href="javascript:void(0);" class="add-to-cart"
+                                data-name="Mobile Device for Badge Scanner" data-price="3669762"
+                                data-tip="Add to wishlist"
+                                onclick="exhibitionCart('Mobile Device for Badge Scanner','Additional Lighting',3669762,3669762,1,'{{ asset('form5/lighting/hp.jpg') }}')"><i
                                     class="fa fa-shopping-cart"></i></a></li>
                     </ul>
                 </div>
                 <div class="product-content">
-                    <h3 class="title"><a href="#">Handphone</a></h3>
-                    <div class="price">IDR 1.525.000</div>
+                    <h3 class="title"><a href="#">Mobile Device for Badge Scanner
+                        </a></h3>
+                    <div class="price">IDR 3.669.762</div>
                 </div>
             </div>
         </div>
@@ -224,17 +226,17 @@
                     </a>
                     <ul class="social">
                         <li><a href="{{ asset('form5/lighting/modem.jpg') }}" data-lightbox="image-gallery"
-                                data-title="Modem"><i class="fa fa-eye"></i></a>
+                                data-title="Mobile Wifi Rental"><i class="fa fa-eye"></i></a>
                         </li>
-                        <li><a href="javascript:void(0);" class="add-to-cart" data-name="Modem" data-price="1525000"
-                                data-tip="Add to wishlist"
-                                onclick="exhibitionCart('Modem','Additional Lighting',1525000,1525000,1,'{{ asset('form5/lighting/modem.jpg') }}')"><i
+                        <li><a href="javascript:void(0);" class="add-to-cart" data-name="Mobile Wifi Rental"
+                                data-price="1400110" data-tip="Add to wishlist"
+                                onclick="exhibitionCart('Mobile Wifi Rental','Additional Lighting',1400110,1400110,1,'{{ asset('form5/lighting/modem.jpg') }}')"><i
                                     class="fa fa-shopping-cart"></i></a></li>
                     </ul>
                 </div>
                 <div class="product-content">
-                    <h3 class="title"><a href="#">Modem</a></h3>
-                    <div class="price">IDR 1.525.000</div>
+                    <h3 class="title"><a href="#">Mobile Wifi Rental</a></h3>
+                    <div class="price">IDR 1.400.110</div>
                 </div>
             </div>
         </div>
