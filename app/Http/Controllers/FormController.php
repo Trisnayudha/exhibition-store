@@ -78,6 +78,7 @@ class FormController extends Controller
             // dd($data);
             return view('frontend.form.form-3.form-3', $data);
         } elseif ($type == 'event-pass') {
+            $data['data'] = $this->getDetail();
             $data['company_type'] = MsCompanyType::get();
             $data['phone_code'] = MsPhoneCode::get();
             $data['progress'] = $this->getEventPassProgress();
