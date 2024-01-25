@@ -279,6 +279,24 @@
                                     </div>
                                 </div>
                                 <div class="card">
+                                    <div class="card-header" id="headingFive">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link collapsed" data-toggle="collapse"
+                                                data-target="#collapseFive" aria-expanded="false"
+                                                aria-controls="collapseFive">
+                                                Additional Order - Other Additional Item
+                                            </button>
+                                        </h5>
+                                    </div>
+                                    <div id="collapseFive" class="collapse show" aria-labelledby="headingFive"
+                                        data-parent="#accordion">
+                                        <div class="card-body">
+                                            @include('frontend.form.form-5.other')
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
                                     <div class="card-header" id="headingFour">
                                         <h5 class="mb-0">
                                             <button class="btn btn-link collapsed" data-toggle="collapse"
