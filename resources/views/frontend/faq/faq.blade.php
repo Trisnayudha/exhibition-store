@@ -140,7 +140,7 @@
                                                 <h5 class="mb-0">
                                                     <button class="btn btn-link" data-toggle="collapse"
                                                         data-target="#cOne" aria-expanded="true" aria-controls="cOne">
-                                                        How can Isee the conference program?
+                                                        How can I see the conference program?
                                                     </button>
                                                 </h5>
                                             </div>
@@ -225,7 +225,7 @@
                                             <div id="eOne" class="collapse show" aria-labelledby="headingOne"
                                                 data-parent="#exhibition">
                                                 <div class="card-body">
-                                                    Please contact our exhibition team directly for the availability.
+                                                    Please contact our operational team directly for the availability.
                                                 </div>
                                             </div>
                                         </div>
@@ -290,7 +290,7 @@
                                                 <h5 class="mb-0">
                                                     <button class="btn btn-link collapsed" data-toggle="collapse"
                                                         data-target="#eFive" aria-expanded="false" aria-controls="eFive">
-                                                        Can I serve food and beveragesto visitor thatstop by the booth?
+                                                        Can I serve food and beveragesto visitor that stop by the booth?
                                                     </button>
                                                 </h5>
                                             </div>

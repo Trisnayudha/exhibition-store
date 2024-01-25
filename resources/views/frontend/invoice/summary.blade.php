@@ -6,14 +6,13 @@
             <div class="col-lg-8 mb-4">
                 <div class="card">
                     <div class="card-body">
-                        <h2 class="text-uppercase">Invoice #{{ $codePayment }}</h2>
+                        <h2>INVOICE #{{ $codePayment }}</h2>
                         <div class="row mb-4">
                             <div class="col-md-6">
                                 <p><strong>Pay To:</strong><br>
                                     PT MITRA KARYA INDONESIA<br>
                                     CIBIS NINE 11th floor Jl. Tb Simatupang No.2<br>
-                                    Jl. Tb Simatupang No.2 Cilandak Timur Jakarta 12560,
-                                    <br>
+                                    Jakarta 12560,
                                     Indonesia<br>
                                     P: (021) 8062 3711 E: billing@mmi-indonesia.co.id
                             </div>
@@ -49,11 +48,11 @@
                                 $countPPN = 0.11; // 11% tax as a decimal
                                 $npwp = $company->npwp;
                                 $tax = $npwp ? $countPPN : 0; // Tax is 11% if NPWP exists, else 0
-                                
+
                                 foreach ($items as $key) {
                                     $totalDue += $key->price * $key->quantity;
                                 }
-                                
+
                                 $totalPPN = $totalDue * $tax;
                                 $totalDueWithTax = $totalDue + $totalPPN;
                                 ?>

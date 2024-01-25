@@ -1,8 +1,8 @@
 <section id="delegate-pass">
     <h4>Additional Delegate Pass</h4>
     <div class="alert alert-info" role="alert">
-        We offer a flat rate *
-        <p>for <b>USD 400 / pax / 3 days</b> with the inclusion of access to: </p>
+        <p>We offer sponsor/ exhibitor a flat rate for purchasing additional delegate pass at USD 400/ pax/ 3 days,
+            including access to : </p>
         <ul>
             <li>Conference</li>
             <li>Exhibition</li>

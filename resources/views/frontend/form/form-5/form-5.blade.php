@@ -188,12 +188,8 @@
                                                             and
                                                             the
                                                             font size will be minimized accordingly</li>
-                                                        <li>The fascia name will follow based on this form. If it
-                                                            passes
-                                                            the
-                                                            deadline, any changes to the fascia will incur an
-                                                            additional
-                                                            fee
+                                                        <li>The fascia name will follow this form. After the deadline, any
+                                                            fascia changes will incur additional costs.
                                                         </li>
                                                     </ul>
                                                 </div>

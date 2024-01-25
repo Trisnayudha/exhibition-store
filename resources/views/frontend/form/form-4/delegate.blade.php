@@ -1,12 +1,17 @@
 <section id="delegate-pass">
     <h4>Delegate Pass</h4>
     <div class="alert alert-info alert-dismissible fade show" role="alert">
-        Please be informed that you are entitled to {{ $access['delegate_pass'] }} Delegate passes
-        <p>Access to: </p>
+        Based on your
+        {{ $data->level == 'exhibition' ? 'exhibiting' : ($data->level == 'sponsor' ? 'sponsorship' : 'exhibiting & sponsorship') }}
+        package, you are entitled to
+        {{ $access['exhibitor_pass'] }} delegate
+        {{ $access['exhibitor_pass'] >= 2 ? 'passes' : 'pass' }}.
+        This delegate {{ $access['exhibitor_pass'] >= 2 ? 'passes' : 'pass' }} includes:
         <ul>
             <li>Conference</li>
             <li>Exhibition</li>
             <li>Networking Functions</li>
+            <li>Online Networking Function</li>
         </ul>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>

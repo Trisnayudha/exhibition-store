@@ -1,7 +1,12 @@
 <section id="delegate-pass">
     <h4>Working Pass (Only If Needed)</h4>
     <div class="alert alert-info" role="alert">
-        Please be informed that you are entitled to {{ $access['working_pass'] }} Working passes
+        Based on your
+        {{ $data->level == 'exhibition' ? 'exhibiting' : ($data->level == 'sponsor' ? 'sponsorship' : 'exhibiting & sponsorship') }}
+        package, you are entitled to
+        {{ $access['working_pass'] }} working
+        {{ $access['working_pass'] >= 2 ? 'passes' : 'pass' }}.
+        This working {{ $access['working_pass'] >= 2 ? 'passes' : 'pass' }} includes:
         <ul>
             <li>Working pass is only valid during the setup and dismantling period</li>
             <li>Working pass can only be obtained by exchanging the ID Card (KTP/SIM/Passport)</li>

@@ -85,6 +85,7 @@ class CompanyService extends Model
                 'company.booth',
                 'company.inclusion',
                 'company.deadline',
+                'company.level',
 
                 'company.ms_class_company_minerals_id',
                 'ms_class_company_minerals.name as classify_minerals_name',

@@ -33,6 +33,11 @@
 
                         <div class="content-login mb-25">
                             <h4 class="title-gray">Personal Information</h4>
+                            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                                <p> <small>The following information details will be received inquiries / notification on
+                                        your
+                                        company profile in Indonesia Miner Directory. </small> </p>
+                            </div>
                         </div>
 
                         @if (session()->get('status'))

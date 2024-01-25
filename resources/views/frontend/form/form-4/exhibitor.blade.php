@@ -1,10 +1,15 @@
 <section id="exhibitor-pass">
     <h4>Exhibitor Pass</h4>
     <div class="alert alert-info" role="alert">
-        Please be informed that you are entitled to {{ $access['exhibitor_pass'] }} Exhibitor passes
-        <p>Access to</p>
+        Based on your
+        {{ $data->level == 'exhibition' ? 'exhibiting' : ($data->level == 'sponsor' ? 'sponsorship' : 'exhibiting & sponsorship') }}
+        package, you are entitled to
+        {{ $access['exhibitor_pass'] }} exhibitor
+        {{ $access['exhibitor_pass'] >= 2 ? 'passes' : 'pass' }}.
+        This exhibitor {{ $access['exhibitor_pass'] >= 2 ? 'passes' : 'pass' }} includes:
         <ul>
             <li>Exhibition</li>
+            <li>Networking Function (Coffee Break & Lunch)</li>
             <li>Online Networking Platform</li>
         </ul>
     </div>
@@ -147,7 +152,7 @@
                             <input type="checkbox" class="custom-control-input" id="upgradeExhibitor">
                             <label class="custom-control-label" for="upgradeExhibitor">Click to upgrade</label>
                             <p><small>Upgrade your Exhibitor Pass to
-                                    Delegate Pass for USD 280 / Pax / 3 Days with the inclusion access to: Conference,
+                                    Delegate Pass for USD 160 / Pax / 3 Days with the inclusion access to: Conference,
                                     Exhibition, Networking Functions</small></p>
                         </div>
                     </div>
@@ -275,7 +280,7 @@
                             <input type="checkbox" class="custom-control-input" id="upgradeEditExhibitor">
                             <label class="custom-control-label" for="upgradeEditExhibitor">Click to upgrade</label>
                             <p><small>Upgrade your Exhibitor Pass to
-                                    Delegate Pass for USD 280 / Pax / 3 Days with the inclusion access to: Conference,
+                                    Delegate Pass for USD 160 / Pax / 3 Days with the inclusion access to: Conference,
                                     Exhibition, Networking Functions</small></p>
                         </div>
                     </div>
