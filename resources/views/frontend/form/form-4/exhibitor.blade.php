@@ -19,7 +19,13 @@
         Please Note: Company, Name and Position will be printed on the badge
     </div>
     <div class="logger-exhibitor"></div>
-    <button class="btn btn-primary mb-2" onclick="tambahExhibitor()" id="exhibitorButton">Add</button>
+    <div class="d-flex">
+
+        <button class="btn btn-primary mb-2" onclick="tambahExhibitor()" id="exhibitorButton">Add</button>
+        <button class="btn btn-primary mb-2 ml-1" onclick="tambahAdditionalExhibitor()"
+            id="additionalExhibitorButton">Additional
+            Exhibitor</button>
+    </div>
     <div class="table-responsive">
         <table class="table">
             <thead>
@@ -160,6 +166,129 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-success" onclick="simpanExhibitor()">Add</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="additionalExhibitorModal" tabindex="-1" role="dialog"
+    aria-labelledby="addExhibitorModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addExhibitorModalLabel">Tambah Exhibitor</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Form inside the modal for input -->
+                <div class="alert alert-info alert-dismissible fade show" role="alert">
+                    <b>Additional Exhibitor</b>
+                    <p> For USD 280 / Pax / 3 Days with the inclusion access to: Exhibition, Networking Functions</p>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="additionalExhibitorForm">
+                    <div class="form-group">
+                        <label>Company Type <i class="text-danger" title="This field is required">*</i></label>
+                        <div class="row">
+                            <div class="col-lg-2 col-sm-12">
+                                <select name="company_typeExhibitor" id="additional_company_typeExhibitor"
+                                    class="form-control validation" placeholder="Company Type">
+                                    <option value="">Choose type</option>
+                                    @foreach ($company_type as $c => $crow)
+                                        <option @if ($crow->name == 'PT') selected @endif
+                                            {{ old('company_type') == $crow->id ? 'selected' : '' }}
+                                            value="{{ $crow->id }}">{{ $crow->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-lg-10 col-sm-12">
+                                <input type="text" name="companyExhibitor" id="additional_companyExhibitor"
+                                    class="form-control validation" placeholder="Input company name"
+                                    value="{{ old('companyExhibitor') }}" required>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Mobile Number <i class="text-danger" title="This field is required">*</i></label>
+                        <div class="row">
+                            <div class="col-lg-2 col-sm-12">
+                                <select name="phone_codeExhibitor" id="additional_phone_codeExhibitor"
+                                    class="form-control validation" placeholder="Phone code">
+                                    <option alue="">Phone code</option>
+                                    @foreach ($phone_code as $p => $prow)
+                                        <option @if ($prow->code == '62') selected @endif
+                                            {{ old('phone_code') == $prow->id ? 'selected' : '' }}
+                                            value="{{ $prow->id }}">+{{ $prow->code }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-lg-10 col-sm-12">
+                                <input type="number" name="phoneExhibitor" id="additional_phoneExhibitor"
+                                    class="form-control validation" placeholder="Input mobile number"
+                                    value="{{ old('phoneExhibitor') }}" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" id="additional_nameExhibitor"
+                                    name="nameExhibitor">
+                            </div>
+
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="text" class="form-control" id="additional_emailExhibitor"
+                                    name="emailExhibitor">
+                            </div>
+
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="position">Position</label>
+                                <input type="text" class="form-control" id="additional_positionExhibitor"
+                                    name="positionExhibitor">
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Address</label>
+                                <input type="text" class="form-control" id="additional_addressExhibitor"
+                                    name="addressExhibitor">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="city">City</label>
+                                <input type="text" class="form-control" id="additional_cityExhibitor"
+                                    name="cityExhibitor">
+                            </div>
+                            <div class="form-group">
+                                <label for="country">Country</label>
+                                <input type="text" class="form-control" id="additional_countryExhibitor"
+                                    name="countryExhibitor">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="postalCode">Postal Code</label>
+                                <input type="text" class="form-control" id="additional_postalCodeExhibitor"
+                                    name="postalCodeExhibitor">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" onclick="simpanAdditionalExhibitor()">Add</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>
@@ -414,6 +543,11 @@
         $('#exhibitorModal').modal('show');
     }
 
+    function tambahAdditionalExhibitor() {
+        $('#additionalExhibitorModal').modal('show');
+    }
+
+
     function hapusExhibitor(index) {
         var csrfToken = $('meta[name="csrf-token"]').attr('content');
 
@@ -529,6 +663,87 @@
 
     }
 
+    function simpanAdditionalExhibitor() {
+        var companyType = $('#additional_company_typeExhibitor').val();
+        var companyName = $('#additional_companyExhibitor').val();
+        var phoneCode = $('#additional_phone_codeExhibitor').val();
+        var phoneNumber = $('#additional_phoneExhibitor').val();
+        var name = $('#additional_nameExhibitor').val();
+        var email = $('#additional_emailExhibitor').val();
+        var position = $('#additional_positionExhibitor').val();
+        var address = $('#additional_addressExhibitor').val();
+        var city = $('#additional_cityExhibitor').val();
+        var country = $('#additional_countryExhibitor').val();
+        var postalCode = $('#additional_postalCodeExhibitor').val();
+        var upgradeExhibitor = true;
+        // Validasi input
+        if (!companyType || !companyName || !phoneCode || !phoneNumber || !name || !email || !position) {
+            // Menampilkan swal menggunakan Swal 2
+            Swal.fire({
+                title: 'Peringatan',
+                text: 'Harap isi semua kolom yang diperlukan!',
+                icon: 'warning',
+                confirmButtonText: 'OK'
+            });
+            return;
+        }
+
+        var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+        var formData = new FormData();
+        formData.append('company_type', companyType);
+        formData.append('company_name', companyName);
+        formData.append('phone_code', phoneCode);
+        formData.append('phone', phoneNumber);
+        formData.append('name', name);
+        formData.append('email', email);
+        formData.append('job_title', position);
+        formData.append('address', address);
+        formData.append('city', city);
+        formData.append('country', country);
+        formData.append('post_code', postalCode);
+        formData.append('upgrade_exhibitor', upgradeExhibitor);
+
+
+        // Kirim data ke server menggunakan Ajax dengan FormData
+        $.ajax({
+            type: 'POST',
+            url: '{{ url('/exhibitor/additional') }}',
+            data: formData,
+            processData: false,
+            contentType: false,
+            headers: {
+                'X-CSRF-TOKEN': csrfToken
+            },
+            success: function(response) {
+                loadExhibitor();
+                loadLogExhibitor();
+                $('#additionalExhibitorModal').modal('hide');
+
+                // Membersihkan inputan modal
+                $('#company_typeDelegate').val('');
+                $('#companyDelegate').val('');
+                $('#phone_codeDelegate').val('');
+                $('#phoneDelegate').val('');
+                $('#nameDelegate').val('');
+                $('#emailDelegate').val('');
+                $('#positionDelegate').val('');
+                $('#addressDelegate').val('');
+                $('#cityDelegate').val('');
+                $('#countryDelegate').val('');
+                $('#postalCodeDelegate').val('');
+                $('#upgradeExhibitor').prop('checked', false);
+                if (upgradeExhibitor == true) {
+                    delegateCart(response.payment, response.user);
+                }
+            },
+            error: function(error) {
+                console.error('Error:', error);
+            }
+        });
+
+    }
+
 
     function loadExhibitor() {
         // Clear existing table rows
@@ -573,9 +788,10 @@
                     $('#exhibitorButton').prop('disabled', true);
                     // You can also display a notification here
                     // Example: $('#notification').text('You cannot add more data.').show();
+                    $('#additionalExhibitorButton').css('display', 'block'); // Menampilkan elemen
                 } else {
                     $('#exhibitorButton').prop('disabled', false);
-
+                    $('#additionalExhibitorButton').css('display', 'none'); // Menyembunyikan elemen
                 }
             },
             error: function(error) {

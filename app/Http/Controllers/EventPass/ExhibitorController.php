@@ -114,10 +114,107 @@ class ExhibitorController extends Controller
         $payment->save();
 
         // $company_id = auth()->id();
-        $log = ExhibitionLog::where('section', 'delegate')->where('company_id', $company_id)->first();
+        $log = ExhibitionLog::where('section', 'exhibitor')->where('company_id', $company_id)->first();
         if ($log == null) {
             $log = new ExhibitionLog();
-            $log->section = 'delegate';
+            $log->section = 'exhibitor';
+            $log->company_id = $company_id;
+        }
+        $log->updated_at = Carbon::now();
+        $log->save();
+        return response()->json(['message' => 'Berhasil disimpan', 'payment' => $payment, 'user' => $user]);
+    }
+
+    public function storeAdditional(Request $request)
+    {
+        $company_id = auth()->id();
+        $name = $request->name;
+        $email = $request->email;
+        $company_type = $request->company_type;
+        $company_name = $request->company_name;
+        $phone_code = $request->phone_code;
+        $phone = $request->phone;
+        $job_title = $request->job_title;
+        $address = $request->address;
+        $city = $request->city;
+        $country = $request->country;
+        $post_code = $request->post_code;
+        $upgradeExhibitor = $request->input('upgrade_exhibitor') !== 'false';
+        // Menentukan nilai berdasarkan status upgradeExhibitor
+        if ($upgradeExhibitor) {
+            // Logika untuk kasus checkbox upgradeExhibitor tercentang (true)
+            $event_ticket = 72;
+            $type = 'Additional Exhibition Pass';
+            $package = 'Additional Exhibitor Pass';
+            $event_price = 4417070;
+            $event_price_dollar = 280;
+        } else {
+            // Logika untuk kasus checkbox upgradeExhibitor tidak tercentang (false)
+            $type = 'Exhibition Exhibitor';
+            $package = 'Exhibitor Pass';
+            $event_ticket = 69;
+            $event_price = 0;
+            $event_price_dollar = 0;
+        }
+        $total_price = $event_price;
+        $total_price_dollar = $event_price_dollar;
+        $code_payment = strtoupper(Str::random(7));
+        $events_id = 12;
+        $payment_method = 'Exhibition Portal';
+        $status = 'Waiting';
+        $aproval_quota_users = 0;
+        $company_id = $company_id;
+
+        $user = Users::where('email', $email)->first();
+        if (empty($user)) {
+            $user = new Users();
+            $user->email = $email;
+            $user->password = Hash::make('IM2024');
+        } else {
+            //catch user yang menginputkan email dengan data yang sama
+            $payment = Payment::where('company_id', $company_id)->where('users_id', $user->id)->first();
+            if ($payment) {
+                return response()->json(['message' => 'Please use different email']);
+            }
+        }
+        $user->name = $name;
+        $user->job_title = $job_title;
+        $user->ms_company_type_id = $company_type;
+        $user->company_name = $company_name;
+        $user->ms_phone_code_id = $phone_code;
+        $user->country = $country;
+        $user->phone = $phone;
+        $user->city = $city;
+        $user->post_code = $post_code;
+        $user->company_address = $address;
+        $user->is_register = 1;
+        $user->save();
+
+        $payment = Payment::where('company_id', $company_id)->where('users_id', $user->id)->first();
+        if (empty($payment)) {
+            $payment = new Payment();
+        }
+        $payment->type = $type;
+        $payment->code_payment = $code_payment;
+        $payment->users_id = $user->id;
+        $payment->events_id = $events_id;
+        $payment->package_id = $event_ticket;
+        $payment->package = $package;
+        $payment->payment_method = $payment_method;
+        $payment->status = $status;
+        $payment->aproval_quota_users = $aproval_quota_users;
+        $payment->company_id = $company_id;
+        $payment->event_price = $total_price;
+        $payment->event_price_dollar = $total_price_dollar;
+        $payment->total_price = $total_price;
+        $payment->total_price_dollar = $total_price_dollar;
+        $payment->save();
+
+        // $company_id = auth()->id();
+        $log = ExhibitionLog::where('section', 'exhibitor')->where('company_id', $company_id)->first();
+        if ($log == null) {
+            $log = new ExhibitionLog();
+            $log->section = 'exhibitor';
             $log->company_id = $company_id;
         }
         $log->updated_at = Carbon::now();
@@ -189,10 +286,10 @@ class ExhibitorController extends Controller
         }
         // Mengatur log
         $company_id = auth()->id();
-        $log = ExhibitionLog::where('section', 'delegate')->where('company_id', $company_id)->first();
+        $log = ExhibitionLog::where('section', 'exhibitor')->where('company_id', $company_id)->first();
         if ($log == null) {
             $log = new ExhibitionLog();
-            $log->section = 'delegate';
+            $log->section = 'exhibitor';
             $log->company_id = $company_id;
         }
         $log->updated_at = now();
@@ -212,10 +309,10 @@ class ExhibitorController extends Controller
         }
         $representative->delete();
         $company_id = auth()->id();
-        $log = ExhibitionLog::where('section', 'delegate')->where('company_id', $company_id)->first();
+        $log = ExhibitionLog::where('section', 'exhibitor')->where('company_id', $company_id)->first();
         if ($log == null) {
             $log = new ExhibitionLog();
-            $log->section = 'delegate';
+            $log->section = 'exhibitor';
             $log->company_id = $company_id;
         }
         $log->updated_at = Carbon::now();

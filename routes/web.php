@@ -82,6 +82,7 @@ Route::resource('project', ProjectController::class);
 Route::resource('news', NewsController::class);
 Route::resource('delegate', DelegateController::class);
 Route::resource('exhibitor', ExhibitorController::class);
+Route::post('exhibitor/additional', [ExhibitorController::class, 'storeAdditional']);
 Route::resource('working', WorkingController::class);
 Route::resource('mining', MiningController::class);
 Route::resource('additional', AdditionalController::class);
