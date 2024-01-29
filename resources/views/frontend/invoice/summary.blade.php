@@ -48,13 +48,15 @@
                                 $countPPN = 0.11; // 11% tax as a decimal
                                 $npwp = $company->npwp;
                                 $tax = $npwp ? $countPPN : 0; // Tax is 11% if NPWP exists, else 0
-
+                                
                                 foreach ($items as $key) {
                                     $totalDue += $key->price * $key->quantity;
                                 }
-
+                                
                                 $totalPPN = $totalDue * $tax;
                                 $totalDueWithTax = $totalDue + $totalPPN;
+                                $totalUSD = $totalDueWithTax / $usdCurrency; // Convert to USD
+                                $formattedTotalUSD = number_format($totalUSD, 2, ',', '.'); // Format as USD
                                 ?>
 
                                 <tr>
@@ -71,8 +73,14 @@
                                 @endif
                                 <tr>
                                     <th colspan="2" class="text-right">Total</th>
-                                    <th colspan="2" class="text-right">Rp.
-                                        {{ number_format($totalDueWithTax, 2, ',', '.') }}</th>
+                                    <th colspan="2" class="text-right">
+                                        <p>Rp. {{ number_format($totalDueWithTax, 2, ',', '.') }} </p>
+                                        <p>{{ $formattedTotalUSD }} USD</p>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th colspan="2"></th>
+                                    <th colspan="2" class="text-right"></th>
                                 </tr>
                             </tbody>
                         </table>
@@ -90,6 +98,7 @@
                                 <span class="badge badge-pill badge-danger">Unpaid</span>
                                 <h3>Total Due</h3>
                                 <h2>Rp. {{ number_format($totalDueWithTax, 2, ',', '.') }}</h2>
+                                <h2>{{ $formattedTotalUSD }} USD</h2> <!-- Format as USD -->
                             @elseif ($items[0]->status)
                                 <span class="badge badge-pill badge-light">PAID OFF</span>
                             @endif
@@ -103,12 +112,11 @@
                                     @csrf
                                     <input type="hidden" name="code_payment" value="{{ $codePayment }}">
                                     <input type="hidden" name="total_price" value="{{ $totalDue }}">
-                                    <button type="submit" class="btn btn-light btn-block">Request invoice/payment
-                                        link</button>
+                                    <button type="submit" class="btn btn-light btn-block loadpayment">Payment link</button>
                                 </form>
                             @elseif($items[0]->status == 'unpaid')
                                 <a href="{{ $items[0]->link }}" target="_blank"
-                                    class="btn btn-light btn-block mt-2">Pay</a>
+                                    class="btn btn-light btn-block mt-2">Payment link</a>
                             @endif
 
                             {{-- <div class="mt-2">
@@ -123,6 +131,12 @@
 
         </div>
     </div>
+    <div class="overlay" style="display: none;"></div>
+    <!-- Sisanya tetap sama -->
+    <div class="loading-wrapper" style="display: none;">
+        <img src="https://portal.indonesiaminer.com/logo.png" alt="Logo" class="logo">
+        <div class="loading"></div>
+    </div>
 @endsection
 
 @push('top')
@@ -135,5 +149,71 @@
             z-index: 1020;
             /* Ensure it stays on top of other elements */
         }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            /* Transparansi hitam */
+            z-index: 998;
+            /* Pastikan ini lebih rendah dari loader tapi cukup tinggi untuk menutupi konten lain */
+        }
+
+        .loading-wrapper {
+            position: fixed;
+            /* Mengubah dari relative menjadi fixed */
+            top: 50%;
+            /* Setengah dari tinggi layar */
+            left: 50%;
+            /* Setengah dari lebar layar */
+            transform: translate(-50%, -50%);
+            /* Menggeser elemen untuk benar-benar berada di tengah */
+            width: 100px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+            /* Memastikan loading muncul di atas semua elemen lain */
+        }
+
+        .logo {
+            width: 80%;
+            height: auto;
+            position: absolute;
+            z-index: 10;
+        }
+
+        .loading {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid blue;
+            border-radius: 50%;
+            width: 100%;
+            height: 100%;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
     </style>
+@endpush
+
+@push('bottom')
+    <script>
+        $(document).ready(function() {
+            $('.loadpayment').click(function() {
+                $('.loading-wrapper, .overlay').show(); // Menampilkan loader dan overlay
+            });
+        });
+    </script>
 @endpush

@@ -16,9 +16,9 @@ use Xendit\Invoice;
 
 class PaymentController extends Controller
 {
-    public function create(Request $request)
+    private function create($code_payment)
     {
-        $code_payment = $request->code_payment;
+        $code_payment = $code_payment;
         $findPayment = ExhibitionPayment::where('code_payment', $code_payment)->first();
         // dd($findPayment);
         $findCart = ExhibitionCartList::where('payment_id', $findPayment->id)->get();
@@ -73,7 +73,7 @@ class PaymentController extends Controller
             $message->subject('Payment Exhibition Portal Success Generate ' . $code_payment);
             $message->attachData($pdf->output(), $code_payment . '-' . time() . '.pdf');
         });
-        return view('frontend.invoice.success-create');
+        return redirect($linkPay);
     }
 
     public function payment(Request $request)
@@ -107,15 +107,15 @@ class PaymentController extends Controller
         $sendwa = new WhatsappApi();
         $sendwa->phone = '081398670330';
         // $sendwa->phone = '083829314436';
-        $sendwa->text = 'Hai Mba Riska. Company *' . $data['company']->company_name . '* sudah melakukan request invoice di Exhibition Portal,
+        $sendwa->text = 'Hai Mba Riska. Company *' . $data['company']->company_name . '* sudah melakukan klik invoice di Exhibition Portal,
 
-Mohon tolong dicheck kembali apakah sudah sesuai atau belum, Jika sudah klik link Generate Payment Link, jika belum sesuai mohon contact company tersebut
+Mohon tolong dicheck kembali apakah sudah sesuai atau belum
 
 Terimakasih
 
 -Bot';
-        $sendwa->buttonurl = url('create/invoice?code_payment=' . $code_payment) . ',' . asset($db);
-        $sendwa->buttonlabel = 'GENERATE PAYMENT LINK , CHECKING INVOICE';
+        $sendwa->buttonurl =  asset($db);
+        $sendwa->buttonlabel = 'CHECKING INVOICE';
         $sendwa->document = asset($db);
         // $sendwa->WhatsappMessageWithDocument();
         $sendwa->WhatsappMessageWithLink();
@@ -124,6 +124,8 @@ Terimakasih
         $log->company_id = $id;
         $log->section = 'invoice';
         $log->save();
-        return redirect()->route('invoice')->with('success', 'Your order has been received. Please await, the invoice is currently being processed.');
+
+        $createInvoice = $this->create($code_payment);
+        return $createInvoice;
     }
 }

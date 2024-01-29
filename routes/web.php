@@ -19,6 +19,7 @@ use App\Http\Controllers\MiningDirectory\RepresentativeController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PromotionalController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\WebScrapingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,6 +32,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/scrape', [WebScrapingController::class, 'scrape']);
 
 Route::get('/', [HomeController::class, 'index']);
 
