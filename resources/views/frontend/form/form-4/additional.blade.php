@@ -6,7 +6,8 @@
         <ul>
             <li>Conference</li>
             <li>Exhibition</li>
-            <li>Networking Functions</li>
+            <li>Networking Functions (Coffee Break & Lunch)</li>
+            <li>Online Networking Function</li>
         </ul>
         <small>Only valid for representative from company of Sponsor or Exhibitor until March 31, 2024 and this
             additional pass require 100% within 7 days after invoice date</small>

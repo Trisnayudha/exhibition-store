@@ -101,7 +101,7 @@
                                 </div>
                                 <div>
 
-                                    <p>Webstie</p>
+                                    <p>Website</p>
                                     <p><a href="https://hotel-manhattan.com">https://hotel-manhattan.com</a>
                                     </p>
                                 </div>

@@ -53,7 +53,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="addExhibitorModalLabel">Tambah Exhibitor</h5>
+                <h5 class="modal-title" id="addExhibitorModalLabel">Add Exhibitor</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -176,7 +176,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="addExhibitorModalLabel">Tambah Exhibitor</h5>
+                <h5 class="modal-title" id="addExhibitorModalLabel">Add Additional Exhibitor</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

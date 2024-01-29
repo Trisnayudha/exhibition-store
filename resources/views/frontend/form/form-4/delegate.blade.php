@@ -10,7 +10,7 @@
         <ul>
             <li>Conference</li>
             <li>Exhibition</li>
-            <li>Networking Functions</li>
+            <li>Networking Functions (Coffee Break & Lunch)</li>
             <li>Online Networking Function</li>
         </ul>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
