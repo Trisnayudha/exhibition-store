@@ -40,7 +40,7 @@
 
                         <div class="col">
                             <p><b>Westin Room *</b></p>
-                            <p>IDR 2,800,00 net / room / night</p>
+                            <p>IDR 2.940.000 net / room / night</p>
                             <p>Inclusive of:</p>
                             <ul>
                                 <li>
@@ -76,7 +76,10 @@
                                 <div>
 
                                     <p>Website</p>
-                                    <p>https://www.jsluwansa.com</p>
+                                    <p><a href="https://www.jsluwansa.com">
+                                            https://www.jsluwansa.com
+                                        </a>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -99,7 +102,8 @@
                                 <div>
 
                                     <p>Webstie</p>
-                                    <p>https://hotel-manhattan.com</p>
+                                    <p><a href="https://hotel-manhattan.com">https://hotel-manhattan.com</a>
+                                    </p>
                                 </div>
                             </div>
                         </div>
