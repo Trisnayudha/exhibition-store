@@ -95,7 +95,7 @@
         <table class="header-table">
             <tr>
                 <td>
-                    <img src="{{ asset('logo.png') }}" alt="Exabytes" />
+                    <img src="{{ asset('logo.png') }}" alt="Exabytes" height="100px" />
                 </td>
                 <td class="company-info">
                     PT MITRA KARYA INDONESIA<br>
