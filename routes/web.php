@@ -38,7 +38,7 @@ Route::get('/scrape', [WebScrapingController::class, 'scrape']);
 Route::get('/', [HomeController::class, 'index']);
 
 Route::get('test', function () {
-    return view('email.payment');
+    return view('email');
 });
 Route::get('/form', [FormController::class, 'index']);
 

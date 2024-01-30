@@ -107,18 +107,19 @@ class PaymentController extends Controller
         $sendwa = new WhatsappApi();
         $sendwa->phone = '081398670330';
         // $sendwa->phone = '083829314436';
-        $sendwa->text = 'Hai Mba Riska. Company *' . $data['company']->company_name . '* sudah melakukan klik invoice di Exhibition Portal,
+        $sendwa->message = 'Hai Mba Riska. Company *' . $data['company']->company_name . '* sudah melakukan klik invoice di Exhibition Portal,
 
 Mohon tolong dicheck kembali apakah sudah sesuai atau belum
+' . asset($db) . '
 
 Terimakasih
 
 -Bot';
-        $sendwa->buttonurl =  asset($db);
-        $sendwa->buttonlabel = 'CHECKING INVOICE';
-        $sendwa->document = asset($db);
+        // $sendwa->buttonurl =  asset($db);
+        // $sendwa->buttonlabel = 'CHECKING INVOICE';
+        // $sendwa->document = asset($db);
         // $sendwa->WhatsappMessageWithDocument();
-        $sendwa->WhatsappMessageWithLink();
+        $sendwa->WhatsappMessage();
 
         $log = new ExhibitionLog();
         $log->company_id = $id;
