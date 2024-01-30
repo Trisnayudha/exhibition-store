@@ -350,6 +350,7 @@
             country: country,
             post_code: postalCode
         };
+        $('.loading-wrapper, .overlay').show(); // Menampilkan loader dan overlay
 
         // Send data to the server using Ajax
         $.ajax({
@@ -365,6 +366,8 @@
                 loadWorking(); // Aktifkan fungsi untuk memuat data delegate
                 loadLogWorking(); // Aktifkan fungsi untuk memuat data log delegate
                 $('#workingEditModal').modal('hide');
+                $('.loading-wrapper, .overlay').hide(); // Menampilkan loader dan overlay
+
             },
             error: function(error) {
                 console.error('Error:', error);
@@ -392,6 +395,8 @@
         }).then((result) => {
             if (result.isConfirmed) {
                 // Kirim permintaan penghapusan ke server menggunakan Ajax
+                $('.loading-wrapper, .overlay').show(); // Menampilkan loader dan overlay
+
                 $.ajax({
                     type: 'DELETE',
                     url: '{{ url('/working') }}/' + index,
@@ -402,6 +407,8 @@
                         console.log('Data berhasil dihapus:', response);
                         loadWorking();
                         loadLogWorking();
+                        $('.loading-wrapper, .overlay').hide(); // Menampilkan loader dan overlay
+
                     },
                     error: function(error) {
                         console.error('Error:', error);
@@ -450,6 +457,7 @@
         formData.append('city', city);
         formData.append('country', country);
         formData.append('post_code', postalCode);
+        $('.loading-wrapper, .overlay').show(); // Menampilkan loader dan overlay
 
         // Kirim data ke server menggunakan Ajax dengan FormData
         $.ajax({
@@ -479,6 +487,8 @@
                 $('#cityWorking').val('');
                 $('#countryWorking').val('');
                 $('#postalCodeWorking').val('');
+                $('.loading-wrapper, .overlay').hide(); // Menampilkan loader dan overlay
+
             },
             error: function(error) {
                 console.error('Error:', error);

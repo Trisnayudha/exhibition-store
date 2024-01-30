@@ -157,6 +157,7 @@
         formData.append('file_excel', fileInput); // Menambahkan file Excel
 
         var csrfToken = $('meta[name="csrf-token"]').attr('content');
+        $('.loading-wrapper, .overlay').show(); // Menampilkan loader dan overlay
 
         // Kirim data ke server menggunakan Ajax dengan FormData
         $.ajax({
@@ -176,6 +177,8 @@
 
                 // Membersihkan inputan modal
                 $('#file_excel').val(''); // Menghapus file input
+                $('.loading-wrapper, .overlay').hide(); // Menampilkan loader dan overlay
+
             },
             error: function(error) {
                 console.error('Error:', error);

@@ -56,7 +56,8 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="d-flex justify-content-end">
-                                            <button class="btn btn-primary btn-lg btn-block"> SAVE ADVERTISEMENT ARTWORK
+                                            <button class="btn btn-primary btn-lg btn-block loadpayment"> SAVE ADVERTISEMENT
+                                                ARTWORK
                                             </button>
                                         </div>
                                     </div>
@@ -165,7 +166,8 @@
                                     </div>
 
                                     <div class="d-flex justify-content-end">
-                                        <button class="btn btn-primary btn-lg btn-block"> SAVE SOCIAL MEDIA </button>
+                                        <button class="btn btn-primary btn-lg btn-block loadpayment"> SAVE SOCIAL MEDIA
+                                        </button>
                                     </div>
                                 </div>
                             </form>

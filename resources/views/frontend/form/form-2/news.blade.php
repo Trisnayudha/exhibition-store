@@ -173,8 +173,8 @@
         // Validasi input
         if (!title || !category || !description) {
             Swal.fire({
-                title: 'Peringatan',
-                text: 'Harap isi semua kolom dan pilih file!',
+                title: 'Alert',
+                text: 'Please input all data',
                 icon: 'warning',
                 confirmButtonText: 'OK'
             });
@@ -197,6 +197,7 @@
             jsonData.image = imageInput.files[0];
         }
         console.log(jsonData)
+        $('.loading-wrapper, .overlay').show(); // Menampilkan loader dan overlay
 
         // Send data to the server using Ajax
         $.ajax({
@@ -212,6 +213,8 @@
                 loadLogNews();
                 loadNews();
                 $('#newsEditModal').modal('hide');
+                $('.loading-wrapper, .overlay').hide(); // Menampilkan loader dan overlay
+
             },
             error: function(error) {
                 console.error('Error:', error);
@@ -238,6 +241,8 @@
         }).then((result) => {
             if (result.isConfirmed) {
                 // Kirim permintaan penghapusan ke server menggunakan Ajax
+                $('.loading-wrapper, .overlay').show(); // Menampilkan loader dan overlay
+
                 $.ajax({
                     type: 'DELETE',
                     url: '{{ url('/news') }}/' + index,
@@ -248,6 +253,8 @@
                         console.log('Data berhasil dihapus:', response);
                         loadLogNews();
                         loadNews();
+                        $('.loading-wrapper, .overlay').hide(); // Menampilkan loader dan overlay
+
                     },
                     error: function(error) {
                         console.error('Error:', error);
@@ -268,8 +275,8 @@
         if (!title || !category || !desc) {
             // Menampilkan swal menggunakan Swal 2
             Swal.fire({
-                title: 'Peringatan',
-                text: 'Harap isi semua kolom dan pilih gambar!',
+                title: 'Alert',
+                text: 'Please input all data',
                 icon: 'warning',
                 confirmButtonText: 'OK'
             });
@@ -288,6 +295,7 @@
         if (imageInput.files.length > 0) {
             formData.append('image', imageInput.files[0]);
         }
+        $('.loading-wrapper, .overlay').show(); // Menampilkan loader dan overlay
 
         // Kirim data ke server menggunakan Ajax dengan FormData
         $.ajax({
@@ -310,6 +318,8 @@
                 $('#news_category').val('').trigger('change'); // Reset Select2 value
                 $('#news_date').val('');
                 CKEDITOR.instances.news_desc.setData(''); // Mengosongkan CKEditor
+                $('.loading-wrapper, .overlay').hide(); // Menampilkan loader dan overlay
+
             },
             error: function(error) {
                 console.error('Error:', error);

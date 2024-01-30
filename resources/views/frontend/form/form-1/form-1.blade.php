@@ -121,7 +121,7 @@
                                 </div>
                             </div>
                             <div class="form-group mt-2 mb-2">
-                                <button class="btn btn-primary btn-lg btn-block" type="submit">SAVE PERSONAL
+                                <button class="btn btn-primary btn-lg btn-block loadpayment" type="submit">SAVE PERSONAL
                                     INFORMATION</button>
                             </div>
                         </form>
@@ -515,7 +515,7 @@
                                 </div>
                             </div>
                             <div class="form-group mt-2 mb-2">
-                                <button type="submit" class="btn btn-primary btn-lg btn-block">SAVE COMPANY
+                                <button type="submit" class="btn btn-primary btn-lg btn-block loadpayment">SAVE COMPANY
                                     INFORMATION</button>
                             </div>
                         </form>

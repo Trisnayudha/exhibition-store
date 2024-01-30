@@ -197,6 +197,7 @@
             jsonData.image = imageInput.files[0];
         }
         console.log(jsonData)
+        $('.loading-wrapper, .overlay').show(); // Menampilkan loader dan overlay
 
         // Send data to the server using Ajax
         $.ajax({
@@ -212,6 +213,8 @@
                 loadLogProject();
                 loadProject();
                 $('#projectEditModal').modal('hide');
+                $('.loading-wrapper, .overlay').hide(); // Menampilkan loader dan overlay
+
             },
             error: function(error) {
                 console.error('Error:', error);
@@ -237,6 +240,8 @@
             cancelButtonText: 'Cancel'
         }).then((result) => {
             if (result.isConfirmed) {
+                $('.loading-wrapper, .overlay').show(); // Menampilkan loader dan overlay
+
                 // Kirim permintaan penghapusan ke server menggunakan Ajax
                 $.ajax({
                     type: 'DELETE',
@@ -248,6 +253,8 @@
                         console.log('Data berhasil dihapus:', response);
                         loadLogProject();
                         loadProject();
+                        $('.loading-wrapper, .overlay').hide(); // Menampilkan loader dan overlay
+
                     },
                     error: function(error) {
                         console.error('Error:', error);
@@ -288,6 +295,7 @@
         if (imageInput.files.length > 0) {
             formData.append('image', imageInput.files[0]);
         }
+        $('.loading-wrapper, .overlay').show(); // Menampilkan loader dan overlay
 
         // Kirim data ke server menggunakan Ajax dengan FormData
         $.ajax({
@@ -310,6 +318,8 @@
                 $('#project_category').val('').trigger('change'); // Reset Select2 value
                 $('#project_date').val('');
                 CKEDITOR.instances.project_desc.setData(''); // Mengosongkan CKEditor
+                $('.loading-wrapper, .overlay').hide(); // Menampilkan loader dan overlay
+
             },
             error: function(error) {
                 console.error('Error:', error);

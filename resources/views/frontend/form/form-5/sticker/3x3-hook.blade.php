@@ -168,7 +168,8 @@
                                 </table>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-block mt-3">Save to cart</button>
+                        <button type="submit" class="btn btn-primary btn-block mt-3 loadpayment">Save to
+                            cart</button>
                     </div>
                 </div>
             </div>

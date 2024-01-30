@@ -186,6 +186,8 @@
             jsonData.image = imageInput.files[0];
         }
         // Send data to the server using Ajax
+        $('.loading-wrapper, .overlay').show(); // Menampilkan loader dan overlay
+
         $.ajax({
             type: 'PUT',
             url: '{{ url('/representative') }}/' + id,
@@ -199,6 +201,8 @@
                 loadRepresentative();
                 loadLogRepresentative();
                 $('#representativeEditModal').modal('hide');
+                $('.loading-wrapper, .overlay').hide(); // Menampilkan loader dan overlay
+
             },
             error: function(error) {
                 console.error('Error:', error);
@@ -225,6 +229,8 @@
             cancelButtonText: 'Cancel'
         }).then((result) => {
             if (result.isConfirmed) {
+                $('.loading-wrapper, .overlay').show(); // Menampilkan loader dan overlay
+
                 // Kirim permintaan penghapusan ke server menggunakan Ajax
                 $.ajax({
                     type: 'DELETE',
@@ -236,6 +242,8 @@
                         console.log('Data berhasil dihapus:', response);
                         loadRepresentative();
                         loadLogRepresentative();
+                        $('.loading-wrapper, .overlay').hide(); // Menampilkan loader dan overlay
+
                     },
                     error: function(error) {
                         console.error('Error:', error);
@@ -278,6 +286,8 @@
         if (imageInput.files[0]) {
             formData.append('image', imageInput.files[0]);
         }
+        $('.loading-wrapper, .overlay').show(); // Menampilkan loader dan overlay
+
         // Kirim data ke server menggunakan Ajax dengan FormData
         $.ajax({
             type: 'POST',
@@ -304,6 +314,8 @@
                 $('#representative_short_bio').val('');
                 $('#representative_linkedin').val('');
                 $('#representative_image').val(''); // Jika menggunakan input type file
+                $('.loading-wrapper, .overlay').hide(); // Menampilkan loader dan overlay
+
             },
             error: function(error) {
                 // Menutup swal loading ketika ada kesalahan

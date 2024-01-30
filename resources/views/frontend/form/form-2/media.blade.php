@@ -192,8 +192,8 @@
         // Validasi input
         if (!title || !category || !location || !description) {
             Swal.fire({
-                title: 'Peringatan',
-                text: 'Harap isi semua kolom dan pilih file!',
+                title: 'Alert',
+                text: 'Please input all data',
                 icon: 'warning',
                 confirmButtonText: 'OK'
             });
@@ -220,7 +220,7 @@
         if (imageInput.files[0]) {
             jsonData.image = imageInput.files[0];
         }
-
+        $('.loading-wrapper, .overlay').show();
         // Send data to the server using Ajax
         $.ajax({
             type: 'PUT',
@@ -231,10 +231,11 @@
                 'X-CSRF-TOKEN': csrfToken
             },
             success: function(response) {
-                console.log('Data berhasil diupdate:', response);
                 loadLogMedia();
                 loadMedia();
                 $('#mediaEditModal').modal('hide');
+                $('.loading-wrapper, .overlay').hide();
+
             },
             error: function(error) {
                 console.error('Error:', error);
@@ -263,6 +264,7 @@
         }).then((result) => {
             if (result.isConfirmed) {
                 // Kirim permintaan penghapusan ke server menggunakan Ajax
+                $('.loading-wrapper, .overlay').show(); // Menampilkan loader dan overlay
                 $.ajax({
                     type: 'DELETE',
                     url: '{{ url('/media') }}/' + index,
@@ -273,6 +275,7 @@
                         console.log('Data berhasil dihapus:', response);
                         loadLogMedia();
                         loadMedia();
+                        $('.loading-wrapper, .overlay').hide();
                     },
                     error: function(error) {
                         console.error('Error:', error);
@@ -295,8 +298,8 @@
         if (!title || !category || !location || !desc) {
             // Menampilkan swal menggunakan Swal 2
             Swal.fire({
-                title: 'Peringatan',
-                text: 'Harap isi semua kolom dan pilih gambar!',
+                title: 'Alert',
+                text: 'Please input all data',
                 icon: 'warning',
                 confirmButtonText: 'OK'
             });
@@ -313,7 +316,7 @@
         formData.append('desc', desc);
         formData.append('file', fileInput.files[0]);
         formData.append('document_name', documentName);
-
+        $('.loading-wrapper, .overlay').show(); // Menampilkan loader dan overlay
         // Kirim data ke server menggunakan Ajax dengan FormData
         $.ajax({
             type: 'POST',
@@ -337,6 +340,7 @@
                 CKEDITOR.instances.media_desc.setData(''); // Mengosongkan CKEditor
                 $('#media_file').val(''); // Reset file input
                 $('#media_document_name').val('');
+                $('.loading-wrapper, .overlay').hide(); // Menghide loader dan overlay
             },
             error: function(error) {
                 console.error('Error:', error);

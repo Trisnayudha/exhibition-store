@@ -113,5 +113,5 @@
 
 
     </div>
-    <button class="btn btn-primary btn-lg btn-block" id="saveGeneral"> SAVE </button>
+    <button class="btn btn-primary btn-lg btn-block loadpayment" id="saveGeneral"> SAVE </button>
 </form>

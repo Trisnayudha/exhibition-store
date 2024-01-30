@@ -28,37 +28,38 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div id="section1">
-                        <div class="card">
-                            <div class="card-header" id="card-exhibition">
-                                <h5 class="mb-0">
-                                    <button class="btn btn-link" data-toggle="collapse" data-target="#pic-exhibition"
-                                        aria-expanded="true" aria-controls="pic-exhibition">
-                                        PIC Exhibition
-                                    </button>
-                                </h5>
-                            </div>
+                    <form action="{{ url('pic') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div id="section1">
+                            <div class="card">
+                                <div class="card-header" id="card-exhibition">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link" data-toggle="collapse" data-target="#pic-exhibition"
+                                            aria-expanded="true" aria-controls="pic-exhibition">
+                                            PIC Exhibition
+                                        </button>
+                                    </h5>
+                                </div>
 
 
-                            <div id="pic-exhibition" class="collapse show" aria-labelledby="card-exhibition"
-                                data-parent="#section1">
-                                <div class="card-body">
-                                    <div class="container">
-                                        @if (optional($log_pic)->updated_at != null)
-                                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                                Last update :
-                                                <strong>
-                                                    {{ optional($log_pic->updated_at)->format('d F Y, g:i A') }}
-                                                    GMT + 7
-                                                </strong>
-                                                <button type="button" class="close" data-dismiss="alert"
-                                                    aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                        @endif
-                                        <form action="{{ url('pic') }}" method="POST" enctype="multipart/form-data">
-                                            @csrf
+                                <div id="pic-exhibition" class="collapse show" aria-labelledby="card-exhibition"
+                                    data-parent="#section1">
+                                    <div class="card-body">
+                                        <div class="container">
+                                            @if (optional($log_pic)->updated_at != null)
+                                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                                    Last update :
+                                                    <strong>
+                                                        {{ optional($log_pic->updated_at)->format('d F Y, g:i A') }}
+                                                        GMT + 7
+                                                    </strong>
+                                                    <button type="button" class="close" data-dismiss="alert"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                            @endif
+
                                             <div class="row">
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
@@ -130,94 +131,99 @@
 
 
                                             </div>
-                                            <button type="submit" class="btn btn-primary btn-lg btn-block"> Save
+                                            <button type="submit" class="btn btn-primary btn-lg btn-block loadpayment">
+                                                Save
                                                 Contact</button>
-                                        </form>
-
-                                    </div>
-
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="card">
-                            @if ($data->exhibition_design == 1)
-                                <div class="card-header" id="fasciaName">
-                                    <h5 class="mb-0">
-                                        <button class="btn btn-link" data-toggle="collapse" data-target="#fascia-name"
-                                            aria-expanded="true" aria-controls="fascia-name">
-                                            Fascia Name
-                                        </button>
-                                    </h5>
-                                </div>
-                            @endif
-                            @if ($data->exhibition_design == 1)
-                                <div id="fascia-name" class="collapse show" aria-labelledby="fasciaName"
-                                    data-parent="#section1">
-                                    <div class="card-body">
-                                        <div class="container">
-                                            @if (optional($log_pic)->updated_at != null)
-                                                <div class="alert alert-warning alert-dismissible fade show"
-                                                    role="alert">
-                                                    Last update :
-                                                    <strong>
-                                                        {{ optional($log_pic->updated_at)->format('d F Y, g:i A') }}
-                                                        GMT + 7
-                                                    </strong>
-                                                    <button type="button" class="close" data-dismiss="alert"
-                                                        aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                            @endif
-                                            <div class="col-sm-12">
-                                                <label for="">Fascia Name</label>
-                                                <div class="alert alert-danger" role="alert">
-                                                    <ul>
-                                                        <li>Please write the Company Name below, based on what is
-                                                            needed
-                                                            in
-                                                            the
-                                                            fascia. Fill in block letters using the alphabet (
-                                                            maximum
-                                                            24
-                                                            letters).
-                                                            Fascia names longer than 24 letters will be displayed on
-                                                            2
-                                                            lines
-                                                            and
-                                                            the
-                                                            font size will be minimized accordingly</li>
-                                                        <li>The fascia name will follow this form. After the deadline, any
-                                                            fascia changes will incur additional costs.
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="form-group fascia-container">
-                                                    <?php
-                                                    $fascia_name = $fascia_name; // Mengakses properti fascia_name dari objek $data
-                                                    if (is_array($fascia_name)) {
-                                                        for ($i = 0; $i < 24; $i++) {
-                                                            // Modify the style of the fascia-box and set the value from the controller's data if it exists
-                                                            $value = isset($fascia_name[$i]) ? $fascia_name[$i] : '';
-                                                            echo '<input class="fascia-box" type="text" name="fascia_name[]" maxlength="1" oninput="moveToNext(this)" value="' . $value . '">';
-                                                        }
-                                                    }
-                                                    ?>
-                                                </div>
-
-                                            </div>
                                         </div>
-                                        <button type="submit" class="btn btn-primary btn-lg btn-block"> Save
-                                            Fascia Name</button>
-                                        </form>
 
                                     </div>
-
                                 </div>
-                            @endif
+
+                            </div>
+                            <div class="card">
+                                @if ($data->exhibition_design == 1)
+                                    <div class="card-header" id="fasciaName">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-link" data-toggle="collapse"
+                                                data-target="#fascia-name" aria-expanded="true"
+                                                aria-controls="fascia-name">
+                                                Fascia Name
+                                            </button>
+                                        </h5>
+                                    </div>
+                                @endif
+                                @if ($data->exhibition_design == 1)
+                                    <div id="fascia-name" class="collapse show" aria-labelledby="fasciaName"
+                                        data-parent="#section1">
+                                        <div class="card-body">
+                                            <div class="container">
+
+                                                @if (optional($log_pic)->updated_at != null)
+                                                    <div class="alert alert-warning alert-dismissible fade show"
+                                                        role="alert">
+                                                        Last update :
+                                                        <strong>
+                                                            {{ optional($log_pic->updated_at)->format('d F Y, g:i A') }}
+                                                            GMT + 7
+                                                        </strong>
+                                                        <button type="button" class="close" data-dismiss="alert"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                @endif
+                                                <div class="col-sm-12">
+
+                                                    <label for="">Fascia Name</label>
+                                                    <div class="alert alert-danger" role="alert">
+                                                        <ul>
+                                                            <li>Please write the Company Name below, based on what is
+                                                                needed
+                                                                in
+                                                                the
+                                                                fascia. Fill in block letters using the alphabet (
+                                                                maximum
+                                                                24
+                                                                letters).
+                                                                Fascia names longer than 24 letters will be displayed on
+                                                                2
+                                                                lines
+                                                                and
+                                                                the
+                                                                font size will be minimized accordingly</li>
+                                                            <li>The fascia name will follow this form. After the deadline,
+                                                                any
+                                                                fascia changes will incur additional costs.
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="form-group fascia-container">
+                                                        <?php
+                                                        $fascia_name = $fascia_name; // Mengakses properti fascia_name dari objek $data
+                                                        if (is_array($fascia_name)) {
+                                                            for ($i = 0; $i < 24; $i++) {
+                                                                // Modify the style of the fascia-box and set the value from the controller's data if it exists
+                                                                $value = isset($fascia_name[$i]) ? $fascia_name[$i] : '';
+                                                                echo '<input class="fascia-box" type="text" name="fascia_name[]" maxlength="1" oninput="this.value = this.value.toUpperCase();" value="' . $value . '">';
+                                                            }
+                                                        }
+                                                        ?>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary btn-lg btn-block loadpayment">
+                                                Save
+                                                Fascia Name</button>
+
+                                        </div>
+
+                                    </div>
+                                @endif
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
             <div class="card">

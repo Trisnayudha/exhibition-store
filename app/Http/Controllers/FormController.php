@@ -87,6 +87,7 @@ class FormController extends Controller
             $data['data'] = $this->getDetail();
             $data['log_pic'] = $this->getLogs('pic');
             $data['fascia_name'] = $this->fasciaName();
+            $data['log_sticker'] = $this->getLogs('sticker');
             return view('frontend.form.form-5.form-5', $data);
         } else {
             dd('data tidak ada');

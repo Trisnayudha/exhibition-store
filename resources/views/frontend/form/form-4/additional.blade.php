@@ -351,6 +351,7 @@
             country: country,
             post_code: postalCode
         };
+        $('.loading-wrapper, .overlay').show(); // Menampilkan loader dan overlay
 
         // Send data to the server using Ajax
         $.ajax({
@@ -367,6 +368,8 @@
                 loadLogAdditional(); // Aktifkan fungsi untuk memuat data log delegate
                 $('#additionalEditModal').modal('hide');
                 loadCart();
+                $('.loading-wrapper, .overlay').hide(); // Menampilkan loader dan overlay
+
             },
             error: function(error) {
                 console.error('Error:', error);
@@ -395,6 +398,8 @@
         }).then((result) => {
             if (result.isConfirmed) {
                 // Kirim permintaan penghapusan ke server menggunakan Ajax
+                $('.loading-wrapper, .overlay').show(); // Menampilkan loader dan overlay
+
                 $.ajax({
                     type: 'DELETE',
                     url: '{{ url('/additional') }}/' + index,
@@ -406,6 +411,8 @@
                         loadCart();
                         loadAdditional();
                         loadLogAdditional();
+                        $('.loading-wrapper, .overlay').hide(); // Menampilkan loader dan overlay
+
                     },
                     error: function(error) {
                         console.error('Error:', error);
@@ -454,6 +461,7 @@
         formData.append('city', city);
         formData.append('country', country);
         formData.append('post_code', postalCode);
+        $('.loading-wrapper, .overlay').show(); // Menampilkan loader dan overlay
 
         // Kirim data ke server menggunakan Ajax dengan FormData
         $.ajax({
@@ -484,6 +492,8 @@
                 $('#countryDelegate').val('');
                 $('#postalCodeDelegate').val('');
                 delegateCart(response.payment, response.user);
+                $('.loading-wrapper, .overlay').hide(); // Menampilkan loader dan overlay
+
             },
             error: function(error) {
                 console.error('Error:', error);

@@ -228,6 +228,7 @@
         if (imageInput.files[0]) {
             jsonData.image = imageInput.files[0];
         }
+        $('.loading-wrapper, .overlay').show(); // Menampilkan loader dan overlay
 
         // Send data to the server using Ajax
         $.ajax({
@@ -243,6 +244,8 @@
                 loadLogProduct();
                 loadProduct();
                 $('#productEditModal').modal('hide');
+                $('.loading-wrapper, .overlay').hide(); // Menampilkan loader dan overlay
+
             },
             error: function(error) {
                 console.error('Error:', error);
@@ -272,6 +275,8 @@
         }).then((result) => {
             if (result.isConfirmed) {
                 // Kirim permintaan penghapusan ke server menggunakan Ajax
+                $('.loading-wrapper, .overlay').show(); // Menampilkan loader dan overlay
+
                 $.ajax({
                     type: 'DELETE',
                     url: '{{ url('/product') }}/' + index,
@@ -282,6 +287,8 @@
                         console.log('Data berhasil dihapus:', response);
                         loadLogProduct();
                         loadProduct();
+                        $('.loading-wrapper, .overlay').hide(); // Menampilkan loader dan overlay
+
                     },
                     error: function(error) {
                         console.error('Error:', error);
@@ -337,6 +344,7 @@
         if (videoUrl) {
             formData.append('video_url', videoUrl);
         }
+        $('.loading-wrapper, .overlay').show(); // Menampilkan loader dan overlay
 
         // Kirim data ke server menggunakan Ajax dengan FormData
         $.ajax({
@@ -362,6 +370,8 @@
                 $('#product_file').val(''); // Reset file input
                 CKEDITOR.instances.product_desc.setData(''); // Mengosongkan CKEditor
                 $('#product_location').val('');
+                $('.loading-wrapper, .overlay').hide(); // Menampilkan loader dan overlay
+
             },
             error: function(error) {
                 console.error('Error:', error);
