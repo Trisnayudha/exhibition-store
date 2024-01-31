@@ -23,11 +23,16 @@
 @elseif ($data->booth == 'Booth 3x3 Hook')
     @include('frontend.form.form-5.sticker.3x3-hook')
 @elseif ($data->booth == 'Booth 5x3')
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+        <p>Stickers are already included with your purchase of the 5 x 3 booth package!</p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
     @if (optional($log_sticker)->updated_at != null)
         <div class="alert alert-info alert-dismissible fade show" role="alert">
             <p>Your file has been successfully uploaded.
             </p>
-            <p>Stickers are already included with your purchase of the 5 x 3 booth package!</p>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -35,11 +40,16 @@
     @endif
     @include('frontend.form.form-5.sticker.5x3')
 @elseif ($data->booth == 'Booth 6x2')
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+        <p>Stickers are already included with your purchase of the 6 x 2 booth package!</p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
     @if (optional($log_sticker)->updated_at != null)
         <div class="alert alert-info alert-dismissible fade show" role="alert">
             <p>Your file has been successfully uploaded.
             </p>
-            <p>Stickers are already included with your purchase of the 6 x 2 booth package!</p>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>

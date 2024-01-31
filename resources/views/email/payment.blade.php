@@ -9,9 +9,6 @@
 
     <div
         style="max-width: 600px; margin: auto; padding: 20px; border: 1px solid #dddddd; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
-        <h2 style="color: #4CAF50;">Order Confirmation</h2>
-
-        <p>Dear Customer,</p>
 
         <p>Your payment link has been generated. Please review your order below and proceed with the payment.</p>
 
