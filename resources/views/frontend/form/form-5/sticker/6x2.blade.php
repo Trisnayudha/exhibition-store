@@ -14,7 +14,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>BACK - Doff Laminated Indoor Vinyl Sticker 600x300m + Polyfoam</td>
+                            <td>BACK - Flexy Indoor Sticker 600cm x 300cm</td>
                             <td>-</td>
                             <td>
                                 <input type="number" id="back-doff-basic" class="form-control" value="0" readonly>
@@ -29,7 +29,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>TABLE - Doff Laminated Indoor Vinyl Sticker 120x100x50cm + Polyfoam</td>
+                            <td>TABLE - Doff Laminated Indoor Vinyl Sticker 120x100x50cm</td>
                             <td>-</td>
                             <td>
                                 <input type="number" id="table-basic" class="form-control" value="0" readonly>

@@ -14,33 +14,33 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>BACK - Doff Laminated Indoor Vinyl Sticker 290x244cm + Polyfoam</td>
-                            <td>IDR. 1.650.000</td>
+                            <td>BACK - Doff Laminated Indoor Vinyl Sticker 290x244cm</td>
+                            <td>IDR. 3.600.000</td>
                             <td>
                                 <input type="number" name="back-doff-basic" id="back-doff-basic" class="form-control"
                                     value="0" readonly>
                                 <input type="hidden" name="back-doof-product-basic" id="back-doof-product-basic"
-                                    value="BACK - Doff Laminated Indoor Vinyl Sticker 290x244cm + Polyfoam">
+                                    value="BACK - Doff Laminated Indoor Vinyl Sticker 290x244cm">
                                 <input type="hidden" name="back-doof-section-basic" id="back-doof-section-basic"
                                     value="Additional Sticker">
                                 <input type="hidden" name="back-doof-price-basic" id="back-doof-price-basic"
-                                    value="1650000">
+                                    value="3600000">
                                 <input type="hidden" name="back-doof-image-basic" id="back-doof-image-basic"
                                     value="{{ asset('form5/sticker/3x1.jpg') }}">
                             </td>
                         </tr>
                         <tr>
-                            <td>TABLE - Doff Laminated Indoor Vinyl Sticker 100x100x40cm + Polyfoam</td>
-                            <td>IDR. 1.000.000</td>
+                            <td>TABLE - Doff Laminated Indoor Vinyl Sticker 100x100</td>
+                            <td>IDR. 1.050.000</td>
                             <td>
                                 <input type="number" name="table-basic" id="table-basic" class="form-control"
                                     value="0" readonly>
                                 <input type="hidden" name="table-doof-product-basic" id="table-doof-product-basic"
-                                    value="TABLE - Doff Laminated Indoor Vinyl Sticker 100x100x40cm + Polyfoam">
+                                    value="TABLE - Doff Laminated Indoor Vinyl Sticker 100x100">
                                 <input type="hidden" name="table-doof-section-basic" id="table-doof-section-basic"
                                     value="Additional Sticker">
                                 <input type="hidden" name="table-doof-price-basic" id="table-doof-price-basic"
-                                    value="1000000">
+                                    value="1050000">
                                 <input type="hidden" name="table-doof-image-basic" id="table-doof-image-basic"
                                     value="{{ asset('form5/sticker/3x1.jpg') }}">
                             </td>
