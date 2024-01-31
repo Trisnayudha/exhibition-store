@@ -53,8 +53,7 @@
                                 <div class="row">
                                     <div class="col-lg-12 col-sm-12">
                                         <input type="text" name="name" id="name" class="form-control validation"
-                                            placeholder="Input name" value="{{ old('name', $data->company_name ?? '') }}"
-                                            required>
+                                            placeholder="Input name" value="{{ old('name', $data->company_name ?? '') }}">
                                     </div>
                                 </div>
                             </div>
@@ -76,7 +75,7 @@
                                     <div class="col-lg-10 col-sm-12">
                                         <input type="text" name="company_name" id="company_name"
                                             class="form-control validation" placeholder="Input company name"
-                                            value="{{ old('company_name', $data->name) }}" required>
+                                            value="{{ old('company_name', $data->name) }}">
                                     </div>
 
                                 </div>
@@ -87,8 +86,7 @@
                                 <div class="row">
                                     <div class="col-lg-12 col-sm-12">
                                         <input type="text" name="job_title" class="form-control validation"
-                                            placeholder="Input job title" value="{{ old('job_title', $data->job_title) }}"
-                                            required>
+                                            placeholder="Input job title" value="{{ old('job_title', $data->job_title) }}">
                                     </div>
                                 </div>
                             </div>
@@ -97,7 +95,7 @@
                                         title="This field is required">*</i></label>
                                 <input type="email" name="alternative_email" id="alternative_email"
                                     class="form-control validation" placeholder="Input your Alternative email"
-                                    value="{{ old('alternative_email', $data->email_alternate) }}" required>
+                                    value="{{ old('alternative_email', $data->email_alternate) }}">
                             </div>
                             <div class="form-group">
                                 <label>Mobile Number <i class="text-danger" title="This field is required">*</i></label>
