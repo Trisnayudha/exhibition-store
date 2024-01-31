@@ -129,7 +129,7 @@
     <div class="content">
         <div class="invoice-header">
             <p><strong>Invoice Date:</strong> {{ date('d/m/Y H:i') }}</p>
-            <?php $dueDate = strtotime('+7 days'); ?>
+            <?php $dueDate = strtotime('+1 days'); ?>
             <p><strong>Due Date:</strong> {{ date('d/m/Y H:i', $dueDate) }}</p>
             <p><strong>Invoice No: {{ $code_payment }}</strong></p>
         </div>

@@ -53,7 +53,7 @@ class PaymentController extends Controller
 
         // dd($linkPay);
         $date = date('Y-m-d H:i:s'); // Correct format for SQL
-        $dueDate = date('Y-m-d H:i:s', strtotime('+7 days')); // Add 7 days from now in the correct format
+        $dueDate = date('Y-m-d H:i:s', strtotime('+1 days')); // Add 7 days from now in the correct format
         $findPayment->invoice_date = $date;
         $findPayment->invoice_due_date = $dueDate;
         $findPayment->link = $linkPay;
@@ -64,13 +64,14 @@ class PaymentController extends Controller
             ->where('company_id', $findCompany->id)->where('exhibition_payment.code_payment', $code_payment)->get();
         $data['company'] = Company::where('id', $findCompany->id)->first();
         $data['code_payment'] = $code_payment;
+        $data['dueDate'] = $dueDate;
         $pdf = Pdf::loadView('frontend.invoice.download-summary', $data);
         $email = $data['company']->pic_email ?? $data['company']->email_alternate;
         Mail::send('email.payment', $data, function ($message) use ($pdf, $code_payment, $email) {
             $message->from(env('EMAIL_SENDER'));
             $message->to($email);
             // $message->to('yudha@indonesiaminer.com');
-            $message->subject('Payment Exhibition Portal Success Generate ' . $code_payment);
+            $message->subject('Payment Due Today: Indonesia Miner 2024 ' . $code_payment);
             $message->attachData($pdf->output(), $code_payment . '-' . time() . '.pdf');
         });
         return redirect($linkPay);

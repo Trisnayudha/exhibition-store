@@ -11,7 +11,7 @@
         style="max-width: 600px; margin: auto; padding: 20px; border: 1px solid #dddddd; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
 
         <p>Your payment link has been generated. Please review your order below and proceed with the payment.</p>
-
+        <p>Due date: {{ date('d F M H:i', strtotime($dueDate)) }}</p>
         <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
             <tr style="background-color: #f2f2f2;">
                 <th style="border: 1px solid #dddddd; padding: 8px; text-align: left;">Item</th>
