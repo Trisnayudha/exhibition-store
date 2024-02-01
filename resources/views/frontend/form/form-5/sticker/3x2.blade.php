@@ -26,7 +26,7 @@
                                 <input type="hidden" name="back-doof-price-basic" id="back-doof-price-basic"
                                     value="1700000">
                                 <input type="hidden" name="back-doof-image-basic" id="back-doof-image-basic"
-                                    value="{{ asset('form5/sticker/3x2.jpg') }}">
+                                    value="{{ asset('form5/sticker/3x2.png') }}">
                             </td>
                         </tr>
                         <tr>
@@ -42,7 +42,7 @@
                                 <input type="hidden" name="side-doof-price-basic" id="side-doof-price-basic"
                                     value="1700000">
                                 <input type="hidden" name="side-doof-image-basic" id="side-doof-image-basic"
-                                    value="{{ asset('form5/sticker/3x2.jpg') }}">
+                                    value="{{ asset('form5/sticker/3x2.png') }}">
                             </td>
                         </tr>
                         <tr>
@@ -58,7 +58,7 @@
                                 <input type="hidden" name="table-doof-price-basic" id="table-doof-price-basic"
                                     value="850000">
                                 <input type="hidden" name="table-doof-image-basic" id="table-doof-image-basic"
-                                    value="{{ asset('form5/sticker/3x2.jpg') }}">
+                                    value="{{ asset('form5/sticker/3x2.png') }}">
                             </td>
                         </tr>
                     </tbody>
@@ -71,7 +71,7 @@
                     <div class="row">
                         <div class="col-6">
                             <p>Wall Printing Position You Want to Install:</p>
-                            <img src="{{ asset('form5/sticker/3x2.jpg') }}" alt="" class="img-thumbnail">
+                            <img src="{{ asset('form5/sticker/3x2.png') }}" alt="" class="img-thumbnail">
                         </div>
                         <div class="col-6">
                             <div class="table-responsive">

@@ -26,7 +26,7 @@
                                 <input type="hidden" name="back-doof-price-basic" id="back-doof-price-basic"
                                     value="3600000">
                                 <input type="hidden" name="back-doof-image-basic" id="back-doof-image-basic"
-                                    value="{{ asset('form5/sticker/3x1.jpg') }}">
+                                    value="{{ asset('form5/sticker/3x1.png') }}">
                             </td>
                         </tr>
                         <tr>
@@ -42,7 +42,7 @@
                                 <input type="hidden" name="table-doof-price-basic" id="table-doof-price-basic"
                                     value="1050000">
                                 <input type="hidden" name="table-doof-image-basic" id="table-doof-image-basic"
-                                    value="{{ asset('form5/sticker/3x1.jpg') }}">
+                                    value="{{ asset('form5/sticker/3x1.png') }}">
                             </td>
                         </tr>
                     </tbody>
@@ -55,7 +55,7 @@
                     <div class="row">
                         <div class="col-6">
                             <p>Wall Printing Position You Want to Install:</p>
-                            <img src="{{ asset('form5/sticker/3x1.jpg') }}" alt="" class="img-thumbnail">
+                            <img src="{{ asset('form5/sticker/3x1.png') }}" alt="" class="img-thumbnail">
                         </div>
                         <div class="col-6">
                             <div class="table-responsive">
