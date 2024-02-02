@@ -86,6 +86,7 @@ class CompanyService extends Model
                 'company.inclusion',
                 'company.deadline',
                 'company.level',
+                'company.size_promotional',
 
                 'company.ms_class_company_minerals_id',
                 'ms_class_company_minerals.name as classify_minerals_name',
