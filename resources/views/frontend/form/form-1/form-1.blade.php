@@ -184,8 +184,7 @@
                                         <label>Company Profile (Max. 200 Words) </label>
                                         <small> <i>This Profile will also be used on Indonesia Miner Website and Event
                                                 Booklet</i></small>
-                                        <textarea name="desc" id="desc" class="form-control validation" placeholder="Input company website"
-                                            rows="5" maxlength="200">{{ old('desc', $data->desc) }}
+                                        <textarea name="desc" id="desc" class="form-group ckeditor">{{ old('desc', $data->desc) }}
                                 </textarea>
                                     </div>
                                 </div>
