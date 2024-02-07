@@ -222,7 +222,7 @@
                     });
 
                     // Create download URL by concatenating base URL and filename
-                    var downloadUrl = '{{ url('') }}/' + fileName;
+                    var downloadUrl = '{{ url('storage/excel_company') }}/' + fileName;
 
                     // Create table row with the desired file name and formatted date
                     var row = '<tr>' +
