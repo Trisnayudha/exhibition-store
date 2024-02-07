@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <form action="{{ url('sticker') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ url('sticker') }}" method="POST" enctype="multipart/form-data" id="myForm">
             @csrf
             <div class="table-responsive" id="sticker-basic-cart">
 
@@ -18,14 +18,6 @@
                             <td>-</td>
                             <td>
                                 <input type="number" id="back-doff-basic" class="form-control" value="0" readonly>
-                                {{-- <input type="hidden" name="back-doof-product-basic" id="back-doof-product-basic"
-                                    value="BACK - Doff Laminated Indoor Vinyl Sticker 500x244cm + Polyfoam">
-                                <input type="hidden" name="back-doof-section-basic" id="back-doof-section-basic"
-                                    value="Additional Sticker">
-                                <input type="hidden" name="back-doof-price-basic" id="back-doof-price-basic"
-                                    value="1650000">
-                                <input type="hidden" name="back-doof-image-basic" id="back-doof-image-basic"
-                                    value="{{ asset('form5/sticker/5x3.png') }}"> --}}
                             </td>
                         </tr>
                         <tr>
@@ -33,14 +25,6 @@
                             <td>-</td>
                             <td>
                                 <input type="number" id="table-basic" class="form-control" value="0" readonly>
-                                {{-- <input type="hidden" name="table-doof-product-basic" id="table-doof-product-basic"
-                                    value="TABLE - Doff Laminated Indoor Vinyl Sticker 100x100x500cm + Polyfoam">
-                                <input type="hidden" name="table-doof-section-basic" id="table-doof-section-basic"
-                                    value="Additional Sticker">
-                                <input type="hidden" name="table-doof-price-basic" id="table-doof-price-basic"
-                                    value="1000000">
-                                <input type="hidden" name="table-doof-image-basic" id="table-doof-image-basic"
-                                    value="{{ asset('form5/sticker/5x3.png') }}"> --}}
                             </td>
                         </tr>
                     </tbody>
@@ -73,7 +57,7 @@
                                             <td>1</td>
                                             <td class="text-center">A</td>
                                             <td><input type="checkbox" name="basicA" id="basicA"
-                                                    class="form-control">
+                                                    class="form-control checkbox-class">
                                             </td>
                                             <td><input type="file" name="file-basicA" id="file-basicA"></td>
                                             <td>
@@ -84,7 +68,7 @@
                                             <td>2</td>
                                             <td class="text-center">B</td>
                                             <td><input type="checkbox" name="basicB" id="basicB"
-                                                    class="form-control">
+                                                    class="form-control checkbox-class">
                                             </td>
                                             <td><input type="file" name="file-basicB" id="file-basicB"></td>
                                             <td>
@@ -95,7 +79,8 @@
                                 </table>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-block mt-3 loadpayment">Save to cart</button>
+                        <button type="submit" class="btn btn-primary btn-block mt-3 save-btn" disabled>Save to
+                            cart</button>
                     </div>
                 </div>
             </div>
@@ -105,10 +90,22 @@
 </div>
 <script>
     $(document).ready(function() {
+        // Fungsi untuk memeriksa apakah setidaknya satu kotak centang telah dicentang
+        function checkAtLeastOneCheckbox() {
+            return $(".checkbox-class:checked").length > 0;
+        }
+
+        // Memanggil fungsi untuk mengaktifkan atau menonaktifkan tombol "Submit" saat halaman dimuat dan setiap kali kotak centang berubah statusnya
+        $(".checkbox-class").change(function() {
+            $(".save-btn").prop("disabled", !checkAtLeastOneCheckbox());
+        });
+
+        // Menonaktifkan tombol "Submit" saat halaman dimuat jika tidak ada kotak centang yang tercentang
+        $(".save-btn").prop("disabled", !checkAtLeastOneCheckbox());
+
         // Fungsi untuk menghitung nilai input berdasarkan checkbox yang dicentang
         function updateValue() {
             var backDoffBasicValue = 0;
-            var sideDoffBasicValue = 0;
             var tableBasicValue = 0;
 
             // Cek apakah checkbox A dicentang
@@ -123,17 +120,9 @@
 
             // Mengatur nilai input berdasarkan hasil perhitungan
             $("#back-doff-basic").val(backDoffBasicValue);
-            $("#side-doff-basic").val(sideDoffBasicValue);
             $("#table-basic").val(tableBasicValue);
         }
 
-        // Memanggil fungsi updateValue() setiap kali checkbox berubah
-        $("input[type=checkbox]").change(updateValue);
-    });
-</script>
-
-<script>
-    $(document).ready(function() {
         // Fungsi untuk mengatur validasi file input berdasarkan checkbox yang dicentang
         function updateFileValidation() {
             // Checkbox A
@@ -149,16 +138,43 @@
             } else {
                 $("#file-basicB").prop("required", false);
             }
-
         }
 
-        // Memanggil fungsi updateFileValidation() setiap kali checkbox berubah
-        $("input[type=checkbox]").change(updateFileValidation);
+        // Fungsi untuk memperbarui status checkbox berdasarkan file yang dipilih
+        function updateCheckbox() {
+            // Array yang berisi nama-nama basic
+            var basics = ['A', 'B'];
 
-        // Mengirimkan formulir ketika tombol "SUBMIT" diklik
-        $("#myForm").submit(function() {
-            // Tambahan logika validasi lainnya jika diperlukan
-            // Jika validasi berhasil, formulir akan dikirim, jika tidak formulir tidak akan dikirim
+            // Iterasi melalui setiap basic
+            basics.forEach(function(basic) {
+                // Dapatkan nilai file input sesuai dengan nama basic
+                var fileValue = $("#file-basic" + basic).val();
+
+                // Periksa apakah nilai file input ada
+                if (fileValue) {
+                    // Jika ada, tandai checkbox basic yang sesuai
+                    $("#basic" + basic).prop("checked", true);
+                } else {
+                    // Jika tidak, nonaktifkan checkbox basic yang sesuai
+                    $("#basic" + basic).prop("checked", false);
+                }
+            });
+        }
+
+        // Memanggil fungsi updateValue() setiap kali checkbox berubah
+        $(".checkbox-class").change(updateValue);
+
+        // Memanggil fungsi updateFileValidation() setiap kali checkbox berubah
+        $(".checkbox-class").change(updateFileValidation);
+
+        // Memanggil fungsi updateCheckbox() saat halaman dimuat
+        updateCheckbox();
+
+        // Memanggil fungsi updateCheckbox() setiap kali file input berubah
+        $("input[type=file]").change(function() {
+            updateCheckbox();
+            // Memanggil fungsi untuk memeriksa apakah setidaknya satu kotak centang telah dicentang setelah file input berubah
+            $(".save-btn").prop("disabled", !checkAtLeastOneCheckbox());
         });
     });
 </script>

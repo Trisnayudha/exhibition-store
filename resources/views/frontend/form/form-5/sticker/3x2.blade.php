@@ -91,7 +91,7 @@
                                             <td>1</td>
                                             <td class="text-center">A</td>
                                             <td><input type="checkbox" name="basicA" id="basicA"
-                                                    class="form-control">
+                                                    class="form-control checkbox-class">
                                             </td>
                                             <td><input type="file" name="file-basicA" id="file-basicA"></td>
                                             <td>
@@ -102,7 +102,7 @@
                                             <td>2</td>
                                             <td class="text-center">B</td>
                                             <td><input type="checkbox" name="basicB" id="basicB"
-                                                    class="form-control">
+                                                    class="form-control checkbox-class">
                                             </td>
                                             <td><input type="file" name="file-basicB" id="file-basicB"></td>
                                             <td>
@@ -113,7 +113,7 @@
                                             <td>3</td>
                                             <td class="text-center">C</td>
                                             <td><input type="checkbox" name="basicC" id="basicC"
-                                                    class="form-control">
+                                                    class="form-control checkbox-class">
                                             </td>
                                             <td><input type="file" name="file-basicC" id="file-basicC"></td>
                                             <td>
@@ -124,7 +124,7 @@
                                             <td>4</td>
                                             <td class="text-center">D</td>
                                             <td><input type="checkbox" name="basicD" id="basicD"
-                                                    class="form-control">
+                                                    class="form-control checkbox-class">
                                             </td>
                                             <td><input type="file" name="file-basicD" id="file-basicD"></td>
                                             <td>
@@ -135,7 +135,7 @@
                                             <td>5</td>
                                             <td class="text-center">E</td>
                                             <td><input type="checkbox" name="basicE" id="basicE"
-                                                    class="form-control">
+                                                    class="form-control checkbox-class">
                                             </td>
                                             <td><input type="file" name="file-basicE" id="file-basicE"></td>
                                             <td>
@@ -146,7 +146,7 @@
                                             <td>6</td>
                                             <td class="text-center">F</td>
                                             <td><input type="checkbox" name="basicF" id="basicF"
-                                                    class="form-control">
+                                                    class="form-control checkbox-class">
                                             </td>
                                             <td><input type="file" name="file-basicF" id="file-basicF"></td>
                                             <td>
@@ -157,7 +157,7 @@
                                             <td>7</td>
                                             <td class="text-center">G</td>
                                             <td><input type="checkbox" name="basicG" id="basicG"
-                                                    class="form-control">
+                                                    class="form-control checkbox-class">
                                             </td>
                                             <td><input type="file" name="file-basicE" id="file-basicG"></td>
                                             <td>
@@ -168,7 +168,7 @@
                                             <td>8</td>
                                             <td class="text-center">H</td>
                                             <td><input type="checkbox" name="basicH" id="basicH"
-                                                    class="form-control">
+                                                    class="form-control checkbox-class">
                                             </td>
                                             <td><input type="file" name="file-basicE" id="file-basicH"></td>
                                             <td>
@@ -179,7 +179,7 @@
                                 </table>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-block mt-3 loadpayment">Save to
+                        <button type="submit" class="btn btn-primary btn-block mt-3 save-btn" disabled>Save to
                             cart</button>
                     </div>
                 </div>
@@ -190,6 +190,18 @@
 </div>
 <script>
     $(document).ready(function() {
+        function checkAtLeastOneCheckbox() {
+            return $(".checkbox-class:checked").length > 0;
+        }
+
+        // Memanggil fungsi untuk mengaktifkan atau menonaktifkan tombol "Submit" saat halaman dimuat dan setiap kali kotak centang berubah statusnya
+        $(".checkbox-class").change(function() {
+            $(".save-btn").prop("disabled", !checkAtLeastOneCheckbox());
+        });
+
+        // Menonaktifkan tombol "Submit" saat halaman dimuat jika tidak ada kotak centang yang tercentang
+        $(".save-btn").prop("disabled", !checkAtLeastOneCheckbox());
+
         // Fungsi untuk menghitung nilai input berdasarkan checkbox yang dicentang
         function updateValue() {
             var backDoffBasicValue = 0;
@@ -241,12 +253,7 @@
 
         // Memanggil fungsi updateValue() setiap kali checkbox berubah
         $("input[type=checkbox]").change(updateValue);
-    });
-</script>
 
-<script>
-    $(document).ready(function() {
-        // Fungsi untuk mengatur validasi file input berdasarkan checkbox yang dicentang
         function updateFileValidation() {
             // Checkbox A
             if ($("#basicA").is(":checked")) {
@@ -308,11 +315,48 @@
         // Memanggil fungsi updateFileValidation() setiap kali checkbox berubah
         $("input[type=checkbox]").change(updateFileValidation);
 
-        // Mengirimkan formulir ketika tombol "SUBMIT" diklik
-        $("#myForm").submit(function() {
-            // Tambahan logika validasi lainnya jika diperlukan
-            // Jika validasi berhasil, formulir akan dikirim, jika tidak formulir tidak akan dikirim
+        function updateCheckbox() {
+            // Array yang berisi nama-nama basic
+            var basics = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+
+            // Iterasi melalui setiap basic
+            basics.forEach(function(basic) {
+                // Dapatkan nilai file input sesuai dengan nama basic
+                var fileValue = $("#file-basic" + basic).val();
+
+                // Periksa apakah nilai file input ada
+                if (fileValue) {
+                    // Jika ada, tandai checkbox basic yang sesuai
+                    $("#basic" + basic).prop("checked", true);
+                } else {
+                    // Jika tidak, nonaktifkan checkbox basic yang sesuai
+                    $("#basic" + basic).prop("checked", false);
+                }
+            });
+        }
+
+        // Memanggil fungsi updateValue() setiap kali checkbox berubah
+        $(".checkbox-class").change(updateValue);
+
+        // Memanggil fungsi updateFileValidation() setiap kali checkbox berubah
+        $(".checkbox-class").change(updateFileValidation);
+
+        // Memanggil fungsi updateCheckbox() saat halaman dimuat
+        updateCheckbox();
+
+        // Memanggil fungsi updateCheckbox() setiap kali file input berubah
+        $("input[type=file]").change(function() {
+            updateCheckbox();
+            // Memanggil fungsi untuk memeriksa apakah setidaknya satu kotak centang telah dicentang setelah file input berubah
+            $(".save-btn").prop("disabled", !checkAtLeastOneCheckbox());
         });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        // Fungsi untuk mengatur validasi file input berdasarkan checkbox yang dicentang
+
     });
 </script>
 
