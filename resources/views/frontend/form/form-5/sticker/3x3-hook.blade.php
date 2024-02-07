@@ -345,7 +345,23 @@
             }
         }
 
+        // Memanggil fungsi updateValue() setiap kali checkbox berubah
+        $(".checkbox-class").change(updateValue);
 
+        // Memanggil fungsi updateFileValidation() setiap kali checkbox berubah
+        $(".checkbox-class").change(updateFileValidation);
+
+        // Memanggil fungsi updateCheckbox() saat halaman dimuat
+        updateCheckbox();
+
+        // Memanggil fungsi updateCheckbox() setiap kali file input berubah
+        $("input[type=file]").change(function() {
+            updateCheckbox();
+            updateFileValidation();
+
+            // Memanggil fungsi untuk memeriksa apakah setidaknya satu kotak centang telah dicentang setelah file input berubah
+            $(".save-btn").prop("disabled", !checkAtLeastOneCheckbox());
+        });
     });
 </script>
 

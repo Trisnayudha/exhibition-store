@@ -189,6 +189,8 @@
         // Memanggil fungsi updateCheckbox() setiap kali file input berubah
         $("input[type=file]").change(function() {
             updateCheckbox();
+            updateFileValidation();
+
             // Memanggil fungsi untuk memeriksa apakah setidaknya satu kotak centang telah dicentang setelah file input berubah
             $(".save-btn").prop("disabled", !checkAtLeastOneCheckbox());
         });
