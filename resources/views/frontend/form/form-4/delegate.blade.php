@@ -4,9 +4,9 @@
         Based on your
         {{ $data->level == 'exhibition' ? 'exhibiting' : ($data->level == 'sponsor' ? 'sponsorship' : 'exhibiting & sponsorship') }}
         package, you are entitled to
-        {{ $access['exhibitor_pass'] }} delegate
-        {{ $access['exhibitor_pass'] >= 2 ? 'passes' : 'pass' }}.
-        This delegate {{ $access['exhibitor_pass'] >= 2 ? 'passes' : 'pass' }} includes:
+        {{ $access['delegate_pass'] }} delegate
+        {{ $access['delegate_pass'] >= 2 ? 'passes' : 'pass' }}.
+        This delegate {{ $access['delegate_pass'] >= 2 ? 'passes' : 'pass' }} includes:
         <ul>
             <li>Conference</li>
             <li>Exhibition</li>
