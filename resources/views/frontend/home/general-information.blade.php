@@ -76,10 +76,10 @@
                                         <p>Event Executive</p>
                                         <p>Ms. Callula Aisha</p>
                                         <p>
-                                            <a href="mailto: calulla@indonesiaminer.com">E: calulla@indonesiaminer.com
+                                            <a href="mailto: callula@indonesiaminer.com">E: callula@indonesiaminer.com
                                             </a>
                                         </p>
-                                        <a href="https://wa.me/+6281213606360" target="_blank">M: +6281213606360</a>
+                                        <a href="https://wa.me/+628111798599" target="_blank">M: +628111798599</a>
 
                                     </div>
                                 </div>
