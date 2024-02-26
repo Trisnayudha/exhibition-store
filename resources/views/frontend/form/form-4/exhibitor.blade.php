@@ -14,7 +14,7 @@
         </ul>
     </div>
     <div class="alert alert-danger" role="alert">
-        <p>Upgrade your Exhibitor Pass to Delegate Pass for USD 280 / Pax / 3 Days with the inclusion access to:
+        <p>Upgrade your Exhibitor Pass to Delegate Pass for USD 160 / Pax / 3 Days with the inclusion access to:
             Conference, Exhibition, Networking Functions</p>
         Please Note: Company, Name and Position will be printed on the badge
     </div>
@@ -185,7 +185,7 @@
                 <!-- Form inside the modal for input -->
                 <div class="alert alert-info alert-dismissible fade show" role="alert">
                     <b>Additional Exhibitor</b>
-                    <p> For USD 280 / Pax / 3 Days with the inclusion access to: Exhibition, Networking Functions</p>
+                    <p> For USD 160 / Pax / 3 Days with the inclusion access to: Exhibition, Networking Functions</p>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
