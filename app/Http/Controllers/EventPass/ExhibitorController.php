@@ -46,7 +46,7 @@ class ExhibitorController extends Controller
         // Menentukan nilai berdasarkan status upgradeExhibitor
         if ($upgradeExhibitor) {
             // Logika untuk kasus checkbox upgradeExhibitor tercentang (true)
-            $event_ticket = 72;
+            $event_ticket = 70;
             $type = 'Exhibition Pass Upgrade';
             $package = 'Exhibitor Upgrade Pass';
             $event_price = 2526560;
@@ -55,7 +55,7 @@ class ExhibitorController extends Controller
             // Logika untuk kasus checkbox upgradeExhibitor tidak tercentang (false)
             $type = 'Exhibition Exhibitor';
             $package = 'Exhibitor Pass';
-            $event_ticket = 69;
+            $event_ticket = 70;
             $event_price = 0;
             $event_price_dollar = 0;
         }
@@ -143,7 +143,7 @@ class ExhibitorController extends Controller
         // Menentukan nilai berdasarkan status upgradeExhibitor
         if ($upgradeExhibitor) {
             // Logika untuk kasus checkbox upgradeExhibitor tercentang (true)
-            $event_ticket = 72;
+            $event_ticket = 70;
             $type = 'Additional Exhibition Pass';
             $package = 'Additional Exhibitor Pass';
             $event_price = 4417070;
@@ -152,7 +152,7 @@ class ExhibitorController extends Controller
             // Logika untuk kasus checkbox upgradeExhibitor tidak tercentang (false)
             $type = 'Exhibition Exhibitor';
             $package = 'Exhibitor Pass';
-            $event_ticket = 69;
+            $event_ticket = 70;
             $event_price = 0;
             $event_price_dollar = 0;
         }
@@ -257,7 +257,7 @@ class ExhibitorController extends Controller
             // Menentukan nilai berdasarkan status upgradeExhibitor
             if ($upgradeExhibitor) {
                 // Logika untuk kasus checkbox upgradeExhibitor tercentang (true)
-                $event_ticket = 72;
+                $event_ticket = 70;
                 $type = 'Exhibition Pass Upgrade';
                 $package = 'Exhibitor Upgrade Pass';
                 $event_price = 4342002;
@@ -266,7 +266,7 @@ class ExhibitorController extends Controller
                 // Logika untuk kasus checkbox upgradeExhibitor tidak tercentang (false)
                 $type = 'Exhibition Exhibitor';
                 $package = 'Exhibitor Pass';
-                $event_ticket = 69;
+                $event_ticket = 70;
                 $event_price = 0;
                 $event_price_dollar = 0;
             }

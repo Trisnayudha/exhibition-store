@@ -38,7 +38,7 @@ class WorkingController extends Controller
         $city = $request->city;
         $country = $request->country;
         $post_code = $request->post_code;
-        $event_ticket = 69;
+        $event_ticket = 71;
         $type = 'Exhibition Working';
         $code_payment = strtoupper(Str::random(7));
         $events_id = 12;

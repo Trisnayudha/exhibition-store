@@ -44,7 +44,7 @@ class AdditionalController extends Controller
         $city = $request->city;
         $country = $request->country;
         $post_code = $request->post_code;
-        $event_ticket = 73;
+        $event_ticket = 81;
         $type = 'Exhibition Delegate Additional';
         $code_payment = strtoupper(Str::random(7));
         $events_id = 12;
