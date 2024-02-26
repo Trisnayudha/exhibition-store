@@ -74,8 +74,7 @@
                         <p>Please Note: Before uploading an Excel file, make sure to use the provided Excel file
                             template.</p>
 
-                        <a href="{{ asset('form4/Template-excel.xlsx') }}" class="btn btn-info text-white"
-                            download>Download
+                        <a href="{{ asset('form4/template.xlsx') }}" class="btn btn-info text-white" download>Download
                             Excel Template</a>
                     </div>
                     <div class="form-group">
