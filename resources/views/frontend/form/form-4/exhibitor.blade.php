@@ -14,8 +14,7 @@
         </ul>
     </div>
     <div class="alert alert-danger" role="alert">
-        <p>Upgrade your Exhibitor Pass to Delegate Pass for USD 160 / Pax / 3 Days with the inclusion access to:
-            Conference, Exhibition, Networking Functions</p>
+        <p>Add an exhibitor pass for USD 280</p>
         Please Note: Company, Name and Position will be printed on the badge
     </div>
     <div class="logger-exhibitor"></div>
