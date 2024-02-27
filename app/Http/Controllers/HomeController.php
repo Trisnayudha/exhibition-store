@@ -131,10 +131,10 @@ class HomeController extends Controller
     {
         $id = auth()->id();
         $level = auth()->user()->level;
-        if ($level == 'sponsors') {
+        if ($level == 'sponsors' || $level == 'exhibition_sponsor') {
             $data = $this->getAdvertisement();
             return [
-                'link' => $data->file ?? null,
+                'file' => $data->file ?? null,
                 'link' => $data->link ?? null
             ];
         } else {
