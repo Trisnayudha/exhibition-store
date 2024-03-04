@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\EventPass;
 
+use App\Helpers\WhatsappApi;
 use App\Http\Controllers\Controller;
+use App\Models\Company;
 use App\Models\Exhibition\ExhibitionMiningPass;
 use App\Models\Logs\ExhibitionLog;
 use App\Models\Payment;
@@ -53,7 +55,18 @@ class MiningController extends Controller
         }
         $log->updated_at = Carbon::now();
         $log->save();
+        $findCompany = Company::where('id', $id)->first();
+        $sendwa = new WhatsappApi();
+        $sendwa->phone = '087785140389';
+        $sendwa->message = 'Hi Mba lulla,
+Ada yang submit Mining Pass nih
 
+dari company ' . $findCompany->name . '
+
+Mohon di check yaa excelnya berikut link untuk quick view nya:
+: ' . url($db) . '
+';
+        $sendwa->WhatsappMessage();
         return response()->json(['message' => 'Data berhasil disimpan']);
     }
 
