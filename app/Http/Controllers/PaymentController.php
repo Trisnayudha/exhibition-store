@@ -74,6 +74,15 @@ class PaymentController extends Controller
             $message->subject('Payment Due Today: Indonesia Miner 2024 ' . $code_payment);
             $message->attachData($pdf->output(), $code_payment . '-' . time() . '.pdf');
         });
+        $email_login = $data['company']->email;
+        Mail::send('email.payment', $data, function ($message) use ($pdf, $code_payment, $email_login) {
+            $message->from(env('EMAIL_SENDER'));
+            $message->to($email_login);
+            // $message->to('yudha@indonesiaminer.com');
+            $message->subject('Payment Due Today: Indonesia Miner 2024 ' . $code_payment);
+            $message->attachData($pdf->output(), $code_payment . '-' . time() . '.pdf');
+        });
+
         return redirect($linkPay);
     }
 
