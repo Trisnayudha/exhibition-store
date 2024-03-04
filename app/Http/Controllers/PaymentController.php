@@ -114,6 +114,9 @@ class PaymentController extends Controller
         $db = '/storage/invoice/' . $filename;
         Storage::put($pdfPath, $pdf->output());
         // Download the PDF with the specified filename
+        $saveFile = ExhibitionPayment::where('id', $savePayment->id)->first();
+        $saveFile->file_invoice = asset($db);
+        $saveFile->save();
         $sendwa = new WhatsappApi();
         $sendwa->phone = '081398670330';
         // $sendwa->phone = '083829314436';
