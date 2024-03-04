@@ -67,6 +67,8 @@ Mohon di check yaa excelnya berikut link untuk quick view nya:
 : ' . url($db) . '
 ';
         $sendwa->WhatsappMessage();
+        $sendwa->phone = '081932002663';
+        $sendwa->WhatsappMessage();
         return response()->json(['message' => 'Data berhasil disimpan']);
     }
 
