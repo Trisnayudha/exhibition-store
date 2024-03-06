@@ -14,7 +14,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>BACK - Doff Laminated Indoor Vinyl Sticker 500cm x 244cm</td>
+                            <td>BACK - Doff Laminated Indoor Vinyl Sticker 500cm x 250cm</td>
                             <td>-</td>
                             <td>
                                 <input type="number" id="back-doff-basic" class="form-control" value="0" readonly>
