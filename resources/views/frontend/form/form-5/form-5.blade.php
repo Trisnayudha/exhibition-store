@@ -131,9 +131,7 @@
 
 
                                             </div>
-                                            <button type="submit" class="btn btn-primary btn-lg btn-block loadpayment">
-                                                Save
-                                                Contact</button>
+                                            <button id="submitButton" class="btn btn-primary">Save Contact</button>
                                         </div>
 
                                     </div>
