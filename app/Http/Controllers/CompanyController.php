@@ -42,7 +42,6 @@ class CompanyController extends Controller
         $save->is_register = 1;
         $save->name_pic = $name;
         $save->save();
-
         $log = ExhibitionLog::where('section', 'personal_information')->where('company_id', $id)->first();
         if ($log == null) {
             $log = new ExhibitionLog();
@@ -84,7 +83,6 @@ class CompanyController extends Controller
         $origin_manufacturer_id = $request->origin_manufacturer_id;
         $question_would = $request->question_would;
         $ms_company_class_id = $request->ms_company_class_id;
-
 
         $save = Company::where('id', $id)->first();
 

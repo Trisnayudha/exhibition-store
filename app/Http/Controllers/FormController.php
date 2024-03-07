@@ -54,6 +54,7 @@ class FormController extends Controller
             $data['origin_manufacturer'] = MsOriginManufacturCompany::get();
             $data['ms_company_class'] = MsCompanyClass::get();
             $data['data'] = $this->getDetail();
+            // dd($data['data']);
             $data['personal_information'] = $this->getLogs('personal_information');
             $data['company_information'] = $this->getLogs('company_information');
             // dd($data['section']);
