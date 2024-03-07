@@ -28,9 +28,9 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="{{ url('pic') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <div id="section1">
+                    <div id="section1">
+                        <form action="{{ url('pic') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
                             <div class="card">
                                 <div class="card-header" id="card-exhibition">
                                     <h5 class="mb-0">
@@ -140,6 +140,9 @@
                                 </div>
 
                             </div>
+                        </form>
+                        <form action="{{ url('pic') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
                             <div class="card">
                                 @if ($data->exhibition_design == 1)
                                     <div class="card-header" id="fasciaName">
@@ -222,8 +225,8 @@
                                     </div>
                                 @endif
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
             <div class="card">

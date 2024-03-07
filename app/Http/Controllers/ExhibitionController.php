@@ -25,10 +25,21 @@ class ExhibitionController extends Controller
 
         // dd($request->all());
         $save = Company::where('id', $company_id)->first();
-        $save->pic_name = $pic_name;
-        $save->pic_job_title = $pic_job_title;
-        $save->pic_email = $pic_email;
-        $save->pic_phone = $pic_phone;
+        if ($pic_name !== null) {
+            $save->pic_name = $pic_name;
+        }
+
+        if ($pic_job_title !== null) {
+            $save->pic_job_title = $pic_job_title;
+        }
+
+        if ($pic_email !== null) {
+            $save->pic_email = $pic_email;
+        }
+
+        if ($pic_phone !== null) {
+            $save->pic_phone = $pic_phone;
+        }
         // Update image if provided
         if ($pic_signature) {
             $response = Http::post('https://indonesiaminer.com/api/upload-image/company', [
