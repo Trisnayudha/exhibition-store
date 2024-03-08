@@ -40,7 +40,7 @@ class CompanyController extends Controller
         $save->email_alternate = $email_alternate;
         $save->ms_phone_code_id = $phone_code;
         $save->is_register = 1;
-        $save->name_pic = $name;
+        $save->name_pic = $company_name;
         $save->save();
         $log = ExhibitionLog::where('section', 'personal_information')->where('company_id', $id)->first();
         if ($log == null) {
