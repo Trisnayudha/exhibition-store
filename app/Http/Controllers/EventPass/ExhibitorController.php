@@ -19,7 +19,7 @@ class ExhibitorController extends Controller
         $id = auth()->id();
         $data = Users::leftjoin('payment', 'users.id', '=', 'payment.users_id')
             ->where('payment.company_id', $id)
-            ->whereIn('payment.type', ['Exhibition Upgrade', 'Exhibition Exhibitor'])
+            ->whereIn('payment.type', ['Exhibition Pass Upgrade', 'Exhibition Exhibitor'])
             ->orderby('payment.id', 'desc')
             ->select('users.*', 'payment.*', 'users.id as id', 'payment.id as payment_id')
             ->get();
