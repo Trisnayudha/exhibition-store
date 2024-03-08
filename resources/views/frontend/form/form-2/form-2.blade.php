@@ -85,40 +85,37 @@
 
             input.addEventListener('change', function(e) {
                 var files = e.target.files;
-                var reader;
 
                 if (files && files.length > 0) {
                     var file = files[0];
 
+                    // Hancurkan instance Cropper sebelumnya jika ada
+                    if (cropper) {
+                        cropper.destroy();
+                        cropper = null;
+                    }
+
                     if (URL) {
                         image.src = URL.createObjectURL(file);
-                        cropper = new Cropper(image, {
-                            aspectRatio: 800 / 500, // Dimensi tetap 600 x 400
-                            viewMode: 1, // Fixed crop box
-                            autoCropArea: 1,
-                            background: false
-                        });
-                    } else if (FileReader) {
-                        reader = new FileReader();
-                        reader.onload = function(e) {
-                            image.src = e.target.result;
+                        // Pastikan gambar sudah dimuat sebelum membuat instance Cropper baru
+                        image.onload = function() {
                             cropper = new Cropper(image, {
-                                aspectRatio: 600 / 400, // Dimensi tetap 600 x 400
-                                viewMode: 1, // Fixed crop box
+                                aspectRatio: 600 /
+                                400, // Sesuaikan dengan dimensi yang diinginkan
+                                viewMode: 1,
                                 autoCropArea: 1,
                                 background: false
                             });
                         };
-                        reader.readAsDataURL(file);
                     }
                 }
             });
-            document.getElementById('saveGeneral').addEventListener('click', function() {
-                // Ambil data gambar yang di-crop
-                var croppedData = cropper.getCroppedCanvas().toDataURL();
 
-                // Set nilai input tersembunyi
-                document.getElementById('cropped_image_input').value = croppedData;
+            document.getElementById('saveGeneral').addEventListener('click', function() {
+                if (cropper) {
+                    var croppedData = cropper.getCroppedCanvas().toDataURL();
+                    document.getElementById('cropped_image_input').value = croppedData;
+                }
             });
         });
     </script>
