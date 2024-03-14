@@ -16,7 +16,7 @@
         Please Note: Company, Name and Position will be printed on the badge
     </div>
     <div class="logger-working"></div>
-    <button class="btn btn-primary mb-2" onclick="tambahWorking()">Add</button>
+    <button class="btn btn-primary mb-2" onclick="tambahWorking()" id="workingButton">Add</button>
     <div class="table-responsive">
 
         <table class="table">
@@ -510,7 +510,7 @@
 
                 // Get the image base URL from the configuration
                 var imageBaseUrl = '{{ config('app.image_base_url') }}';
-
+                var accessData = {{ $access['working_pass'] }}
                 // Iterate through the data and append rows to the table
                 for (var i = 0; i < data.length; i++) {
                     var representative = data[i];
@@ -532,6 +532,16 @@
 
                     // Append the row to the table body
                     $('#tabelWorking').append(row);
+                }
+                if (accessData <= data.length) {
+                    console.log(data.length);
+                    // Disable the button or show a notification
+                    $('#workingButton').prop('disabled', true);
+                    // You can also display a notification here
+                    // Example: $('#notification').text('You cannot add more data.').show();
+                } else {
+                    $('#workingButton').prop('disabled', false);
+
                 }
             },
             error: function(error) {
