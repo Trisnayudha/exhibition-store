@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Goutte\Client;
 
 class ExhibitorController extends Controller
 {
@@ -19,7 +20,7 @@ class ExhibitorController extends Controller
         $id = auth()->id();
         $data = Users::leftjoin('payment', 'users.id', '=', 'payment.users_id')
             ->where('payment.company_id', $id)
-            ->whereIn('payment.type', ['Exhibition Pass Upgrade', 'Exhibition Exhibitor'])
+            ->whereIn('payment.type', ['Exhibition Pass Upgrade', 'Exhibition Exhibitor', 'Additional Exhibition Pass'])
             ->orderby('payment.id', 'desc')
             ->select('users.*', 'payment.*', 'users.id as id', 'payment.id as payment_id')
             ->get();
@@ -49,8 +50,8 @@ class ExhibitorController extends Controller
             $event_ticket = 70;
             $type = 'Exhibition Pass Upgrade';
             $package = 'Exhibitor Upgrade Pass';
-            $event_price = 2526560;
             $event_price_dollar = 160;
+            $event_price = $this->scrape() * $event_price_dollar;
         } else {
             // Logika untuk kasus checkbox upgradeExhibitor tidak tercentang (false)
             $type = 'Exhibition Exhibitor';
@@ -146,8 +147,8 @@ class ExhibitorController extends Controller
             $event_ticket = 82;
             $type = 'Additional Exhibition Pass';
             $package = 'Additional Exhibitor Pass';
-            $event_price = 4417070;
             $event_price_dollar = 280;
+            $event_price = $this->scrape() * $event_price_dollar;
         } else {
             // Logika untuk kasus checkbox upgradeExhibitor tidak tercentang (false)
             $type = 'Exhibition Exhibitor';
@@ -325,5 +326,31 @@ class ExhibitorController extends Controller
         $userId = auth()->id();
         $data = ExhibitionLog::where('section', 'delegate')->where('company_id', $userId)->first();
         return $data;
+    }
+
+    private function scrape()
+    {
+        $client = new Client();
+
+        // URL target
+        $url = 'https://kursdollar.org/real-time/USD/';
+        // Mengirim permintaan GET ke halaman web
+        $crawler = $client->request('GET', $url);
+
+        // Mencari elemen dengan ID "nilai"
+        $value = $crawler->filter('.in_table tr:nth-child(3) > td:first-child')->text();
+
+        // Menghilangkan titik dan mengganti koma dengan titik
+        $value = str_replace('.', '', $value);
+        $value = str_replace(',', '.', $value);
+
+        // Mengonversi nilai tukar menjadi float
+        $floatValue = (float) $value;
+
+        // Mengonversi nilai tukar menjadi integer (dengan pembulatan)
+        $intValue = (int) round($floatValue);
+
+        // Mengembalikan nilai tukar dalam format integer
+        return $intValue;
     }
 }
