@@ -42,6 +42,7 @@ class MediaController extends Controller
         $media->media_category_id = $request->category;
         $media->location = $request->location;
         $media->desc = $request->desc;
+        $media->document_name = $request->document_name;
         // ... tambahkan atribut lainnya sesuai kebutuhan
 
         $image = $request->file('image'); // Gunakan file() untuk mendapatkan file yang di-upload
@@ -123,7 +124,7 @@ class MediaController extends Controller
         $media->media_category_id = $request->category;
         $media->location = $request->location;
         $media->desc = $request->description;
-
+        $media->document_name = $request->document_name;
         $image = $request->file('image'); // Gunakan file() untuk mendapatkan file yang di-upload
         // Update image if provided
         if ($request->hasFile('image')) {
@@ -150,7 +151,7 @@ class MediaController extends Controller
             ]);
 
             // Ambil path URL dari respons
-            $fullPathFile = $responseFile['image'];
+            $fullPathFile = $responseFile['file'];
             $media->file = $fullPathFile;
         }
 

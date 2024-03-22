@@ -80,6 +80,8 @@ Route::get('/additional/log', [AdditionalController::class, 'log']);
 //Crud
 Route::resource('representative', RepresentativeController::class);
 Route::resource('media', MediaController::class);
+// Mendefinisikan route update menggunakan POST
+Route::post('media/{media}', [MediaController::class, 'update'])->name('media.update');
 Route::resource('product', ProductsController::class);
 Route::resource('project', ProjectController::class);
 Route::resource('news', NewsController::class);

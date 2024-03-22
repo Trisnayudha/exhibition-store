@@ -98,6 +98,8 @@
                 <div class="form-group">
                     <label for="media_edit_image">Image <small>(800x800 px, JPG/PNG, max 1MB) </small> </label>
                     <input type="file" class="form-control" id="media_edit_image" accept="image/jpeg, image/png">
+                    <span><a href="" id="media_image_info" target="_blank"></a></span>
+                    <!-- Ini adalah elemen tambahan untuk menampilkan teks -->
                 </div>
 
                 <div class="form-group">
@@ -124,6 +126,7 @@
                 <div class="form-group">
                     <label for="media_edit_file">File (PDF, max 10MB)</label>
                     <input type="file" class="form-control" id="media_edit_file" accept=".pdf">
+                    <span><a href="" id="media_file_info" target="_blank"></a></span>
                 </div>
                 <div class="form-group">
                     <label for="media_edit_document_name">Document Name</label>
@@ -169,7 +172,26 @@
                 // Set the value of CKEditor
                 CKEDITOR.instances.media_edit_desc.setData(media.desc);
                 $('#media_edit_document_name').val(media.document_name);
-                // $('#media_edit_image').val(media.image);
+
+                var image = media.image;
+                if (image) {
+                    $('#media_image_info').attr('href', 'https://indonesiaminer.com/' +
+                        media
+                        .image);
+                    $('#media_image_info').text('open link')
+                } else {
+                    $('#media_image_info').text('')
+                }
+
+                var file = media.file;
+                if (file) {
+                    $('#media_file_info').attr('href', 'https://indonesiaminer.com/' +
+                        media
+                        .file);
+                    $('#media_file_info').text('open link')
+                } else {
+                    $('#media_file_info').text('')
+                }
 
                 // Open the edit modal
                 $('#mediaEditModal').modal('show');
@@ -188,6 +210,7 @@
         var description = CKEDITOR.instances.media_edit_desc.getData();
         var fileInput = $('#media_edit_file')[0];
         var imageInput = $('#media_edit_image')[0];
+        var documentName = $('#media_edit_document_name').val();
 
         // Validasi input
         if (!title || !category || !location || !description) {
@@ -202,46 +225,39 @@
 
         var csrfToken = $('meta[name="csrf-token"]').attr('content');
 
-        // Create a JSON object
-        var jsonData = {
-            id: id,
-            title: title,
-            category: category,
-            location: location,
-            description: description
-        };
+        var formData = new FormData();
+        formData.append('image', imageInput.files[0]);
+        formData.append('title', title);
+        formData.append('category', category);
+        formData.append('location', location);
+        formData.append('description', description);
+        formData.append('file', fileInput.files[0]);
+        formData.append('document_name', documentName);
+        console.log(formData)
+        $('.loading-wrapper, .overlay').show(); // Menampilkan loader dan overlay
 
-        // Add file data to the JSON object if present
-        if (fileInput.files[0]) {
-            jsonData.file = fileInput.files[0];
-        }
-
-        // Add image data to the JSON object if present
-        if (imageInput.files[0]) {
-            jsonData.image = imageInput.files[0];
-        }
-        $('.loading-wrapper, .overlay').show();
-        // Send data to the server using Ajax
+        // Kirim data ke server menggunakan Ajax
         $.ajax({
-            type: 'PUT',
+            type: 'POST', // Gunakan POST untuk upload file
             url: '{{ url('/media') }}/' + id,
-            data: JSON.stringify(jsonData),
-            contentType: 'application/json',
+            data: formData,
+            processData: false, // Penting: mengatur ini ke false sehingga jQuery tidak memproses data
+            contentType: false, // Penting: mengatur ini ke false sehingga jQuery tidak menetapkan contentType
             headers: {
-                'X-CSRF-TOKEN': csrfToken
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             success: function(response) {
                 loadLogMedia();
                 loadMedia();
                 $('#mediaEditModal').modal('hide');
                 $('.loading-wrapper, .overlay').hide();
-
             },
             error: function(error) {
                 console.error('Error:', error);
             }
         });
     }
+
 
 
 
