@@ -108,6 +108,7 @@
                 <div class="form-group">
                     <label for="news_edit_image">Image <small>(800x800 px, JPG/PNG, max 1MB) </small> </label>
                     <input type="file" class="form-control" id="news_edit_image" accept="image/jpeg, image/png">
+                    <span><a href="" id="news_image_info" target="_blank"></a></span>
                 </div>
             </div>
 
@@ -152,7 +153,14 @@
                 $('#news_edit_date').val(formattedDateString);
                 // $('#news_edit_date').val(formattedDateString);
                 CKEDITOR.instances.news_edit_desc.setData(news.desc);
-
+                var image = news.image;
+                if (image) {
+                    $('#news_image_info').attr('href', 'https://indonesiaminer.com/' +
+                        news.image);
+                    $('#news_image_info').text('open link')
+                } else {
+                    $('#news_image_info').text('')
+                }
                 // Open the edit modal
                 $('#newsEditModal').modal('show');
             },
@@ -296,7 +304,7 @@
             formData.append('image', imageInput.files[0]);
         }
         $('.loading-wrapper, .overlay').show(); // Menampilkan loader dan overlay
-
+        console.log(newsDate);
         // Kirim data ke server menggunakan Ajax dengan FormData
         $.ajax({
             type: 'POST',

@@ -22,8 +22,8 @@ class NewsController extends Controller
     {
         $id = auth()->id();
         $title = $request->title;
-        $news_category_id = $request->news_category_id;
-        $date_news = $request->date_news;
+        $news_category_id = $request->category;
+        $date_news = $request->news_date;
         $desc = $request->desc;
         $image = $request->file('image'); // Gunakan file() untuk mendapatkan file yang di-upload
 
@@ -77,9 +77,9 @@ class NewsController extends Controller
     public function update(Request $request, $id)
     {
         $title = $request->title;
-        $news_category_id = $request->news_category_id;
-        $date_news = $request->date_news;
-        $desc = $request->desc;
+        $news_category_id = $request->category;
+        $date_news = $request->date;
+        $desc = $request->description;
         $image = $request->file('image'); // Gunakan file() untuk mendapatkan file yang di-upload
 
         $save = News::findOrFail($id);
