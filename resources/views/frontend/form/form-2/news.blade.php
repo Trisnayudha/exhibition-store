@@ -142,13 +142,16 @@
                 $('#news_id').val(news.id);
                 $('#news_edit_title').val(news.title);
                 $('#news_edit_category').val(news.news_category_id).trigger('change');
-                var date = response.data.date_news;
+                var date = news.date_news;
+                // console.log(date)
                 // Konversi string tanggal ke objek tanggal JavaScript
                 var dateObject = new Date(date);
+                // Tambahkan waktu untuk menutupi perbedaan zona waktu sebelum konversi
+                // Misal, menambahkan 12 jam untuk mengurangi potensi perbedaan zona waktu
+                dateObject.setHours(dateObject.getHours() + 12);
 
                 // Format tanggal sesuai dengan atribut type="date"
                 var formattedDateString = dateObject.toISOString().split('T')[0];
-
                 // Set nilai input tanggal
                 $('#news_edit_date').val(formattedDateString);
                 // $('#news_edit_date').val(formattedDateString);
