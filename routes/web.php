@@ -85,6 +85,7 @@ Route::post('media/{media}', [MediaController::class, 'update'])->name('media.up
 Route::resource('product', ProductsController::class);
 Route::post('product/{product}', [ProductsController::class, 'update'])->name('product.update');
 Route::resource('project', ProjectController::class);
+Route::post('project/{project}', [ProjectController::class, 'update'])->name('project.update');
 Route::resource('news', NewsController::class);
 Route::resource('delegate', DelegateController::class);
 Route::resource('exhibitor', ExhibitorController::class);

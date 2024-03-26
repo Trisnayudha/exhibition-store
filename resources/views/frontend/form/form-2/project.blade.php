@@ -108,6 +108,7 @@
                 <div class="form-group">
                     <label for="project_edit_image">Image <small>(800x800 px, JPG/PNG, max 1MB) </small> </label>
                     <input type="file" class="form-control" id="project_edit_image" accept="image/jpeg, image/png">
+                    <span><a href="" id="project_image_info" target="_blank"></a></span>
                 </div>
             </div>
 
@@ -152,6 +153,15 @@
                 $('#project_edit_date').val(formattedDateString);
                 // $('#project_edit_date').val(formattedDateString);
                 CKEDITOR.instances.project_edit_desc.setData(project.desc);
+                var image = project.image;
+                if (image) {
+                    $('#project_image_info').attr('href', 'https://indonesiaminer.com/' +
+                        project
+                        .image);
+                    $('#project_image_info').text('open link')
+                } else {
+                    $('#project_image_info').text('')
+                }
 
                 // Open the edit modal
                 $('#projectEditModal').modal('show');
@@ -170,6 +180,7 @@
         var dateProject = $('#project_edit_date').val();
         var description = CKEDITOR.instances.project_edit_desc.getData();
         var imageInput = $('#project_edit_image')[0];
+
         // Validasi input
         if (!title || !category || !description) {
             Swal.fire({
@@ -183,28 +194,26 @@
 
         var csrfToken = $('meta[name="csrf-token"]').attr('content');
 
-        // Create a JSON object
-        var jsonData = {
-            id: id,
-            title: title,
-            category: category,
-            description: description,
-            date: dateProject
-        };
+        var formData = new FormData();
+        formData.append('id', id);
+        formData.append('title', title);
+        formData.append('category', category);
+        formData.append('description', description);
+        formData.append('date', dateProject);
 
-        // Add image data to the JSON object if present
+        // Add image data to the form data if present
         if (imageInput.files[0]) {
-            jsonData.image = imageInput.files[0];
+            formData.append('image', imageInput.files[0]);
         }
-        console.log(jsonData)
         $('.loading-wrapper, .overlay').show(); // Menampilkan loader dan overlay
 
-        // Send data to the server using Ajax
+        // Kirim data ke server menggunakan Ajax
         $.ajax({
-            type: 'PUT',
+            type: 'POST',
             url: '{{ url('/project') }}/' + id,
-            data: JSON.stringify(jsonData),
-            contentType: 'application/json',
+            data: formData,
+            processData: false, // Penting: mengatur ini ke false sehingga jQuery tidak memproses data
+            contentType: false, // Penting: mengatur ini ke false sehingga jQuery tidak menetapkan contentType
             headers: {
                 'X-CSRF-TOKEN': csrfToken
             },
@@ -214,13 +223,13 @@
                 loadProject();
                 $('#projectEditModal').modal('hide');
                 $('.loading-wrapper, .overlay').hide(); // Menampilkan loader dan overlay
-
             },
             error: function(error) {
                 console.error('Error:', error);
             }
         });
     }
+
 
     // Function to open the input modal
     function tambahProject() {
