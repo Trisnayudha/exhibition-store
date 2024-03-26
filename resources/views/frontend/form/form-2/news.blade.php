@@ -181,6 +181,7 @@
         var dateNews = $('#news_edit_date').val();
         var description = CKEDITOR.instances.news_edit_desc.getData();
         var imageInput = $('#news_edit_image')[0];
+
         // Validasi input
         if (!title || !category || !description) {
             Swal.fire({
@@ -194,28 +195,26 @@
 
         var csrfToken = $('meta[name="csrf-token"]').attr('content');
 
-        // Create a JSON object
-        var jsonData = {
-            id: id,
-            title: title,
-            category: category,
-            description: description,
-            date: dateNews
-        };
+        var formData = new FormData();
+        formData.append('id', id);
+        formData.append('title', title);
+        formData.append('category', category);
+        formData.append('description', description);
+        formData.append('date', dateNews);
 
-        // Add image data to the JSON object if present
+        // Add image data to the form data if present
         if (imageInput.files[0]) {
-            jsonData.image = imageInput.files[0];
+            formData.append('image', imageInput.files[0]);
         }
-        console.log(jsonData)
         $('.loading-wrapper, .overlay').show(); // Menampilkan loader dan overlay
 
-        // Send data to the server using Ajax
+        // Kirim data ke server menggunakan Ajax
         $.ajax({
-            type: 'PUT',
+            type: 'POST',
             url: '{{ url('/news') }}/' + id,
-            data: JSON.stringify(jsonData),
-            contentType: 'application/json',
+            data: formData,
+            processData: false, // Penting: mengatur ini ke false sehingga jQuery tidak memproses data
+            contentType: false, // Penting: mengatur ini ke false sehingga jQuery tidak menetapkan contentType
             headers: {
                 'X-CSRF-TOKEN': csrfToken
             },
@@ -224,14 +223,15 @@
                 loadLogNews();
                 loadNews();
                 $('#newsEditModal').modal('hide');
+                $('#news_edit_image').val('');
                 $('.loading-wrapper, .overlay').hide(); // Menampilkan loader dan overlay
-
             },
             error: function(error) {
                 console.error('Error:', error);
             }
         });
     }
+
 
     // Function to open the input modal
     function tambahNews() {

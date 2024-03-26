@@ -222,6 +222,7 @@
                 loadLogProject();
                 loadProject();
                 $('#projectEditModal').modal('hide');
+                $('#project_edit_image').val('');
                 $('.loading-wrapper, .overlay').hide(); // Menampilkan loader dan overlay
             },
             error: function(error) {
