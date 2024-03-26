@@ -125,20 +125,35 @@ class ProductsController extends Controller
         $product->desc = $request->description;
         $product->video = $request->video_url;
         $product->document_name = $request->document_name;
-        // Update gambar jika disediakan
+
+        $image = $request->file('image'); // Gunakan file() untuk mendapatkan file yang di-upload
+        // Update image if provided
         if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('images'), $imageName);
-            $product->image = 'images/' . $imageName;
+            // Konversi gambar ke base64
+            $base64Image = base64_encode(file_get_contents($image->getRealPath()));
+            // Konversi gambar ke base64
+            $response = Http::post('https://indonesiaminer.com/api/upload-image/company', [
+                'image' => $base64Image,
+            ]);
+
+            // Ambil path URL dari respons
+            $fullPath = $response['image'];
+            $product->image = $fullPath;
         }
 
-        // Update file jika disediakan
+        $file = $request->file('file'); // Gunakan file() untuk mendapatkan file yang di-upload
+        // Update image if provided
         if ($request->hasFile('file')) {
-            $file = $request->file('file');
-            $fileName = time() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('files'), $fileName);
-            $product->file = 'files/' . $fileName;
+            // Konversi gambar ke base64
+            $base64File = base64_encode(file_get_contents($file->getRealPath()));
+            // Konversi gambar ke base64
+            $responseFile = Http::post('https://indonesiaminer.com/api/upload-file/company', [
+                'file' => $base64File,
+            ]);
+
+            // Ambil path URL dari respons
+            $fullPathFile = $responseFile['file'];
+            $product->file = $fullPathFile;
         }
 
         // Pengaturan tambahan
