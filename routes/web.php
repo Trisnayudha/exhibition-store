@@ -83,6 +83,7 @@ Route::resource('media', MediaController::class);
 // Mendefinisikan route update menggunakan POST
 Route::post('media/{media}', [MediaController::class, 'update'])->name('media.update');
 Route::resource('product', ProductsController::class);
+Route::post('product/{product}', [ProductsController::class, 'update'])->name('product.update');
 Route::resource('project', ProjectController::class);
 Route::resource('news', NewsController::class);
 Route::resource('delegate', DelegateController::class);

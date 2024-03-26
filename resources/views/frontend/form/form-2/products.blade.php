@@ -117,6 +117,7 @@
                 <div class="form-group">
                     <label for="product_edit_file">File (PDF, max 2MB)</label>
                     <input type="file" class="form-control" id="product_edit_file" accept=".pdf">
+                    <span><a href="" id="product_file_info" target="_blank"></a></span>
                 </div>
                 <div class="form-group">
                     <label for="product_edit_desc">Description</label>
@@ -126,6 +127,7 @@
                     <label for="product_edit_image">Image <small>(800x800 px, JPG/PNG, max 1MB) </small> </label>
                     <input type="file" class="form-control" id="product_edit_image"
                         accept="image/jpeg, image/png">
+                    <span><a href="" id="product_image_info" target="_blank"></a></span>
                 </div>
             </div>
 
@@ -165,7 +167,25 @@
 
                 $('#product_edit_video').val(product.video);
                 $('#product_edit_document_name').val(product.document_name);
+                var image = product.image;
+                if (image) {
+                    $('#product_image_info').attr('href', 'https://indonesiaminer.com/' +
+                        product
+                        .image);
+                    $('#product_image_info').text('open link')
+                } else {
+                    $('#product_image_info').text('')
+                }
 
+                var file = product.file;
+                if (file) {
+                    $('#product_file_info').attr('href', 'https://indonesiaminer.com/' +
+                        product
+                        .file);
+                    $('#product_file_info').text('open link')
+                } else {
+                    $('#product_file_info').text('')
+                }
                 // Set the value of CKEditor
                 CKEDITOR.instances.product_edit_desc.setData(product.desc);
 
@@ -202,40 +222,38 @@
 
         var csrfToken = $('meta[name="csrf-token"]').attr('content');
 
-        // Create a JSON object
-        var jsonData = {
-            id: id,
-            title: title,
-            category: category,
-            description: description
-        };
+        var formData = new FormData();
+        formData.append('title', title);
+        formData.append('category', category);
+        formData.append('description', description);
 
-        // Add optional fields to the JSON object if present
+        // Add optional fields to the form data if present
         if (videoUrl) {
-            jsonData.video_url = videoUrl;
+            formData.append('video_url', videoUrl);
         }
 
         if (documentName) {
-            jsonData.document_name = documentName;
+            formData.append('document_name', documentName);
         }
 
-        // Add file data to the JSON object if present
+        // Add file data to the form data if present
         if (fileInput.files[0]) {
-            jsonData.file = fileInput.files[0];
+            formData.append('file', fileInput.files[0]);
         }
 
-        // Add image data to the JSON object if present
+        // Add image data to the form data if present
         if (imageInput.files[0]) {
-            jsonData.image = imageInput.files[0];
+            formData.append('image', imageInput.files[0]);
         }
         $('.loading-wrapper, .overlay').show(); // Menampilkan loader dan overlay
 
-        // Send data to the server using Ajax
+        // Kirim data ke server menggunakan Ajax
         $.ajax({
-            type: 'PUT',
+            type: 'POST',
             url: '{{ url('/product') }}/' + id,
-            data: JSON.stringify(jsonData),
-            contentType: 'application/json',
+            data: formData,
+            processData: false, // Penting: mengatur ini ke false sehingga jQuery tidak memproses data
+            contentType: false, // Penting: mengatur ini ke false sehingga jQuery tidak menetapkan contentType
             headers: {
                 'X-CSRF-TOKEN': csrfToken
             },
@@ -244,14 +262,16 @@
                 loadLogProduct();
                 loadProduct();
                 $('#productEditModal').modal('hide');
+                $('#product_edit_file').val('');
+                $('#product_edit_image').val('');
                 $('.loading-wrapper, .overlay').hide(); // Menampilkan loader dan overlay
-
             },
             error: function(error) {
                 console.error('Error:', error);
             }
         });
     }
+
 
 
 

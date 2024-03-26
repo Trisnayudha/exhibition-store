@@ -42,6 +42,8 @@ class ProductsController extends Controller
         $media->product_category_id = $request->category;
         $media->location = $request->location;
         $media->desc = $request->desc;
+        $media->video = $request->video_url;
+        $media->document_name =  $request->document_name;
 
         $image = $request->file('image'); // Gunakan file() untuk mendapatkan file yang di-upload
         // Update image if provided
