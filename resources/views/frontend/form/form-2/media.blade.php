@@ -250,6 +250,7 @@
                 loadLogMedia();
                 loadMedia();
                 $('#mediaEditModal').modal('hide');
+                $('#media_edit_file').val('');
                 $('.loading-wrapper, .overlay').hide();
             },
             error: function(error) {
