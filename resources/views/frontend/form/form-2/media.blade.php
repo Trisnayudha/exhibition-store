@@ -161,6 +161,8 @@
             url: '{{ url('/media') }}/' + id,
             success: function(response) {
                 console.log(response.data)
+                $('#media_edit_file').val('');
+                $('#media_edit_image').val('');
                 var media = response.data;
 
                 // Populate the fields in the edit modal with existing data

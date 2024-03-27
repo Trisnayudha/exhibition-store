@@ -135,6 +135,7 @@
             type: 'GET',
             url: '{{ url('/news') }}/' + id,
             success: function(response) {
+                $('#news_edit_image').val('');
                 console.log(response.data);
                 var news = response.data;
 

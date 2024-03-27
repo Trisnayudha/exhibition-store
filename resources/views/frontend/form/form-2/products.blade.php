@@ -155,6 +155,8 @@
             url: '{{ url('/product') }}/' + id,
             success: function(response) {
                 console.log(response.data);
+                $('#product_edit_file').val('');
+                $('#product_edit_image').val('');
                 var product = response.data;
 
                 // Populate the fields in the edit modal with existing data

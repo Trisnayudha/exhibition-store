@@ -136,6 +136,7 @@
             url: '{{ url('/project') }}/' + id,
             success: function(response) {
                 console.log(response.data);
+                $('#project_edit_image').val('');
                 var project = response.data;
 
                 // Populate the fields in the edit modal with existing data
