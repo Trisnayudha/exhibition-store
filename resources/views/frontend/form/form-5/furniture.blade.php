@@ -58,14 +58,36 @@
                         <li><a href="{{ asset('form5/furniture/Black-Barstool.png') }}" data-lightbox="image-gallery"
                                 data-title="Black Barstool"><i class="fa fa-eye"></i></a></li>
                         <li><a href="javascript:void(0);" class="add-to-cart" data-name="Black Barstool"
-                                data-price="300000" data-tip="Add to wishlist"
-                                onclick="exhibitionCart('Black Barstool','Additional Furniture',300000,300000,1,'{{ asset('form5/furniture/Black-Barstool.png') }}')"><i
+                                data-price="400000" data-tip="Add to wishlist"
+                                onclick="exhibitionCart('Black Barstool','Additional Furniture',400000,400000,1,'{{ asset('form5/furniture/Black-Barstool.png') }}')"><i
                                     class="fa fa-shopping-cart"></i></a></li>
                     </ul>
                 </div>
                 <div class="product-content">
                     <h3 class="title"><a href="#">Black Barstool</a></h3>
-                    <div class="price">IDR 300.000</div>
+                    <div class="price">IDR 400.000</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="product-grid">
+                <div class="product-image">
+                    <a href="#" class="image">
+                        <img class="pic-1" src="{{ asset('form5/furniture/White-Barstool.png') }}">
+                        <img class="pic-2" src="{{ asset('form5/furniture/White-Barstool.png') }}">
+                    </a>
+                    <ul class="social">
+                        <li><a href="{{ asset('form5/furniture/White-Barstool.png') }}" data-lightbox="image-gallery"
+                                data-title="White Barstool"><i class="fa fa-eye"></i></a></li>
+                        <li><a href="javascript:void(0);" class="add-to-cart" data-name="White Barstool"
+                                data-price="400000" data-tip="Add to wishlist"
+                                onclick="exhibitionCart('White Barstool','Additional Furniture',400000,400000,1,'{{ asset('form5/furniture/Black-Barstool.png') }}')"><i
+                                    class="fa fa-shopping-cart"></i></a></li>
+                    </ul>
+                </div>
+                <div class="product-content">
+                    <h3 class="title"><a href="#">White Barstool</a></h3>
+                    <div class="price">IDR 400.000</div>
                 </div>
             </div>
         </div>
@@ -80,8 +102,8 @@
                         <li><a href="{{ asset('form5/furniture/Side-Chair.png') }}" data-lightbox="image-gallery"
                                 data-title="Side Chair"><i class="fa fa-eye"></i></a>
                         </li>
-                        <li><a href="javascript:void(0);" class="add-to-cart" data-name="Side Chair" data-price="400000"
-                                data-tip="Add to wishlist"
+                        <li><a href="javascript:void(0);" class="add-to-cart" data-name="Side Chair"
+                                data-price="400000" data-tip="Add to wishlist"
                                 onclick="exhibitionCart('Side Chair','Additional Furniture',400000,400000,1,'{{ asset('form5/furniture/Side-Chair.png') }}')"><i
                                     class="fa fa-shopping-cart"></i></a></li>
                     </ul>
