@@ -7,6 +7,7 @@
         provide updates to you. If the invitee list declines, you are welcomed to provide replacement data.
         <p>Access to: </p>
         <ul>
+            <li>Conference</li>
             <li>Exhibition</li>
         </ul>
     </div>
