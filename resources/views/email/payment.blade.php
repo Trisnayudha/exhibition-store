@@ -74,6 +74,39 @@
             Now</a>
     </div>
 
+    <div
+        style="max-width: 600px; margin: auto; padding: 20px; border: 1px solid #dddddd; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);margin-top:5px">
+        <p>Payment via Bank Transfer:</p>
+        <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+            <tr>
+                <td>Bank Name </td>
+                <td>: </td>
+                <td>PT. Bank Mandiri (persero) TBK</td>
+            </tr>
+            <tr>
+                <td>Account Name </td>
+                <td>: </td>
+                <td>PT. Media MitraKarya Indonesia</td>
+            </tr>
+            <tr>
+                <td>Branch </td>
+                <td>: </td>
+                <td>Mal Pondoh Indah, Jakarta Indonesia</td>
+            </tr>
+            <tr>
+                <td>IDR Account </td>
+                <td>: </td>
+                <td>1010009992353</td>
+            </tr>
+            <tr>
+                <td>SWIFT CODE </td>
+                <td>: </td>
+                <td>BMRIIDJA</td>
+            </tr>
+        </table>
+
+    </div>
+
 </body>
 
 </html>

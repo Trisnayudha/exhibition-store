@@ -38,7 +38,7 @@ Route::get('/scrape', [WebScrapingController::class, 'scrape']);
 Route::get('/', [HomeController::class, 'index']);
 
 Route::get('test', function () {
-    return view('email');
+    return view('frontend.invoice.download-summary');
 });
 Route::get('/form', [FormController::class, 'index']);
 

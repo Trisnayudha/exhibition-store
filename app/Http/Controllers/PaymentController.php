@@ -65,7 +65,7 @@ class PaymentController extends Controller
         $data['company'] = Company::where('id', $findCompany->id)->first();
         $data['code_payment'] = $code_payment;
         $data['dueDate'] = $dueDate;
-        $pdf = Pdf::loadView('frontend.invoice.download-summary', $data);
+        $pdf = PDF::loadView('frontend.invoice.download-summary', $data);
         $email = $data['company']->pic_email ?? $data['company']->email_alternate;
         Mail::send('email.payment', $data, function ($message) use ($pdf, $code_payment, $email) {
             $message->from(env('EMAIL_SENDER'));
