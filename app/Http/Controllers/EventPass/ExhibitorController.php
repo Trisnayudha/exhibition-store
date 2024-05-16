@@ -144,7 +144,7 @@ class ExhibitorController extends Controller
         // Menentukan nilai berdasarkan status upgradeExhibitor
         if ($upgradeExhibitor) {
             // Logika untuk kasus checkbox upgradeExhibitor tercentang (true)
-            $event_ticket = 82;
+            $event_ticket = 81;
             $type = 'Additional Exhibition Pass';
             $package = 'Additional Exhibitor Pass';
             $event_price_dollar = 280;
