@@ -231,6 +231,26 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-sm-12">
+                            @if ($data->deadline < '2024-05-25')
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <i><b>Please note that a 30% surcharge will be added to your total order after May 25,
+                                            2024.</b></i>
+                                    </strong>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            @else
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <i><b>Please note that a 30% surcharge will be added to your total order after May 29,
+                                            2024.</b></i>
+                                    </strong>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            @endif
+
                             <div id="accordion">
                                 <div class="card">
                                     <div class="card-header" id="headingOne">
@@ -239,6 +259,7 @@
                                                 data-target="#collapseOne" aria-expanded="true"
                                                 aria-controls="collapseOne">
                                                 Additional Order - Furniture
+
                                             </button>
                                         </h5>
                                     </div>

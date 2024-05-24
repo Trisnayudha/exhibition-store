@@ -2,6 +2,24 @@
 
 @section('content')
     <div class="container mt-2">
+        @if ($company->deadline <= '2024-05-25')
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <i><b>Please note that a 30% surcharge will be added to your total order after May 25, 2024.</b></i>
+                </strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @else
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <i><b>Please note that a 30% surcharge will be added to your total order after May 29, 2024.</b></i>
+                </strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
+
         <div class="row">
             <div class="col-lg-8 mb-4">
                 <div class="card">
@@ -48,14 +66,21 @@
                                 $countPPN = 0.11; // 11% tax as a decimal
                                 $npwp = $company->npwp;
                                 $tax = $npwp ? $countPPN : 0; // Tax is 11% if NPWP exists, else 0
-                                
                                 foreach ($items as $key) {
                                     $totalDue += $key->price * $key->quantity;
                                 }
                                 
                                 $totalPPN = $totalDue * $tax;
                                 $totalDueWithTax = $totalDue + $totalPPN;
-                                $totalUSD = $totalDueWithTax / $usdCurrency; // Convert to USD
+                                $currentDate = date('Y-m-d');
+                                // Surcharge calculation
+                                $surcharge = 0;
+                                if (($company->deadline < '2024-05-25' && $currentDate > '2024-05-25') || ($company->deadline > '2024-05-25' && $currentDate > '2024-05-29')) {
+                                    $surcharge = $totalDue * 0.3;
+                                }
+                                $totalDueWithTaxAndSurcharge = $totalDueWithTax + $surcharge;
+                                
+                                $totalUSD = $totalDueWithTaxAndSurcharge / $usdCurrency; // Convert to USD
                                 $formattedTotalUSD = number_format($totalUSD, 2, ',', '.'); // Format as USD
                                 ?>
 
@@ -71,10 +96,17 @@
                                             {{ number_format($totalPPN, 2, ',', '.') }}</th>
                                     </tr>
                                 @endif
+                                @if ($surcharge > 0)
+                                    <tr>
+                                        <th colspan="2" class="text-right">Surcharge 30%</th>
+                                        <th colspan="2" class="text-right">Rp.
+                                            {{ number_format($surcharge, 2, ',', '.') }}</th>
+                                    </tr>
+                                @endif
                                 <tr>
                                     <th colspan="2" class="text-right">Total</th>
                                     <th colspan="2" class="text-right">
-                                        <p>Rp. {{ number_format($totalDueWithTax, 2, ',', '.') }} </p>
+                                        <p>Rp. {{ number_format($totalDueWithTaxAndSurcharge, 2, ',', '.') }} </p>
                                         <p>{{ $formattedTotalUSD }} USD</p>
                                     </th>
                                 </tr>
@@ -97,17 +129,13 @@
                             @if ($items[0]->status != 'paid')
                                 <span class="badge badge-pill badge-danger">Unpaid</span>
                                 <h3>Total Due</h3>
-                                <h2>Rp. {{ number_format($totalDueWithTax, 2, ',', '.') }}</h2>
+                                <h2>Rp. {{ number_format($totalDueWithTaxAndSurcharge, 2, ',', '.') }}</h2>
                                 <h2>{{ $formattedTotalUSD }} USD</h2> <!-- Format as USD -->
                             @elseif ($items[0]->status)
                                 <span class="badge badge-pill badge-light">PAID OFF</span>
                             @endif
                             @if ($items[0]->status == null)
                                 <p class="mt-2">Payment Method:</p>
-                                {{-- <select class="form-control mb-3">
-                                    <option>Link Xendit</option>
-                                    <!-- Add more payment methods here -->
-                                </select> --}}
                                 <form action="{{ url('payment/request') }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="code_payment" value="{{ $codePayment }}">
@@ -119,17 +147,13 @@
                                     class="btn btn-light btn-block mt-2">Payment link</a>
                             @endif
 
-                            {{-- <div class="mt-2">
-                                <h4>Actions</h4>
-                                <a href="{{ url('dl/invoice?code_payment=' . $items[0]->code_payment . '&company_id=' . $items[0]->company_id) }}"
-                                    class="btn btn-light btn-block">Download</a>
-                            </div> --}}
                         </div>
                     </div>
                 </div>
             </div>
 
         </div>
+
     </div>
 @endsection
 

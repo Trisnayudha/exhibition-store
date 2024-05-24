@@ -103,8 +103,7 @@
                                 data-title="Side Chair"><i class="fa fa-eye"></i></a>
                         </li>
                         <li><a href="javascript:void(0);" class="add-to-cart" data-name="Side Chair"
-                                data-price="400000" data-tip="Add to wishlist"
-                                onclick="exhibitionCart('Side Chair','Additional Furniture',400000,400000,1,'{{ asset('form5/furniture/Side-Chair.png') }}')"><i
+                                data-price="400000" data-tip="Add to wishlist" onclick="soldout()"><i
                                     class="fa fa-shopping-cart"></i></a></li>
                     </ul>
                 </div>
@@ -114,7 +113,6 @@
                 </div>
             </div>
         </div> --}}
-
         <div class="col-md-3 col-sm-6">
             <div class="product-grid">
                 <div class="product-image">

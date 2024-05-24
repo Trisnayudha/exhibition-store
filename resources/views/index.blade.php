@@ -675,6 +675,15 @@
             });
         }
 
+        function soldout() {
+            Swal.fire({
+                icon: "error",
+                title: "SOLD OUT!",
+                text: "This item has been sold",
+                footer: '<a href="https://wa.me/081398670330" target=_blank>Contact PIC Riska Noveriena</a>'
+            });
+        }
+
         function removeExhibition(id) {
             var csrfToken = $('meta[name="csrf-token"]').attr('content');
             Swal.fire({
