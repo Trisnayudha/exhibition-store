@@ -232,7 +232,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-3 col-sm-6">
+        {{-- <div class="col-md-3 col-sm-6">
             <div class="product-grid">
                 <div class="product-image">
                     <a href="#" class="image">
@@ -255,7 +255,7 @@
                     <div class="price">IDR 800.000</div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <div class="col-md-3 col-sm-6">
             <div class="product-grid">
                 <div class="product-image">
