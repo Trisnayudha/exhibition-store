@@ -7,6 +7,7 @@ use App\Models\Exhibition\ExhibitionCartList;
 use App\Models\Logs\ExhibitionLog;
 use App\Models\Payment;
 use App\Models\Users;
+use App\Models\UsersDelegate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
@@ -261,8 +262,8 @@ class ExhibitorController extends Controller
                 $event_ticket = 70;
                 $type = 'Exhibition Pass Upgrade';
                 $package = 'Exhibitor Upgrade Pass';
-                $event_price = 4342002;
-                $event_price_dollar = 280;
+                $event_price = 2597752;
+                $event_price_dollar = 160;
             } else {
                 // Logika untuk kasus checkbox upgradeExhibitor tidak tercentang (false)
                 $type = 'Exhibition Exhibitor';
@@ -271,6 +272,7 @@ class ExhibitorController extends Controller
                 $event_price = 0;
                 $event_price_dollar = 0;
             }
+            $findPayment->status = 'Waiting';
             $findPayment->package_id = $event_ticket;
             $findPayment->type = $type;
             $findPayment->package = $package;
@@ -279,6 +281,10 @@ class ExhibitorController extends Controller
             $findPayment->total_price = $event_price;
             $findPayment->total_price_dollar = $event_price_dollar;
             $findPayment->save();
+            $findUsersDelegate = UsersDelegate::where('payment_id', $findPayment->id)->first();
+            if ($findUsersDelegate) {
+                $findUsersDelegate->delete();
+            }
         }
         $findExhibition = ExhibitionCartList::where('delegate_id', $findPayment->id)->first();
         if (!empty($findExhibition)) {

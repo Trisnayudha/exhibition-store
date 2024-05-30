@@ -530,7 +530,7 @@
 
 
         function delegateCart(payment, user) {
-            console.log(payment);
+            // console.log(payment);
             // console.log(user);
 
             var name_product = user.name;
@@ -550,7 +550,7 @@
             formData.append('quantity', quantity);
             formData.append('delegate_id', delegate_id);
 
-            console.log(formData)
+            // console.log(formData)
             // Kirim data ke server menggunakan Ajax dengan FormData
 
             $.ajax({
@@ -563,6 +563,7 @@
                     'X-CSRF-TOKEN': csrfToken
                 },
                 success: function(response) {
+                    console.log(response);
                     Swal.fire({
                         position: "top-end",
                         icon: "success",
@@ -581,6 +582,7 @@
         }
 
         function removeDelegate(id) {
+            console.log('function remove')
             var csrfToken = $('meta[name="csrf-token"]').attr('content');
             Swal.fire({
                 title: 'Are you sure?',

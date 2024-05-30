@@ -72,10 +72,10 @@ class ExhibitionCartController extends Controller
 
     public function destroyDelegate($id)
     {
-        $delete = ExhibitionCartList::findOrFail($id);
+        $delete = ExhibitionCartList::where('id', $id)->first();
         if ($delete) {
             $changeDelegate = Payment::where('id', $delete->delegate_id)->first();
-            if ($changeDelegate->type == 'Exhibition Upgrade') {
+            if ($changeDelegate->type == 'Exhibition Pass Upgrade') {
                 $changeDelegate->type = 'Exhibition Exhibitor';
                 $changeDelegate->package = 'Exhibitor Pass';
                 $changeDelegate->package_id = 70;
@@ -85,7 +85,9 @@ class ExhibitionCartController extends Controller
                 $changeDelegate->total_price_dollar = 0;
                 $changeDelegate->save();
             } else {
-                $changeDelegate->delete();
+                if ($changeDelegate->type == 'Exhibition Delegate Additional') {
+                    $changeDelegate->delete();
+                }
             }
             $delete->delete();
         }
@@ -96,6 +98,21 @@ class ExhibitionCartController extends Controller
     {
         $delete = ExhibitionCartList::findOrFail($id);
         if ($delete) {
+            $changeDelegate = Payment::where('id', $delete->delegate_id)->first();
+            if ($changeDelegate->type == 'Exhibition Pass Upgrade') {
+                $changeDelegate->type = 'Exhibition Exhibitor';
+                $changeDelegate->package = 'Exhibitor Pass';
+                $changeDelegate->package_id = 70;
+                $changeDelegate->event_price = 0;
+                $changeDelegate->event_price_dollar = 0;
+                $changeDelegate->total_price = 0;
+                $changeDelegate->total_price_dollar = 0;
+                $changeDelegate->save();
+            } else {
+                if ($changeDelegate->type == 'Exhibition Delegate Additional') {
+                    $changeDelegate->delete();
+                }
+            }
             $delete->delete();
         }
         return response()->json(['message' => 'Deleted data success']);

@@ -522,17 +522,20 @@
             success: function(response) {
                 console.log('Data berhasil diupdate:', response);
                 if (upgradeExhibitor == true) {
+                    delegateCart(response.payment, response.user);
+                    console.log('upgrade exhibit');
                     loadCart();
                 } else {
+                    console.log('ga upgrade');
                     if (response.exhibitor != null) {
                         removeDelegate(response.exhibitor.id)
+                        // console.log('data payment ada');
                     }
                 }
                 loadExhibitor(); // Aktifkan fungsi untuk memuat data delegate
                 loadLogExhibitor(); // Aktifkan fungsi untuk memuat data log delegate
                 $('#exhibitorEditModal').modal('hide');
                 $('.loading-wrapper, .overlay').hide(); // Menampilkan loader dan overlay
-
             },
             error: function(error) {
                 console.error('Error:', error);
