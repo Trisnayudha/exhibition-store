@@ -34,6 +34,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/scrape', [WebScrapingController::class, 'scrape']);
+Route::get('/scrape/mineexpo', [WebScrapingController::class, 'scrape_v2']);
 
 Route::get('/', [HomeController::class, 'index']);
 
