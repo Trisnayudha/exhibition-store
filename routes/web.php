@@ -54,6 +54,7 @@ Route::get('invoice', [InvoiceController::class, 'index'])->name('invoice');
 Route::get('invoice/detail/', [InvoiceController::class, 'summary']);
 Route::get('dl/invoice/', [InvoiceController::class, 'downloadInvoice']);
 Route::post('payment/request', [PaymentController::class, 'payment']);
+Route::post('payment/manual', [PaymentController::class, 'paymentManual']);
 
 Route::get('create/invoice', [PaymentController::class, 'create']);
 Auth::routes();

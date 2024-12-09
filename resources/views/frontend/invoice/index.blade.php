@@ -64,22 +64,23 @@
                                         </td>
                                         <td>
                                             <div class="d-flex">
-
-                                                <form action="{{ url('dl/invoice') }}">
-                                                    <input type="hidden" name="code_payment"
-                                                        value="{{ $item->code_payment }}">
-                                                    <input type="hidden" name="company_id" value="{{ $company->id }}">
-                                                    <button class="btn btn-warning"
-                                                        {{ $item->status === 'draft' ? 'disabled' : '' }}>Download
-                                                    </button>
-                                                </form>
-                                                <form action="{{ url('invoice/detail') }}">
-                                                    <input type="hidden" name="code_payment"
-                                                        value="{{ $item->code_payment }}">
-                                                    <button class="btn btn-primary ml-2"
-                                                        {{ $item->status === 'draft' ? 'disabled' : '' }}>Payment
-                                                        Link</button>
-                                                </form>
+                                                @if ($item->status == 'paid' || $item->status == 'unpaid')
+                                                    <form action="{{ url('dl/invoice') }}">
+                                                        <input type="hidden" name="code_payment"
+                                                            value="{{ $item->code_payment }}">
+                                                        <input type="hidden" name="company_id" value="{{ $company->id }}">
+                                                        <button class="btn btn-warning"
+                                                            {{ $item->status === 'draft' ? 'disabled' : '' }}>Download
+                                                        </button>
+                                                    </form>
+                                                    <form action="{{ url('invoice/detail') }}">
+                                                        <input type="hidden" name="code_payment"
+                                                            value="{{ $item->code_payment }}">
+                                                        <button class="btn btn-primary ml-2"
+                                                            {{ $item->status === 'draft' ? 'disabled' : '' }}>Payment
+                                                            Link</button>
+                                                    </form>
+                                                @endif
                                             </div>
                                         </td>
                                     </tr>

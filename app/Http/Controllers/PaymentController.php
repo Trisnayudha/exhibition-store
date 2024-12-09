@@ -142,4 +142,51 @@ Terimakasih
         $createInvoice = $this->create($code_payment);
         return $createInvoice;
     }
+
+    public function paymentManual(Request $request)
+    {
+        // Contoh: "1.332.000.000" => "1332000000"
+        $rawAmount = str_replace('.', '', $request->transferred_amount);
+        // dd($request->all());
+        // dd($rawAmount);
+        $code_payment = $request->code_payment;
+        $total_price =  $request->total_price;
+        $id = auth()->id();
+        $company = Company::where('id', $id)->first();
+        $paymentReceiptPath = $request->file('payment_receipt')->store('public/payment_receipts');
+        $data['items'] = ExhibitionCartList::where('company_id', $id)->whereNull('payment_id')->get();
+
+        // Dapatkan URL bukti (misal: http://yourapp.com/storage/payment_receipts/xxx.pdf)
+        $paymentReceiptUrl = url(str_replace('public/', 'storage/', $paymentReceiptPath));
+        $savePayment = new ExhibitionPayment();
+        $savePayment->code_payment = $code_payment;
+        $date = date('Y-m-d H:i:s'); // Correct format for SQL
+        $savePayment->invoice_date = $date;
+        $savePayment->status = 'invoice manual';
+        $savePayment->total_price = $total_price;
+        $savePayment->ppn = 0.11;
+        $savePayment->payment_receipt = $paymentReceiptUrl;
+        $savePayment->save();
+        $sendwa = new WhatsappApi();
+        $sendwa->phone = '120363361116173935';
+        $sendwa->message = "Exhibitor Payment Manual!!
+There is a manual payment from Company: {$company->company_name}.
+Please check the authenticity via the link below:
+
+{$paymentReceiptUrl}
+
+Thank you -Bot";
+        $sendwa->WhatsappMessageGroup();
+
+        foreach ($data['items'] as $item) {
+            $item->payment_id = $savePayment->id;
+            $item->save();
+        }
+
+        $log = new ExhibitionLog();
+        $log->company_id = $id;
+        $log->section = 'invoice';
+        $log->save();
+        return redirect()->route('invoice');
+    }
 }

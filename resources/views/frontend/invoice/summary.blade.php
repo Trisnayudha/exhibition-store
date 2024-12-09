@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container mt-2">
-        @if ($company->deadline <= '2024-05-25')
+        @if ($company->deadline <= '2025-05-25')
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <i><b>Please note that a 30% surcharge will be added to your total order after May 25, 2024.</b></i>
                 </strong>
@@ -30,15 +30,16 @@
                                 <p><strong>Pay To:</strong><br>
                                     PT MITRA KARYA INDONESIA<br>
                                     CIBIS NINE 11th floor Jl. Tb Simatupang No.2<br>
-                                    Jakarta 12560,
-                                    Indonesia<br>
+                                    Jakarta 12560, Indonesia<br>
                                     P: (021) 8062 3711 E: billing@mmi-indonesia.co.id
+                                </p>
                             </div>
                             <div class="col-md-6">
                                 <p><strong>Invoiced To:</strong><br>
                                     {{ $company->company_name }}<br>
                                     {{ $company->name }}<br>
                                     {{ $company->company_address }}
+                                </p>
                             </div>
                         </div>
 
@@ -75,7 +76,7 @@
                                 $currentDate = date('Y-m-d');
                                 // Surcharge calculation
                                 $surcharge = 0;
-                                if (($company->deadline < '2024-05-25' && $currentDate > '2024-05-25') || ($company->deadline > '2024-05-25' && $currentDate > '2024-05-29')) {
+                                if (($company->deadline < '2025-05-25' && $currentDate > '2025-05-25') || ($company->deadline > '2025-05-25' && $currentDate > '2024-05-29')) {
                                     $surcharge = $totalDue * 0.3;
                                 }
                                 $totalDueWithTaxAndSurcharge = $totalDueWithTax + $surcharge;
@@ -125,40 +126,192 @@
                 <div class="sticky-top-2">
                     <div class="card bg-primary text-white">
                         <div class="card-body">
-
                             @if ($items[0]->status != 'paid')
                                 <span class="badge badge-pill badge-danger">Unpaid</span>
                                 <h3>Total Due</h3>
                                 <h2>Rp. {{ number_format($totalDueWithTaxAndSurcharge, 2, ',', '.') }}</h2>
-                                <h2>{{ $formattedTotalUSD }} USD</h2> <!-- Format as USD -->
+                                <h2>{{ $formattedTotalUSD }} USD</h2>
                             @elseif ($items[0]->status)
                                 <span class="badge badge-pill badge-light">PAID OFF</span>
                             @endif
-                            @if ($items[0]->status == null)
-                                <p class="mt-2">Payment Method:</p>
-                                <form action="{{ url('payment/request') }}" method="POST">
-                                    @csrf
-                                    <input type="hidden" name="code_payment" value="{{ $codePayment }}">
-                                    <input type="hidden" name="total_price" value="{{ $totalDue }}">
-                                    <button type="submit" class="btn btn-light btn-block loadpayment">Payment link</button>
-                                </form>
-                            @elseif($items[0]->status == 'unpaid')
-                                <a href="{{ $items[0]->link }}" target="_blank"
-                                    class="btn btn-light btn-block mt-2">Payment link</a>
-                            @endif
 
+                            @if ($items[0]->status == null || $items[0]->status == 'unpaid')
+                                <p class="mt-2 mb-1">Please select your preferred payment method:</p>
+                                <select id="paymentMethod" class="form-control mb-3">
+                                    <option value="link" selected>Payment Link</option>
+                                    <option value="manual">Manual Invoice</option>
+                                </select>
+
+                                <div id="paymentLinkSection">
+                                    @if ($items[0]->status == null)
+                                        <form action="{{ url('payment/request') }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="code_payment" value="{{ $codePayment }}">
+                                            <input type="hidden" name="total_price" value="{{ $totalDue }}">
+                                            <button type="submit" class="btn btn-light btn-block loadpayment">Payment
+                                                link</button>
+                                        </form>
+                                    @elseif($items[0]->status == 'unpaid')
+                                        <a href="{{ $items[0]->link }}" target="_blank"
+                                            class="btn btn-light btn-block mt-2">Payment link</a>
+                                    @endif
+                                </div>
+
+                                <!-- Manual Invoice Section -->
+                                <div id="manualInvoiceSection" style="display: none;">
+                                    <p class="mt-2" style="font-size: 14px;">
+                                        Prefer a more traditional approach? Please transfer the due amount to the following
+                                        bank account only, then upload your payment receipt. Your payment will be verified
+                                        on weekdays (Monday - Friday), within a maximum of 24 hours.
+                                    </p>
+
+                                    <div class="card bg-white text-dark mb-2" style="font-size:14px;">
+                                        <div class="card-body" style="padding: 10px;">
+                                            <p class="mb-2"> <strong>BANK DETAILS </strong></p>
+                                            <p class="mb-1"><strong>Bank Name:</strong> PT. Bank Mandiri (Persero) TBK</p>
+                                            <p class="mb-1"><strong>Account Name:</strong> PT. Media MitraKarya Indonesia
+                                            </p>
+                                            <p class="mb-1"><strong>Branch:</strong> Mal Pondoh Indah, Jakarta Indonesia
+                                            </p>
+                                            <p class="mb-1">
+                                                <strong>IDR Account:</strong>
+                                                <span id="accountNumberText">1010009992353</span>
+                                                <button type="button" id="copyAccountNumberBtn"
+                                                    class="btn btn-sm btn-outline-secondary ml-2">
+                                                    <i class="fa fa-copy"></i> Copy
+                                                </button>
+                                            </p>
+                                            <p class="mb-0"><strong>SWIFT CODE:</strong> BMRIIDJA</p>
+                                        </div>
+                                    </div>
+
+                                    <button type="button" class="btn btn-light btn-block mt-2" data-toggle="modal"
+                                        data-target="#uploadReceiptModal">Upload Payment Receipt</button>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
             </div>
 
         </div>
-
     </div>
+
+    <!-- Modal for Upload Payment Receipt -->
+    <div class="modal fade" id="uploadReceiptModal" tabindex="-1" role="dialog" aria-labelledby="uploadReceiptModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <form action="{{ url('payment/manual') }}" method="POST" enctype="multipart/form-data" id="paymentForm">
+                @csrf
+                <input type="hidden" name="code_payment" value="{{ $codePayment }}">
+                <input type="hidden" name="total_price" value="{{ $totalDue }}">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="uploadReceiptModalLabel">Upload Payment Receipt</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="font-size:14px;">
+                        <div class="form-group">
+                            <label>Transfer Date</label>
+                            <input type="date" name="transfer_date" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Invoice Number</label>
+                            <input type="text" name="invoice_number" class="form-control"
+                                value="{{ $codePayment }}" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>Payment Method</label>
+                            <input type="text" name="payment_method" class="form-control" value="Manual Invoice"
+                                readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>Transferred Amount (IDR)</label>
+                            <input type="text" name="transferred_amount" class="form-control" id="transferredAmount"
+                                placeholder="Enter the amount transferred" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Payment Receipt (Max 2MB, PDF/JPG/JPEG/PNG)</label>
+                            <input type="file" name="payment_receipt" class="form-control-file"
+                                accept=".pdf,.jpg,.jpeg,.png" required>
+                        </div>
+                        <small class="form-text text-muted">
+                            Please ensure the uploaded file is clear and does not exceed 2MB.
+                        </small>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Submit Receipt</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
 @endsection
 
 @push('top')
 @endpush
 
 @push('bottom')
+    <script>
+        document.getElementById('paymentMethod').addEventListener('change', function() {
+            let method = this.value;
+            let paymentLinkSection = document.getElementById('paymentLinkSection');
+            let manualInvoiceSection = document.getElementById('manualInvoiceSection');
+
+            if (method === 'link') {
+                paymentLinkSection.style.display = 'block';
+                manualInvoiceSection.style.display = 'none';
+            } else {
+                paymentLinkSection.style.display = 'none';
+                manualInvoiceSection.style.display = 'block';
+            }
+        });
+
+        // Copy to Clipboard
+        const copyBtn = document.getElementById('copyAccountNumberBtn');
+        const accountNumberText = document.getElementById('accountNumberText');
+
+        copyBtn.addEventListener('click', function() {
+            const range = document.createRange();
+            range.selectNode(accountNumberText);
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
+
+            try {
+                document.execCommand('copy');
+                window.getSelection().removeAllRanges();
+                alert('Account number copied to clipboard!');
+            } catch (err) {
+                console.error('Unable to copy', err);
+            }
+        });
+
+        // Format IDR input
+        const transferredAmountInput = document.getElementById('transferredAmount');
+        transferredAmountInput.addEventListener('input', function(e) {
+            // Remove all non-digit characters
+            let value = this.value.replace(/\D/g, '');
+            // Format with dots as thousand separators
+            this.value = formatNumberWithDots(value);
+        });
+
+        function formatNumberWithDots(value) {
+            // Convert string to array of digits reversed
+            let rev = value.split('').reverse();
+            let formatted = [];
+            for (let i = 0; i < rev.length; i++) {
+                if (i > 0 && i % 3 === 0) {
+                    formatted.push('.');
+                }
+                formatted.push(rev[i]);
+            }
+            // Reverse back and join
+            return formatted.reverse().join('');
+        }
+    </script>
 @endpush
