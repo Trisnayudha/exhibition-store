@@ -18,10 +18,13 @@
                             <td>
                                 <input type="number" name="back-doff-basic" id="back-doff-basic" class="form-control"
                                     value="0" readonly>
-                                <input type="hidden" name="back-doof-product-basic"
-                                    value="BACK - Doff Laminated Indoor Vinyl Sticker 290x244cm">
-                                <input type="hidden" name="back-doof-section-basic" value="Additional Sticker">
-                                <input type="hidden" name="back-doof-price-basic" value="3600000">
+                                <input type="hidden" name="back-doof-section-basic" id="back-doof-section-basic"
+                                    value="Additional Sticker">
+                                <input type="hidden" name="back-doof-price-basic" id="back-doof-price-basic"
+                                    value="3600000">
+                                <input type="hidden" name="back-doof-image-basic" id="back-doof-image-basic"
+                                    value="{{ asset('form5/sticker/3x1.png') }}">
+
                             </td>
                         </tr>
                         <tr>
@@ -30,10 +33,13 @@
                             <td>
                                 <input type="number" name="table-basic" id="table-basic" class="form-control"
                                     value="0" readonly>
-                                <input type="hidden" name="table-doof-product-basic"
-                                    value="TABLE - Doff Laminated Indoor Vinyl Sticker 100x100">
-                                <input type="hidden" name="table-doof-section-basic" value="Additional Sticker">
-                                <input type="hidden" name="table-doof-price-basic" value="1050000">
+                                <input type="hidden" name="table-doof-section-basic" id="table-doof-section-basic"
+                                    value="Additional Sticker">
+                                <input type="hidden" name="table-doof-price-basic" id="table-doof-price-basic"
+                                    value="1050000">
+                                <input type="hidden" name="table-doof-image-basic" id="table-doof-image-basic"
+                                    value="{{ asset('form5/sticker/3x1.png') }}">
+
                             </td>
                         </tr>
                     </tbody>
