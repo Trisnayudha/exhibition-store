@@ -99,18 +99,20 @@ class ExhibitionCartController extends Controller
         $delete = ExhibitionCartList::findOrFail($id);
         if ($delete) {
             $changeDelegate = Payment::where('id', $delete->delegate_id)->first();
-            if ($changeDelegate->type == 'Exhibition Pass Upgrade') {
-                $changeDelegate->type = 'Exhibition Exhibitor';
-                $changeDelegate->package = 'Exhibitor Pass';
-                $changeDelegate->package_id = 70;
-                $changeDelegate->event_price = 0;
-                $changeDelegate->event_price_dollar = 0;
-                $changeDelegate->total_price = 0;
-                $changeDelegate->total_price_dollar = 0;
-                $changeDelegate->save();
-            } else {
-                if ($changeDelegate->type == 'Exhibition Delegate Additional') {
-                    $changeDelegate->delete();
+            if ($changeDelegate) {
+                if ($changeDelegate->type == 'Exhibition Pass Upgrade') {
+                    $changeDelegate->type = 'Exhibition Exhibitor';
+                    $changeDelegate->package = 'Exhibitor Pass';
+                    $changeDelegate->package_id = 70;
+                    $changeDelegate->event_price = 0;
+                    $changeDelegate->event_price_dollar = 0;
+                    $changeDelegate->total_price = 0;
+                    $changeDelegate->total_price_dollar = 0;
+                    $changeDelegate->save();
+                } else {
+                    if ($changeDelegate->type == 'Exhibition Delegate Additional') {
+                        $changeDelegate->delete();
+                    }
                 }
             }
             $delete->delete();

@@ -3,7 +3,6 @@
         <form action="{{ url('sticker') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="table-responsive" id="sticker-basic-cart">
-
                 <table class="table">
                     <thead>
                         <tr>
@@ -19,14 +18,10 @@
                             <td>
                                 <input type="number" name="back-doff-basic" id="back-doff-basic" class="form-control"
                                     value="0" readonly>
-                                <input type="hidden" name="back-doof-product-basic" id="back-doof-product-basic"
+                                <input type="hidden" name="back-doof-product-basic"
                                     value="BACK - Doff Laminated Indoor Vinyl Sticker 290x244cm">
-                                <input type="hidden" name="back-doof-section-basic" id="back-doof-section-basic"
-                                    value="Additional Sticker">
-                                <input type="hidden" name="back-doof-price-basic" id="back-doof-price-basic"
-                                    value="3600000">
-                                <input type="hidden" name="back-doof-image-basic" id="back-doof-image-basic"
-                                    value="{{ asset('form5/sticker/3x1.png') }}">
+                                <input type="hidden" name="back-doof-section-basic" value="Additional Sticker">
+                                <input type="hidden" name="back-doof-price-basic" value="3600000">
                             </td>
                         </tr>
                         <tr>
@@ -35,168 +30,155 @@
                             <td>
                                 <input type="number" name="table-basic" id="table-basic" class="form-control"
                                     value="0" readonly>
-                                <input type="hidden" name="table-doof-product-basic" id="table-doof-product-basic"
+                                <input type="hidden" name="table-doof-product-basic"
                                     value="TABLE - Doff Laminated Indoor Vinyl Sticker 100x100">
-                                <input type="hidden" name="table-doof-section-basic" id="table-doof-section-basic"
-                                    value="Additional Sticker">
-                                <input type="hidden" name="table-doof-price-basic" id="table-doof-price-basic"
-                                    value="1050000">
-                                <input type="hidden" name="table-doof-image-basic" id="table-doof-image-basic"
-                                    value="{{ asset('form5/sticker/3x1.png') }}">
+                                <input type="hidden" name="table-doof-section-basic" value="Additional Sticker">
+                                <input type="hidden" name="table-doof-price-basic" value="1050000">
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
-            <div class="container">
-
-                <div class="mt-5 p-1">
-                    <div class="row">
-                        <div class="col-6">
-                            <p>Wall Printing Position You Want to Install:</p>
-                            <img src="{{ asset('form5/sticker/3x1.png') }}" alt="" class="img-thumbnail">
-                        </div>
-                        <div class="col-6">
-                            <div class="table-responsive">
-
-                                <table class="table">
-                                    <thead>
+            <div class="container mt-5 p-1">
+                <div class="row">
+                    <div class="col-6">
+                        <p>Wall Printing Position You Want to Install:</p>
+                        <img src="{{ asset('form5/sticker/3x1.png') }}" alt="Sticker Preview" class="img-thumbnail">
+                    </div>
+                    <div class="col-6">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Printing Position</th>
+                                        <th>Checklist</th>
+                                        <th>File</th>
+                                        <th>Google Drive Link</th>
+                                        <th>Notes</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (['A', 'B'] as $position)
                                         <tr>
-                                            <th>No</th>
-                                            <th>Printing Position</th>
-                                            <th>Checklist</th>
-                                            <th>File</th>
-                                            <th>Notes</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td class="text-center">A</td>
-                                            <td><input type="checkbox" name="basicA" id="basicA"
-                                                    class="form-control checkbox-class">
-                                            </td>
-                                            <td><input type="file" name="file-basicA" id="file-basicA"></td>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td class="text-center">{{ $position }}</td>
                                             <td>
-                                                <textarea name="note-basicA" id="" cols="20" rows="2"></textarea>
+                                                <input type="checkbox" name="basic{{ $position }}"
+                                                    id="basic{{ $position }}" class="form-control checkbox-class"
+                                                    disabled>
                                             </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td class="text-center">B</td>
-                                            <td><input type="checkbox" name="basicB" id="basicB"
-                                                    class="form-control checkbox-class">
-                                            </td>
-                                            <td><input type="file" name="file-basicB" id="file-basicB"></td>
                                             <td>
-                                                <textarea name="note-basicB" id="" cols="20" rows="2"></textarea>
+                                                <input type="file" name="file-basic{{ $position }}"
+                                                    id="file-basic{{ $position }}">
+                                                <textarea name="note-basic{{ $position }}" id="note-link-basic{{ $position }}"
+                                                    class="form-control mt-2 google-drive-link" placeholder="Upload link Google Drive Anda" style="display: none;"></textarea>
+
                                             </td>
                                         </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-block mt-3 save-btn">Save to cart</button>
                     </div>
                 </div>
+                <button type="submit" class="btn btn-primary btn-block mt-3 save-btn" disabled>Save to Cart</button>
             </div>
         </form>
-
     </div>
 </div>
+
 <script>
     $(document).ready(function() {
-        // Fungsi untuk memeriksa apakah setidaknya satu kotak centang telah dicentang
-        function checkAtLeastOneCheckbox() {
-            return $(".checkbox-class:checked").length > 0;
-        }
+        // Fungsi untuk memperbarui nilai tabel
+        function updateStickerCartValues() {
+            let backDoffBasicValue = 0;
+            let tableBasicValue = 0;
 
-        // Memanggil fungsi untuk mengaktifkan atau menonaktifkan tombol "Submit" saat halaman dimuat dan setiap kali kotak centang berubah statusnya
-        $(".checkbox-class").change(function() {
-            $(".save-btn").prop("disabled", !checkAtLeastOneCheckbox());
-        });
+            $(".checkbox-class:checked").each(function() {
+                const position = $(this).attr("id").replace("basic", "");
 
-        // Menonaktifkan tombol "Submit" saat halaman dimuat jika tidak ada kotak centang yang tercentang
-        $(".save-btn").prop("disabled", !checkAtLeastOneCheckbox());
+                if (["A"].includes(position)) {
+                    backDoffBasicValue += 1;
+                } else if (["B"].includes(position)) {
+                    tableBasicValue += 1;
+                }
+            });
 
-        // Fungsi untuk menghitung nilai input berdasarkan checkbox yang dicentang
-        function updateValue() {
-            var backDoffBasicValue = 0;
-            var tableBasicValue = 0;
-
-            // Cek apakah checkbox A dicentang
-            if ($("#basicA").is(":checked")) {
-                backDoffBasicValue += 1;
-            }
-
-            // Cek apakah checkbox B dicentang
-            if ($("#basicB").is(":checked")) {
-                tableBasicValue += 1;
-            }
-
-            // Mengatur nilai input berdasarkan hasil perhitungan
             $("#back-doff-basic").val(backDoffBasicValue);
             $("#table-basic").val(tableBasicValue);
         }
 
-        // Fungsi untuk mengatur validasi file input berdasarkan checkbox yang dicentang
-        function updateFileValidation() {
-            // Checkbox A
-            if ($("#basicA").is(":checked")) {
-                $("#file-basicA").prop("required", true);
-            } else {
-                $("#file-basicA").prop("required", false);
-            }
+        // Validasi ukuran file
+        function validateFileUploadForPosition(position) {
+            const fileInput = $(`#file-basic${position}`);
+            const checkbox = $(`#basic${position}`);
+            const googleDriveNote = $(`#note-link-basic${position}`);
 
-            // Checkbox B
-            if ($("#basicB").is(":checked")) {
-                $("#file-basicB").prop("required", true);
-            } else {
-                $("#file-basicB").prop("required", false);
-            }
-        }
+            if (fileInput[0].files.length > 0) {
+                const fileSize = fileInput[0].files[0].size / (1024 * 1024); // MB
+                if (fileSize > 3) {
+                    googleDriveNote.show();
+                    checkbox.prop("disabled", true).prop("checked", false);
+                    fileInput.val("");
 
-        // Fungsi untuk memperbarui status checkbox berdasarkan file yang dipilih
-        function updateCheckbox() {
-            // Array yang berisi nama-nama basic
-            var basics = ['A', 'B'];
-
-            // Iterasi melalui setiap basic
-            basics.forEach(function(basic) {
-                // Dapatkan nilai file input sesuai dengan nama basic
-                var fileValue = $("#file-basic" + basic).val();
-
-                // Periksa apakah nilai file input ada
-                if (fileValue) {
-                    // Jika ada, tandai checkbox basic yang sesuai
-                    $("#basic" + basic).prop("checked", true);
+                    Swal.fire({
+                        title: 'File Too Large',
+                        text: 'The file you selected exceeds 3MB. Please upload the file via your personal Google Drive and include the link in the notes.',
+                        icon: 'warning',
+                        confirmButtonText: 'Ok',
+                    });
                 } else {
-                    // Jika tidak, nonaktifkan checkbox basic yang sesuai
-                    $("#basic" + basic).prop("checked", false);
+                    googleDriveNote.hide();
+                    checkbox.prop("disabled", false).prop("checked", true);
                 }
-            });
+            } else {
+                googleDriveNote.hide();
+                checkbox.prop("disabled", true).prop("checked", false);
+            }
+
+            updateStickerCartValues();
+            updateSaveButtonState();
         }
 
-        // Memanggil fungsi updateValue() setiap kali checkbox berubah
-        $(".checkbox-class").change(updateValue);
+        // Validasi tautan Google Drive
+        function validateGoogleDriveLinkForPosition(position) {
+            const googleDriveNote = $(`#note-link-basic${position}`);
+            const checkbox = $(`#basic${position}`);
 
-        // Memanggil fungsi updateFileValidation() setiap kali checkbox berubah
-        $(".checkbox-class").change(updateFileValidation);
+            if (googleDriveNote.val().trim() !== "") {
+                checkbox.prop("disabled", false).prop("checked", true);
+            } else {
+                checkbox.prop("disabled", true).prop("checked", false);
+            }
 
-        // Memanggil fungsi updateCheckbox() saat halaman dimuat
-        updateCheckbox();
+            updateStickerCartValues();
+            updateSaveButtonState();
+        }
 
-        // Memanggil fungsi updateCheckbox() setiap kali file input berubah
-        $("input[type=file]").change(function() {
-            updateCheckbox();
-            updateFileValidation();
+        // Perbarui tombol "Save to Cart"
+        function updateSaveButtonState() {
+            $(".save-btn").prop("disabled", $(".checkbox-class:checked").length === 0);
+        }
 
-            // Memanggil fungsi untuk memeriksa apakah setidaknya satu kotak centang telah dicentang setelah file input berubah
-            $(".save-btn").prop("disabled", !checkAtLeastOneCheckbox());
+        // Event listener untuk input file
+        $("input[type=file]").on("change", function() {
+            const position = $(this).attr("id").replace("file-basic", "");
+            validateFileUploadForPosition(position);
         });
+
+        // Event listener untuk Google Drive link
+        $(".google-drive-link").on("input", function() {
+            const position = $(this).attr("id").replace("note-link-basic", "");
+            validateGoogleDriveLinkForPosition(position);
+        });
+
+        updateStickerCartValues();
+        updateSaveButtonState();
     });
 </script>
+
 
 <script>
     @if (session('success'))

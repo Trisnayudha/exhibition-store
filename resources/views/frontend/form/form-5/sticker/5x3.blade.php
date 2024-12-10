@@ -3,7 +3,6 @@
         <form action="{{ url('sticker') }}" method="POST" enctype="multipart/form-data" id="myForm">
             @csrf
             <div class="table-responsive" id="sticker-basic-cart">
-
                 <table class="table">
                     <thead>
                         <tr>
@@ -32,7 +31,6 @@
             </div>
 
             <div class="container">
-
                 <div class="mt-5 p-1">
                     <div class="row">
                         <div class="col-6">
@@ -41,7 +39,6 @@
                         </div>
                         <div class="col-6">
                             <div class="table-responsive">
-
                                 <table class="table">
                                     <thead>
                                         <tr>
@@ -53,29 +50,60 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td class="text-center">A</td>
-                                            <td><input type="checkbox" name="basicA" id="basicA"
-                                                    class="form-control checkbox-class">
-                                            </td>
-                                            <td><input type="file" name="file-basicA" id="file-basicA"></td>
-                                            <td>
-                                                <textarea name="note-basicA" id="" cols="20" rows="2"></textarea>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td class="text-center">B</td>
-                                            <td><input type="checkbox" name="basicB" id="basicB"
-                                                    class="form-control checkbox-class">
-                                            </td>
-                                            <td><input type="file" name="file-basicB" id="file-basicB"></td>
-                                            <td>
-                                                <textarea name="note-basicB" id="" cols="20" rows="2"></textarea>
-                                            </td>
-                                        </tr>
+                                        @php
+                                            // Helper function to find sticker by position
+                                            function getStickerByPosition($stickerCollection, $position)
+                                            {
+                                                return $stickerCollection->firstWhere('printing_position', $position);
+                                            }
+                                        @endphp
+
+                                        @foreach (['A', 'B'] as $position)
+                                            @php
+                                                $stickerItem = getStickerByPosition($sticker, $position);
+                                            @endphp
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td class="text-center">{{ $position }}</td>
+                                                <td>
+                                                    <input type="checkbox" name="basic{{ $position }}"
+                                                        id="basic{{ $position }}"
+                                                        class="form-control checkbox-class"
+                                                        {{ $stickerItem ? 'checked' : '' }}>
+                                                </td>
+                                                <td class="file-td">
+                                                    @if ($stickerItem)
+                                                        <!-- Link to view existing file -->
+                                                        <a href="{{ asset($stickerItem->file ?? $stickerItem->note) }}"
+                                                            target="_blank" class="view-file-link"
+                                                            data-position="{{ $position }}">View File</a>
+                                                        <!-- Hidden file input for potential replacement -->
+                                                        <input type="file" name="file-basic{{ $position }}"
+                                                            id="file-basic{{ $position }}" style="display: none;">
+                                                    @else
+                                                        <!-- File input if no existing sticker -->
+                                                        <input type="file" name="file-basic{{ $position }}"
+                                                            id="file-basic{{ $position }}">
+                                                    @endif
+                                                </td>
+                                                <!-- Notes section -->
+                                                @if ($stickerItem && $stickerItem->note)
+                                                    <td class="notes-td">
+                                                        <textarea name="note-basic{{ $position }}" cols="20" rows="2">{{ $stickerItem->note }}</textarea>
+                                                    </td>
+                                                @else
+                                                    <td class="notes-td" style="display:none;">
+                                                        <small class="text-danger d-block">File too large. Please upload
+                                                            via
+                                                            your personal Google Drive and include the link
+                                                            here.</small>
+                                                        <textarea name="note-basic{{ $position }}" cols="20" rows="2"></textarea>
+                                                    </td>
+                                                @endif
+                                            </tr>
+                                        @endforeach
                                     </tbody>
+
                                 </table>
                             </div>
                         </div>
@@ -85,101 +113,158 @@
                 </div>
             </div>
         </form>
-
     </div>
 </div>
+
 <script>
     $(document).ready(function() {
-        // Fungsi untuk memeriksa apakah setidaknya satu kotak centang telah dicentang
-        function checkAtLeastOneCheckbox() {
-            return $(".checkbox-class:checked").length > 0;
-        }
+        // Iterate through each form on the page
+        $('form').each(function() {
+            var $form = $(this);
 
-        // Memanggil fungsi untuk mengaktifkan atau menonaktifkan tombol "Submit" saat halaman dimuat dan setiap kali kotak centang berubah statusnya
-        $(".checkbox-class").change(function() {
-            $(".save-btn").prop("disabled", !checkAtLeastOneCheckbox());
-        });
-
-        // Menonaktifkan tombol "Submit" saat halaman dimuat jika tidak ada kotak centang yang tercentang
-        $(".save-btn").prop("disabled", !checkAtLeastOneCheckbox());
-
-        // Fungsi untuk menghitung nilai input berdasarkan checkbox yang dicentang
-        function updateValue() {
-            var backDoffBasicValue = 0;
-            var tableBasicValue = 0;
-
-            // Cek apakah checkbox A dicentang
-            if ($("#basicA").is(":checked")) {
-                backDoffBasicValue += 1;
+            // Function to check if at least one checkbox is checked within the current form
+            function checkAtLeastOneCheckbox() {
+                return $form.find(".checkbox-class:checked").length > 0;
             }
 
-            // Cek apakah checkbox B dicentang
-            if ($("#basicB").is(":checked")) {
-                tableBasicValue += 1;
-            }
-
-            // Mengatur nilai input berdasarkan hasil perhitungan
-            $("#back-doff-basic").val(backDoffBasicValue);
-            $("#table-basic").val(tableBasicValue);
-        }
-
-        // Fungsi untuk mengatur validasi file input berdasarkan checkbox yang dicentang
-        function updateFileValidation() {
-            // Checkbox A
-            if ($("#basicA").is(":checked")) {
-                $("#file-basicA").prop("required", true);
-            } else {
-                $("#file-basicA").prop("required", false);
-            }
-
-            // Checkbox B
-            if ($("#basicB").is(":checked")) {
-                $("#file-basicB").prop("required", true);
-            } else {
-                $("#file-basicB").prop("required", false);
-            }
-        }
-
-        // Fungsi untuk memperbarui status checkbox berdasarkan file yang dipilih
-        function updateCheckbox() {
-            // Array yang berisi nama-nama basic
-            var basics = ['A', 'B'];
-
-            // Iterasi melalui setiap basic
-            basics.forEach(function(basic) {
-                // Dapatkan nilai file input sesuai dengan nama basic
-                var fileValue = $("#file-basic" + basic).val();
-
-                // Periksa apakah nilai file input ada
-                if (fileValue) {
-                    // Jika ada, tandai checkbox basic yang sesuai
-                    $("#basic" + basic).prop("checked", true);
-                } else {
-                    // Jika tidak, nonaktifkan checkbox basic yang sesuai
-                    $("#basic" + basic).prop("checked", false);
-                }
+            // Enable/Disable the submit button based on checkbox state within the current form
+            $form.find(".checkbox-class").change(function() {
+                $form.find(".save-btn").prop("disabled", !checkAtLeastOneCheckbox());
             });
-        }
 
-        // Memanggil fungsi updateValue() setiap kali checkbox berubah
-        $(".checkbox-class").change(updateValue);
+            // Initially disable the submit button if no checkbox is checked
+            $form.find(".save-btn").prop("disabled", !checkAtLeastOneCheckbox());
 
-        // Memanggil fungsi updateFileValidation() setiap kali checkbox berubah
-        $(".checkbox-class").change(updateFileValidation);
+            // Function to update quantity values based on checked checkboxes within the current form
+            function updateValue() {
+                var backDoffBasicValue = 0;
+                var tableBasicValue = 0;
 
-        // Memanggil fungsi updateCheckbox() saat halaman dimuat
-        updateCheckbox();
+                if ($form.find("#basicA").is(":checked")) {
+                    backDoffBasicValue += 1;
+                }
+                if ($form.find("#basicB").is(":checked")) {
+                    tableBasicValue += 1;
+                }
 
-        // Memanggil fungsi updateCheckbox() setiap kali file input berubah
-        $("input[type=file]").change(function() {
+                $form.find("#back-doff-basic").val(backDoffBasicValue);
+                $form.find("#table-basic").val(tableBasicValue);
+            }
+
+            // Function to set file input as required based on checkbox within the current form
+            function updateFileValidation() {
+                $form.find("#file-basicA").prop("required", $form.find("#basicA").is(":checked"));
+                $form.find("#file-basicB").prop("required", $form.find("#basicB").is(":checked"));
+            }
+
+            // Function to update checkbox state based on file input within the current form
+            function updateCheckbox() {
+                var basics = ['A', 'B'];
+                basics.forEach(function(basic) {
+                    var fileValue = $form.find("#file-basic" + basic).val();
+                    if (fileValue) {
+                        $form.find("#basic" + basic).prop("checked", true);
+                    } else {
+                        $form.find("#basic" + basic).prop("checked", false);
+                    }
+                });
+            }
+
+            // Function to check file size within the current form
+            function checkFileSize(input) {
+                var file = input[0].files[0];
+                if (file && file.size > (3 * 1024 * 1024)) { // 3MB
+                    var inputId = input.attr('id');
+                    var basic = inputId.split('-').pop(); // e.g., basicA or basicB
+                    var basicLetter = basic.charAt(basic.length - 1); // A or B
+
+                    // Show Swal alert in English
+                    Swal.fire({
+                        title: 'File Too Large',
+                        text: 'The file you selected exceeds 3MB. Please upload the file via your personal Google Drive and include the link in the notes.',
+                        icon: 'warning',
+                        confirmButtonText: 'Ok'
+                    });
+
+                    // Remove the file input
+                    input.remove();
+
+                    // Hide the file td and show the notes td
+                    var fileTd = $form.find(".file-td").eq(basicLetter === 'A' ? 0 : 1);
+                    var notesTd = $form.find(".notes-td").eq(basicLetter === 'A' ? 0 : 1);
+
+                    fileTd.hide();
+                    notesTd.show();
+
+                    // Uncheck the related checkbox as the file is invalid
+                    $form.find("#basic" + basicLetter).prop("checked", false);
+
+                    // Disable the submit button if no checkboxes are checked
+                    $form.find(".save-btn").prop("disabled", !checkAtLeastOneCheckbox());
+                } else if (file) {
+                    // If file size is acceptable, ensure the notes are hidden
+                    var inputId = input.attr('id');
+                    var basic = inputId.split('-').pop();
+                    var basicLetter = basic.charAt(basic.length - 1);
+
+                    var fileTd = $form.find(".file-td").eq(basicLetter === 'A' ? 0 : 1);
+                    var notesTd = $form.find(".notes-td").eq(basicLetter === 'A' ? 0 : 1);
+
+                    // Ensure notes are hidden when a valid file is uploaded
+                    notesTd.hide();
+                }
+            }
+
+            // Prevent manual checking/unchecking of checkboxes
+            $form.find(".checkbox-class").on('click', function(e) {
+                e.preventDefault();
+            });
+
+            // Update quantity and file validation when checkboxes change within the current form
+            $form.find(".checkbox-class").change(function() {
+                updateValue();
+                updateFileValidation();
+            });
+
+            // Initial checkbox state update within the current form
             updateCheckbox();
-            updateFileValidation();
-            // Memanggil fungsi untuk memeriksa apakah setidaknya satu kotak centang telah dicentang setelah file input berubah
-            $(".save-btn").prop("disabled", !checkAtLeastOneCheckbox());
-        });
 
+            // Event listener for file input changes within the current form
+            $form.find("input[type=file]").change(function() {
+                var input = $(this);
+                checkFileSize(input);
+                updateCheckbox();
+                updateFileValidation();
+                $form.find(".save-btn").prop("disabled", !checkAtLeastOneCheckbox());
+            });
+
+            // Event listener for textarea input within the current form
+            $form.find("textarea").on('input', function() {
+                var textarea = $(this);
+                var hasContent = $.trim(textarea.val()).length > 0;
+                var name = textarea.attr('name'); // e.g., note-basicA
+
+                // Extract the corresponding checkbox id from the name
+                var basic = name.replace('note-', ''); // e.g., basicA
+                var checkbox = $form.find("#" + basic);
+
+                if (hasContent) {
+                    checkbox.prop("checked", true);
+                } else {
+                    checkbox.prop("checked", false);
+                }
+
+                // Update quantity and file validation based on checkbox state
+                updateValue();
+                updateFileValidation();
+
+                // Enable/Disable the submit button based on checkbox state
+                $form.find(".save-btn").prop("disabled", !checkAtLeastOneCheckbox());
+            });
+        });
     });
 </script>
+
 
 <script>
     @if (session('success'))

@@ -78,7 +78,6 @@ class ExhibitionController extends Controller
     public function storeSticker(Request $request)
     {
         $company_id = auth()->id();
-
         if (request('back-doff-basic') != 0) {
             $cart = new ExhibitionCartList();
             $cart->name_product = request('back-doof-product-basic'); // Ubah sesuai dengan nama produk yang sesuai

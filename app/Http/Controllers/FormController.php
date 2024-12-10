@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Company;
 use App\Models\Company\CompanyService;
 use App\Models\Exhibition\ExhibitionMiningPassProgress;
+use App\Models\Exhibition\ExhibitionSticker;
 use App\Models\Logs\ExhibitionLog;
 use App\Models\MiningDirectory\Media\MediaCategory;
 use App\Models\MiningDirectory\News\NewsCategory;
@@ -89,6 +90,8 @@ class FormController extends Controller
             $data['log_pic'] = $this->getLogs('pic');
             $data['fascia_name'] = $this->fasciaName();
             $data['log_sticker'] = $this->getLogs('sticker');
+            $data['sticker'] = $this->getSticker();
+            // dd($data);
             return view('frontend.form.form-5.form-5', $data);
         } else {
             dd('data tidak ada');
@@ -184,6 +187,13 @@ class FormController extends Controller
     {
         $userId = auth()->id();
         $data = ExhibitionPromotional::where('company_id', $userId)->where('section', 'advertisement')->first();
+        return $data;
+    }
+
+    private function getSticker()
+    {
+        $userId = auth()->id();
+        $data = ExhibitionSticker::where('company_id', $userId)->get();
         return $data;
     }
 
