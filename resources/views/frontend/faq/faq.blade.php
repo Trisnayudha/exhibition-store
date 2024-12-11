@@ -56,8 +56,7 @@
                                                 <div class="card-body">
                                                     Please check your spam or junk folder then please search your inbox for
                                                     an email from noreply@indonesiaminer.com. If you are still unable to
-                                                    find
-                                                    it, please contact our team at info@indonesiaminer.com.
+                                                    find it, please contact our team at callula@indonesiaminer.com.
                                                 </div>
                                             </div>
                                         </div>
@@ -95,7 +94,7 @@
                                                 data-parent="#eventPass">
                                                 <div class="card-body">
                                                     To collect your badge, please show the barcode we send to your
-                                                    registered email at the registration area starts June 5, 2024 at 5 pm
+                                                    registered email at the registration area starts June 9, 2025 at 5 pm
                                                     (Jakarta time).
                                                 </div>
                                             </div>
@@ -261,10 +260,10 @@
                                             <div id="eThree" class="collapse" aria-labelledby="exhibitionThree"
                                                 data-parent="#exhibition">
                                                 <div class="card-body">
-                                                    Seamless printing it's not possible, as for one side, at least there
-                                                    will be 2 panels with the 100 x 250 cm each which in between each panel
-                                                    will be a
-                                                    gap to hold each panel together.
+                                                    Seamless wall printing on shell scheme booth
+                                                    is possible. It is also an option if you plan to place a TV on the wall.
+                                                    If you need it, please kindly coordinate with the operational team
+                                                    beforehand
                                                 </div>
                                             </div>
                                         </div>

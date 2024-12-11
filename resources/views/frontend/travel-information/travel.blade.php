@@ -40,7 +40,7 @@
 
                         <div class="col">
                             <p><b>Westin Room *</b></p>
-                            <p>IDR 2.940.000 net / room / night</p>
+                            <p>IDR 3.000.000 net / room / night</p>
                             <p>Inclusive of:</p>
                             <ul>
                                 <li>
@@ -56,34 +56,22 @@
                                 Jakarta</a>
                         </div>
                     </div>
-                    <hr>
-                    <p>Accommodation Options near Indonesia Miner 2024 Venue</p>
+
                     <div class="row">
                         <div class="col" style="max-width: 25rem">
                             <img src="https://static51.com-hotel.com/uploads/hotel/60134/photo/js-luwansa-hotel-convention-center_15572948901.jpg"
                                 alt="" height="250">
+                            <p><small>*Subject to availability</small></p>
+
                         </div>
                         <div class="col">
                             <p><b>JS Luwansa Hotel</b></p>
-                            <p>Distance to Event Venue: 4 min walk</p>
-                            <p>Address</p>
-                            <p>Jl. H.R Rasuna Said Kav. C-22 Jakarta 12940 Indonesia</p>
-                            <div class="d-flex">
-                                <div class="mr-5">
-                                    <p>Phone</p>
-                                    <p>+62 21 29543030</p>
-                                </div>
-                                <div>
-
-                                    <p>Website</p>
-                                    <p><a href="https://www.jsluwansa.com">
-                                            https://www.jsluwansa.com
-                                        </a>
-                                    </p>
-                                </div>
-                            </div>
+                            <p>IDR 1.300.000 net / room /night
+                            </p>
                         </div>
                     </div>
+                    <hr>
+                    <p>Accommodation Options near Indonesia Miner 2024 Venue</p>
                     <div class="row mt-5">
                         <div class="col" style="max-width: 25rem">
                             <img src="https://img2.beritasatu.com/cache/beritasatu/960x620-3/461443369277.jpg"

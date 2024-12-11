@@ -8,8 +8,7 @@
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <p><b> Deadline: Please complete the required form by
                             {{ \Carbon\Carbon::parse($data->deadline)->format('d F Y') }}.</b></p>
-                    <p>If you submit or change the form after the deadline, make sure to confirm beforehand with our
-                        operational team. This is important to ensure we process the final details.</p>
+                    <p>Please click the SAVE button upon completing the form to ensure it is recorded.</p>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -101,7 +100,7 @@
                         image.onload = function() {
                             cropper = new Cropper(image, {
                                 aspectRatio: 600 /
-                                400, // Sesuaikan dengan dimensi yang diinginkan
+                                    400, // Sesuaikan dengan dimensi yang diinginkan
                                 viewMode: 1,
                                 autoCropArea: 1,
                                 background: false

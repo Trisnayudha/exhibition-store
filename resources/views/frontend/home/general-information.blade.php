@@ -14,8 +14,8 @@
                 <div class="card border-info mb-3">
                     <div class="card-body text-info">
                         <h5 class="card-title">Event Details</h5>
-                        <p>Event Title : Indonesia Miner Conference & Exhibition 2024</p>
-                        <p>Date : 4 - 6 June 2024</p>
+                        <p>Event Title : Indonesia Miner Conference & Exhibition 2025</p>
+                        <p>Date : 10 - 12 June 2024</p>
                         <p>Venue : The Westin Hotel, Jakarta - Indonesia</p>
                     </div>
                 </div>
@@ -162,7 +162,7 @@
                                         <h5 class="card-title">SETUP DAYS</h5>
                                         <div class="row">
                                             <div class="col-6">
-                                                <p><b>June 3, 2024</b></p>
+                                                <p><b>June 9, 2025</b></p>
                                                 <p>Set Up by Stand Contractor</p>
                                                 <p><b>12.00 AM - 12.00 PM (Jakarta Time)</b></p>
                                                 <p>Set Up by Exhibitor</p>
@@ -177,18 +177,18 @@
                             <div class="card-body text-info">
                                 <h5 class="card-title">SHOW DAYS</h5>
                                 <p>Registration will be open at 7 AM every day.</p>
-                                <p><b>June 4, 2024</b></p>
+                                <p><b>June 10, 2025</b></p>
                                 <p>08.00 AM - 05.00 PM (Jakarta Time): Conference & Exhibition Day 1</p>
-                                <p><b>June 5, 2024</b></p>
+                                <p><b>June 11, 2025</b></p>
                                 <p>08.30 AM - 05.00 PM (Jakarta Time): Conference & Exhibition Day 2</p>
-                                <p><b>June 6, 2024</b></p>
+                                <p><b>June 12, 2025</b></p>
                                 <p>08.30 AM - 05.00 PM (Jakarta Time): Conference & Exhibition Day 3</p>
                             </div>
                         </div>
                         <div class="card border-info mb-3">
                             <div class="card-body text-info">
                                 <h5 class="card-title">DISMANTLING DAY</h5>
-                                <p><b>June 6, 2024</b></p>
+                                <p><b>June 12, 2025</b></p>
                                 <p>05.00 PM - 9.00 PM (Jakarta Time): Dismissal Booth Display</p>
                                 <p><small><i>No exhibits may be dismantled prior to closing time</i></small></p>
                             </div>

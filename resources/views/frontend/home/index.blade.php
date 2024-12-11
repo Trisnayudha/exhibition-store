@@ -7,21 +7,29 @@
                 <img src="https://indonesiaminer.com/img/topbannerwestin.png" alt="" width="100%"
                     style="border-radius:20px" height="0%" class="mb-2">
                 <div class="alert alert-primary" role="alert">
-                    <h4 class="alert-heading">Welcome to Indonesia Miner Conference & Exhibition 2024 - Sponsor & Exhibitor
-                        Portal!</h4>
-                    <p>This portal is a dedicated platform for sponsors and exhibitors to submit information related to the
-                        operational requirements of Indonesia Miner Conference & Exhibition 2024. This portal enables you to
-                        submit company information, promotional materials, event passes, and exhibition-related information.
-                        Furthermore, the portal also allows for the purchase of additional event passes with special price
-                        and the rental of exhibition items.</p>
-                    <p>Please note that each form has a submission deadline. We kindly ask you to fill out the form before
-                        the deadline. In case there are urgent conditions that require you to submit afterwards, please
-                        confirm beforehand with our operational team. Late submission may cause delays for our team in
-                        processing your request.</p>
-                    <p>Once again, thank you for your support and understanding. We look forward to working with you.</p>
-                    <hr>
-                    <p class="mb-0">The Operational Team</p>
-                    <p>Indonesia Miner Conference & Exhibition 2024</p>
+                    <h4 class="alert-heading"> Welcome to the Indonesia Miner Conference & Exhibition 2025 Sponsor &
+                        Exhibitor Portal - your
+                        all-in-one platform for submitting key information related to your participation package.</h4>
+                    <p>
+                        This platform also allows you to purchase additional event passes at a special discounted rate, as
+                        well
+                        as rent exhibition items, ensuring you have everything you need before the event days.
+                    </p>
+                    <p>
+                        Please note that each form has its own deadline. Kindly ensure that you complete and submit them
+                        before
+                        the specified date. If you encounter any issues requiring a late submission, we ask that you notify
+                        our
+                        operational team promptly, as delays in submission may affect the processing timeline.
+                    </p>
+                    <p>
+                        In addition to the above, we are excited about your participation in our upcoming event. We truly
+                        appreciate your support and attention to this matter.
+                    </p>
+                    <p>
+                        The Operational Team
+                    </p>
+                    Indonesia Miner Conference & Exhibition 2025
                 </div>
                 <h1>Form Progress</h1>
                 <div class="row justify-content-center"> <!-- Menyelaraskan ke tengah -->

@@ -84,9 +84,10 @@
                                         </div>
                                     @endif
                                     <div class="alert alert-info alert-dismissible fade show" role="alert">
-                                        <p>Promotional content will be published on our social media, Instagram
-                                            (@indonesia_miner) and LinkedIn (Indonesia Miner). The publication timing will
-                                            align with your form submission and our marketing schedule.
+                                        <p>Promotional content will be posted on Instagram (@indonesia_miner) and LinkedIn
+                                            (Indonesia Miner) according to the next available slot in our marketing
+                                            timeline, once our operations team receives your approval of the provided
+                                            preview.
                                         </p>
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>

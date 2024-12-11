@@ -17,12 +17,17 @@
             <div class="card mb-3">
                 <div class="card-body">
                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                        <strong>Please note that the Organizer will not be responsible for: </strong>
+                        <strong>
+                            Please be advised that the Organizer shall not be held liable for:
+                        </strong>
                         <ul>
-                            <li>Any information, material or data that is not included in the guarantee after the specified
-                                time
-                                limit</li>
-                            <li>Lack of equipment or service caused by late return of the order form</li>
+                            <li>
+                                Any information, materials, or data not covered under the guarantee due to missed deadlines.
+                            </li>
+                            <li>
+                                The unavailability of equipment or services arising from the late submission of the order
+                                form.
+                            </li>
                         </ul>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
