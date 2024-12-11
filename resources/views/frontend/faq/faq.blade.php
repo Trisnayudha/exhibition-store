@@ -54,9 +54,10 @@
                                             <div id="epTwo" class="collapse" aria-labelledby="eventPassTwo"
                                                 data-parent="#eventPass">
                                                 <div class="card-body">
-                                                    Please check your spam or junk folder then please search your inbox for
-                                                    an email from noreply@indonesiaminer.com. If you are still unable to
-                                                    find it, please contact our team at callula@indonesiaminer.com.
+                                                    Please double-check your inbox, and if you don’t find it there, we
+                                                    recommend also looking in your spam or junk folder. If it's still
+                                                    missing, feel free to reach out to our team via WhatsApp at
+                                                    +628111798599 or email us at callula@indonesiaminer.com
                                                 </div>
                                             </div>
                                         </div>
@@ -78,6 +79,12 @@
                                                     to
                                                     replace for no extra cost which the name of the substitute should be
                                                     provided at least 7 days to the event.
+                                                    <p></p>
+                                                    <p>
+                                                        Please be advised, any name change will be valid for access
+                                                        throughout
+                                                        all three days of the event.
+                                                    </p>
                                                 </div>
                                             </div>
                                         </div>
@@ -260,10 +267,8 @@
                                             <div id="eThree" class="collapse" aria-labelledby="exhibitionThree"
                                                 data-parent="#exhibition">
                                                 <div class="card-body">
-                                                    Seamless wall printing on shell scheme booth
-                                                    is possible. It is also an option if you plan to place a TV on the wall.
-                                                    If you need it, please kindly coordinate with the operational team
-                                                    beforehand
+                                                    The seamless printing service for shell schemes is available. For more
+                                                    information regarding this, please contact our operations team.
                                                 </div>
                                             </div>
                                         </div>
@@ -371,7 +376,7 @@
                                                 data-parent="#IMD">
                                                 <div class="card-body">
                                                     Your Online Directory profile will be available for viewing starting on
-                                                    June 4, 2024 until July 4, 2024.
+                                                    June 9, 2025 until July 9, 2025.
                                                 </div>
                                             </div>
                                         </div>

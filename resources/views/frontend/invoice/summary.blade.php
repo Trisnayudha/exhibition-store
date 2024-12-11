@@ -3,16 +3,16 @@
 @section('content')
     <div class="container mt-2">
         @if ($company->deadline <= '2025-05-25')
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{-- <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <i><b>Please note that a 30% surcharge will be added to your total order after May 25, 2024.</b></i>
                 </strong>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-            </div>
+            </div> --}}
         @else
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <i><b>Please note that a 30% surcharge will be added to your total order after May 29, 2024.</b></i>
+                <i><b>Please note that a 30% surcharge will be added to your total order after May 29, 2025.</b></i>
                 </strong>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -160,9 +160,10 @@
                                 <!-- Manual Invoice Section -->
                                 <div id="manualInvoiceSection" style="display: none;">
                                     <p class="mt-2" style="font-size: 14px;">
-                                        Prefer a more traditional approach? Please transfer the due amount to the following
-                                        bank account only, then upload your payment receipt. Your payment will be verified
-                                        on weekdays (Monday - Friday), within a maximum of 24 hours.
+                                        <b>Prefer an alternative payment method? </b>
+                                        Please transfer the due amount to the following bank account only, then upload your
+                                        payment receipt. Your payment will be verified on weekdays (Monday - Friday) within
+                                        a maximum of 24 hours.
                                     </p>
 
                                     <div class="card bg-white text-dark mb-2" style="font-size:14px;">
@@ -171,7 +172,7 @@
                                             <p class="mb-1"><strong>Bank Name:</strong> PT. Bank Mandiri (Persero) TBK</p>
                                             <p class="mb-1"><strong>Account Name:</strong> PT. Media MitraKarya Indonesia
                                             </p>
-                                            <p class="mb-1"><strong>Branch:</strong> Mal Pondoh Indah, Jakarta Indonesia
+                                            <p class="mb-1"><strong>Branch:</strong> Mal Pondok Indah, Jakarta Indonesia
                                             </p>
                                             <p class="mb-1">
                                                 <strong>IDR Account:</strong>
@@ -185,8 +186,12 @@
                                         </div>
                                     </div>
 
-                                    <button type="button" class="btn btn-light btn-block mt-2" data-toggle="modal"
-                                        data-target="#uploadReceiptModal">Upload Payment Receipt</button>
+                                    <!-- Upload Payment Receipt Button -->
+                                    <button type="button" class="btn btn-light btn-block mt-2 animated-button"
+                                        data-toggle="modal" data-target="#uploadReceiptModal">
+                                        Upload Payment Receipt
+                                    </button>
+
                                 </div>
                             @endif
                         </div>
@@ -254,6 +259,38 @@
 @endsection
 
 @push('top')
+    <style>
+        /* Add this CSS to your stylesheet */
+
+        /* Define the animation */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.7);
+            }
+
+            70% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 10px rgba(0, 123, 255, 0);
+            }
+
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(0, 123, 255, 0);
+            }
+        }
+
+        /* Apply the animation to the button */
+        .animated-button {
+            position: relative;
+            animation: pulse 2s infinite;
+            transition: transform 0.2s;
+        }
+
+        .animated-button:hover {
+            transform: scale(1.1);
+        }
+    </style>
 @endpush
 
 @push('bottom')
