@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\EventPass;
 
+use App\Helpers\WhatsappApi;
 use App\Http\Controllers\Controller;
+use App\Models\Company;
 use App\Models\Logs\ExhibitionLog;
 use App\Models\Payment;
 use App\Models\Users;
@@ -71,6 +73,7 @@ class DelegateController extends Controller
         $user->post_code = $post_code;
         $user->company_address = $address;
         $user->is_register = 1;
+        $user->edit_approved = null;
         $user->save();
 
         $payment = Payment::where('company_id', $company_id)->where('users_id', $user->id)->first();
@@ -127,7 +130,7 @@ class DelegateController extends Controller
         $user->city = $request->city;
         $user->country = $request->country;
         $user->post_code = $request->post_code;
-
+        $user->edit_approved = null;
         // Simpan perubahan pada user
         $user->save();
 
@@ -168,5 +171,43 @@ class DelegateController extends Controller
         $userId = auth()->id();
         $data = ExhibitionLog::where('section', 'delegate')->where('company_id', $userId)->first();
         return $data;
+    }
+
+    public function requestEdit(Request $request)
+    {
+        $userId = auth()->id();
+        $delegateId = $request->input('delegate_id');
+        $delegate = Users::find($delegateId);
+
+        if (!$delegate) {
+            return response()->json(['message' => 'Delegate not found'], 404);
+        }
+        $company = Company::find($userId);
+        // dd($company);
+        $wa = new WhatsappApi();
+        $wa->phone = '120363361116173935';
+        $wa->message = '*Request Edit Data*
+Dari Company' . $company->name . ', request untuk mengedit data ' . $delegate->name . '
+
+Link Approval = ' . url('api/change/data/' . $delegate->id) . '
+Thanks';
+        $wa->WhatsappMessageGroup();
+
+        return response()->json(['message' => 'Permintaan edit telah disetujui']);
+    }
+
+    public function approve($id)
+    {
+
+        $delegate = Users::find($id);
+
+        if (!$delegate) {
+            return response()->json(['message' => 'Delegate not found'], 404);
+        }
+
+        $delegate->edit_approved = true;
+        $delegate->save();
+        //butuh email/whatsapp buat ngasih tau kalau udah di approve;
+        return 'Approved';
     }
 }

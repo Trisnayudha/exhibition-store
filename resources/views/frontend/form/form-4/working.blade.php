@@ -10,6 +10,8 @@
         <ul>
             <li>Working pass is only valid during the setup and dismantling period</li>
             <li>Working pass can only be obtained by exchanging the ID Card (KTP/SIM/Passport)</li>
+            <li>Please ensure that badges are returned to the registration area after the setup and dismantling days in
+                order to get your ID card back</li>
         </ul>
     </div>
     <div class="alert alert-danger" role="alert">
@@ -374,7 +376,10 @@
             }
         });
     }
-
+    // Function to request edit for Working Pass
+    function requestEditWorking(id) {
+        requestEdit(id, 'working');
+    }
 
     // Function to open the input modal
     function tambahWorking() {
@@ -497,6 +502,9 @@
     }
 
 
+    /* ---------- Loading Functions with Conditional Button Rendering ---------- */
+
+    // Function to load Working Passes
     function loadWorking() {
         // Clear existing table rows
         $('#tabelWorking').empty();
@@ -507,41 +515,64 @@
             url: '{{ url('/working') }}', // Replace with the actual API URL
             success: function(response) {
                 var data = response.data;
+                var accessData = {{ $access['working_pass'] }};
 
-                // Get the image base URL from the configuration
-                var imageBaseUrl = '{{ config('app.image_base_url') }}';
-                var accessData = {{ $access['working_pass'] }}
                 // Iterate through the data and append rows to the table
                 for (var i = 0; i < data.length; i++) {
-                    var representative = data[i];
+                    var working = data[i];
+                    var isEditApproved = working
+                        .edit_approved; // Ensure 'edit_approved' is provided by backend
+
+                    // Determine which buttons to show based on 'edit_approved' status
+                    var buttons = '';
+
+                    if (isEditApproved) {
+                        // If edit is approved, show only the "Edit" button
+                        buttons += '<button class="btn btn-info mr-2" onclick="editWorking(' + working.id +
+                            ')">Edit</button>';
+                    } else {
+                        // If edit is not approved, show "Request Edit" and disable "Edit" button
+                        buttons += '<button class="btn btn-warning mr-2" onclick="requestEditWorking(' +
+                            working.id + ')">Request Edit</button>';
+                        buttons += '<button class="btn btn-info mr-2" onclick="editWorking(' + working.id +
+                            ')" disabled>Edit</button>';
+                    }
+
+                    // Add the "Delete" button
+                    buttons += '<button class="btn btn-danger" onclick="hapusWorking(' + working.id +
+                        ')">Delete</button>';
+
+                    // Add status indicator
+                    var statusIndicator = isEditApproved ?
+                        '<span class="badge badge-success ml-2">Edit Approved</span>' :
+                        '<span class="badge badge-warning ml-2">Edit Pending</span>';
+
                     var row = '<tr>' +
                         '<td>' + (i + 1) + '</td>' +
-                        '<td>' + representative.name + '</td>' +
-                        '<td>' + representative.job_title + '</td>' +
-                        '<td>' + representative.email + '</td>' +
-                        '<td>' + representative.phone + '</td>' +
-                        '<td>' + representative.status + '</td>' +
-                        '<td>' +
-                        '<button class="btn btn-info" onclick="editWorking(' + representative.id +
-                        ')">Edit</button> ' +
-                        '<button class="btn btn-danger" onclick="hapusWorking(' + representative
-                        .payment_id +
-                        ')">Hapus</button>' +
-                        '</td>' +
+                        '<td>' + working.name + '</td>' +
+                        '<td>' + working.job_title + '</td>' +
+                        '<td>' + working.email + '</td>' +
+                        '<td>' + working.phone + '</td>' +
+                        '<td>' + working.status + '</td>' +
+                        '<td>' + buttons + '</td>' +
                         '</tr>';
 
                     // Append the row to the table body
                     $('#tabelWorking').append(row);
                 }
+
+                // Control the "Add" button based on working pass access
                 if (accessData <= data.length) {
                     console.log(data.length);
-                    // Disable the button or show a notification
                     $('#workingButton').prop('disabled', true);
-                    // You can also display a notification here
-                    // Example: $('#notification').text('You cannot add more data.').show();
+                    Swal.fire({
+                        title: 'Limit Reached',
+                        text: 'You have reached the maximum number of Working Passes.',
+                        icon: 'info',
+                        confirmButtonText: 'OK'
+                    });
                 } else {
                     $('#workingButton').prop('disabled', false);
-
                 }
             },
             error: function(error) {
@@ -585,6 +616,57 @@
             },
             error: function(error) {
                 console.error('Error:', error);
+            }
+        });
+    }
+
+    /* ---------- Unified Edit Request Function ---------- */
+
+    // Unified Function to handle edit requests for Delegate, Additional Delegate, and Working Pass
+    function requestEdit(id, type) {
+        Swal.fire({
+            title: 'Do you want to send an edit request?',
+            text: "Your request will be sent for approval.",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, send it!',
+            cancelButtonText: 'Cancel'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+                // Send the edit request to the server using Ajax
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ url('/delegate/request-edit') }}', // Unified endpoint
+                    data: {
+                        delegate_id: id,
+                        type: type, // Specify the type: 'delegate', 'additional', or 'working'
+                        _token: csrfToken
+                    },
+                    success: function(response) {
+                        Swal.fire(
+                            'Request Sent!',
+                            'Your edit request has been sent and is being processed.',
+                            'success'
+                        );
+                        if (type === 'delegate') {
+                            loadDelegate(); // Reload delegate table to update button statuses
+                        } else if (type === 'additional') {
+                            loadAdditional(); // Reload additional delegate table
+                        } else if (type === 'working') {
+                            loadWorking(); // Reload working pass table
+                        }
+                    },
+                    error: function(error) {
+                        Swal.fire(
+                            'Failed!',
+                            'An error occurred while sending the edit request.',
+                            'error'
+                        );
+                        console.error('Error:', error);
+                    }
+                });
             }
         });
     }

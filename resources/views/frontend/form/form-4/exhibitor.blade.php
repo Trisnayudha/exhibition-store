@@ -15,6 +15,7 @@
     </div>
     <div class="alert alert-danger" role="alert">
         <p>Add an exhibitor pass for USD 280</p>
+        <p>Upgrade an exhibitor pass to delegate pass for USD 160</p>
         Please Note: Company, Name and Position will be printed on the badge
     </div>
     <div class="logger-exhibitor"></div>
@@ -427,6 +428,10 @@
         loadExhibitor();
         loadLogExhibitor();
     });
+    // Function to request edit for Exhibitor Pass
+    function requestEditExhibitor(id) {
+        requestEdit(id, 'exhibitor');
+    }
     // Fungsi untuk menambahkan baris baru ke tabel
     function editExhibitor(id) {
         // Retrieve data for the selected delegate using Ajax
@@ -762,6 +767,9 @@
     }
 
 
+    /* ---------- Loading Functions with Conditional Button Rendering ---------- */
+
+    // Function to load Exhibitor Passes
     function loadExhibitor() {
         // Clear existing table rows
         $('#tabelExhibitor').empty();
@@ -772,33 +780,53 @@
             url: '{{ url('/exhibitor') }}', // Replace with the actual API URL
             success: function(response) {
                 var data = response.data;
-                var accessData = {{ $access['exhibitor_pass'] }}
-                console.log(accessData)
-                // Get the image base URL from the configuration
-                var imageBaseUrl = '{{ config('app.image_base_url') }}';
+                var accessData = {{ $access['exhibitor_pass'] }};
+                console.log(accessData);
 
                 // Iterate through the data and append rows to the table
                 for (var i = 0; i < data.length; i++) {
-                    var representative = data[i];
+                    var exhibitor = data[i];
+                    var isEditApproved = exhibitor
+                        .edit_approved; // Ensure 'edit_approved' is provided by backend
+
+                    // Determine which buttons to show based on 'edit_approved' status
+                    var buttons = '';
+
+                    if (isEditApproved) {
+                        // If edit is approved, show only the "Edit" button
+                        buttons += '<button class="btn btn-info mr-2" onclick="editExhibitor(' + exhibitor
+                            .id + ')">Edit</button>';
+                    } else {
+                        // If edit is not approved, show "Request Edit" and disable "Edit" button
+                        buttons += '<button class="btn btn-warning mr-2" onclick="requestEditExhibitor(' +
+                            exhibitor.id + ')">Request Edit</button>';
+                        buttons += '<button class="btn btn-info mr-2" onclick="editExhibitor(' + exhibitor
+                            .id + ')" disabled>Edit</button>';
+                    }
+
+                    // Add the "Delete" button
+                    buttons += '<button class="btn btn-danger" onclick="hapusExhibitor(' + exhibitor.id +
+                        ')">Delete</button>';
+
+                    // Add status indicator
+                    var statusIndicator = isEditApproved ?
+                        '<span class="badge badge-success ml-2">Edit Approved</span>' :
+                        '<span class="badge badge-warning ml-2">Edit Pending</span>';
+
                     var row = '<tr>' +
                         '<td>' + (i + 1) + '</td>' +
-                        '<td>' + representative.name + '</td>' +
-                        '<td>' + representative.job_title + '</td>' +
-                        '<td>' + representative.email + '</td>' +
-                        '<td>' + representative.phone + '</td>' +
-                        '<td>' + representative.status + '</td>' +
-                        '<td>' +
-                        '<button class="btn btn-info" onclick="editExhibitor(' + representative.id +
-                        ')">Edit</button> ' +
-                        '<button class="btn btn-danger" onclick="hapusExhibitor(' + representative
-                        .payment_id +
-                        ')">Hapus</button>' +
-                        '</td>' +
+                        '<td>' + exhibitor.name + '</td>' +
+                        '<td>' + exhibitor.job_title + '</td>' +
+                        '<td>' + exhibitor.email + '</td>' +
+                        '<td>' + exhibitor.phone + '</td>' +
+                        '<td>' + exhibitor.status + '</td>' +
+                        '<td>' + buttons + '</td>' +
                         '</tr>';
 
                     // Append the row to the table body
                     $('#tabelExhibitor').append(row);
                 }
+
                 if (accessData <= data.length) {
                     console.log(data.length);
                     // Disable the button or show a notification
@@ -852,6 +880,52 @@
             },
             error: function(error) {
                 console.error('Error:', error);
+            }
+        });
+    }
+    /* ---------- Unified Request Edit Function ---------- */
+
+    // Unified Function to handle edit requests for Exhibitor Pass
+    function requestEdit(id, type) {
+        Swal.fire({
+            title: 'Do you want to send an edit request?',
+            text: "Your request will be sent for approval.",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, send it!',
+            cancelButtonText: 'Cancel'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+                // Send the edit request to the server using Ajax
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ url('/delegate/request-edit') }}', // Unified endpoint
+                    data: {
+                        delegate_id: id, // 'delegate_id' refers to 'exhibitor_pass_id' in this context
+                        type: type, // Specify the type: 'exhibitor'
+                        _token: csrfToken
+                    },
+                    success: function(response) {
+                        Swal.fire(
+                            'Request Sent!',
+                            'Your edit request has been sent and is being processed.',
+                            'success'
+                        );
+                        if (type === 'exhibitor') {
+                            loadExhibitor(); // Reload exhibitor table to update button statuses
+                        }
+                    },
+                    error: function(error) {
+                        Swal.fire(
+                            'Failed!',
+                            'An error occurred while sending the edit request.',
+                            'error'
+                        );
+                        console.error('Error:', error);
+                    }
+                });
             }
         });
     }

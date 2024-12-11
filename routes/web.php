@@ -91,6 +91,7 @@ Route::post('project/{project}', [ProjectController::class, 'update'])->name('pr
 Route::resource('news', NewsController::class);
 Route::post('news/{news}', [NewsController::class, 'update'])->name('news.update');
 Route::resource('delegate', DelegateController::class);
+Route::post('/delegate/request-edit', [DelegateController::class, 'requestEdit']);
 Route::resource('exhibitor', ExhibitorController::class);
 Route::post('exhibitor/additional', [ExhibitorController::class, 'storeAdditional']);
 Route::resource('working', WorkingController::class);

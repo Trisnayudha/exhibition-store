@@ -8,7 +8,9 @@
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <p><b> Deadline: Please complete the required form by
                             {{ \Carbon\Carbon::parse($data->deadline)->format('d F Y') }}.</b></p>
-                    <p>Please click the SAVE button upon completing the form to ensure it is recorded.</p>
+                    <p>Please kindly notify our operations team in advance if you need to submit any details after the
+                        specified deadline or make any amendments to your submission. This will help ensure that all
+                        information is processed according to your final entries.</p>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

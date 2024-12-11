@@ -140,6 +140,7 @@ class AdditionalController extends Controller
         $user->city = $request->city;
         $user->country = $request->country;
         $user->post_code = $request->post_code;
+        $user->edit_approved = null;
 
         // Simpan perubahan pada user
         $user->save();

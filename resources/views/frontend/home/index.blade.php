@@ -26,10 +26,13 @@
                         In addition to the above, we are excited about your participation in our upcoming event. We truly
                         appreciate your support and attention to this matter.
                     </p>
-                    <p>
+                    <hr>
+                    <p style="margin-bottom: 0px;">
                         The Operational Team
                     </p>
-                    Indonesia Miner Conference & Exhibition 2025
+                    <p style="margin-top: 0px">
+                        Indonesia Miner Conference & Exhibition 2025
+                    </p>
                 </div>
                 <h1>Form Progress</h1>
                 <div class="row justify-content-center"> <!-- Menyelaraskan ke tengah -->

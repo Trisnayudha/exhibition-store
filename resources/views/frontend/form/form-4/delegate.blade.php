@@ -384,6 +384,44 @@
         });
     }
 
+    function loadLogDelegate() {
+        $.ajax({
+            type: 'GET',
+            url: '{{ url('delegate/log') }}', // Ganti dengan URL API yang sesuai
+            success: function(response) {
+                if (response) {
+                    // Parse tanggal dari format ISO
+                    var updatedAt = new Date(response.updated_at);
+                    console.log(updatedAt);
+                    // Buat elemen div untuk menampilkan log
+                    var logDiv = $(
+                        '<div class="alert alert-warning alert-dismissible fade show" role="alert">');
+
+                    // Tambahkan konten log ke dalam elemen div
+                    logDiv.html(' Last update : <strong>' +
+                        updatedAt.toLocaleDateString('en-US', {
+                            weekday: 'long',
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric',
+                            hour: 'numeric',
+                            minute: 'numeric',
+                            hour12: true
+                        }) +
+                        '</strong> GMT + 7' +
+                        '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+                        '<span aria-hidden="true">&times;</span>' +
+                        '</button>');
+
+                    // Tampilkan elemen div dalam elemen dengan class "logger-delegate"
+                    $('.logger-delegate').html(logDiv);
+                }
+            },
+            error: function(error) {
+                console.error('Error:', error);
+            }
+        });
+    }
 
     // Function to open the input modal
     function tambahDelegate() {
@@ -521,10 +559,14 @@
 
                 // Get the image base URL from the configuration
                 var imageBaseUrl = '{{ config('app.image_base_url') }}';
-                var accessData = {{ $access['delegate_pass'] }}
+                var accessData = {{ $access['delegate_pass'] }};
+
                 // Iterate through the data and append rows to the table
                 for (var i = 0; i < data.length; i++) {
                     var representative = data[i];
+                    var isEditApproved = representative
+                        .edit_approved; // Asumsikan ada field 'edit_approved' dari backend
+
                     var row = '<tr>' +
                         '<td>' + (i + 1) + '</td>' +
                         '<td>' + representative.name + '</td>' +
@@ -533,10 +575,11 @@
                         '<td>' + representative.phone + '</td>' +
                         // '<td>' + representative.status + '</td>' +
                         '<td>' +
-                        '<button class="btn btn-info" onclick="editDelegate(' + representative.id +
-                        ')">Edit</button> ' +
-                        '<button class="btn btn-danger" onclick="hapusDelegate(' + representative
-                        .payment_id +
+                        '<button class="btn btn-warning mr-2" onclick="requestEditDelegate(' +
+                        representative.id + ')">Request Edit</button>' +
+                        '<button class="btn btn-info" onclick="editDelegate(' + representative.id + ')" ' +
+                        (isEditApproved ? '' : 'disabled') + '>Edit</button> ' +
+                        '<button class="btn btn-danger" onclick="hapusDelegate(' + representative.id +
                         ')">Hapus</button>' +
                         '</td>' +
                         '</tr>';
@@ -546,13 +589,10 @@
                 }
                 if (accessData <= data.length) {
                     console.log(data.length);
-                    // Disable the button or show a notification
+                    // Disable the add button or show a notification
                     $('#delegateButton').prop('disabled', true);
-                    // You can also display a notification here
-                    // Example: $('#notification').text('You cannot add more data.').show();
                 } else {
                     $('#delegateButton').prop('disabled', false);
-
                 }
             },
             error: function(error) {
@@ -561,41 +601,113 @@
         });
     }
 
-    function loadLogDelegate() {
+
+    function loadDelegate() {
+        // Clear existing table rows
+        $('#tabelDelegate').empty();
+
+        // Retrieve data from the server using Ajax
         $.ajax({
             type: 'GET',
-            url: '{{ url('delegate/log') }}', // Ganti dengan URL API yang sesuai
+            url: '{{ url('/delegate') }}', // Replace with the actual API URL
             success: function(response) {
-                if (response) {
-                    // Parse tanggal dari format ISO
-                    var updatedAt = new Date(response.updated_at);
-                    console.log(updatedAt);
-                    // Buat elemen div untuk menampilkan log
-                    var logDiv = $(
-                        '<div class="alert alert-warning alert-dismissible fade show" role="alert">');
+                var data = response.data;
 
-                    // Tambahkan konten log ke dalam elemen div
-                    logDiv.html(' Last update : <strong>' +
-                        updatedAt.toLocaleDateString('en-US', {
-                            weekday: 'long',
-                            year: 'numeric',
-                            month: 'long',
-                            day: 'numeric',
-                            hour: 'numeric',
-                            minute: 'numeric',
-                            hour12: true
-                        }) +
-                        '</strong> GMT + 7' +
-                        '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
-                        '<span aria-hidden="true">&times;</span>' +
-                        '</button>');
+                // Get the image base URL from the configuration
+                var imageBaseUrl = '{{ config('app.image_base_url') }}';
+                var accessData = {{ $access['delegate_pass'] }};
 
-                    // Tampilkan elemen div dalam elemen dengan class "logger-delegate"
-                    $('.logger-delegate').html(logDiv);
+                // Iterate through the data and append rows to the table
+                for (var i = 0; i < data.length; i++) {
+                    var representative = data[i];
+                    var isEditApproved = representative.edit_approved;
+
+                    // Determine which buttons to show based on 'edit_approved' status
+                    var buttons = '';
+
+                    if (isEditApproved) {
+                        // If edit is approved, show only the "Edit" button
+                        buttons += '<button class="btn btn-info" onclick="editDelegate(' + representative
+                            .id + ')">Edit</button> ';
+                    } else {
+                        // If edit is not approved, show "Request Edit" and disable "Edit" button
+                        buttons += '<button class="btn btn-warning mr-2" onclick="requestEditDelegate(' +
+                            representative.id + ')">Request Edit</button>';
+                        buttons += '<button class="btn btn-info" onclick="editDelegate(' + representative
+                            .id + ')" disabled>Edit</button> ';
+                    }
+
+                    // Add the "Delete" button
+                    buttons += '<button class="btn btn-danger" onclick="hapusDelegate(' + representative
+                        .id + ')">Delete</button>';
+
+
+
+                    var row = '<tr>' +
+                        '<td>' + (i + 1) + '</td>' +
+                        '<td>' + representative.name + '</td>' +
+                        '<td>' + representative.job_title + '</td>' +
+                        '<td>' + representative.email + '</td>' +
+                        '<td>' + representative.phone + '</td>' +
+                        '<td>' + buttons + '</td>' +
+                        '</tr>';
+
+                    // Append the row to the table body
+                    $('#tabelDelegate').append(row);
+                }
+
+                // Control the "Add" button based on delegate pass access
+                if (accessData <= data.length) {
+                    console.log(data.length);
+                    $('#delegateButton').prop('disabled', true);
+                } else {
+                    $('#delegateButton').prop('disabled', false);
                 }
             },
             error: function(error) {
                 console.error('Error:', error);
+            }
+        });
+    }
+
+
+    function requestEditDelegate(id) {
+        Swal.fire({
+            title: 'Do you want to send an edit request?',
+            text: "Your request will be sent for approval.",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, send it!',
+            cancelButtonText: 'Cancel'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+                // Send the edit request to the server using Ajax
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ url('/delegate/request-edit') }}', // Endpoint to send the edit request
+                    data: {
+                        delegate_id: id,
+                        _token: csrfToken
+                    },
+                    success: function(response) {
+                        Swal.fire(
+                            'Request Sent!',
+                            'Your edit request has been sent and is being processed.',
+                            'success'
+                        );
+                        loadDelegate(); // Reload the delegate table to update button statuses
+                    },
+                    error: function(error) {
+                        Swal.fire(
+                            'Failed!',
+                            'An error occurred while sending the edit request.',
+                            'error'
+                        );
+                        console.error('Error:', error);
+                    }
+                });
             }
         });
     }

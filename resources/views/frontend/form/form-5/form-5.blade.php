@@ -7,8 +7,9 @@
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <p><b> Deadline: Please complete the required form by
                             {{ \Carbon\Carbon::parse($data->deadline)->format('d F Y') }}.</b></p>
-                    <p>If you submit or change the form after the deadline, make sure to confirm beforehand with our
-                        operational team. This is important to ensure we process the final details.</p>
+                    <p>Please kindly notify our operations team in advance if you need to submit any details after the
+                        specified deadline or make any amendments to your submission. This will help ensure that all
+                        information is processed according to your final entries. </p>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -236,19 +237,19 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-sm-12">
-                            @if ($data->deadline < '2024-05-25')
-                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            @if ($data->deadline < '2025-05-25')
+                                {{-- <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                     <i><b>Please note that a 30% surcharge will be added to your total order after May 25,
-                                            2024.</b></i>
+                                            2025.</b></i>
                                     </strong>
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
-                                </div>
+                                </div> --}}
                             @else
                                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                     <i><b>Please note that a 30% surcharge will be added to your total order after May 29,
-                                            2024.</b></i>
+                                            2025.</b></i>
                                     </strong>
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>

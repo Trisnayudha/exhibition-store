@@ -1,16 +1,18 @@
 <section id="delegate-pass">
     <h4>Additional Delegate Pass</h4>
     <div class="alert alert-info" role="alert">
-        <p>We offer sponsor/ exhibitor a flat rate for purchasing additional delegate pass at USD 400/ pax/ 3 days,
-            including access to : </p>
-        <ul>
-            <li>Conference</li>
-            <li>Exhibition</li>
-            <li>Networking Functions (Coffee Break & Lunch)</li>
-            <li>Online Networking Function</li>
-        </ul>
-        <small>Only valid for representative from company of Sponsor or Exhibitor until April 30, 2024 and this
-            additional pass require 100% within 7 days after invoice date</small>
+        <p>
+            We are offering a special rate for additional delegate passes at USD 400 per person for 3 days. This
+            delegate
+            pass includes access to the Conference, Exhibition, Networking Functions (Coffee Break & Lunch), and the
+            Online
+            Networking Function.
+        </p>
+        <p>
+            Please note: this special price applies only to representatives of sponsor/exhibitor companies. and valid
+            until
+            May 2, 2025. Full payment must be made within 7 days of receiving the invoice.
+        </p>
     </div>
     <div class="alert alert-danger" role="alert">
         Please Note: Company, Name and Position will be printed on the badge
@@ -377,7 +379,12 @@
         });
     }
 
+    /* ---------- Additional Delegate Pass Functions ---------- */
 
+    // Function to request edit for Additional Delegate Pass
+    function requestEditAdditional(id) {
+        requestEdit(id, 'additional');
+    }
     // Function to open the input modal
     function tambahAdditional() {
         console.log('tambah');
@@ -502,6 +509,7 @@
     }
 
 
+    // Function to load Additional Delegates
     function loadAdditional() {
         // Clear existing table rows
         $('#tabelAdditional').empty();
@@ -515,28 +523,58 @@
 
                 // Get the image base URL from the configuration
                 var imageBaseUrl = '{{ config('app.image_base_url') }}';
+                var accessData = {{ $access['delegate_pass'] }}; // Adjust if necessary
 
                 // Iterate through the data and append rows to the table
                 for (var i = 0; i < data.length; i++) {
-                    var representative = data[i];
+                    var additional = data[i];
+                    var isEditApproved = additional.edit_approved; // Ensure backend provides this field
+
+                    // Determine which buttons to show based on 'edit_approved' status
+                    var buttons = '';
+
+                    if (isEditApproved) {
+                        // If edit is approved, show only the "Edit" button
+                        buttons += '<button class="btn btn-info mr-2" onclick="editAdditional(' + additional
+                            .id + ')">Edit</button>';
+                    } else {
+                        // If edit is not approved, show "Request Edit" and disable "Edit" button
+                        buttons += '<button class="btn btn-warning mr-2" onclick="requestEditAdditional(' +
+                            additional.id + ')">Request Edit</button>';
+                        buttons += '<button class="btn btn-info mr-2" onclick="editAdditional(' + additional
+                            .id + ')" disabled>Edit</button>';
+                    }
+
+                    // Add the "Delete" button
+                    buttons += '<button class="btn btn-danger" onclick="hapusAdditional(' + additional.id +
+                        ')">Delete</button>';
+
+                    // Optional: Add status indicator
+                    var statusIndicator = isEditApproved ?
+                        '<span class="badge badge-success ml-2">Edit Approved</span>' :
+                        '<span class="badge badge-warning ml-2">Edit Pending</span>';
+
                     var row = '<tr>' +
                         '<td>' + (i + 1) + '</td>' +
-                        '<td>' + representative.name + '</td>' +
-                        '<td>' + representative.job_title + '</td>' +
-                        '<td>' + representative.email + '</td>' +
-                        '<td>' + representative.phone + '</td>' +
-                        '<td>' + representative.status + '</td>' +
-                        '<td>' +
-                        '<button class="btn btn-info" onclick="editAdditional(' + representative.id +
-                        ')">Edit</button> ' +
-                        '<button class="btn btn-danger" onclick="hapusAdditional(' + representative
-                        .payment_id +
-                        ')">Hapus</button>' +
-                        '</td>' +
+                        '<td>' + additional.name + '</td>' +
+                        '<td>' + additional.job_title + '</td>' +
+                        '<td>' + additional.email + '</td>' +
+                        '<td>' + additional.phone + '</td>' +
+                        '<td>' + additional.status + '</td>' +
+                        '<td>' + buttons + '</td>' +
                         '</tr>';
 
                     // Append the row to the table body
                     $('#tabelAdditional').append(row);
+                }
+
+                // Control the "Add" button based on additional delegate pass access
+                if (accessData <= data.length) {
+                    console.log(data.length);
+                    $('#additionalButton').prop('disabled',
+                        true); // Ensure you have an 'additionalButton' if needed
+                } else {
+                    $('#additionalButton').prop('disabled', false);
                 }
             },
             error: function(error) {
@@ -544,6 +582,7 @@
             }
         });
     }
+
 
     function loadLogAdditional() {
         $.ajax({
@@ -580,6 +619,47 @@
             },
             error: function(error) {
                 console.error('Error:', error);
+            }
+        });
+    }
+
+    function requestEditAdditional(id) {
+        Swal.fire({
+            title: 'Do you want to send an edit request?',
+            text: "Your request will be sent for approval.",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, send it!',
+            cancelButtonText: 'Cancel'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+                // Send the edit request to the server using Ajax
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ url('/delegate/request-edit') }}', // Endpoint to send the edit request
+                    data: {
+                        delegate_id: id,
+                        _token: csrfToken
+                    },
+                    success: function(response) {
+                        Swal.fire(
+                            'Request Sent!',
+                            'Your edit request has been sent and is being processed.',
+                            'success'
+                        );
+                        loadAdditional(); // Reload the additional table to update button statuses
+                    },
+                    error: function(error) {
+                        Swal.fire(
+                            'Failed!',
+                            'An error occurred while sending the edit request.',
+                            'error'
+                        );
+                        console.error('Error:', error);
+                    }
+                });
             }
         });
     }

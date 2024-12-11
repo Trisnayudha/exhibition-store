@@ -1,19 +1,49 @@
 <section id="delegate-pass">
     <h4>Mining Pass</h4>
     <div class="alert alert-info" role="alert">
-        <h4>General Info:</h4>
-        Please complete the form with the people you would like to invite externally. When we receive a complete list,
-        we will invite them via email representing your company. We will also follow up on them regularly and will
-        provide updates to you. If the invitee list declines, you are welcomed to provide replacement data.
-        <p>Access to: </p>
+        <p>
+            The data you enter in this section will be the names of representatives we will invite to attend the
+            Indonesia
+            Miner 2025 event on behalf of your company. Invitation names can only be processed for representatives from
+            companies in the following categories:
+        </p>
         <ul>
-            <li>Conference</li>
-            <li>Exhibition</li>
+            <li>
+                Mining Companies (Coal & Minerals)
+            </li>
+            <li>
+                Smelter Companies
+            </li>
+            <li>
+                Power Plant Companies
+            </li>
+            <li>
+                Mining Contractors
+            </li>
         </ul>
+        <p>
+            Your invitee will be granted a Mining Pass, which provides 3-day access to the event, including the
+            conference and exhibition.
+        </p>
+        <p>
+            The complete data (company name, name, title, email address) that we receive can be processed within 2-3
+            business days.
+        </p>
+        <p>
+            If you are unable to provide complete data, the minimum required information is the company name and job
+            title.
+            We will assist by filling in the missing details through research, but please note that processing
+            incomplete
+            data will take slightly longer, with an estimated timeframe of 4-7 business days.
+        </p>
+        <p>
+            We will send out the invitations, follow up regularly, and provide you with weekly progress reports. For
+            those
+            who have confirmed their inability to attend, you are welcome to provide replacement details for us to
+            invite.
+        </p>
     </div>
     <div class="alert alert-danger" role="alert">
-        <p>Only for Mining Companies (Coal & Minerals), Smelter Companies, Power Plant Companies & Mining Contractors
-        </p>
         Please Note: Company, Name and Position will be printed on the badge
     </div>
     <div class="logger-mining"></div>

@@ -1,7 +1,7 @@
 <form action="{{ url('postGeneral') }}" method="POSt" enctype="multipart/form-data">
     @csrf
     <div class="alert alert-info alert-dismissible fade show" role="alert">
-        Please don't forget to save your data after filling out the form.
+        Please click the SAVE button upon completing the form to ensure it is recorded.
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
