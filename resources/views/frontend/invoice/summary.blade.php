@@ -187,7 +187,7 @@
                                     </div>
 
                                     <!-- Upload Payment Receipt Button -->
-                                    <button type="button" class="btn btn-light btn-block mt-2 animated-button"
+                                    <button type="button" class="btn btn-warning btn-block mt-2 animated-button"
                                         data-toggle="modal" data-target="#uploadReceiptModal">
                                         Upload Payment Receipt
                                     </button>
