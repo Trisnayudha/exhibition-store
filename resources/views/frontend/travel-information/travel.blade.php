@@ -20,10 +20,11 @@
                     <h1>ACCOMMODATION</h1>
                     </p>
                     <div class="text-center">
-                        OFFICIAL HOTEL OF THE INDONESIA MINER 2024
+                        OFFICIAL HOTEL OF THE INDONESIA MINER 2025
                         <div>
                             <img src="https://indonesiaminer.com/img/logowestin.png" alt="" height="70"
                                 class="mt-2">
+                            <img src="https://indonesiaminer.com/img/logoluwansalandscape.png" alt="" height="200">
                         </div>
                     </div>
                     <p>Situated in Gama Tower, The Westin Jakarta is conveniently located on Jalan Rasuna Said, one of the
@@ -31,7 +32,7 @@
                         city’s leading business, commercial, and shopping district. Its central location gives guests of the
                         hotel an advantage during sightseeing, with many
                         places of interest and tourist attractions located within close proximity to the hotel.</p>
-                    <p>Please find the special room rate for Indonesia Miner 2024 Participants</p>
+                    <p>Please find the special room rate for Indonesia Miner 2025 Participants</p>
                     <div class="row">
                         <div class="col" style="max-width: 25rem">
                             <img src="https://indonesiaminer.com/img/BEDROOM.jpg" alt="" height="250">
@@ -83,7 +84,7 @@
                         </div>
                     </div>
                     <hr>
-                    <p>Accommodation Options near Indonesia Miner 2024 Venue</p>
+                    <p>Accommodation Options near Indonesia Miner 2025 Venue</p>
                     <div class="row mt-5">
                         <div class="col" style="max-width: 25rem">
                             <img src="https://img2.beritasatu.com/cache/beritasatu/960x620-3/461443369277.jpg"
