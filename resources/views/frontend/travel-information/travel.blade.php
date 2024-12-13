@@ -51,7 +51,7 @@
                                     jacuzzi</li>
                             </ul>
                             <p>Please book through the following link</p>
-                            <a href="https://indonesiaminer.com/westin/booking" target="_blank">INDONESIA MINER 2024: The
+                            <a href="https://indonesiaminer.com/westin/booking" target="_blank">INDONESIA MINER 2025: The
                                 Westin Hotel
                                 Jakarta</a>
                         </div>
@@ -68,6 +68,18 @@
                             <p><b>JS Luwansa Hotel</b></p>
                             <p>IDR 1.300.000 net / room /night
                             </p>
+                            <p>Inclusive of:</p>
+                            <ul>
+                                <li>Breakfast for one (1) </li>
+                                <li>Internet/WiFi access </li>
+                                <li>Gym & Swimming Pool </li>
+                                <li>For a minimum stay of 7 nights, guests will receive 4 laundry items per
+                                    day (non-cumulative).</li>
+                            </ul>
+                            <p>Please book through the following link</p>
+                            <a href="https://indonesiaminer.com/luwansa/booking" target="_blank">INDONESIA MINER 2025: JS
+                                Luwansa Hotel
+                                Jakarta</a>
                         </div>
                     </div>
                     <hr>
