@@ -4,10 +4,10 @@
     <div class="col-sm-9">
 
         <div class="container">
-            @if ($data->deadline != null)
+            @if ($data->deadline_3 != null)
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <p><b> Deadline: Please complete the required form by
-                            {{ \Carbon\Carbon::parse($data->deadline)->format('d F Y') }}.</b></p>
+                            {{ \Carbon\Carbon::parse($data->deadline_3)->format('d F Y') }}.</b></p>
                     <p>Please kindly notify our operations team in advance if you need to submit any details after the
                         specified deadline or make any amendments to your submission. This will help ensure that all
                         information is processed according to your final entries.</p>

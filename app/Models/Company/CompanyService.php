@@ -85,6 +85,10 @@ class CompanyService extends Model
                 'company.booth',
                 'company.inclusion',
                 'company.deadline',
+                'company.deadline_2',
+                'company.deadline_3',
+                'company.deadline_4',
+                'company.deadline_5',
                 'company.level',
                 'company.size_promotional',
 

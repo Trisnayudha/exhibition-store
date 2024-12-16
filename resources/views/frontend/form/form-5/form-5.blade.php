@@ -3,10 +3,10 @@
 @section('content')
     <div class="col-sm-9">
         <div class="container-fluid">
-            @if ($data->deadline != null)
+            @if ($data->deadline_5 != null)
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <p><b> Deadline: Please complete the required form by
-                            {{ \Carbon\Carbon::parse($data->deadline)->format('d F Y') }}.</b></p>
+                            {{ \Carbon\Carbon::parse($data->deadline_5)->format('d F Y') }}.</b></p>
                     <p>Please kindly notify our operations team in advance if you need to submit any details after the
                         specified deadline or make any amendments to your submission. This will help ensure that all
                         information is processed according to your final entries. </p>
@@ -237,7 +237,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-sm-12">
-                            @if ($data->deadline < '2025-05-25')
+                            @if ($data->deadline_5 < '2025-05-25')
                                 {{-- <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                     <i><b>Please note that a 30% surcharge will be added to your total order after May 25,
                                             2025.</b></i>
