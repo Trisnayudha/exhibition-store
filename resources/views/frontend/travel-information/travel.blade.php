@@ -6,7 +6,7 @@
             <div class="card border-info mb-3">
                 <div class="card-body">
                     <h1>IMMIGRATION POLICY</h1>
-                    <p>Information on Immigration general regulation and during Covid-19 Pandemic, please read through the
+                    <p>Information on Immigration general regulation, please read through the
                         official website of
                         Directorate General of Immigration https://www.imigrasi.go.id/</p>
 
@@ -24,7 +24,6 @@
                         <div>
                             <img src="https://indonesiaminer.com/img/logowestin.png" alt="" height="70"
                                 class="mt-2">
-                            <img src="https://indonesiaminer.com/img/logoluwansalandscape.png" alt="" height="200">
                         </div>
                     </div>
                     <p>Situated in Gama Tower, The Westin Jakarta is conveniently located on Jalan Rasuna Said, one of the
@@ -67,11 +66,11 @@
                         </div>
                         <div class="col">
                             <p><b>JS Luwansa Hotel</b></p>
-                            <p>IDR 1.300.000 net / room /night
+                            <p>IDR 1.400.000 net / room /night
                             </p>
                             <p>Inclusive of:</p>
                             <ul>
-                                <li>Breakfast for one (1) </li>
+                                <li>Breakfast for two (2) </li>
                                 <li>Internet/WiFi access </li>
                                 <li>Gym & Swimming Pool </li>
                                 <li>For a minimum stay of 7 nights, guests will receive 4 laundry items per

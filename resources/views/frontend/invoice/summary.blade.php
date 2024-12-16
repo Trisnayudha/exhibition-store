@@ -56,9 +56,9 @@
                                 @foreach ($items as $key)
                                     <tr>
                                         <td>{{ $key->name_product . ' - ' . $key->section_product }}</td>
-                                        <td>Rp. {{ number_format($key->price, 2, ',', '.') }}</td>
+                                        <td>IDR {{ number_format($key->price, 2, ',', '.') }}</td>
                                         <td class="text-center">{{ $key->quantity }}</td>
-                                        <td class="text-right">Rp.
+                                        <td class="text-right">IDR
                                             {{ number_format($key->price * $key->quantity, 2, ',', '.') }}</td>
                                     </tr>
                                 @endforeach
@@ -87,27 +87,27 @@
 
                                 <tr>
                                     <th colspan="2" class="text-right">Sub Total</th>
-                                    <th colspan="2" class="text-right">Rp. {{ number_format($totalDue, 2, ',', '.') }}
+                                    <th colspan="2" class="text-right">IDR {{ number_format($totalDue, 2, ',', '.') }}
                                     </th>
                                 </tr>
                                 @if ($tax != 0)
                                     <tr>
                                         <th colspan="2" class="text-right">VAT 11%</th>
-                                        <th colspan="2" class="text-right">Rp.
+                                        <th colspan="2" class="text-right">IDR
                                             {{ number_format($totalPPN, 2, ',', '.') }}</th>
                                     </tr>
                                 @endif
                                 @if ($surcharge > 0)
                                     <tr>
                                         <th colspan="2" class="text-right">Surcharge 30%</th>
-                                        <th colspan="2" class="text-right">Rp.
+                                        <th colspan="2" class="text-right">IDR
                                             {{ number_format($surcharge, 2, ',', '.') }}</th>
                                     </tr>
                                 @endif
                                 <tr>
                                     <th colspan="2" class="text-right">Total</th>
                                     <th colspan="2" class="text-right">
-                                        <p>Rp. {{ number_format($totalDueWithTaxAndSurcharge, 2, ',', '.') }} </p>
+                                        <p>IDR {{ number_format($totalDueWithTaxAndSurcharge, 2, ',', '.') }} </p>
                                         <p>{{ $formattedTotalUSD }} USD</p>
                                     </th>
                                 </tr>
@@ -129,7 +129,7 @@
                             @if ($items[0]->status != 'paid')
                                 <span class="badge badge-pill badge-danger">Unpaid</span>
                                 <h3>Total Due</h3>
-                                <h2>Rp. {{ number_format($totalDueWithTaxAndSurcharge, 2, ',', '.') }}</h2>
+                                <h2>IDR {{ number_format($totalDueWithTaxAndSurcharge, 2, ',', '.') }}</h2>
                                 <h2>{{ $formattedTotalUSD }} USD</h2>
                             @elseif ($items[0]->status)
                                 <span class="badge badge-pill badge-light">PAID OFF</span>
@@ -170,9 +170,9 @@
                                         <div class="card-body" style="padding: 10px;">
                                             <p class="mb-2"> <strong>BANK DETAILS </strong></p>
                                             <p class="mb-1"><strong>Bank Name:</strong> PT. Bank Mandiri (Persero) TBK</p>
-                                            <p class="mb-1"><strong>Account Name:</strong> PT. Media MitraKarya Indonesia
+                                            <p class="mb-1"><strong>Account Name:</strong> PT. Media Mitrakarya Indonesia
                                             </p>
-                                            <p class="mb-1"><strong>Branch:</strong> Mal Pondok Indah, Jakarta Indonesia
+                                            <p class="mb-1"><strong>Branch:</strong> Mal Pondok Indah 1, Jakarta Indonesia
                                             </p>
                                             <p class="mb-1">
                                                 <strong>IDR Account:</strong>

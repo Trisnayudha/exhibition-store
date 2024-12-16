@@ -15,7 +15,7 @@
                     <div class="card-body text-info">
                         <h5 class="card-title">Event Details</h5>
                         <p>Event Title : Indonesia Miner Conference & Exhibition 2025</p>
-                        <p>Date : 10 - 12 June 2024</p>
+                        <p>Date : 10 - 12 June 2025</p>
                         <p>Venue : The Westin Hotel, Jakarta - Indonesia</p>
                     </div>
                 </div>

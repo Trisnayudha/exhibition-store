@@ -154,7 +154,7 @@
                                             <div id="cOne" class="collapse show" aria-labelledby="headingOne"
                                                 data-parent="#conference">
                                                 <div class="card-body">
-                                                    The conference program will be published through our website
+                                                    The conference program will be published through our app
                                                     www.indonesiaminer.com as soon as it is finalized and displayed on some
                                                     digital
                                                     signage on-site.
@@ -174,7 +174,7 @@
                                                 data-parent="#conference">
                                                 <div class="card-body">
                                                     All presentation materials allowed by the speakers to be shared will be
-                                                    available to download through our website www.indonesiaminer.com for all
+                                                    available to download through our app Indonesia Miner for all
                                                     the Delegate Pass holders only.
                                                 </div>
                                             </div>
@@ -193,7 +193,7 @@
                                                 data-parent="#conference">
                                                 <div class="card-body">
                                                     All session recordings allowed by the speaker will be available to
-                                                    re-watch through our website www.indonesiaminer.com for all the Delegate
+                                                    re-watch through our app Indonesia Miner for all the Delegate
                                                     Pass
                                                     holders only.
                                                 </div>
