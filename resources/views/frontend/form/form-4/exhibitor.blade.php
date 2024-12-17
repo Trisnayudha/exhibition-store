@@ -16,7 +16,7 @@
     <div class="alert alert-danger" role="alert">
         <p>Add an exhibitor pass for USD 280</p>
         <p>Upgrade an exhibitor pass to delegate pass for USD 160</p>
-        Please Note: Company, Name and Position will be printed on the badge
+        Please Note: Company, Name and Job Title will be printed on the badge
     </div>
     <div class="logger-exhibitor"></div>
     <div class="d-flex">
@@ -32,7 +32,7 @@
                 <tr>
                     <th>No</th>
                     <th>Name</th>
-                    <th>Position</th>
+                    <th>Job Title</th>
                     <th>Email</th>
                     <th>Mobile</th>
                     <th>Status</th>
@@ -121,7 +121,7 @@
                         </div>
                         <div class="col-6">
                             <div class="form-group">
-                                <label for="position">Position</label>
+                                <label for="position">Job Title</label>
                                 <input type="text" class="form-control" id="positionExhibitor"
                                     name="positionExhibitor">
                             </div>
@@ -253,7 +253,7 @@
                         </div>
                         <div class="col-6">
                             <div class="form-group">
-                                <label for="position">Position</label>
+                                <label for="position">Job Title</label>
                                 <input type="text" class="form-control" id="additional_positionExhibitor"
                                     name="positionExhibitor">
                             </div>
@@ -371,7 +371,7 @@
                         </div>
                         <div class="col-6">
                             <div class="form-group">
-                                <label for="position">Position</label>
+                                <label for="position">Job Title</label>
                                 <input type="text" class="form-control" id="job_titleEditExhibitor"
                                     name="job_titleEditExhibitor">
                             </div>

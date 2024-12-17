@@ -18,7 +18,7 @@
         </button>
     </div>
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        Please Note: Company, Name and Position will be printed on the badge
+        Please Note: Company, Name and Job Title will be printed on the badge
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -31,7 +31,7 @@
                 <tr>
                     <th>No</th>
                     <th>Name</th>
-                    <th>Position</th>
+                    <th>Job Title</th>
                     <th>Email</th>
                     <th>Mobile</th>
                     {{-- <th>Status</th> --}}
@@ -119,7 +119,7 @@
                         </div>
                         <div class="col-6">
                             <div class="form-group">
-                                <label for="position">Position</label>
+                                <label for="position">Job Title</label>
                                 <input type="text" class="form-control" id="positionDelegate"
                                     name="positionDelegate">
                             </div>
@@ -237,7 +237,7 @@
                         </div>
                         <div class="col-6">
                             <div class="form-group">
-                                <label for="position">Position</label>
+                                <label for="position">Job Title</label>
                                 <input type="text" class="form-control" id="positionEditDelegate"
                                     name="positionEditDelegate">
                             </div>

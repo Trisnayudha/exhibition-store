@@ -26,7 +26,7 @@
             conference and exhibition.
         </p>
         <p>
-            The complete data (company name, name, title, email address) that we receive can be processed within 2-3
+            The complete data (company name, name, job title, email address) that we receive can be processed within 2-3
             business days.
         </p>
         <p>
@@ -44,7 +44,7 @@
         </p>
     </div>
     <div class="alert alert-danger" role="alert">
-        Please Note: Company, Name and Position will be printed on the badge
+        Please Note: Company, Name and Job Title will be printed on the badge
     </div>
     <div class="logger-mining"></div>
     <button class="btn btn-primary mb-2" onclick="tambahMining()">Upload Data</button>

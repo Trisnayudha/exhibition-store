@@ -130,7 +130,7 @@
                                 <span class="badge badge-pill badge-danger">Unpaid</span>
                                 <h3>Total Due</h3>
                                 <h2>IDR {{ number_format($totalDueWithTaxAndSurcharge, 2, ',', '.') }}</h2>
-                                <h2>{{ $formattedTotalUSD }} USD</h2>
+                                <h2>USD {{ $formattedTotalUSD }} </h2>
                             @elseif ($items[0]->status)
                                 <span class="badge badge-pill badge-light">PAID OFF</span>
                             @endif

@@ -15,7 +15,7 @@
         </ul>
     </div>
     <div class="alert alert-danger" role="alert">
-        Please Note: Company, Name and Position will be printed on the badge
+        Please Note: Company, Name and Job Title will be printed on the badge
     </div>
     <div class="logger-working"></div>
     <button class="btn btn-primary mb-2" onclick="tambahWorking()" id="workingButton">Add</button>
@@ -26,7 +26,7 @@
                 <tr>
                     <th>No</th>
                     <th>Name</th>
-                    <th>Position</th>
+                    <th>Job Title</th>
                     <th>Email</th>
                     <th>Mobile</th>
                     <th>Status</th>
@@ -115,7 +115,7 @@
                         </div>
                         <div class="col-6">
                             <div class="form-group">
-                                <label for="position">Position</label>
+                                <label for="position">Job Title</label>
                                 <input type="text" class="form-control" id="positionWorking" name="positionWorking">
                             </div>
                             <div class="form-group">
@@ -231,7 +231,7 @@
                         </div>
                         <div class="col-6">
                             <div class="form-group">
-                                <label for="position">Position</label>
+                                <label for="position">Job Title</label>
                                 <input type="text" class="form-control" id="positionEditWorking"
                                     name="positionEditWorking">
                             </div>
