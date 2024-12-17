@@ -1,8 +1,20 @@
 @extends('index')
 
 @section('content')
-    <div class="col-sm-9">
+    @php
+        $isLocked = false;
+        if (!empty($data->deadline_2)) {
+            $deadlineDate = \Carbon\Carbon::parse($data->deadline_2)->startOfDay();
+            $now = \Carbon\Carbon::now()->startOfDay();
 
+            // Lock jika tanggal sekarang lebih dari tanggal deadline
+            if ($now->greaterThan($deadlineDate)) {
+                $isLocked = true;
+            }
+        }
+    @endphp
+
+    <div class="col-sm-9">
         <div class="container-fluid">
             @if ($data->deadline_2 != null)
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -16,6 +28,7 @@
                     </button>
                 </div>
             @endif
+
             <div class="card border-info">
                 <div class="card-body">
                     <div class="row">
@@ -24,27 +37,25 @@
                                 aria-orientation="vertical">
                                 <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home"
                                     role="tab" aria-controls="v-pills-home" aria-selected="true">General Information</a>
-
                                 <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile"
                                     role="tab" aria-controls="v-pills-profile" aria-selected="false">Representatives
                                     Profile</a>
-
                                 <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages"
                                     role="tab" aria-controls="v-pills-messages"
                                     aria-selected="false">Media/Resources</a>
-
                                 <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings"
                                     role="tab" aria-controls="v-pills-settings"
                                     aria-selected="false">Products/Services</a>
-
                                 <a class="nav-link" id="v-pills-projects-tab" data-toggle="pill" href="#v-pills-projects"
                                     role="tab" aria-controls="v-pills-projects" aria-selected="false">Projects</a>
-
                                 <a class="nav-link" id="v-pills-news-tab" data-toggle="pill" href="#v-pills-news"
                                     role="tab" aria-controls="v-pills-news" aria-selected="false">News</a>
                             </div>
                         </div>
-                        <div class="col-9">
+
+                        <!-- Wrap .col-9 in a position: relative container and apply lock if needed -->
+                        <div class="col-9"
+                            style="position: relative; @if ($isLocked) pointer-events:none; opacity:0.7; @endif">
                             <div class="tab-content" id="v-pills-tabContent">
                                 <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
                                     aria-labelledby="v-pills-home-tab">
@@ -52,25 +63,52 @@
                                 </div>
                                 <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
                                     aria-labelledby="v-pills-profile-tab">
-                                    @include('frontend.form.form-2.representative')</div>
+                                    @include('frontend.form.form-2.representative')
+                                </div>
                                 <div class="tab-pane fade" id="v-pills-messages" role="tabpanel"
                                     aria-labelledby="v-pills-messages-tab">
-                                    @include('frontend.form.form-2.media')</div>
+                                    @include('frontend.form.form-2.media')
+                                </div>
                                 <div class="tab-pane fade" id="v-pills-settings" role="tabpanel"
                                     aria-labelledby="v-pills-settings-tab">
-                                    @include('frontend.form.form-2.products')</div>
+                                    @include('frontend.form.form-2.products')
+                                </div>
                                 <div class="tab-pane fade" id="v-pills-projects" role="tabpanel"
                                     aria-labelledby="v-pills-projects-tab">
-                                    @include('frontend.form.form-2.project')</div>
+                                    @include('frontend.form.form-2.project')
+                                </div>
                                 <div class="tab-pane fade" id="v-pills-news" role="tabpanel"
                                     aria-labelledby="v-pills-news-tab">
-                                    @include('frontend.form.form-2.news')</div>
+                                    @include('frontend.form.form-2.news')
+                                </div>
                             </div>
+
+                            @if ($isLocked)
+                                <!-- Overlay hanya di area col-9 -->
+                                <div class="form-lock-overlay"
+                                    style="
+                                    position: absolute;
+                                    top:0; left:0; width:100%; height:100%;
+                                    display:flex; flex-direction:column; justify-content:center; align-items:center;
+                                    background: rgba(0,0,0,0.5);
+                                    color:#fff;
+                                    z-index: 999;
+                                ">
+                                    <i class="fas fa-lock" style="font-size:80px;"></i>
+                                    <h3 style="margin-top:20px; text-align:center;">
+                                        The submission period for this form has ended.
+                                    </h3>
+                                    <p style="max-width:70%; text-align:center;">
+                                        For any special requests or additional support, please reach out to our operations
+                                        team.
+                                        You can still navigate between sections using the Next/Previous buttons below.
+                                    </p>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
                 @include('frontend.form.button_dynamic')
-
             </div>
 
         </div>
@@ -90,7 +128,6 @@
                 if (files && files.length > 0) {
                     var file = files[0];
 
-                    // Hancurkan instance Cropper sebelumnya jika ada
                     if (cropper) {
                         cropper.destroy();
                         cropper = null;
@@ -98,11 +135,9 @@
 
                     if (URL) {
                         image.src = URL.createObjectURL(file);
-                        // Pastikan gambar sudah dimuat sebelum membuat instance Cropper baru
                         image.onload = function() {
                             cropper = new Cropper(image, {
-                                aspectRatio: 600 /
-                                    400, // Sesuaikan dengan dimensi yang diinginkan
+                                aspectRatio: 600 / 400,
                                 viewMode: 1,
                                 autoCropArea: 1,
                                 background: false

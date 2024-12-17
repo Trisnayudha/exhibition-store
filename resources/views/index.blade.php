@@ -18,7 +18,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
-
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     {{-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script> --}}
@@ -29,10 +28,18 @@
     </script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap4.min.js">
     </script>
-    <!-- Tambahkan ini ke dalam bagian head HTML Anda -->
+
+    <!-- CropperJS -->
     <link rel="stylesheet" href="https://unpkg.com/cropperjs/dist/cropper.min.css">
     <script src="https://unpkg.com/cropperjs/dist/cropper.min.js"></script>
-    <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+
+    <!-- Summernote CSS & JS -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-bs4.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-bs4.min.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+
     @stack('top')
     <title>Sponsor & Exhibitor Portal</title>
     <style>
@@ -52,68 +59,49 @@
         @media (min-width: 768px) {
             body {
                 padding-top: 56px;
-                /* Adjust based on the height of your fixed navbar */
             }
 
             .sidebar {
                 top: 56px;
-                /* Adjust based on the height of your fixed navbar */
                 bottom: 0;
                 overflow-y: auto;
-                /* Enable scrolling if the content exceeds the viewport height */
             }
         }
-    </style>
-    <style>
+
         .contact-icon {
             font-size: 24px;
-            /* Ukuran ikon */
             margin: 5px;
-            /* Margin antara ikon */
         }
 
         .quantity-selector button {
             width: 35px;
-            /* Lebar tombol */
             height: 35px;
-            /* Tinggi tombol */
             line-height: 35px;
-            /* Posisi vertikal teks di tombol */
             padding: 0;
             margin: 0 5px;
-            /* Jarak antar tombol */
         }
 
         .quantity-number {
             display: inline-block;
             width: 50px;
-            /* Lebar area jumlah */
             text-align: center;
-            /* Teks jumlah di tengah */
         }
 
         .cart-item img {
             width: 50%;
-            /* Membuat gambar responsif */
             height: auto;
-            /* Mempertahankan rasio aspek */
         }
 
         .price {
             font-size: 1.2em;
-            /* Ukuran font harga */
             font-weight: bold;
-            /* Kegemukan font harga */
         }
-    </style>
-    <style>
+
         .sticky-top-2 {
             position: -webkit-sticky;
-            /* Safari */
             position: sticky;
             top: 1rem;
             z-index: 1020;
-            /* Ensure it stays on top of other elements */
         }
 
         .overlay {
@@ -123,27 +111,20 @@
             width: 100%;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.5);
-            /* Transparansi hitam */
             z-index: 9998;
-            /* Pastikan ini lebih rendah dari loader tapi cukup tinggi untuk menutupi konten lain */
         }
 
         .loading-wrapper {
             position: fixed;
-            /* Mengubah dari relative menjadi fixed */
             top: 50%;
-            /* Setengah dari tinggi layar */
             left: 50%;
-            /* Setengah dari lebar layar */
             transform: translate(-50%, -50%);
-            /* Menggeser elemen untuk benar-benar berada di tengah */
             width: 100px;
             height: 100px;
             display: flex;
             justify-content: center;
             align-items: center;
             z-index: 9999;
-            /* Memastikan loading muncul di atas semua elemen lain */
         }
 
         .logo {
@@ -280,7 +261,6 @@
         </div>
     </div>
     <div class="overlay" style="display: none;"></div>
-    <!-- Sisanya tetap sama -->
     <div class="loading-wrapper" style="display: none;">
         <img src="https://portal.indonesiaminer.com/logo.png" alt="Logo" class="logo">
         <div class="loading"></div>
@@ -298,21 +278,22 @@
         </div>
 
         <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-            <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24"
-                        height="24">
+            <li class="ms-3"><a class="text-muted" href="#">
+                    <svg class="bi" width="24" height="24">
                         <use xlink:href="#twitter"></use>
                     </svg></a></li>
-            <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24"
-                        height="24">
+            <li class="ms-3"><a class="text-muted" href="#">
+                    <svg class="bi" width="24" height="24">
                         <use xlink:href="#instagram"></use>
                     </svg></a></li>
-            <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24"
-                        height="24">
+            <li class="ms-3"><a class="text-muted" href="#">
+                    <svg class="bi" width="24" height="24">
                         <use xlink:href="#facebook"></use>
                     </svg></a></li>
         </ul>
     </footer>
-    <!-- Alert Modal -->
+
+    <!-- Modal Device Alert -->
     <div class="modal" tabindex="-1" role="dialog" id="deviceAlertModal">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -332,27 +313,24 @@
             </div>
         </div>
     </div>
+
+    <!-- Bootstrap & Popper JS -->
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
-    <script>
-        CKEDITOR.replace('.ckeditor', {
-            maxLength: 2200,
-            on: {
-                key: function(event) {
-                    var editor = event.editor;
-                    var content = editor.getData();
-                    var contentLength = content.replace(/<[^>]*>/g, '')
-                        .length; // Menghitung karakter tanpa tag HTML
 
-                    if (contentLength > 2200) {
-                        var overflow = contentLength - 2200;
-                        var truncatedContent = content.substring(0, content.length - overflow);
-                        editor.setData(truncatedContent);
-                        event.cancel();
-                        console.log('sudah lebih');
-                    }
-                }
-            }
+    <script>
+        // Inisialisasi Summernote, ganti .ckeditor menjadi .summernote
+        $(document).ready(function() {
+            $('.summernote').summernote({
+                height: 200, // tinggi editor
+                toolbar: [
+                    // customized toolbar jika diperlukan
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['insert', ['link', 'picture', 'video']],
+                    ['view', ['fullscreen', 'codeview', 'help']]
+                ]
+            });
         });
 
         // Detect device type
@@ -371,14 +349,6 @@
                 window.close();
             }, 5000); // Auto-close after 5 seconds (adjust as needed)
         }
-    </script>
-
-    {{-- script Cart --}}
-    <script>
-        $(document).ready(function() {
-            getListCart();
-            getCountCart();
-        });
 
         function confirmLogout() {
             Swal.fire({
@@ -391,14 +361,18 @@
                 confirmButtonText: 'Logout'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // Mengirim form logout jika pengguna mengkonfirmasi
                     document.getElementById('logoutForm').submit();
                 }
             });
         }
 
+        $(document).ready(function() {
+            getListCart();
+            getCountCart();
+        });
+
+        // Cart-related functions remain the same
         function loadCart() {
-            console.log('load-cart')
             getCountCart();
             getListCart();
         }
@@ -423,12 +397,10 @@
                             itemsHtml += '<div class="cart-item my-2 p-3 border rounded">' +
                                 '<div class="row">' +
                                 '<div class="col-md-2">';
-                            // Gunakan gambar yang sesuai dengan item Additional Sticker
                             if (item.section_product == 'Exhibition Upgrade' || item.section_product ==
                                 'Exhibition Delegate Additional') {
                                 itemsHtml += '<img src="{{ asset('assets/img/users.png') }}" alt="' +
-                                    item.name_product +
-                                    '" class="img-fluid" width="50" height="50">';
+                                    item.name_product + '" class="img-fluid" width="50" height="50">';
                             } else {
                                 itemsHtml += '<img src="' + item.image + '" alt="' + item.name_product +
                                     '" class="img-fluid" width="50" height="50">';
@@ -447,17 +419,16 @@
                                 '</div>' +
                                 '</div>' +
                                 '<div class="col-md-1">';
-                            // Tombol remove akan kondisional berdasarkan item.section_product
                             if (item.section_product == 'Additional Sticker') {
                                 itemsHtml +=
                                     '<button class="btn btn-danger btn-sm" onclick="removeExhibition(\'' +
-                                    item.id + '\')">' + // Menggunakan fungsi removeExhibition
+                                    item.id + '\')">' +
                                     '<i class="fa fa-trash"></i>' +
                                     '</button>';
                             } else {
                                 itemsHtml +=
                                     '<a href="javascript:void(0)" class="btn btn-danger btn-sm" onclick="removeDelegate(\'' +
-                                    item.id + '\')">' + // Menggunakan fungsi removeDelegate
+                                    item.id + '\')">' +
                                     '<i class="fa fa-trash"></i>' +
                                     '</a>';
                             }
@@ -516,10 +487,7 @@
                 type: 'GET',
                 url: '{{ url('/cart-count') }}',
                 success: function(response) {
-                    // asumsikan response.data mengandung jumlah item di keranjang
                     var itemCount = response.data;
-
-                    // Mengupdate angka pada elemen dengan id cartItemCount
                     $('#cartItemCount').text(itemCount);
                 },
                 error: function(error) {
@@ -528,11 +496,7 @@
             });
         }
 
-
         function delegateCart(payment, user) {
-            // console.log(payment);
-            // console.log(user);
-
             var name_product = user.name;
             var section_product = payment.type;
             var price = payment.event_price;
@@ -550,9 +514,6 @@
             formData.append('quantity', quantity);
             formData.append('delegate_id', delegate_id);
 
-            // console.log(formData)
-            // Kirim data ke server menggunakan Ajax dengan FormData
-
             $.ajax({
                 type: 'POST',
                 url: '{{ url('/cart') }}',
@@ -563,7 +524,6 @@
                     'X-CSRF-TOKEN': csrfToken
                 },
                 success: function(response) {
-                    console.log(response);
                     Swal.fire({
                         position: "top-end",
                         icon: "success",
@@ -571,18 +531,15 @@
                         showConfirmButton: false,
                         timer: 1500,
                     });
-
                     loadCart();
                 },
                 error: function(error) {
                     console.error('Error:', error);
                 }
             });
-
         }
 
         function removeDelegate(id) {
-            console.log('function remove')
             var csrfToken = $('meta[name="csrf-token"]').attr('content');
             Swal.fire({
                 title: 'Are you sure?',
@@ -603,12 +560,9 @@
                             'X-CSRF-TOKEN': csrfToken
                         },
                         success: function(result) {
-                            // Handle the success scenario
-                            console.log('Item removed successfully');
                             loadCart();
                             loadExhibitor();
                             loadAdditional();
-                            // Display SweetAlert confirmation
                             Swal.fire({
                                 title: 'Success!',
                                 text: 'Item removed successfully',
@@ -617,10 +571,7 @@
                             });
                         },
                         error: function(xhr, status, error) {
-                            // Handle errors here
                             console.log('Error in removal: ' + error);
-
-                            // Optionally, display an error message using SweetAlert
                             Swal.fire({
                                 title: 'Error!',
                                 text: 'Failed to remove the item: ' + error,
@@ -631,13 +582,9 @@
                     })
                 }
             });
-
         }
-    </script>
 
-    <script>
         function exhibitionCart(name_product, section_product, price, total_price, quantity, image) {
-
             var csrfToken = $('meta[name="csrf-token"]').attr('content');
 
             var formData = new FormData();
@@ -646,10 +593,7 @@
             formData.append('price', price);
             formData.append('total_price', total_price);
             formData.append('quantity', quantity);
-            formData.append('image', image)
-
-            console.log(formData)
-            // Kirim data ke server menggunakan Ajax dengan FormData
+            formData.append('image', image);
 
             $.ajax({
                 type: 'POST',
@@ -664,11 +608,10 @@
                     Swal.fire({
                         position: "top-end",
                         icon: "success",
-                        title: "Item added to cart",
+                        title: "The item has been added to your cart",
                         showConfirmButton: false,
                         timer: 1500,
                     });
-
                     loadCart();
                 },
                 error: function(error) {
@@ -707,12 +650,9 @@
                             'X-CSRF-TOKEN': csrfToken
                         },
                         success: function(result) {
-                            // Handle the success scenario
-                            console.log('Item removed successfully');
                             loadCart();
                             loadExhibitor();
                             loadAdditional();
-                            // Display SweetAlert confirmation
                             Swal.fire({
                                 title: 'Success!',
                                 text: 'Item removed successfully',
@@ -721,10 +661,7 @@
                             });
                         },
                         error: function(xhr, status, error) {
-                            // Handle errors here
                             console.log('Error in removal: ' + error);
-
-                            // Optionally, display an error message using SweetAlert
                             Swal.fire({
                                 title: 'Error!',
                                 text: 'Failed to remove the item: ' + error,
@@ -735,7 +672,6 @@
                     })
                 }
             });
-
         }
 
         function changeQuantity(id, quantity) {
@@ -744,9 +680,6 @@
             var formData = new FormData();
             formData.append('id', id);
             formData.append('quantity', quantity);
-            console.log(id)
-            console.log(quantity)
-            // Kirim data ke server menggunakan Ajax dengan FormData
 
             $.ajax({
                 type: 'POST',
@@ -758,7 +691,6 @@
                     'X-CSRF-TOKEN': csrfToken
                 },
                 success: function(response) {
-                    console.log(response)
                     loadCart();
                 },
                 error: function(error) {
@@ -766,7 +698,28 @@
                 }
             });
         }
+
+        function confirmCheckout() {
+            Swal.fire({
+                title: 'Are you sure you want to proceed with all items in your cart?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, Checkout',
+                cancelButtonText: 'Cancel'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.forms["checkoutForm"].submit();
+                }
+            });
+        }
+
+        $(document).ready(function() {
+            $('.loadpayment').click(function() {
+                $('.loading-wrapper, .overlay').show();
+            });
+        });
     </script>
+
     @stack('bottom')
 
     {{-- Show Image --}}
@@ -785,7 +738,7 @@
         <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="shoppingCartModalLabel">Cart</h5>
+                    <h5 class="modal-title">Cart</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -798,49 +751,18 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div id="item-delegate">
-
-                    </div>
-                    <div class="item-exhibition">
-
-                    </div>
+                    <div id="item-delegate"></div>
+                    <div class="item-exhibition"></div>
                 </div>
                 <form action="{{ url('invoice/detail?code_payment=') }}" method="Get" id="checkoutForm">
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary" onclick="confirmCheckout()">Checkout</button>
-
                     </div>
                 </form>
-
             </div>
         </div>
     </div>
-
-    <script>
-        function confirmCheckout() {
-            Swal.fire({
-                // title: 'Are you sure?',
-                title: 'Are you sure you want to checkout all items in your cart?',
-                icon: 'question',
-                showCancelButton: true,
-                confirmButtonText: 'Yes, Checkout',
-                cancelButtonText: 'Cancel'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // Jika pengguna mengonfirmasi, lanjutkan ke form checkout
-                    document.forms["checkoutForm"].submit();
-                }
-            });
-        }
-    </script>
-    <script>
-        $(document).ready(function() {
-            $('.loadpayment').click(function() {
-                $('.loading-wrapper, .overlay').show(); // Menampilkan loader dan overlay
-            });
-        });
-    </script>
 </body>
 
 </html>

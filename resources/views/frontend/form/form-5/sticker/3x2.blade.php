@@ -149,7 +149,7 @@
 
                     Swal.fire({
                         title: 'File Too Large',
-                        text: 'The file you selected exceeds 3MB. Please upload the file via your personal Google Drive and include the link in the notes.',
+                        text: 'Referring to weekly planning, shouldn`t a Google Drive link be provided for them to upload the material?',
                         icon: 'warning',
                         confirmButtonText: 'Ok'
                     });

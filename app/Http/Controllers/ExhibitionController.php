@@ -72,7 +72,7 @@ class ExhibitionController extends Controller
         }
         $log->updated_at = Carbon::now();
         $log->save();
-        return redirect()->back()->with('success', 'Success Adding data');
+        return redirect()->back()->with('success', 'Data successfully added');
     }
 
     public function storeSticker(Request $request)

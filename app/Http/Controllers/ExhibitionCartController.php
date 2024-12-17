@@ -41,7 +41,7 @@ class ExhibitionCartController extends Controller
         $save->delegate_id = $request->delegate_id;
         $save->save();
 
-        return response()->json(['message' => 'insert to cart']);
+        return response()->json(['message' => 'The item has been added to your cart']);
     }
 
     public function storeExhibition(Request $request)
