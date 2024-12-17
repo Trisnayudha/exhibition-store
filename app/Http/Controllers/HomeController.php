@@ -64,16 +64,20 @@ class HomeController extends Controller
     private function getExhibition()
     {
         $id = auth()->id();
-        $data =  Company::where('id', $id)->first();
+        $data = Company::where('id', $id)->first();
+
         return [
-            'pic_name' => $data->pic_name ?? null,
-            'pic_job_title' => $data->pic_job_title ?? null,
-            'pic_phone' => $data->pic_phone ?? null,
-            'pic_email' => $data->pic_email ?? null,
-            'pic_signature' => $data->pic_signature ?? null,
-            'fascia_name' => $data->exhibition_design == 1 ? ($data->fascia_name ?? null) : true,
+            'pic_name' => isset($data->pic_name) && !empty($data->pic_name) ? $data->pic_name : null,
+            'pic_job_title' => isset($data->pic_job_title) && !empty($data->pic_job_title) ? $data->pic_job_title : null,
+            'pic_phone' => isset($data->pic_phone) && !empty($data->pic_phone) ? $data->pic_phone : null,
+            'pic_email' => isset($data->pic_email) && !empty($data->pic_email) ? $data->pic_email : null,
+            'pic_signature' => isset($data->pic_signature) && !empty($data->pic_signature) ? $data->pic_signature : null,
+            'fascia_name' => $data->exhibition_design == 1
+                ? (isset($data->fascia_name) && !empty($data->fascia_name) ? $data->fascia_name : null)
+                : true,
         ];
     }
+
 
     private function getEventPass()
     {
