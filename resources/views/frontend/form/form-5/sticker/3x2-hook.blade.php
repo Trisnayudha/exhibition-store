@@ -103,7 +103,7 @@
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary btn-block mt-3 save-btn" disabled>Save to Cart</button>
+                <button type="submit" class="btn btn-primary btn-block mt-3 save-btn" disabled>Add to Cart</button>
             </div>
         </form>
     </div>

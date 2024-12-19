@@ -107,7 +107,7 @@
                                 </table>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-block mt-3 save-btn" disabled>Save to
+                        <button type="submit" class="btn btn-primary btn-block mt-3 save-btn" disabled>Add to
                             cart</button>
                     </div>
                 </div>
