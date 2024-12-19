@@ -56,7 +56,8 @@
                                 Jakarta</a>
                         </div>
                     </div>
-
+                    <hr>
+                    <p>Accommodation Options near Indonesia Miner 2025 Venue</p>
                     <div class="row">
                         <div class="col" style="max-width: 25rem">
                             <img src="https://static51.com-hotel.com/uploads/hotel/60134/photo/js-luwansa-hotel-convention-center_15572948901.jpg"
@@ -66,6 +67,14 @@
                         </div>
                         <div class="col">
                             <p><b>JS Luwansa Hotel</b></p>
+                            There is also a special price for Indonesia Miner participants, which you can reserve through
+                            the following link:
+                            <p>
+                                <a href="https://indonesiaminer.com/luwansa/booking" target="_blank">INDONESIA MINER 2025:
+                                    JS
+                                    Luwansa Hotel
+                                    Jakarta</a>
+                            </p>
                             <p>IDR 1.400.000 net / room /night
                             </p>
                             <p>Inclusive of:</p>
@@ -76,14 +85,8 @@
                                 <li>For a minimum stay of 7 nights, guests will receive 4 laundry items per
                                     day (non-cumulative).</li>
                             </ul>
-                            <p>Please book through the following link</p>
-                            <a href="https://indonesiaminer.com/luwansa/booking" target="_blank">INDONESIA MINER 2025: JS
-                                Luwansa Hotel
-                                Jakarta</a>
                         </div>
                     </div>
-                    <hr>
-                    <p>Accommodation Options near Indonesia Miner 2025 Venue</p>
                     <div class="row mt-5">
                         <div class="col" style="max-width: 25rem">
                             <img src="https://img2.beritasatu.com/cache/beritasatu/960x620-3/461443369277.jpg"
