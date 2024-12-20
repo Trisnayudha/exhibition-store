@@ -157,10 +157,9 @@
 
                     // Notifikasi dengan SweetAlert
                     Swal.fire({
-                        title: 'File Too Large',
-                        text: 'Referring to weekly planning, shouldn`t a Google Drive link be provided for them to upload the material?',
+                        text: 'As the printing material requires a high resolution, please provide a link for us to download the file. Please make sure the file name matches the area where you want the sticker to be applied.',
                         icon: 'warning',
-                        confirmButtonText: 'Ok'
+                        confirmButtonText: 'Ok',
                     });
                 } else {
                     // File valid, sembunyikan teks area Google Drive

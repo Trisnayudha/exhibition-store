@@ -312,6 +312,6 @@ class ExhibitionController extends Controller
         }
         $log->updated_at = Carbon::now();
         $log->save();
-        return redirect()->back()->with('success', 'Success added Additional Sticker');
+        return redirect()->back()->with('success', 'Additional wall sticker order successfully added');
     }
 }

@@ -701,7 +701,8 @@
 
         function confirmCheckout() {
             Swal.fire({
-                title: 'Are you sure you want to proceed with all items in your cart?',
+                title: 'Before checking out, please double check e-check your order',
+                text: 'Are you sure you want to proceed with all items in your cart?',
                 icon: 'question',
                 showCancelButton: true,
                 confirmButtonText: 'Yes, Checkout',
