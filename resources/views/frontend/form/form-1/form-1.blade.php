@@ -188,7 +188,7 @@
                                             <input type="text" name="company_web" id="company_web"
                                                 class="form-control validation" placeholder="Input company website"
                                                 value="{{ old('company_web', $data->company_web) }}">
-                                            <small class="text-muted">Example : www.example.com</small>
+                                            <small class="text-muted">Example : https://www.example.com</small>
                                         </div>
                                     </div>
                                     <div class="col-lg-12 col-sm-12">
