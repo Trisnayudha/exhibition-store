@@ -149,53 +149,53 @@
 
 <script>
     // Load data on page load
+    // Load data on page load
     $(document).ready(function() {
+        // Inisialisasi Summernote
+        $('.summernote').summernote();
         loadMedia();
         loadLogMedia();
     });
+
     // Fungsi untuk menambahkan baris baru ke tabel
     function editMedia(id) {
-        // Retrieve data for the selected representative using Ajax
+        // Mengambil data untuk media yang dipilih menggunakan Ajax
         $.ajax({
             type: 'GET',
             url: '{{ url('/media') }}/' + id,
             success: function(response) {
-                console.log(response.data)
+                console.log(response.data);
                 $('#media_edit_file').val('');
                 $('#media_edit_image').val('');
                 var media = response.data;
 
-                // Populate the fields in the edit modal with existing data
+                // Mengisi field dalam modal edit dengan data yang ada
                 $('#media_id').val(media.id);
                 $('#media_edit_title').val(media.title);
                 $('#media_edit_location').val(media.location);
-                // Set the value of the category select
+                // Mengatur nilai select kategori
                 $('#media_edit_category').val(media.media_category_id);
-                // Set the value of CKEditor
-                CKEDITOR.instances.media_edit_desc.setData(media.desc);
+                // Mengatur nilai Summernote
+                $('#media_edit_desc').summernote('code', media.desc);
                 $('#media_edit_document_name').val(media.document_name);
 
                 var image = media.image;
                 if (image) {
-                    $('#media_image_info').attr('href', 'https://indonesiaminer.com/' +
-                        media
-                        .image);
-                    $('#media_image_info').text('open link')
+                    $('#media_image_info').attr('href', 'https://indonesiaminer.com/' + media.image);
+                    $('#media_image_info').text('open link');
                 } else {
-                    $('#media_image_info').text('')
+                    $('#media_image_info').text('');
                 }
 
                 var file = media.file;
                 if (file) {
-                    $('#media_file_info').attr('href', 'https://indonesiaminer.com/' +
-                        media
-                        .file);
-                    $('#media_file_info').text('open link')
+                    $('#media_file_info').attr('href', 'https://indonesiaminer.com/' + media.file);
+                    $('#media_file_info').text('open link');
                 } else {
-                    $('#media_file_info').text('')
+                    $('#media_file_info').text('');
                 }
 
-                // Open the edit modal
+                // Membuka modal edit
                 $('#mediaEditModal').modal('show');
             },
             error: function(error) {
@@ -209,7 +209,7 @@
         var title = $('#media_edit_title').val();
         var category = $('#media_edit_category').val();
         var location = $('#media_edit_location').val();
-        var description = CKEDITOR.instances.media_edit_desc.getData();
+        var description = $('#media_edit_desc').summernote('code');
         var fileInput = $('#media_edit_file')[0];
         var imageInput = $('#media_edit_image')[0];
         var documentName = $('#media_edit_document_name').val();
@@ -235,24 +235,26 @@
         formData.append('description', description);
         formData.append('file', fileInput.files[0]);
         formData.append('document_name', documentName);
-        console.log(formData)
+        console.log(formData);
         $('.loading-wrapper, .overlay').show(); // Menampilkan loader dan overlay
 
-        // Kirim data ke server menggunakan Ajax
+        // Mengirim data ke server menggunakan Ajax
         $.ajax({
-            type: 'POST', // Gunakan POST untuk upload file
+            type: 'POST',
             url: '{{ url('/media') }}/' + id,
             data: formData,
             processData: false, // Penting: mengatur ini ke false sehingga jQuery tidak memproses data
             contentType: false, // Penting: mengatur ini ke false sehingga jQuery tidak menetapkan contentType
             headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                'X-CSRF-TOKEN': csrfToken
             },
             success: function(response) {
                 loadLogMedia();
                 loadMedia();
                 $('#mediaEditModal').modal('hide');
                 $('#media_edit_file').val('');
+                // Mengosongkan konten Summernote
+                $('#media_edit_desc').summernote('code', '');
                 $('.loading-wrapper, .overlay').hide();
             },
             error: function(error) {
@@ -261,10 +263,7 @@
         });
     }
 
-
-
-
-    // Function to open the input modal
+    // Fungsi untuk membuka modal input
     function tambahMedia() {
         $('#mediaModal').modal('show');
     }
@@ -282,7 +281,7 @@
             cancelButtonText: 'Cancel'
         }).then((result) => {
             if (result.isConfirmed) {
-                // Kirim permintaan penghapusan ke server menggunakan Ajax
+                // Mengirim permintaan penghapusan ke server menggunakan Ajax
                 $('.loading-wrapper, .overlay').show(); // Menampilkan loader dan overlay
                 $.ajax({
                     type: 'DELETE',
@@ -309,7 +308,7 @@
         var title = $('#media_title').val();
         var category = $('#media_category').val();
         var location = $('#media_location').val();
-        var desc = CKEDITOR.instances.media_desc.getData();
+        var desc = $('#media_desc').summernote('code');
         var fileInput = $('#media_file')[0];
         var documentName = $('#media_document_name').val();
 
@@ -336,7 +335,8 @@
         formData.append('file', fileInput.files[0]);
         formData.append('document_name', documentName);
         $('.loading-wrapper, .overlay').show(); // Menampilkan loader dan overlay
-        // Kirim data ke server menggunakan Ajax dengan FormData
+
+        // Mengirim data ke server menggunakan Ajax dengan FormData
         $.ajax({
             type: 'POST',
             url: '{{ url('/media') }}',
@@ -354,12 +354,12 @@
 
                 // Membersihkan inputan modal
                 $('#media_title').val('');
-                $('#media_category').val('').trigger('change'); // Reset Select2 value
+                $('#media_category').val('').trigger('change'); // Reset nilai Select2
                 $('#media_location').val('');
-                CKEDITOR.instances.media_desc.setData(''); // Mengosongkan CKEditor
-                $('#media_file').val(''); // Reset file input
+                $('#media_desc').summernote('code', ''); // Mengosongkan Summernote
+                $('#media_file').val(''); // Reset input file
                 $('#media_document_name').val('');
-                $('.loading-wrapper, .overlay').hide(); // Menghide loader dan overlay
+                $('.loading-wrapper, .overlay').hide(); // Menyembunyikan loader dan overlay
             },
             error: function(error) {
                 console.error('Error:', error);
@@ -368,20 +368,17 @@
     }
 
     function loadMedia() {
-        // Clear existing table rows
+        // Mengosongkan baris tabel yang ada
         $('#tabelMedia').empty();
 
-        // Retrieve data from the server using Ajax
+        // Mengambil data dari server menggunakan Ajax
         $.ajax({
             type: 'GET',
-            url: '{{ url('/media') }}', // Replace with the actual API URL
+            url: '{{ url('/media') }}', // Ganti dengan URL API yang sesuai
             success: function(response) {
                 var data = response.data;
 
-                // Get the image base URL from the configuration
-                var imageBaseUrl = '{{ config('app.image_base_url') }}';
-
-                // Iterate through the data and append rows to the table
+                // Melakukan iterasi melalui data dan menambahkan baris ke tabel
                 for (var i = 0; i < data.length; i++) {
                     var media = data[i];
                     var row = '<tr>' +
@@ -395,7 +392,7 @@
                         '</td>' +
                         '</tr>';
 
-                    // Append the row to the table body
+                    // Menambahkan baris ke dalam tabel
                     $('#tabelMedia').append(row);
                 }
             },
@@ -411,14 +408,14 @@
             url: '{{ url('media/log') }}', // Ganti dengan URL API yang sesuai
             success: function(response) {
                 if (response) {
-                    // Parse tanggal dari format ISO
+                    // Parsing tanggal dari format ISO
                     var updatedAt = new Date(response.updated_at);
                     console.log(updatedAt);
-                    // Buat elemen div untuk menampilkan log
+                    // Membuat elemen div untuk menampilkan log
                     var logDiv = $(
                         '<div class="alert alert-warning alert-dismissible fade show" role="alert">');
 
-                    // Tambahkan konten log ke dalam elemen div
+                    // Menambahkan konten log ke dalam elemen div
                     logDiv.html(' Last update : <strong>' +
                         updatedAt.toLocaleDateString('en-US', {
                             weekday: 'long',
@@ -434,7 +431,7 @@
                         '<span aria-hidden="true">&times;</span>' +
                         '</button>');
 
-                    // Tampilkan elemen div dalam elemen dengan class "logger-media"
+                    // Menampilkan elemen div dalam elemen dengan class "logger-media"
                     $('.logger-media').html(logDiv);
                 }
             },
