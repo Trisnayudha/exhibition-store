@@ -125,12 +125,15 @@
 <script>
     // Load data on page load
     $(document).ready(function() {
+        // Inisialisasi Summernote
+        $('.summernote').summernote();
         loadLogNews();
         loadNews();
     });
+
     // Fungsi untuk menambahkan baris baru ke tabel
     function editNews(id) {
-        // Retrieve data for the selected project using Ajax
+        // Mengambil data untuk berita yang dipilih menggunakan Ajax
         $.ajax({
             type: 'GET',
             url: '{{ url('/news') }}/' + id,
@@ -139,33 +142,28 @@
                 console.log(response.data);
                 var news = response.data;
 
-                // Populate the fields in the edit modal with existing data
+                // Mengisi field dalam modal edit dengan data yang ada
                 $('#news_id').val(news.id);
                 $('#news_edit_title').val(news.title);
                 $('#news_edit_category').val(news.news_category_id).trigger('change');
                 var date = news.date_news;
-                // console.log(date)
-                // Konversi string tanggal ke objek tanggal JavaScript
-                var dateObject = new Date(date);
-                // Tambahkan waktu untuk menutupi perbedaan zona waktu sebelum konversi
-                // Misal, menambahkan 12 jam untuk mengurangi potensi perbedaan zona waktu
-                dateObject.setHours(dateObject.getHours() + 12);
 
                 // Format tanggal sesuai dengan atribut type="date"
-                var formattedDateString = dateObject.toISOString().split('T')[0];
-                // Set nilai input tanggal
-                $('#news_edit_date').val(formattedDateString);
-                // $('#news_edit_date').val(formattedDateString);
-                CKEDITOR.instances.news_edit_desc.setData(news.desc);
+                var formattedDate = new Date(date).toISOString().split('T')[0];
+                $('#news_edit_date').val(formattedDate);
+
+                // Mengatur nilai Summernote
+                $('#news_edit_desc').summernote('code', news.desc);
+
                 var image = news.image;
                 if (image) {
-                    $('#news_image_info').attr('href', 'https://indonesiaminer.com/' +
-                        news.image);
-                    $('#news_image_info').text('open link')
+                    $('#news_image_info').attr('href', 'https://indonesiaminer.com/' + news.image);
+                    $('#news_image_info').text('open link');
                 } else {
-                    $('#news_image_info').text('')
+                    $('#news_image_info').text('');
                 }
-                // Open the edit modal
+
+                // Membuka modal edit
                 $('#newsEditModal').modal('show');
             },
             error: function(error) {
@@ -174,13 +172,12 @@
         });
     }
 
-
     function updateNews() {
         var id = $('#news_id').val();
         var title = $('#news_edit_title').val();
         var category = $('#news_edit_category').val();
         var dateNews = $('#news_edit_date').val();
-        var description = CKEDITOR.instances.news_edit_desc.getData();
+        var description = $('#news_edit_desc').summernote('code');
         var imageInput = $('#news_edit_image')[0];
 
         // Validasi input
@@ -203,8 +200,8 @@
         formData.append('description', description);
         formData.append('date', dateNews);
 
-        // Add image data to the form data if present
-        if (imageInput.files[0]) {
+        // Tambahkan data gambar ke formData jika ada
+        if (imageInput.files.length > 0) {
             formData.append('image', imageInput.files[0]);
         }
         $('.loading-wrapper, .overlay').show(); // Menampilkan loader dan overlay
@@ -224,8 +221,7 @@
                 loadLogNews();
                 loadNews();
                 $('#newsEditModal').modal('hide');
-                $('#news_edit_image').val('');
-                $('.loading-wrapper, .overlay').hide(); // Menampilkan loader dan overlay
+                $('.loading-wrapper, .overlay').hide(); // Menyembunyikan loader dan overlay
             },
             error: function(error) {
                 console.error('Error:', error);
@@ -233,8 +229,6 @@
         });
     }
 
-
-    // Function to open the input modal
     function tambahNews() {
         $('#newsModal').modal('show');
     }
@@ -242,18 +236,16 @@
     function hapusNews(index) {
         var csrfToken = $('meta[name="csrf-token"]').attr('content');
 
-        // Konfirmasi pengguna sebelum menghapus
         Swal.fire({
             title: 'Are you sure you want to delete this?',
-            text: 'This action cannot be undone',
+            text: 'This action cannot be undone',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonText: 'Delete',
             cancelButtonText: 'Cancel'
         }).then((result) => {
             if (result.isConfirmed) {
-                // Kirim permintaan penghapusan ke server menggunakan Ajax
-                $('.loading-wrapper, .overlay').show(); // Menampilkan loader dan overlay
+                $('.loading-wrapper, .overlay').show();
 
                 $.ajax({
                     type: 'DELETE',
@@ -265,8 +257,7 @@
                         console.log('Data berhasil dihapus:', response);
                         loadLogNews();
                         loadNews();
-                        $('.loading-wrapper, .overlay').hide(); // Menampilkan loader dan overlay
-
+                        $('.loading-wrapper, .overlay').hide();
                     },
                     error: function(error) {
                         console.error('Error:', error);
@@ -281,11 +272,10 @@
         var title = $('#news_title').val();
         var category = $('#news_category').val();
         var newsDate = $('#news_date').val();
-        var desc = CKEDITOR.instances.news_desc.getData();
+        var desc = $('#news_desc').summernote('code');
 
         // Validasi input
         if (!title || !category || !desc) {
-            // Menampilkan swal menggunakan Swal 2
             Swal.fire({
                 title: 'Alert',
                 text: 'Please input all data',
@@ -303,13 +293,11 @@
         formData.append('news_date', newsDate);
         formData.append('desc', desc);
 
-        // Check if the image field is filled
         if (imageInput.files.length > 0) {
             formData.append('image', imageInput.files[0]);
         }
-        $('.loading-wrapper, .overlay').show(); // Menampilkan loader dan overlay
-        console.log(newsDate);
-        // Kirim data ke server menggunakan Ajax dengan FormData
+        $('.loading-wrapper, .overlay').show();
+
         $.ajax({
             type: 'POST',
             url: '{{ url('/news') }}',
@@ -324,14 +312,11 @@
                 loadNews();
                 loadLogNews();
                 $('#newsModal').modal('hide');
-
-                // Membersihkan inputan modal
                 $('#news_title').val('');
-                $('#news_category').val('').trigger('change'); // Reset Select2 value
+                $('#news_category').val('').trigger('change');
                 $('#news_date').val('');
-                CKEDITOR.instances.news_desc.setData(''); // Mengosongkan CKEditor
-                $('.loading-wrapper, .overlay').hide(); // Menampilkan loader dan overlay
-
+                $('#news_desc').summernote('code', '');
+                $('.loading-wrapper, .overlay').hide();
             },
             error: function(error) {
                 console.error('Error:', error);
@@ -340,20 +325,14 @@
     }
 
     function loadNews() {
-        // Clear existing table rows
         $('#tabelNews').empty();
 
-        // Retrieve data from the server using Ajax
         $.ajax({
             type: 'GET',
-            url: '{{ url('/news') }}', // Replace with the actual API URL
+            url: '{{ url('/news') }}',
             success: function(response) {
                 var data = response.data;
 
-                // Get the image base URL from the configuration
-                var imageBaseUrl = '{{ config('app.image_base_url') }}';
-
-                // Iterate through the data and append rows to the table
                 for (var i = 0; i < data.length; i++) {
                     var news = data[i];
                     var row = '<tr>' +
@@ -366,8 +345,6 @@
                         ')">Delete</button>' +
                         '</td>' +
                         '</tr>';
-
-                    // Append the row to the table body
                     $('#tabelNews').append(row);
                 }
             },
@@ -380,17 +357,12 @@
     function loadLogNews() {
         $.ajax({
             type: 'GET',
-            url: '{{ url('news/log') }}', // Ganti dengan URL API yang sesuai
+            url: '{{ url('news/log') }}',
             success: function(response) {
                 if (response) {
-                    // Parse tanggal dari format ISO
                     var updatedAt = new Date(response.updated_at);
-                    console.log(updatedAt);
-                    // Buat elemen div untuk menampilkan log
                     var logDiv = $(
                         '<div class="alert alert-warning alert-dismissible fade show" role="alert">');
-
-                    // Tambahkan konten log ke dalam elemen div
                     logDiv.html(' Last update : <strong>' +
                         updatedAt.toLocaleDateString('en-US', {
                             weekday: 'long',
@@ -405,8 +377,6 @@
                         '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
                         '<span aria-hidden="true">&times;</span>' +
                         '</button>');
-
-                    // Tampilkan elemen div dalam elemen dengan class "logger-news"
                     $('.logger-news').html(logDiv);
                 }
             },
