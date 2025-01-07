@@ -125,12 +125,15 @@
 <script>
     // Load data on page load
     $(document).ready(function() {
+        // Inisialisasi Summernote
+        $('.summernote').summernote();
         loadLogProject();
         loadProject();
     });
+
     // Fungsi untuk menambahkan baris baru ke tabel
     function editProject(id) {
-        // Retrieve data for the selected project using Ajax
+        // Mengambil data untuk proyek yang dipilih menggunakan Ajax
         $.ajax({
             type: 'GET',
             url: '{{ url('/project') }}/' + id,
@@ -139,32 +142,28 @@
                 $('#project_edit_image').val('');
                 var project = response.data;
 
-                // Populate the fields in the edit modal with existing data
+                // Mengisi field dalam modal edit dengan data yang ada
                 $('#project_id').val(project.id);
                 $('#project_edit_title').val(project.title);
                 $('#project_edit_category').val(project.project_category_id).trigger('change');
-                var date = response.data.date_project;
-                // Konversi string tanggal ke objek tanggal JavaScript
-                var dateObject = new Date(date);
 
                 // Format tanggal sesuai dengan atribut type="date"
+                var dateObject = new Date(project.date_project);
                 var formattedDateString = dateObject.toISOString().split('T')[0];
-
-                // Set nilai input tanggal
                 $('#project_edit_date').val(formattedDateString);
-                // $('#project_edit_date').val(formattedDateString);
-                CKEDITOR.instances.project_edit_desc.setData(project.desc);
+
+                // Mengisi Summernote dengan deskripsi proyek
+                $('#project_edit_desc').summernote('code', project.desc);
+
                 var image = project.image;
                 if (image) {
-                    $('#project_image_info').attr('href', 'https://indonesiaminer.com/' +
-                        project
-                        .image);
-                    $('#project_image_info').text('open link')
+                    $('#project_image_info').attr('href', 'https://indonesiaminer.com/' + project.image);
+                    $('#project_image_info').text('open link');
                 } else {
-                    $('#project_image_info').text('')
+                    $('#project_image_info').text('');
                 }
 
-                // Open the edit modal
+                // Membuka modal edit
                 $('#projectEditModal').modal('show');
             },
             error: function(error) {
@@ -173,20 +172,19 @@
         });
     }
 
-
     function updateProject() {
         var id = $('#project_id').val();
         var title = $('#project_edit_title').val();
         var category = $('#project_edit_category').val();
         var dateProject = $('#project_edit_date').val();
-        var description = CKEDITOR.instances.project_edit_desc.getData();
+        var description = $('#project_edit_desc').summernote('code'); // Mengambil konten Summernote
         var imageInput = $('#project_edit_image')[0];
 
         // Validasi input
         if (!title || !category || !description) {
             Swal.fire({
                 title: 'Peringatan',
-                text: 'Harap isi semua kolom dan pilih file!',
+                text: 'Harap isi semua kolom!',
                 icon: 'warning',
                 confirmButtonText: 'OK'
             });
@@ -202,19 +200,17 @@
         formData.append('description', description);
         formData.append('date', dateProject);
 
-        // Add image data to the form data if present
         if (imageInput.files[0]) {
             formData.append('image', imageInput.files[0]);
         }
-        $('.loading-wrapper, .overlay').show(); // Menampilkan loader dan overlay
+        $('.loading-wrapper, .overlay').show();
 
-        // Kirim data ke server menggunakan Ajax
         $.ajax({
             type: 'POST',
             url: '{{ url('/project') }}/' + id,
             data: formData,
-            processData: false, // Penting: mengatur ini ke false sehingga jQuery tidak memproses data
-            contentType: false, // Penting: mengatur ini ke false sehingga jQuery tidak menetapkan contentType
+            processData: false,
+            contentType: false,
             headers: {
                 'X-CSRF-TOKEN': csrfToken
             },
@@ -224,7 +220,7 @@
                 loadProject();
                 $('#projectEditModal').modal('hide');
                 $('#project_edit_image').val('');
-                $('.loading-wrapper, .overlay').hide(); // Menampilkan loader dan overlay
+                $('.loading-wrapper, .overlay').hide();
             },
             error: function(error) {
                 console.error('Error:', error);
@@ -232,8 +228,6 @@
         });
     }
 
-
-    // Function to open the input modal
     function tambahProject() {
         $('#projectModal').modal('show');
     }
@@ -241,19 +235,17 @@
     function hapusProject(index) {
         var csrfToken = $('meta[name="csrf-token"]').attr('content');
 
-        // Konfirmasi pengguna sebelum menghapus
         Swal.fire({
             title: 'Are you sure you want to delete this?',
-            text: 'This action cannot be undone',
+            text: 'This action cannot be undone',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonText: 'Delete',
             cancelButtonText: 'Cancel'
         }).then((result) => {
             if (result.isConfirmed) {
-                $('.loading-wrapper, .overlay').show(); // Menampilkan loader dan overlay
+                $('.loading-wrapper, .overlay').show();
 
-                // Kirim permintaan penghapusan ke server menggunakan Ajax
                 $.ajax({
                     type: 'DELETE',
                     url: '{{ url('/project') }}/' + index,
@@ -264,8 +256,7 @@
                         console.log('Data berhasil dihapus:', response);
                         loadLogProject();
                         loadProject();
-                        $('.loading-wrapper, .overlay').hide(); // Menampilkan loader dan overlay
-
+                        $('.loading-wrapper, .overlay').hide();
                     },
                     error: function(error) {
                         console.error('Error:', error);
@@ -280,14 +271,13 @@
         var title = $('#project_title').val();
         var category = $('#project_category').val();
         var projectDate = $('#project_date').val();
-        var desc = CKEDITOR.instances.project_desc.getData();
+        var desc = $('#project_desc').summernote('code'); // Mengambil konten Summernote
 
         // Validasi input
         if (!title || !category || !desc) {
-            // Menampilkan swal menggunakan Swal 2
             Swal.fire({
                 title: 'Peringatan',
-                text: 'Harap isi semua kolom dan pilih gambar!',
+                text: 'Harap isi semua kolom!',
                 icon: 'warning',
                 confirmButtonText: 'OK'
             });
@@ -302,13 +292,11 @@
         formData.append('project_date', projectDate);
         formData.append('desc', desc);
 
-        // Check if the image field is filled
         if (imageInput.files.length > 0) {
             formData.append('image', imageInput.files[0]);
         }
-        $('.loading-wrapper, .overlay').show(); // Menampilkan loader dan overlay
+        $('.loading-wrapper, .overlay').show();
 
-        // Kirim data ke server menggunakan Ajax dengan FormData
         $.ajax({
             type: 'POST',
             url: '{{ url('/project') }}',
@@ -324,13 +312,12 @@
                 loadLogProject();
                 $('#projectModal').modal('hide');
 
-                // Membersihkan inputan modal
+                // Reset form
                 $('#project_title').val('');
-                $('#project_category').val('').trigger('change'); // Reset Select2 value
+                $('#project_category').val('').trigger('change');
                 $('#project_date').val('');
-                CKEDITOR.instances.project_desc.setData(''); // Mengosongkan CKEditor
-                $('.loading-wrapper, .overlay').hide(); // Menampilkan loader dan overlay
-
+                $('#project_desc').summernote('code', '');
+                $('.loading-wrapper, .overlay').hide();
             },
             error: function(error) {
                 console.error('Error:', error);
@@ -339,20 +326,14 @@
     }
 
     function loadProject() {
-        // Clear existing table rows
         $('#tabelProject').empty();
 
-        // Retrieve data from the server using Ajax
         $.ajax({
             type: 'GET',
-            url: '{{ url('/project') }}', // Replace with the actual API URL
+            url: '{{ url('/project') }}',
             success: function(response) {
                 var data = response.data;
 
-                // Get the image base URL from the configuration
-                var imageBaseUrl = '{{ config('app.image_base_url') }}';
-
-                // Iterate through the data and append rows to the table
                 for (var i = 0; i < data.length; i++) {
                     var project = data[i];
                     var row = '<tr>' +
@@ -365,8 +346,6 @@
                         ')">Delete</button>' +
                         '</td>' +
                         '</tr>';
-
-                    // Append the row to the table body
                     $('#tabelProject').append(row);
                 }
             },
@@ -379,17 +358,12 @@
     function loadLogProject() {
         $.ajax({
             type: 'GET',
-            url: '{{ url('project/log') }}', // Ganti dengan URL API yang sesuai
+            url: '{{ url('project/log') }}',
             success: function(response) {
                 if (response) {
-                    // Parse tanggal dari format ISO
                     var updatedAt = new Date(response.updated_at);
-                    console.log(updatedAt);
-                    // Buat elemen div untuk menampilkan log
                     var logDiv = $(
                         '<div class="alert alert-warning alert-dismissible fade show" role="alert">');
-
-                    // Tambahkan konten log ke dalam elemen div
                     logDiv.html(' Last update : <strong>' +
                         updatedAt.toLocaleDateString('en-US', {
                             weekday: 'long',
@@ -404,8 +378,6 @@
                         '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
                         '<span aria-hidden="true">&times;</span>' +
                         '</button>');
-
-                    // Tampilkan elemen div dalam elemen dengan class "logger-project"
                     $('.logger-project').html(logDiv);
                 }
             },

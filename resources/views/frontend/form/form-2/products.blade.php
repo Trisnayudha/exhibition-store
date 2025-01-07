@@ -144,12 +144,15 @@
 <script>
     // Load data on page load
     $(document).ready(function() {
+        // Inisialisasi Summernote
+        $('.summernote').summernote();
         loadLogProduct();
         loadProduct();
     });
+
     // Fungsi untuk menambahkan baris baru ke tabel
     function editProduct(id) {
-        // Retrieve data for the selected representative using Ajax
+        // Mengambil data untuk produk yang dipilih menggunakan Ajax
         $.ajax({
             type: 'GET',
             url: '{{ url('/product') }}/' + id,
@@ -159,39 +162,33 @@
                 $('#product_edit_image').val('');
                 var product = response.data;
 
-                // Populate the fields in the edit modal with existing data
+                // Mengisi field dalam modal edit dengan data yang ada
                 $('#product_id').val(product.id);
                 $('#product_edit_title').val(product.title);
-                $('#product_edit_location').val(product.location);
-
-                // Set the value of the category select
-                $('#product_category').val(product.product_category_id).trigger('change');
-
+                $('#product_edit_category').val(product.product_category_id).trigger('change');
                 $('#product_edit_video').val(product.video);
                 $('#product_edit_document_name').val(product.document_name);
+
+                // Mengisi Summernote dengan deskripsi produk
+                $('#product_edit_desc').summernote('code', product.desc);
+
                 var image = product.image;
                 if (image) {
-                    $('#product_image_info').attr('href', 'https://indonesiaminer.com/' +
-                        product
-                        .image);
-                    $('#product_image_info').text('open link')
+                    $('#product_image_info').attr('href', 'https://indonesiaminer.com/' + product.image);
+                    $('#product_image_info').text('open link');
                 } else {
-                    $('#product_image_info').text('')
+                    $('#product_image_info').text('');
                 }
 
                 var file = product.file;
                 if (file) {
-                    $('#product_file_info').attr('href', 'https://indonesiaminer.com/' +
-                        product
-                        .file);
-                    $('#product_file_info').text('open link')
+                    $('#product_file_info').attr('href', 'https://indonesiaminer.com/' + product.file);
+                    $('#product_file_info').text('open link');
                 } else {
-                    $('#product_file_info').text('')
+                    $('#product_file_info').text('');
                 }
-                // Set the value of CKEditor
-                CKEDITOR.instances.product_edit_desc.setData(product.desc);
 
-                // Open the edit modal
+                // Membuka modal edit
                 $('#productEditModal').modal('show');
             },
             error: function(error) {
@@ -200,14 +197,13 @@
         });
     }
 
-
     function updateProduct() {
         var id = $('#product_id').val();
         var title = $('#product_edit_title').val();
         var category = $('#product_edit_category').val();
         var videoUrl = $('#product_edit_video').val();
         var documentName = $('#product_edit_document_name').val();
-        var description = CKEDITOR.instances.product_edit_desc.getData();
+        var description = $('#product_edit_desc').summernote('code'); // Mengambil konten Summernote
         var fileInput = $('#product_edit_file')[0];
         var imageInput = $('#product_edit_image')[0];
 
@@ -215,7 +211,7 @@
         if (!title || !category || !description) {
             Swal.fire({
                 title: 'Peringatan',
-                text: 'Harap isi semua kolom dan pilih file!',
+                text: 'Harap isi semua kolom!',
                 icon: 'warning',
                 confirmButtonText: 'OK'
             });
@@ -229,7 +225,6 @@
         formData.append('category', category);
         formData.append('description', description);
 
-        // Add optional fields to the form data if present
         if (videoUrl) {
             formData.append('video_url', videoUrl);
         }
@@ -238,24 +233,21 @@
             formData.append('document_name', documentName);
         }
 
-        // Add file data to the form data if present
         if (fileInput.files[0]) {
             formData.append('file', fileInput.files[0]);
         }
 
-        // Add image data to the form data if present
         if (imageInput.files[0]) {
             formData.append('image', imageInput.files[0]);
         }
-        $('.loading-wrapper, .overlay').show(); // Menampilkan loader dan overlay
+        $('.loading-wrapper, .overlay').show();
 
-        // Kirim data ke server menggunakan Ajax
         $.ajax({
             type: 'POST',
             url: '{{ url('/product') }}/' + id,
             data: formData,
-            processData: false, // Penting: mengatur ini ke false sehingga jQuery tidak memproses data
-            contentType: false, // Penting: mengatur ini ke false sehingga jQuery tidak menetapkan contentType
+            processData: false,
+            contentType: false,
             headers: {
                 'X-CSRF-TOKEN': csrfToken
             },
@@ -266,7 +258,7 @@
                 $('#productEditModal').modal('hide');
                 $('#product_edit_file').val('');
                 $('#product_edit_image').val('');
-                $('.loading-wrapper, .overlay').hide(); // Menampilkan loader dan overlay
+                $('.loading-wrapper, .overlay').hide();
             },
             error: function(error) {
                 console.error('Error:', error);
@@ -274,11 +266,6 @@
         });
     }
 
-
-
-
-
-    // Function to open the input modal
     function tambahProduct() {
         $('#productModal').modal('show');
     }
@@ -286,18 +273,16 @@
     function hapusProduct(index) {
         var csrfToken = $('meta[name="csrf-token"]').attr('content');
 
-        // Konfirmasi pengguna sebelum menghapus
         Swal.fire({
             title: 'Are you sure you want to delete this?',
-            text: 'This action cannot be undone',
+            text: 'This action cannot be undone',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonText: 'Delete',
             cancelButtonText: 'Cancel'
         }).then((result) => {
             if (result.isConfirmed) {
-                // Kirim permintaan penghapusan ke server menggunakan Ajax
-                $('.loading-wrapper, .overlay').show(); // Menampilkan loader dan overlay
+                $('.loading-wrapper, .overlay').show();
 
                 $.ajax({
                     type: 'DELETE',
@@ -309,8 +294,7 @@
                         console.log('Data berhasil dihapus:', response);
                         loadLogProduct();
                         loadProduct();
-                        $('.loading-wrapper, .overlay').hide(); // Menampilkan loader dan overlay
-
+                        $('.loading-wrapper, .overlay').hide();
                     },
                     error: function(error) {
                         console.error('Error:', error);
@@ -327,15 +311,13 @@
         var videoUrl = $('#product_video').val();
         var documentName = $('#product_document_name').val();
         var fileInput = $('#product_file')[0];
-        var desc = CKEDITOR.instances.product_desc.getData();
-        var location = $('#product_location').val();
+        var desc = $('#product_desc').summernote('code'); // Mengambil konten Summernote
 
         // Validasi input
         if (!title || !category || !desc) {
-            // Menampilkan swal menggunakan Swal 2
             Swal.fire({
                 title: 'Peringatan',
-                text: 'Harap isi semua kolom dan pilih gambar!',
+                text: 'Harap isi semua kolom!',
                 icon: 'warning',
                 confirmButtonText: 'OK'
             });
@@ -348,27 +330,24 @@
         formData.append('title', title);
         formData.append('category', category);
         formData.append('desc', desc);
-        formData.append('location', location);
 
-        // Check if the image field is filled
+        if (videoUrl) {
+            formData.append('video_url', videoUrl);
+        }
+
+        if (documentName) {
+            formData.append('document_name', documentName);
+        }
+
         if (imageInput.files.length > 0) {
             formData.append('image', imageInput.files[0]);
         }
 
-        // Check if the file field is filled
         if (fileInput.files.length > 0) {
             formData.append('file', fileInput.files[0]);
         }
+        $('.loading-wrapper, .overlay').show();
 
-        formData.append('document_name', documentName);
-
-        // Check if the video URL field is filled
-        if (videoUrl) {
-            formData.append('video_url', videoUrl);
-        }
-        $('.loading-wrapper, .overlay').show(); // Menampilkan loader dan overlay
-
-        // Kirim data ke server menggunakan Ajax dengan FormData
         $.ajax({
             type: 'POST',
             url: '{{ url('/product') }}',
@@ -384,16 +363,14 @@
                 loadLogProduct();
                 $('#productModal').modal('hide');
 
-                // Membersihkan inputan modal
+                // Reset form
                 $('#product_title').val('');
-                $('#product_category').val('').trigger('change'); // Reset Select2 value
+                $('#product_category').val('').trigger('change');
                 $('#product_video').val('');
                 $('#product_document_name').val('');
-                $('#product_file').val(''); // Reset file input
-                CKEDITOR.instances.product_desc.setData(''); // Mengosongkan CKEditor
-                $('#product_location').val('');
-                $('.loading-wrapper, .overlay').hide(); // Menampilkan loader dan overlay
-
+                $('#product_file').val('');
+                $('#product_desc').summernote('code', '');
+                $('.loading-wrapper, .overlay').hide();
             },
             error: function(error) {
                 console.error('Error:', error);
@@ -401,25 +378,15 @@
         });
     }
 
-
-
-
-
     function loadProduct() {
-        // Clear existing table rows
         $('#tabelProduct').empty();
 
-        // Retrieve data from the server using Ajax
         $.ajax({
             type: 'GET',
-            url: '{{ url('/product') }}', // Replace with the actual API URL
+            url: '{{ url('/product') }}',
             success: function(response) {
                 var data = response.data;
 
-                // Get the image base URL from the configuration
-                var imageBaseUrl = '{{ config('app.image_base_url') }}';
-
-                // Iterate through the data and append rows to the table
                 for (var i = 0; i < data.length; i++) {
                     var product = data[i];
                     var row = '<tr>' +
@@ -432,8 +399,6 @@
                         ')">Delete</button>' +
                         '</td>' +
                         '</tr>';
-
-                    // Append the row to the table body
                     $('#tabelProduct').append(row);
                 }
             },
@@ -446,17 +411,12 @@
     function loadLogProduct() {
         $.ajax({
             type: 'GET',
-            url: '{{ url('product/log') }}', // Ganti dengan URL API yang sesuai
+            url: '{{ url('product/log') }}',
             success: function(response) {
                 if (response) {
-                    // Parse tanggal dari format ISO
                     var updatedAt = new Date(response.updated_at);
-                    console.log(updatedAt);
-                    // Buat elemen div untuk menampilkan log
                     var logDiv = $(
                         '<div class="alert alert-warning alert-dismissible fade show" role="alert">');
-
-                    // Tambahkan konten log ke dalam elemen div
                     logDiv.html(' Last update : <strong>' +
                         updatedAt.toLocaleDateString('en-US', {
                             weekday: 'long',
@@ -471,8 +431,6 @@
                         '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
                         '<span aria-hidden="true">&times;</span>' +
                         '</button>');
-
-                    // Tampilkan elemen div dalam elemen dengan class "logger-product"
                     $('.logger-product').html(logDiv);
                 }
             },
