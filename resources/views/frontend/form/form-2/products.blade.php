@@ -60,7 +60,7 @@
                 </div>
                 <div class="form-group">
                     <label for="product_desc">Description</label>
-                    <textarea class="form-control ckeditor" id="product_desc"></textarea>
+                    <textarea class="form-control summernote" id="product_desc"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="product_image">Image <small>(800x800 px, JPG/PNG, max 1MB) </small> </label>
@@ -121,7 +121,7 @@
                 </div>
                 <div class="form-group">
                     <label for="product_edit_desc">Description</label>
-                    <textarea class="form-control ckeditor" id="product_edit_desc"></textarea>
+                    <textarea class="form-control summernote" id="product_edit_desc"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="product_edit_image">Image <small>(800x800 px, JPG/PNG, max 1MB) </small> </label>

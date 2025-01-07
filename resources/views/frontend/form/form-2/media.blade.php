@@ -58,7 +58,7 @@
                 </div>
                 <div class="form-group">
                     <label for="media_desc">Description</label>
-                    <textarea class="form-control ckeditor" id="media_desc"></textarea>
+                    <textarea class="form-control summernote" id="media_desc"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="media_file">File (PDF, max 10MB)</label>
@@ -121,7 +121,7 @@
                 </div>
                 <div class="form-group">
                     <label for="media_edit_desc">Description</label>
-                    <textarea class="form-control ckeditor" id="media_edit_desc"></textarea>
+                    <textarea class="form-control summernote" id="media_edit_desc"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="media_edit_file">File (PDF, max 10MB)</label>

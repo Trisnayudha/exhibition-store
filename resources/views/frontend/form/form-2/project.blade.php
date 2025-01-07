@@ -52,7 +52,7 @@
                 </div>
                 <div class="form-group">
                     <label for="project_desc">Description</label>
-                    <textarea class="form-control ckeditor" id="project_desc"></textarea>
+                    <textarea class="form-control summernote" id="project_desc"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="project_image">Image <small>(800x800 px, JPG/PNG, max 1MB) </small> </label>
@@ -103,7 +103,7 @@
                 </div>
                 <div class="form-group">
                     <label for="project_edit_desc">Description</label>
-                    <textarea class="form-control ckeditor" id="project_edit_desc"></textarea>
+                    <textarea class="form-control summernote" id="project_edit_desc"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="project_edit_image">Image <small>(800x800 px, JPG/PNG, max 1MB) </small> </label>
