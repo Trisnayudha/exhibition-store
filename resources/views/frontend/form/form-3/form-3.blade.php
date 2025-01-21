@@ -172,8 +172,7 @@
                                             https://)</label>
                                         <input type="text" name="linkSocialMedia" id="linkSocialMedia"
                                             class="form-control"
-                                            value="{{ !empty($sosmed['data']['link']) ? $sosmed['data']['link'] : '' }}"
-                                            required>
+                                            value="{{ !empty($sosmed['data']['link']) ? $sosmed['data']['link'] : '' }}">
                                         <small class="form-text text-muted">Provide the URL starting with https://.</small>
                                     </div>
 
