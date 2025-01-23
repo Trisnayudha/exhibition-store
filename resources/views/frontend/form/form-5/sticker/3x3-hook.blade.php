@@ -64,7 +64,8 @@
                 <div class="row">
                     <div class="col-6">
                         <p>Wall Printing Position You Want to Install:</p>
-                        <img src="{{ asset('form5/sticker/3x3.png') }}" alt="Sticker Preview" class="img-thumbnail">
+                        <img src="{{ asset('form5/sticker/3x3_hook.png') }}" alt="Sticker Preview"
+                            class="img-thumbnail">
                     </div>
                     <div class="col-6">
                         <div class="table-responsive">
