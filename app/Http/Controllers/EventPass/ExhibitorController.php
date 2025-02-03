@@ -64,7 +64,7 @@ class ExhibitorController extends Controller
         $total_price = $event_price;
         $total_price_dollar = $event_price_dollar;
         $code_payment = strtoupper(Str::random(7));
-        $events_id = 12;
+        $events_id = 13;
         $payment_method = 'Exhibition Portal';
         $status = 'Waiting';
         $aproval_quota_users = 0;
@@ -161,7 +161,7 @@ class ExhibitorController extends Controller
         $total_price = $event_price;
         $total_price_dollar = $event_price_dollar;
         $code_payment = strtoupper(Str::random(7));
-        $events_id = 12;
+        $events_id = 13;
         $payment_method = 'Exhibition Portal';
         $status = 'Waiting';
         $aproval_quota_users = 0;
@@ -255,7 +255,7 @@ class ExhibitorController extends Controller
 
         // Simpan perubahan pada user
         $user->save();
-        $findPayment = Payment::where('users_id', $id)->where('events_id', '12')->first();
+        $findPayment = Payment::where('users_id', $id)->where('events_id', '13')->first();
         if ($findPayment) {
             // Menentukan nilai berdasarkan status upgradeExhibitor
             if ($upgradeExhibitor) {

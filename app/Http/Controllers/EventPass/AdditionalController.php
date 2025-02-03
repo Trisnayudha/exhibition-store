@@ -48,7 +48,7 @@ class AdditionalController extends Controller
         $event_ticket = 81;
         $type = 'Exhibition Delegate Additional';
         $code_payment = strtoupper(Str::random(7));
-        $events_id = 12;
+        $events_id = 13;
         $package = 'Additional Delegate Pass';
         $payment_method = 'Exhibition Portal';
         $status = 'Waiting';
@@ -144,7 +144,7 @@ class AdditionalController extends Controller
 
         // Simpan perubahan pada user
         $user->save();
-        $findPayment = Payment::where('users_id', $id)->where('events_id', '12')->first();
+        $findPayment = Payment::where('users_id', $id)->where('events_id', '13')->first();
         $findExhibition = ExhibitionCartList::where('delegate_id', $findPayment->id)->first();
         $findExhibition->name_product = $request->name;
         $findExhibition->save();

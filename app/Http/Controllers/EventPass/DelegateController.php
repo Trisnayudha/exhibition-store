@@ -43,7 +43,7 @@ class DelegateController extends Controller
         $event_ticket = 69;
         $type = 'Exhibition Delegate';
         $code_payment = strtoupper(Str::random(7));
-        $events_id = 12;
+        $events_id = 13;
         $package = 'Delegate Pass';
         $payment_method = 'Exhibition Portal';
         $status = 'Waiting';

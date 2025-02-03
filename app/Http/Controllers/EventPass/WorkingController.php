@@ -41,7 +41,7 @@ class WorkingController extends Controller
         $event_ticket = 71;
         $type = 'Exhibition Working';
         $code_payment = strtoupper(Str::random(7));
-        $events_id = 12;
+        $events_id = 13;
         $package = 'Working Pass';
         $payment_method = 'Exhibition Portal';
         $status = 'Waiting';
