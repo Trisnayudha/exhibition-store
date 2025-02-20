@@ -26,7 +26,7 @@ class ProductsController extends Controller
         $validator = Validator::make($request->all(), [
             'title' => 'required',
             'category' => 'required',
-            'location' => 'required',
+            // 'location' => 'required',
             'desc' => 'required',
             // 'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Aturan untuk gambar
             // 'file' => 'file|mimes:pdf|max:10240', // Aturan untuk file (maksimal 10MB)
