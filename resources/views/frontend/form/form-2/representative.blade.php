@@ -161,11 +161,12 @@
         // Validasi input
         if (!name || !position || !email || !short_bio || !linkedin) {
             Swal.fire({
-                title: 'Peringatan',
-                text: 'Harap isi semua kolom dan pilih gambar!',
+                title: 'Warning',
+                text: 'Please complete all fields and select an image.',
                 icon: 'warning',
                 confirmButtonText: 'OK'
             });
+
             return;
         }
 
@@ -265,11 +266,12 @@
         if (!nama || !position || !email || !short_bio || !linkedin) {
             // Menampilkan swal menggunakan Swal 2
             Swal.fire({
-                title: 'Peringatan',
-                text: 'Harap isi semua kolom dan pilih gambar!',
+                title: 'Warning',
+                text: 'Please complete all fields and select an image.',
                 icon: 'warning',
                 confirmButtonText: 'OK'
             });
+
             return;
         }
 
@@ -321,70 +323,6 @@
                 // Menutup swal loading ketika ada kesalahan
                 Swal.close();
 
-                console.error('Error:', error);
-            }
-        });
-    }
-
-    function simpanRepresentative() {
-        var nama = $('#representative_name').val();
-        var position = $('#representative_job_title').val();
-        var email = $('#representative_email').val();
-        var short_bio = $('#representative_short_bio').val();
-        var linkedin = $('#representative_linkedin').val();
-        var imageInput = $('#representative_image')[0];
-
-        // Validasi input
-        if (!nama || !position || !email || !short_bio || !linkedin) {
-            // Menampilkan swal menggunakan Swal 2
-            Swal.fire({
-                title: 'Peringatan',
-                text: 'Harap isi semua kolom dan pilih gambar!',
-                icon: 'warning',
-                confirmButtonText: 'OK'
-            });
-            return;
-        }
-
-        var csrfToken = $('meta[name="csrf-token"]').attr('content');
-
-        var formData = new FormData();
-        formData.append('name', nama);
-        formData.append('position', position);
-        formData.append('email', email);
-        formData.append('short_bio', short_bio);
-        formData.append('linkedin', linkedin);
-
-        // Cek apakah gambar diisi
-        if (imageInput.files[0]) {
-            formData.append('image', imageInput.files[0]);
-        }
-
-        // Kirim data ke server menggunakan Ajax dengan FormData
-        $.ajax({
-            type: 'POST',
-            url: '{{ url('/representative') }}',
-            data: formData,
-            processData: false,
-            contentType: false,
-            headers: {
-                'X-CSRF-TOKEN': csrfToken
-            },
-            success: function(response) {
-                console.log('Data berhasil disimpan:', response);
-                loadRepresentative();
-                loadLogRepresentative();
-                $('#representativeModal').modal('hide');
-
-                // Membersihkan inputan modal
-                $('#representative_name').val('');
-                $('#representative_job_title').val('');
-                $('#representative_email').val('');
-                $('#representative_short_bio').val('');
-                $('#representative_linkedin').val('');
-                $('#representative_image').val(''); // Jika menggunakan input type file
-            },
-            error: function(error) {
                 console.error('Error:', error);
             }
         });

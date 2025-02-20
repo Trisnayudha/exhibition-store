@@ -210,8 +210,8 @@
         // Validasi input
         if (!title || !category || !description) {
             Swal.fire({
-                title: 'Peringatan',
-                text: 'Harap isi semua kolom!',
+                title: 'Alert',
+                text: 'Please input all data',
                 icon: 'warning',
                 confirmButtonText: 'OK'
             });
@@ -316,8 +316,8 @@
         // Validasi input
         if (!title || !category || !desc) {
             Swal.fire({
-                title: 'Peringatan',
-                text: 'Harap isi semua kolom!',
+                title: 'Alert',
+                text: 'Please input all data',
                 icon: 'warning',
                 confirmButtonText: 'OK'
             });
