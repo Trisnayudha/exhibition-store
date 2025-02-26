@@ -105,7 +105,7 @@
                         <p>Please Note: Before uploading an Excel file, make sure to use the provided Excel file
                             template.</p>
 
-                        <a href="{{ asset('form4/IM2024_Mining_Pass_Form.xlsx') }}" class="btn btn-info text-white"
+                        <a href="{{ asset('form4/IM2025_Mining_Pass_Form.xlsx') }}" class="btn btn-info text-white"
                             download>Download
                             Excel Template</a>
                     </div>
