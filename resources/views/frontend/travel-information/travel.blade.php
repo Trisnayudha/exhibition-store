@@ -75,7 +75,7 @@
                                     Luwansa Hotel
                                     Jakarta</a>
                             </p>
-                            <p>IDR 1.400.000 net / room /night
+                            <p>IDR 1.300.000 net / room /night
                             </p>
                             <p>Inclusive of:</p>
                             <ul>
