@@ -13,47 +13,32 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>BACK - Doff Laminated Indoor Vinyl Sticker 96x246cm + Polyfoam</td>
-                            <td>IDR. 1.700.000</td>
+                            <td>BACK - Doff Laminated Indoor Vinyl Sticker 290x244cm</td>
+                            <td>IDR. 3.600.000</td>
                             <td>
                                 <input type="number" name="back-doff-basic" id="back-doff-basic" class="form-control"
                                     value="0" readonly>
                                 <input type="hidden" name="back-doof-section-basic" id="back-doof-section-basic"
                                     value="Additional Sticker">
                                 <input type="hidden" name="back-doof-price-basic" id="back-doof-price-basic"
-                                    value="1700000">
+                                    value="3600000">
                                 <input type="hidden" name="back-doof-image-basic" id="back-doof-image-basic"
-                                    value="{{ asset('form5/sticker/3x2_hook.png') }}">
+                                    value="{{ asset('form5/sticker/3x2_den.png') }}">
 
                             </td>
                         </tr>
                         <tr>
-                            <td>SIDE - Doff Laminated Indoor Vinyl Sticker 96x246cm + Polyfoam</td>
-                            <td>IDR. 1.700.000</td>
-                            <td>
-                                <input type="number" name="side-doff-basic" id="side-doff-basic" class="form-control"
-                                    value="0" readonly>
-                                <input type="hidden" name="side-doof-section-basic" id="side-doof-section-basic"
-                                    value="Additional Sticker">
-                                <input type="hidden" name="side-doof-price-basic" id="side-doof-price-basic"
-                                    value="1700000">
-                                <input type="hidden" name="side-doof-image-basic" id="side-doof-image-basic"
-                                    value="{{ asset('form5/sticker/3x2_hook.png') }}">
-
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>TABLE - Doff Laminated Indoor Vinyl Sticker 96x71cm + Polyfoam</td>
-                            <td>IDR. 850.000</td>
+                            <td>TABLE - Doff Laminated Indoor Vinyl Sticker 100x100</td>
+                            <td>IDR. 1.050.000</td>
                             <td>
                                 <input type="number" name="table-basic" id="table-basic" class="form-control"
                                     value="0" readonly>
                                 <input type="hidden" name="table-doof-section-basic" id="table-doof-section-basic"
                                     value="Additional Sticker">
                                 <input type="hidden" name="table-doof-price-basic" id="table-doof-price-basic"
-                                    value="850000">
+                                    value="1050000">
                                 <input type="hidden" name="table-doof-image-basic" id="table-doof-image-basic"
-                                    value="{{ asset('form5/sticker/3x2_hook.png') }}">
+                                    value="{{ asset('form5/sticker/3x2_den.png') }}">
 
                             </td>
                         </tr>
@@ -65,8 +50,7 @@
                 <div class="row">
                     <div class="col-6">
                         <p>Wall Printing Position You Want to Install:</p>
-                        <img src="{{ asset('form5/sticker/3x2_hook.png') }}" alt="Sticker Preview"
-                            class="img-thumbnail">
+                        <img src="{{ asset('form5/sticker/3x2_den.png') }}" alt="Sticker Preview" class="img-thumbnail">
                     </div>
                     <div class="col-6">
                         <div class="table-responsive">
@@ -77,10 +61,12 @@
                                         <th>Printing Position</th>
                                         <th>Checklist</th>
                                         <th>File</th>
+                                        <th>Google Drive Link</th>
+                                        <th>Notes</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (['A', 'B', 'C', 'D', 'E', 'F'] as $position)
+                                    @foreach (['A', 'B', 'C', 'D'] as $position)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td class="text-center">{{ $position }}</td>
@@ -114,23 +100,19 @@
         // Fungsi untuk memperbarui nilai tabel
         function updateStickerCartValues() {
             let backDoffBasicValue = 0;
-            let sideDoffBasicValue = 0;
             let tableBasicValue = 0;
 
             $(".checkbox-class:checked").each(function() {
                 const position = $(this).attr("id").replace("basic", "");
 
-                if (["A", "B", "F"].includes(position)) {
-                    sideDoffBasicValue += 1;
-                } else if (["C", "D", "E"].includes(position)) {
+                if (["A", "B", "C"].includes(position)) {
                     backDoffBasicValue += 1;
-                } else {
+                } else if (["D"].includes(position)) {
                     tableBasicValue += 1;
                 }
             });
 
             $("#back-doff-basic").val(backDoffBasicValue);
-            $("#side-doff-basic").val(sideDoffBasicValue);
             $("#table-basic").val(tableBasicValue);
         }
 

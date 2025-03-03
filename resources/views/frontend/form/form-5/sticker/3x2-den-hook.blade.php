@@ -23,7 +23,7 @@
                                 <input type="hidden" name="back-doof-price-basic" id="back-doof-price-basic"
                                     value="1700000">
                                 <input type="hidden" name="back-doof-image-basic" id="back-doof-image-basic"
-                                    value="{{ asset('form5/sticker/3x2_hook.png') }}">
+                                    value="{{ asset('form5/sticker/3x2_den_hook.png') }}">
 
                             </td>
                         </tr>
@@ -38,7 +38,7 @@
                                 <input type="hidden" name="side-doof-price-basic" id="side-doof-price-basic"
                                     value="1700000">
                                 <input type="hidden" name="side-doof-image-basic" id="side-doof-image-basic"
-                                    value="{{ asset('form5/sticker/3x2_hook.png') }}">
+                                    value="{{ asset('form5/sticker/3x2_den_hook.png') }}">
 
                             </td>
                         </tr>
@@ -53,7 +53,7 @@
                                 <input type="hidden" name="table-doof-price-basic" id="table-doof-price-basic"
                                     value="850000">
                                 <input type="hidden" name="table-doof-image-basic" id="table-doof-image-basic"
-                                    value="{{ asset('form5/sticker/3x2_hook.png') }}">
+                                    value="{{ asset('form5/sticker/3x2_den_hook.png') }}">
 
                             </td>
                         </tr>
@@ -65,7 +65,7 @@
                 <div class="row">
                     <div class="col-6">
                         <p>Wall Printing Position You Want to Install:</p>
-                        <img src="{{ asset('form5/sticker/3x2_hook.png') }}" alt="Sticker Preview"
+                        <img src="{{ asset('form5/sticker/3x2_den_hook.png') }}" alt="Sticker Preview"
                             class="img-thumbnail">
                     </div>
                     <div class="col-6">
@@ -80,7 +80,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (['A', 'B', 'C', 'D', 'E', 'F'] as $position)
+                                    @foreach (['A', 'B', 'C'] as $position)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td class="text-center">{{ $position }}</td>
@@ -120,9 +120,9 @@
             $(".checkbox-class:checked").each(function() {
                 const position = $(this).attr("id").replace("basic", "");
 
-                if (["A", "B", "F"].includes(position)) {
+                if (["B"].includes(position)) {
                     sideDoffBasicValue += 1;
-                } else if (["C", "D", "E"].includes(position)) {
+                } else if (["A"].includes(position)) {
                     backDoffBasicValue += 1;
                 } else {
                     tableBasicValue += 1;
