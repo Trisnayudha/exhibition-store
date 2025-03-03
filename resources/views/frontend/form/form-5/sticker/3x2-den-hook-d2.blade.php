@@ -23,7 +23,7 @@
                                 <input type="hidden" name="back-doof-price-basic" id="back-doof-price-basic"
                                     value="3600000">
                                 <input type="hidden" name="back-doof-image-basic" id="back-doof-image-basic"
-                                    value="{{ asset('form5/sticker/3x2_den_hook.png') }}">
+                                    value="{{ asset('form5/sticker/3x2_den_hook_d2.png') }}">
 
                             </td>
                         </tr>
@@ -38,7 +38,7 @@
                                 <input type="hidden" name="side-doof-price-basic" id="side-doof-price-basic"
                                     value="1425000">
                                 <input type="hidden" name="side-doof-image-basic" id="side-doof-image-basic"
-                                    value="{{ asset('form5/sticker/3x2_den_hook.png') }}">
+                                    value="{{ asset('form5/sticker/3x2_den_hook_d2.png') }}">
 
                             </td>
                         </tr>
@@ -53,7 +53,7 @@
                                 <input type="hidden" name="table-doof-price-basic" id="table-doof-price-basic"
                                     value="105000">
                                 <input type="hidden" name="table-doof-image-basic" id="table-doof-image-basic"
-                                    value="{{ asset('form5/sticker/3x2_den_hook.png') }}">
+                                    value="{{ asset('form5/sticker/3x2_den_hook_d2.png') }}">
 
                             </td>
                         </tr>
@@ -65,7 +65,7 @@
                 <div class="row">
                     <div class="col-6">
                         <p>Wall Printing Position You Want to Install:</p>
-                        <img src="{{ asset('form5/sticker/3x2_den_hook.png') }}" alt="Sticker Preview"
+                        <img src="{{ asset('form5/sticker/3x2_den_hook_d2.png') }}" alt="Sticker Preview"
                             class="img-thumbnail">
                     </div>
                     <div class="col-6">
