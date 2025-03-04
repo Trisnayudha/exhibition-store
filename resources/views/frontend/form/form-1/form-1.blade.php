@@ -372,153 +372,175 @@
                                 </select>
                             </div>
                         </div>
-                    </div>
-                    <div class="line"></div>
-                    <div class="form-group selection_one">
-                        <label>Classify Your Minerals Company <i class="text-danger"
-                                title="This field is required">*</i></label>
-                        <select name="classify_minerals" id="classify_minerals" class="form-control validation"
-                            placeholder="Classify Type" style="width: 100%">
-                            <option value="">Choose classify your minerals company</option>
-                            @foreach ($classify_minerals as $g => $grow)
-                                <option
-                                    {{ old('classify_minerals', $data->ms_class_company_minerals_id) == $grow->id ? 'selected' : '' }}
-                                    value="{{ $grow->id }}" data-name="{{ $grow->name }}">
-                                    {{ $grow->name }}
-                                </option>
-                            @endforeach
-                            <option value="Other">Other</option>
-                        </select>
-                        <input type="text" name="classify_minerals_other" class="form-control validation mt-3"
-                            placeholder="Other classify your minerals company">
-                    </div>
-                    <div class="form-group selection_second">
-                        <label>Classify Your Mining Bussiness Permit <i class="text-danger"
-                                title="This field is required">*</i></label>
-                        <select name="classify_mining" id="classify_mining" class="form-control validation"
-                            placeholder="classify your mining bussiness permit" style="width: 100%">
-                            <option value="">Choose classify your mining bussiness permit</option>
-                            @foreach ($classify_mining as $j => $jrow)
-                                <option
-                                    {{ old('classify_mining', $data->ms_class_company_mining_id) == $jrow->id ? 'selected' : '' }}
-                                    value="{{ $jrow->id }}" data-name="{{ $jrow->name }}">
-                                    {{ $jrow->name }}
-                                </option>
-                            @endforeach
-                            <option value="Other">Other</option>
-                        </select>
-
-                        <input type="text" name="classify_mining_other" class="form-control validation mt-3"
-                            placeholder="Other classify your mining bussiness permit"
-                            value="{{ old('classify_mining_other') }}">
-                    </div>
-
-                    <div class="form-group selection_fourth">
-                        <label>Commodities For Minerals Producer Company <i class="text-danger"
-                                title="This field is required">*</i></label>
-                        <select name="commodities_minerals" id="commodities_minerals" class="form-control validation"
-                            placeholder="commodities for minerals producer company" style="width: 100%">
-                            <option value="">Choose commodities for minerals producer company</option>
-                            @foreach ($commodities_minerals as $k => $krow)
-                                <option
-                                    {{ old('commodities_minerals', $data->ms_commod_company_minerals_id) == $krow->id ? 'selected' : '' }}
-                                    value="{{ $krow->id }}" data-name="{{ $krow->name }}">
-                                    {{ $krow->name }}
-                                </option>
-                            @endforeach
-                            <option value="Other">Other</option>
-                        </select>
-
-                        <input type="text" name="commodities_minerals_other" class="form-control validation mt-3"
-                            placeholder="Other commodities for minerals producer company"
-                            value="{{ old('commodities_minerals_other') }}">
-                    </div>
-                    <div class="form-group selection_fifth">
-                        <label>Commodities For Minerals Processing Company <i class="text-danger"
-                                title="This field is required">*</i></label>
-                        <select name="commodities_minerals_coal" id="commodities_minerals_coal"
-                            class="form-control validation" placeholder="commodities for minerals processing company"
-                            style="width: 100%">
-                            <option value="">Choose commodities for minerals processing company</option>
-                            @foreach ($commodities_minerals_coal as $i => $irow)
-                                <option
-                                    {{ old('commodities_minerals_coal', $data->ms_commod_company_minerals_coal_id) == $irow->id ? 'selected' : '' }}
-                                    value="{{ $irow->id }}" data-name="{{ $irow->name }}">
-                                    {{ $irow->name }}
-                                </option>
-                            @endforeach
-                            <option value="Other">Other</option>
-                        </select>
-
-                        <input type="text" name="commodities_minerals_coal_other"
-                            class="form-control validation-detail mt-3"
-                            placeholder="Other commodities for minerals processing company"
-                            value="{{ old('commodities_minerals_coal_other') }}">
-                    </div>
-                    <div class="form-group selection_sixth">
-                        <label>Commodities For Coal Mining Company <i class="text-danger"
-                                title="This field is required">*</i></label>
-                        <select name="commodities_mining" id="commodities_mining" class="form-control validation"
-                            placeholder="commodities for coal mining company" style="width: 100%">
-                            <option value="">Choose commodities for coal mining company</option>
-                            @foreach ($commodities_mining as $y => $yrow)
-                                <option
-                                    {{ old('commodities_mining', $data->ms_commod_company_mining_id) == $yrow->id ? 'selected' : '' }}
-                                    value="{{ $yrow->id }}" data-name="{{ $yrow->name }}">
-                                    {{ $yrow->name }}
-                                </option>
-                            @endforeach
-                            <option value="Other">Other</option>
-                        </select>
-
-                        <input type="text" name="commodities_mining_other" class="form-control validation-detail mt-3"
-                            placeholder="Other commodities for coal mining company"
-                            value="{{ old('commodities_mining_other') }}">
-                    </div>
-
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-lg-12 col-sm-6">
-                                <div class="filter-type">
-                                    <input type="checkbox" name="question_term" id="question_term" value="Yes"
-                                        class="validation" placeholder="Agree term and privacy"
-                                        @if (old('question_term', $data->with_information) === 'Yes') checked @endif>
-                                    <label for="question_term">
-                                        <div class="custom-radio-wrapper">
-                                            <i class="ri-check-line"></i>
-                                            <div class="title-icon">
-                                                <span style="max-width: 100%">I agree to the <a
-                                                        href="{{ url('term-condition') }}" target="_blank">Term &
-                                                        Conditions</a> and
-                                                    <a href="{{ url('privacy-policy') }}" target="_blank">Privacy
-                                                        Policy</a><span class="text-danger"
-                                                        title="This field is required">*</span></span>
-                                            </div>
-                                        </div>
-                                    </label>
-                                </div>
+                        <div class="line"></div>
+                        <div class="col-lg-12 col-sm-12">
+                            <div class="form-group selection_one">
+                                <label>Classify Your Minerals Company <i class="text-danger"
+                                        title="This field is required">*</i></label>
+                                <select name="classify_minerals" id="classify_minerals" class="form-control validation"
+                                    placeholder="Classify Type" style="width: 100%">
+                                    <option value="">Choose classify your minerals company</option>
+                                    @foreach ($classify_minerals as $g => $grow)
+                                        <option
+                                            {{ old('classify_minerals', $data->ms_class_company_minerals_id) == $grow->id ? 'selected' : '' }}
+                                            value="{{ $grow->id }}" data-name="{{ $grow->name }}">
+                                            {{ $grow->name }}
+                                        </option>
+                                    @endforeach
+                                    <option value="Other">Other</option>
+                                </select>
+                                <input type="text" name="classify_minerals_other" class="form-control validation mt-3"
+                                    placeholder="Other classify your minerals company">
                             </div>
-                            <div class="col-lg-12 col-sm-6">
-                                <div class="filter-type">
-                                    <input type="checkbox" name="question_would" id="question_would1" value="Yes"
-                                        class="validation" placeholder="I agree to receive the emails to keep me updates"
-                                        @if (old('question_would', $data->with_information) === 'Yes') checked @endif>
+                        </div>
+                        <div class="col-lg-12 col-sm-12">
 
-                                    <label for="question_would1">
-                                        <div class="custom-radio-wrapper">
-                                            <i class="ri-check-line"></i>
-                                            <div class="title-icon">
-                                                <span style="max-width: 100%">I agree to receive the emails to keep
-                                                    me
-                                                    updates<span class="text-danger"
-                                                        title="This field is required">*</span></span>
-                                            </div>
+                            <div class="form-group selection_second">
+                                <label>Classify Your Mining Bussiness Permit <i class="text-danger"
+                                        title="This field is required">*</i></label>
+                                <select name="classify_mining" id="classify_mining" class="form-control validation"
+                                    placeholder="classify your mining bussiness permit" style="width: 100%">
+                                    <option value="">Choose classify your mining bussiness permit</option>
+                                    @foreach ($classify_mining as $j => $jrow)
+                                        <option
+                                            {{ old('classify_mining', $data->ms_class_company_mining_id) == $jrow->id ? 'selected' : '' }}
+                                            value="{{ $jrow->id }}" data-name="{{ $jrow->name }}">
+                                            {{ $jrow->name }}
+                                        </option>
+                                    @endforeach
+                                    <option value="Other">Other</option>
+                                </select>
+
+                                <input type="text" name="classify_mining_other" class="form-control validation mt-3"
+                                    placeholder="Other classify your mining bussiness permit"
+                                    value="{{ old('classify_mining_other') }}">
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-sm-12">
+
+                            <div class="form-group selection_fourth">
+                                <label>Commodities For Minerals Producer Company <i class="text-danger"
+                                        title="This field is required">*</i></label>
+                                <select name="commodities_minerals" id="commodities_minerals"
+                                    class="form-control validation"
+                                    placeholder="commodities for minerals producer company" style="width: 100%">
+                                    <option value="">Choose commodities for minerals producer company</option>
+                                    @foreach ($commodities_minerals as $k => $krow)
+                                        <option
+                                            {{ old('commodities_minerals', $data->ms_commod_company_minerals_id) == $krow->id ? 'selected' : '' }}
+                                            value="{{ $krow->id }}" data-name="{{ $krow->name }}">
+                                            {{ $krow->name }}
+                                        </option>
+                                    @endforeach
+                                    <option value="Other">Other</option>
+                                </select>
+
+                                <input type="text" name="commodities_minerals_other"
+                                    class="form-control validation mt-3"
+                                    placeholder="Other commodities for minerals producer company"
+                                    value="{{ old('commodities_minerals_other') }}">
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-sm-12">
+
+                            <div class="form-group selection_fifth">
+                                <label>Commodities For Minerals Processing Company <i class="text-danger"
+                                        title="This field is required">*</i></label>
+                                <select name="commodities_minerals_coal" id="commodities_minerals_coal"
+                                    class="form-control validation"
+                                    placeholder="commodities for minerals processing company" style="width: 100%">
+                                    <option value="">Choose commodities for minerals processing company</option>
+                                    @foreach ($commodities_minerals_coal as $i => $irow)
+                                        <option
+                                            {{ old('commodities_minerals_coal', $data->ms_commod_company_minerals_coal_id) == $irow->id ? 'selected' : '' }}
+                                            value="{{ $irow->id }}" data-name="{{ $irow->name }}">
+                                            {{ $irow->name }}
+                                        </option>
+                                    @endforeach
+                                    <option value="Other">Other</option>
+                                </select>
+
+                                <input type="text" name="commodities_minerals_coal_other"
+                                    class="form-control validation-detail mt-3"
+                                    placeholder="Other commodities for minerals processing company"
+                                    value="{{ old('commodities_minerals_coal_other') }}">
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-sm-12">
+
+                            <div class="form-group selection_sixth">
+                                <label>Commodities For Coal Mining Company <i class="text-danger"
+                                        title="This field is required">*</i></label>
+                                <select name="commodities_mining" id="commodities_mining" class="form-control validation"
+                                    placeholder="commodities for coal mining company" style="width: 100%">
+                                    <option value="">Choose commodities for coal mining company</option>
+                                    @foreach ($commodities_mining as $y => $yrow)
+                                        <option
+                                            {{ old('commodities_mining', $data->ms_commod_company_mining_id) == $yrow->id ? 'selected' : '' }}
+                                            value="{{ $yrow->id }}" data-name="{{ $yrow->name }}">
+                                            {{ $yrow->name }}
+                                        </option>
+                                    @endforeach
+                                    <option value="Other">Other</option>
+                                </select>
+
+                                <input type="text" name="commodities_mining_other"
+                                    class="form-control validation-detail mt-3"
+                                    placeholder="Other commodities for coal mining company"
+                                    value="{{ old('commodities_mining_other') }}">
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-sm-12">
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-12 col-sm-6">
+                                        <div class="filter-type">
+                                            <input type="checkbox" name="question_term" id="question_term"
+                                                value="Yes" class="validation" placeholder="Agree term and privacy"
+                                                @if (old('question_term', $data->with_information) === 'Yes') checked @endif>
+                                            <label for="question_term">
+                                                <div class="custom-radio-wrapper">
+                                                    <i class="ri-check-line"></i>
+                                                    <div class="title-icon">
+                                                        <span style="max-width: 100%">I agree to the <a
+                                                                href="{{ url('term-condition') }}" target="_blank">Term &
+                                                                Conditions</a> and
+                                                            <a href="{{ url('privacy-policy') }}" target="_blank">Privacy
+                                                                Policy</a><span class="text-danger"
+                                                                title="This field is required">*</span></span>
+                                                    </div>
+                                                </div>
+                                            </label>
                                         </div>
-                                    </label>
+                                    </div>
+                                    <div class="col-lg-12 col-sm-6">
+                                        <div class="filter-type">
+                                            <input type="checkbox" name="question_would" id="question_would1"
+                                                value="Yes" class="validation"
+                                                placeholder="I agree to receive the emails to keep me updates"
+                                                @if (old('question_would', $data->with_information) === 'Yes') checked @endif>
+
+                                            <label for="question_would1">
+                                                <div class="custom-radio-wrapper">
+                                                    <i class="ri-check-line"></i>
+                                                    <div class="title-icon">
+                                                        <span style="max-width: 100%">I agree to receive the emails to keep
+                                                            me
+                                                            updates<span class="text-danger"
+                                                                title="This field is required">*</span></span>
+                                                    </div>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+
+
                     <div class="form-group mt-2 mb-2">
                         <button type="submit" class="btn btn-primary btn-lg btn-block loadpayment">SAVE COMPANY
                             INFORMATION</button>

@@ -73,14 +73,14 @@ class CompanyController extends Controller
         $npwp = $request->npwp;
 
         // $category_name = $request->category_name;
-        $classify_minerals_id = $request->classify_minerals_id;
+        $classify_minerals_id = $request->classify_minerals;
         $project_type = $request->project_type;
         // $classify_minerals_name = $request->classify_minerals_name;
-        $classify_mining_id = $request->classify_mining_id;
-        $commodities_minerals_coal_id = $request->commodities_minerals_coal_id;
-        $commodities_minerals_id = $request->commodities_minerals_id;
-        $commodities_mining_id = $request->commodities_mining_id;
-        $origin_manufacturer_id = $request->origin_manufacturer_id;
+        $classify_mining_id = $request->classify_mining;
+        $commodities_minerals_coal_id = $request->commodities_minerals_coal;
+        $commodities_minerals_id = $request->commodities_minerals;
+        $commodities_mining_id = $request->commodities_mining;
+        $origin_manufacturer_id = $request->origin_manufacturer;
         $question_would = $request->question_would;
         $ms_company_class_id = $request->ms_company_class_id;
 
@@ -196,7 +196,7 @@ class CompanyController extends Controller
                     $video->url = $video_3;
                     break;
 
-                    // Add more cases as needed
+                // Add more cases as needed
 
                 default:
                     // Handle other cases if necessary
