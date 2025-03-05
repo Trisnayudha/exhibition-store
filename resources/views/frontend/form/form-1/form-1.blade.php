@@ -417,13 +417,11 @@
                             </div>
                         </div>
                         <div class="col-lg-12 col-sm-12">
-
                             <div class="form-group selection_fourth">
                                 <label>Commodities For Minerals Producer Company <i class="text-danger"
                                         title="This field is required">*</i></label>
                                 <select name="commodities_minerals" id="commodities_minerals"
-                                    class="form-control validation"
-                                    placeholder="commodities for minerals producer company" style="width: 100%">
+                                    class="form-control validation" style="width: 100%">
                                     <option value="">Choose commodities for minerals producer company</option>
                                     @foreach ($commodities_minerals as $k => $krow)
                                         <option
@@ -432,15 +430,19 @@
                                             {{ $krow->name }}
                                         </option>
                                     @endforeach
-                                    <option value="Other">Other</option>
+                                    <option value="Other"
+                                        {{ old('commodities_minerals', $data->ms_commod_company_minerals_id) == 0 ? 'selected' : '' }}>
+                                        Other
+                                    </option>
                                 </select>
-
-                                <input type="text" name="commodities_minerals_other"
+                                <input type="text" name="commodities_minerals_other" id="commodities_minerals_other"
                                     class="form-control validation mt-3"
                                     placeholder="Other commodities for minerals producer company"
-                                    value="{{ old('commodities_minerals_other') }}">
+                                    value="{{ old('commodities_minerals_other') ?? $data->commodities_minerals_other }}"
+                                    style="{{ old('commodities_minerals', $data->ms_commod_company_minerals_id) == 0 ? 'display:block;' : 'display:none;' }}">
                             </div>
                         </div>
+
                         <div class="col-lg-12 col-sm-12">
 
                             <div class="form-group selection_fifth">

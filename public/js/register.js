@@ -5,12 +5,12 @@ const hideSelection = () => {
 }
 
 const hideSelectionOther = () => {
-    $("input[name='classify_minerals_other']").hide().val("").removeClass("validation")
-    $("input[name='classify_mining_other']").hide().val("").removeClass("validation")
-    $("input[name='commodities_minerals_other']").hide().val("").removeClass("validation")
-    $("input[name='commodities_minerals_coal_other']").hide().val("").removeClass("validation")
-    $("input[name='commodities_mining_other']").hide().val("").removeClass("validation")
-    $("input[name='origin_manufacturer_other']").hide().val("").removeClass("validation")
+    $("input[name='classify_minerals_other']").hide().removeClass("validation")
+    $("input[name='classify_mining_other']").hide().removeClass("validation")
+    $("input[name='commodities_minerals_other']").hide().removeClass("validation")
+    $("input[name='commodities_minerals_coal_other']").hide().removeClass("validation")
+    $("input[name='commodities_mining_other']").hide().removeClass("validation")
+    $("input[name='origin_manufacturer_other']").hide().removeClass("validation")
 }
 
 const clearSelectionValue = () => {
@@ -97,17 +97,33 @@ $(document).ready(function () {
     if ($("#project_type").length) {
         $("#project_type").select2()
     }
-    if ($("#commodities_minerals").length) {
-        $("#commodities_minerals").select2()
-            .on('select2:select', function (e) {
-                const value = this.value;
-                $("input[name='commodities_minerals_other']").hide().val("").removeClass("validation")
 
-                if (value === 'Other') {
-                    $("input[name='commodities_minerals_other']").show().addClass("validation")
+        if ($("#commodities_minerals").length) {
+            $("#commodities_minerals").select2();
+
+            // Ambil nilai dari input sebelum form dimanipulasi
+            let otherInput = $("#commodities_minerals_other");
+
+            function toggleOtherInput() {
+                const value = $("#commodities_minerals").val();
+
+                if (value === "Other") {
+                    otherInput.show().addClass("validation");
+                } else {
+                    otherInput.hide().removeClass("validation");
                 }
-            })
-    }
+            }
+
+            // Cek saat halaman pertama kali dimuat
+            toggleOtherInput();
+
+            // Jalankan setiap kali ada perubahan di select2
+            $("#commodities_minerals").on('change', toggleOtherInput);
+        }
+
+
+
+
     if ($("#commodities_minerals_coal").length) {
         $("#commodities_minerals_coal").select2()
             .on('select2:select', function (e) {
