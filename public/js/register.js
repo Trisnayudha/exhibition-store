@@ -124,17 +124,30 @@ $(document).ready(function () {
 
 
 
-    if ($("#commodities_minerals_coal").length) {
-        $("#commodities_minerals_coal").select2()
-            .on('select2:select', function (e) {
-                const value = this.value;
-                $("input[name='commodities_minerals_coal_other']").hide().val("").removeClass("validation")
+        if ($("#commodities_minerals_coal").length) {
+            $("#commodities_minerals_coal").select2();
 
-                if (value === 'Other') {
-                    $("input[name='commodities_minerals_coal_other']").show().addClass("validation")
+            function toggleOtherInput() {
+                const value = $("#commodities_minerals_coal").val();
+                const otherInput = $("input[name='commodities_minerals_coal_other']");
+
+                console.log("Selected value:", value); // Debugging untuk melihat nilai yang dipilih
+
+                if (value === "Other") {
+                    otherInput.show().addClass("validation");
+                } else {
+                    if (!otherInput.is(":focus") && otherInput.val() === "") {
+                        otherInput.hide().removeClass("validation");
+                    }
                 }
-            })
-    }
+            }
+
+            // Cek saat halaman pertama kali dimuat
+            toggleOtherInput();
+
+            // Jalankan setiap kali ada perubahan di select2
+            $("#commodities_minerals_coal").on('change', toggleOtherInput);
+        }
     if ($("#commodities_mining").length) {
         $("#commodities_mining").select2()
             .on('select2:select', function (e) {

@@ -77,13 +77,14 @@ class CompanyController extends Controller
         $project_type = $request->project_type;
         // $classify_minerals_name = $request->classify_minerals_name;
         $classify_mining_id = $request->classify_mining;
-        $commodities_minerals_coal_id = $request->commodities_minerals_coal;
+        $commodities_minerals_coal_id = $request->commodities_minerals_coal == 'Other' ? 0 : $request->commodities_minerals_coal;
         $commodities_minerals_id = $request->commodities_minerals == 'Other' ? 0 : $request->commodities_minerals;
         $commodities_mining_id = $request->commodities_mining;
         $origin_manufacturer_id = $request->origin_manufacturer;
         $question_would = $request->question_would;
         $ms_company_class_id = $request->ms_company_class_id;
         $commodities_minerals_other = $request->commodities_minerals_other;
+        $commod_company_minerals_coal_other = $request->commodities_minerals_coal_other;
 
         $save = Company::where('id', $id)->first();
 
@@ -107,6 +108,7 @@ class CompanyController extends Controller
         $save->ms_class_company_mining_id = $classify_mining_id;
         $save->ms_commod_company_minerals_id = $commodities_minerals_id;
         $save->commod_company_minerals_other = $commodities_minerals_other;
+        $save->commod_company_minerals_coal_other = $commod_company_minerals_coal_other;
         $save->ms_commod_company_minerals_coal_id = $commodities_minerals_coal_id;
         $save->ms_commod_company_mining_id = $commodities_mining_id;
         $save->ms_origin_manufactur_company_id = $origin_manufacturer_id;
