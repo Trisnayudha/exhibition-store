@@ -321,26 +321,28 @@
                                 <label>Origin Manufacturer And Technology Company <i class="text-danger"
                                         title="This field is required">*</i></label>
                                 <select name="origin_manufacturer" id="origin_manufacturer"
-                                    class="form-control validation"
-                                    placeholder="origin manufacturer and technology company" style="width: 100%">
-                                    <option value="">Choose origin manufacturer and technology company
-                                    </option>
+                                    class="form-control validation" style="width: 100%">
+                                    <option value="">Choose origin manufacturer and technology company</option>
                                     @foreach ($origin_manufacturer as $z => $zrow)
-                                        <option
-                                            {{ old('origin_manufacturer', $data->ms_origin_manufactur_company_id) == $zrow->id ? 'selected' : '' }}
-                                            value="{{ $zrow->id }}" data-name="{{ $zrow->name }}">
-                                            {{ $zrow->name }}</option>
+                                        <option value="{{ $zrow->id }}" data-name="{{ $zrow->name }}"
+                                            {{ old('origin_manufacturer', $data->ms_origin_manufactur_company_id) == $zrow->id ? 'selected' : '' }}>
+                                            {{ $zrow->name }}
+                                        </option>
                                     @endforeach
-                                    <option {{ old('origin_manufacturer') == 'Other' ? 'selected' : '' }} value="Other">
-                                        Other</option>
+                                    <option value="Other"
+                                        {{ old('origin_manufacturer', $data->ms_origin_manufactur_company_id) == 0 ? 'selected' : '' }}>
+                                        Other
+                                    </option>
                                 </select>
 
-                                <input type="text" name="origin_manufacturer_other"
-                                    class="form-control validation-detail mt-3"
+                                <input type="text" name="origin_manufacturer_other" id="origin_manufacturer_other"
+                                    class="form-control validation mt-3"
                                     placeholder="Other origin manufacturer and technology company"
-                                    value="{{ old('origin_manufacturer_other') }}">
+                                    value="{{ old('origin_manufacturer_other') ?? $data->origin_manufacturer_other }}"
+                                    style="{{ old('origin_manufacturer', $data->ms_origin_manufactur_company_id) == 0 ? 'display:block;' : 'display:none;' }}">
                             </div>
                         </div>
+
                         <div class="col-lg-12 col-sm-12">
                             <div class="form-group selection_eighteen">
                                 <label>Classification Company <i class="text-danger"

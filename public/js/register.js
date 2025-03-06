@@ -160,23 +160,28 @@ $(document).ready(function () {
             })
     }
     if ($("#origin_manufacturer").length) {
-        $("#origin_manufacturer").select2()
-            .on('change', function (e) {
-                const value = this.value;
-                $("input[name='origin_manufacturer_other']").hide().val("").removeClass("validation")
+        $("#origin_manufacturer").select2();
 
-                if (value === 'Other') {
-                    $("input[name='origin_manufacturer_other']").show().addClass("validation")
-                }
-            })
-            .on('select2:select', function (e) {
-                const value = this.value;
-                $("input[name='origin_manufacturer_other']").hide().val("").removeClass("validation")
+        function toggleOtherInput() {
+            const value = $("#origin_manufacturer").val();
+            const otherInput = $("#origin_manufacturer_other");
 
-                if (value === 'Other') {
-                    $("input[name='origin_manufacturer_other']").show().addClass("validation")
+            console.log("Selected value:", value); // Debugging untuk melihat nilai dropdown
+
+            if (value === "Other") {
+                otherInput.show().addClass("validation");
+            } else {
+                if (!otherInput.is(":focus") && otherInput.val() === "") {
+                    otherInput.hide().removeClass("validation");
                 }
-            })
+            }
+        }
+
+        // Jalankan saat halaman pertama kali dimuat
+        toggleOtherInput();
+
+        // Jalankan setiap kali ada perubahan di select2
+        $("#origin_manufacturer").on('change', toggleOtherInput);
     }
 
     if ($("#company_category").val() !== "") {

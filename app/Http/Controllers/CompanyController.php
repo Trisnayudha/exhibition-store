@@ -79,13 +79,13 @@ class CompanyController extends Controller
         $classify_mining_id = $request->classify_mining;
         $commodities_minerals_coal_id = $request->commodities_minerals_coal == 'Other' ? 0 : $request->commodities_minerals_coal;
         $commodities_minerals_id = $request->commodities_minerals == 'Other' ? 0 : $request->commodities_minerals;
+        $origin_manufacturer_id = $request->origin_manufacturer == 'Other' ? 0 : $request->origin_manufacturer;
         $commodities_mining_id = $request->commodities_mining;
-        $origin_manufacturer_id = $request->origin_manufacturer;
         $question_would = $request->question_would;
         $ms_company_class_id = $request->ms_company_class_id;
         $commodities_minerals_other = $request->commodities_minerals_other;
         $commod_company_minerals_coal_other = $request->commodities_minerals_coal_other;
-
+        $origin_manufacturer_other = $request->origin_manufacturer_other;
         $save = Company::where('id', $id)->first();
 
         $save->company_web = $company_web;
@@ -112,6 +112,7 @@ class CompanyController extends Controller
         $save->ms_commod_company_minerals_coal_id = $commodities_minerals_coal_id;
         $save->ms_commod_company_mining_id = $commodities_mining_id;
         $save->ms_origin_manufactur_company_id = $origin_manufacturer_id;
+        $save->origin_manufactur_company_other = $origin_manufacturer_other;
         $save->with_information = $question_would;
         $save->ms_company_class_id = $ms_company_class_id;
         $save->npwp = $npwp;
@@ -121,7 +122,6 @@ class CompanyController extends Controller
         // $save->commod_company_minerals_other = $commodities_minerals_name;
         // $save->commod_company_minerals_coal_other = $commodities_minerals_coal_name;
         // $save->commod_company_mining_other = $commodities_mining_name;
-        // $save->origin_manufactur_company_other = $origin_manufacturer_name;
         $save->save();
         // dd($request->all());
         //commodities_minerals
