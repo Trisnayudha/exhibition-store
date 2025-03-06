@@ -13,7 +13,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>BACK - Doff Laminated Indoor Vinyl Sticker 96x246cm + Polyfoam</td>
+                            <td>BACK - Doff Laminated Indoor Vinyl Sticker 290x244cm + Polyfoam</td>
                             <td>IDR. 3.600.000</td>
                             <td>
                                 <input type="number" name="back-doff-basic" id="back-doff-basic" class="form-control"
@@ -43,7 +43,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>TABLE - Doff Laminated Indoor Vinyl Sticker 96x71cm + Polyfoam</td>
+                            <td>TABLE - Doff Laminated Indoor Vinyl Sticker 100x100cm + Polyfoam</td>
                             <td>IDR. 1.050.000</td>
                             <td>
                                 <input type="number" name="table-basic" id="table-basic" class="form-control"
