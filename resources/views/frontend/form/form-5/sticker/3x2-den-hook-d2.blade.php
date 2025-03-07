@@ -28,7 +28,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>SIDE - Doff Laminated Indoor Vinyl Sticker 96x246cm + Polyfoam</td>
+                            <td>SIDE - Doff Laminated Indoor Vinyl Sticker 96x244cm + Polyfoam</td>
                             <td>IDR. 1.425.000</td>
                             <td>
                                 <input type="number" name="side-doff-basic" id="side-doff-basic" class="form-control"
