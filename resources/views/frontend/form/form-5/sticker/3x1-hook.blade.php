@@ -36,6 +36,8 @@
                             <td>
                                 <input type="number" name="table-basic" id="table-basic" class="form-control"
                                     value="0" readonly>
+                                <input type="hidden" name="table-doof-product-basic" id="table-doof-product-basic"
+                                    value="TABLE - Doff Laminated Indoor Vinyl Sticker 100x100cm + Polyfoam">
                                 <input type="hidden" name="table-doof-section-basic" id="table-doof-section-basic"
                                     value="Additional Sticker">
                                 <input type="hidden" name="table-doof-price-basic" id="table-doof-price-basic"
