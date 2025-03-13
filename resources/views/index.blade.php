@@ -30,8 +30,9 @@
     </script>
 
     <!-- CropperJS -->
-    <link rel="stylesheet" href="https://unpkg.com/cropperjs/dist/cropper.min.css">
-    <script src="https://unpkg.com/cropperjs/dist/cropper.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/cropperjs@1.5.12/dist/cropper.min.css">
+    <script src="https://unpkg.com/cropperjs@1.5.12/dist/cropper.min.js"></script>
+
 
     <!-- Summernote CSS & JS -->
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-bs4.min.css" rel="stylesheet">
