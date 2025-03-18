@@ -215,14 +215,17 @@
                                 </div>
                             </div>
                         </li>
-                        <li class="nav-item">
-                            <div
-                                class="card text-white {{ $type == 'indonesia-miner-directory' ? ' bg-info ' : ' bg-secondary ' }} mb-3">
-                                <div class="card-body">
-                                    <h7 class="card-title">FORM {{ $form_number++ }} - Indonesia Miner Directory</h7>
+                        @if ($access['directory_access'] == 1)
+                            <li class="nav-item">
+                                <div
+                                    class="card text-white {{ $type == 'indonesia-miner-directory' ? ' bg-info ' : ' bg-secondary ' }} mb-3">
+                                    <div class="card-body">
+                                        <h7 class="card-title">FORM {{ $form_number++ }} - Indonesia Miner Directory
+                                        </h7>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
+                            </li>
+                        @endif
                         @if ($access['promotional_access'] == 1)
                             <li class="nav-item">
                                 <div

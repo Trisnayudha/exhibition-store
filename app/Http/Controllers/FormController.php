@@ -115,6 +115,7 @@ class FormController extends Controller
     {
         $data = auth()->user(); // Mengambil nama pengguna dari objek auth
         return [
+            'directory_access' => $data->directory_access ?? 0,
             'promotional_access' => $data->promotional_access ?? 0,
             'eventpass_access' => $data->eventpass_access ?? 0,
             'exhibition_access' => $data->exhibition_access ?? 0,

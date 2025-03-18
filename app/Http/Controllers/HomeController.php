@@ -37,11 +37,13 @@ class HomeController extends Controller
         $data = [];
         $companyData = $this->getCompanyInformation();
         $presentaseCompany = $this->countPercen($companyData);
-        $miningDirectory = $this->getIndonesiaMinerDirectory();
-        $presentaseMiningDirectory = $this->countPercen($miningDirectory);
         $data['access'] = $this->getAccess();
         $data['countCompany'] = $presentaseCompany;
-        $data['countMiningDirectory'] = $presentaseMiningDirectory;
+        if ($data['access']['directory_access'] == 1) {
+            $miningDirectory = $this->getIndonesiaMinerDirectory();
+            $presentaseMiningDirectory = $this->countPercen($miningDirectory);
+            $data['countMiningDirectory'] = $presentaseMiningDirectory;
+        }
         if ($data['access']['promotional_access'] == 1) {
             $promotional = $this->getPromotional();
             $presentasePromotional = $this->countPercen($promotional);
@@ -126,6 +128,7 @@ class HomeController extends Controller
     {
         $data = auth()->user(); // Mengambil nama pengguna dari objek auth
         return [
+            'directory_access' => $data->directory_access ?? 0,
             'promotional_access' => $data->promotional_access ?? 0,
             'eventpass_access' => $data->eventpass_access ?? 0,
             'exhibition_access' => $data->exhibition_access ?? 0,

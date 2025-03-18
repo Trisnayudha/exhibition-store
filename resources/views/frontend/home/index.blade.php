@@ -47,17 +47,19 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-sm-2 mb-2">
-                        <a href="{{ url('form?type=indonesia-miner-directory') }}">
-                            <div class="card border-info">
-                                <div class="card-header" style="font-size: 14px;">Indonesia Miner Directory</div>
-                                <div class="card-body position-relative">
-                                    <div id="minerDirectoryChart" width="100" height="100"></div>
-                                    <div class="progress-text"></div>
+                    @if ($access['directory_access'] == 1)
+                        <div class="col-sm-2 mb-2">
+                            <a href="{{ url('form?type=indonesia-miner-directory') }}">
+                                <div class="card border-info">
+                                    <div class="card-header" style="font-size: 14px;">Indonesia Miner Directory</div>
+                                    <div class="card-body position-relative">
+                                        <div id="minerDirectoryChart" width="100" height="100"></div>
+                                        <div class="progress-text"></div>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                    </div>
+                            </a>
+                        </div>
+                    @endif
                     @if ($access['promotional_access'] == 1)
                         <div class="col-sm-2 mb-2">
                             <a href="form?type=promotional">
@@ -154,7 +156,9 @@
 
         // Panggil fungsi untuk setiap chart
         createDoughnutChart('companyInformationChart', {{ $countCompany }}, 'Company Info');
-        createDoughnutChart('minerDirectoryChart', {{ $countMiningDirectory }}, 'Miner Directory');
+        @if ($access['directory_access'] == 1)
+            createDoughnutChart('minerDirectoryChart', {{ $countMiningDirectory }}, 'Miner Directory');
+        @endif
         @if ($access['promotional_access'] == 1)
             createDoughnutChart('promotionalChart', {{ $countPromotional }}, 'Promotional');
         @endif
