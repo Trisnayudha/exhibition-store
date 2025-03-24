@@ -15,9 +15,7 @@
         @endif
     @elseif ($type == 'indonesia-miner-directory')
         <a href="{{ url('form?type=company-information') }}" class="btn btn-secondary mr-2">Previous</a>
-        @if ($access['directory_access'] == 1)
-            <a href="{{ url('form?type=indonesia-miner-directory') }}" class="btn btn-info">Next</a>
-        @elseif ($access['promotional_access'] == 1)
+        @if ($access['promotional_access'] == 1)
             <a href="{{ url('form?type=promotional') }}" class="btn btn-info">Next</a>
         @elseif ($access['eventpass_access'] == 1)
             <a href="{{ url('form?type=event-pass') }}" class="btn btn-info">Next</a>
