@@ -73,9 +73,9 @@ class CompanyController extends Controller
         $npwp = $request->npwp;
 
         // $category_name = $request->category_name;
-        $classify_minerals_id = $request->classify_minerals;
         $project_type = $request->project_type;
         // $classify_minerals_name = $request->classify_minerals_name;
+        $classify_minerals_id = $request->classify_minerals == 'Other' ? 0 : $request->classify_minerals;
         $classify_mining_id = $request->classify_mining == 'Other' ? 0 : $request->classify_mining;
         $commodities_minerals_coal_id = $request->commodities_minerals_coal == 'Other' ? 0 : $request->commodities_minerals_coal;
         $commodities_minerals_id = $request->commodities_minerals == 'Other' ? 0 : $request->commodities_minerals;
@@ -86,6 +86,8 @@ class CompanyController extends Controller
         $commodities_minerals_other = $request->commodities_minerals_other;
         $commod_company_minerals_coal_other = $request->commodities_minerals_coal_other;
         $origin_manufacturer_other = $request->origin_manufacturer_other;
+        $classify_minerals_other = $request->classify_minerals_other;
+        $classify_mining_other = $request->classify_mining_other;
         $save = Company::where('id', $id)->first();
 
         $save->company_web = $company_web;
@@ -113,11 +115,12 @@ class CompanyController extends Controller
         $save->ms_commod_company_mining_id = $commodities_mining_id;
         $save->ms_origin_manufactur_company_id = $origin_manufacturer_id;
         $save->origin_manufactur_company_other = $origin_manufacturer_other;
+        $save->class_company_mining_other = $classify_mining_other;
+        $save->class_company_minerals_other = $classify_minerals_other;
         $save->with_information = $question_would;
         $save->ms_company_class_id = $ms_company_class_id;
         $save->npwp = $npwp;
         // $save->type = 'Trial';
-        // $save->class_company_minerals_other = $classify_minerals_name;
         // $save->class_company_mining_other = $classify_mining_name;
         // $save->commod_company_minerals_other = $commodities_minerals_name;
         // $save->commod_company_minerals_coal_other = $commodities_minerals_coal_name;

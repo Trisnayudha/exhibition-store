@@ -389,12 +389,19 @@
                                             {{ $grow->name }}
                                         </option>
                                     @endforeach
-                                    <option value="Other">Other</option>
+                                    <option value="Other"
+                                        {{ old('classify_minerals', $data->ms_class_company_minerals_id) == 0 ? 'selected' : '' }}>
+                                        Other
+                                    </option>
                                 </select>
+
                                 <input type="text" name="classify_minerals_other" class="form-control validation mt-3"
-                                    placeholder="Other classify your minerals company">
+                                    placeholder="Other classify your minerals company"
+                                    value="{{ old('classify_minerals_other') ?? $data->classify_minerals_other }}"
+                                    style="{{ old('classify_minerals', $data->ms_class_company_minerals_id) == 0 ? 'display:block;' : 'display:none;' }}">
                             </div>
                         </div>
+
                         <div class="col-lg-12 col-sm-12">
 
                             <div class="form-group selection_second">
@@ -410,12 +417,17 @@
                                             {{ $jrow->name }}
                                         </option>
                                     @endforeach
-                                    <option value="Other">Other</option>
+                                    <option value="Other"
+                                        {{ old('classify_mining', $data->ms_class_company_mining_id) == 0 ? 'selected' : '' }}>
+                                        Other
+                                    </option>
                                 </select>
 
                                 <input type="text" name="classify_mining_other" class="form-control validation mt-3"
                                     placeholder="Other classify your mining bussiness permit"
-                                    value="{{ old('classify_mining_other') }}">
+                                    value="{{ old('classify_mining_other') ?? $data->classify_mining_other }}"
+                                    style="{{ old('classify_mining', $data->ms_class_company_mining_id) == 0 ? 'display:block;' : 'display:none;' }}">
+
                             </div>
                         </div>
                         <div class="col-lg-12 col-sm-12">

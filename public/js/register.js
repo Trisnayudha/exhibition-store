@@ -73,27 +73,49 @@ $(document).ready(function () {
             })
     }
     if ($("#classify_minerals").length) {
-        $("#classify_minerals").select2()
+        const mineralsSelect = $("#classify_minerals");
+        const mineralsOtherInput = $("input[name='classify_minerals_other']");
+
+        mineralsSelect.select2()
             .on('select2:select', function (e) {
                 const value = this.value;
-                $("input[name='classify_minerals_other']").hide().val("").removeClass("validation")
+                mineralsOtherInput.hide().val("").removeClass("validation");
 
                 if (value === 'Other') {
-                    $("input[name='classify_minerals_other']").show().addClass("validation")
+                    mineralsOtherInput.show().addClass("validation");
                 }
-            })
+            });
+
+        // Tampilkan input jika sudah dipilih 'Other' saat halaman dimuat
+        if (mineralsSelect.val() === 'Other') {
+            mineralsOtherInput.show().addClass("validation");
+        } else {
+            mineralsOtherInput.hide().removeClass("validation");
+        }
     }
+
     if ($("#classify_mining").length) {
-        $("#classify_mining").select2()
-            .on('select2:select', function (e) {
-                const value = this.value;
-                $("input[name='classify_mining_other']").hide().val("").removeClass("validation")
+        $("#classify_mining").select2();
 
-                if (value === 'Other') {
-                    $("input[name='classify_mining_other']").show().addClass("validation")
-                }
-            })
+        let classifyOtherInput = $("input[name='classify_mining_other']");
+
+        function toggleClassifyOtherInput() {
+            const value = $("#classify_mining").val();
+
+            if (value === "Other") {
+                classifyOtherInput.show().addClass("validation");
+            } else {
+                classifyOtherInput.hide().val("").removeClass("validation");
+            }
+        }
+
+        // Cek saat halaman dimuat (jaga-jaga kalau prefilled)
+        toggleClassifyOtherInput();
+
+        // Ubah saat pilihan berubah
+        $("#classify_mining").on('change', toggleClassifyOtherInput);
     }
+
     if ($("#project_type").length) {
         $("#project_type").select2()
     }
