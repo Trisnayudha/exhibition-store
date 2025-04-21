@@ -76,7 +76,7 @@ class CompanyController extends Controller
         $classify_minerals_id = $request->classify_minerals;
         $project_type = $request->project_type;
         // $classify_minerals_name = $request->classify_minerals_name;
-        $classify_mining_id = $request->classify_mining;
+        $classify_mining_id = $request->classify_mining == 'Other' ? 0 : $request->classify_mining;
         $commodities_minerals_coal_id = $request->commodities_minerals_coal == 'Other' ? 0 : $request->commodities_minerals_coal;
         $commodities_minerals_id = $request->commodities_minerals == 'Other' ? 0 : $request->commodities_minerals;
         $origin_manufacturer_id = $request->origin_manufacturer == 'Other' ? 0 : $request->origin_manufacturer;
