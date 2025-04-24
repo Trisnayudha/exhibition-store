@@ -150,7 +150,7 @@ class WorkingController extends Controller
 
     public function destroy($id)
     {
-        $representative = Payment::where('users_id', $id)->first();
+        $representative = Payment::where('users_id', $id)->where('events_id', 13)->first();
         $representative->delete();
         $company_id = auth()->id();
         $log = ExhibitionLog::where('section', 'working')->where('company_id', $company_id)->first();

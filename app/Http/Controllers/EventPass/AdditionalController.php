@@ -166,7 +166,7 @@ class AdditionalController extends Controller
 
     public function destroy($id)
     {
-        $representative = Payment::where('users_id', $id)->first();
+        $representative = Payment::where('users_id', $id)->where('events_id', 13)->first();
         $cart = ExhibitionCartList::where('delegate_id', $representative->id)->first();
         if ($cart) {
             $cart->delete();
