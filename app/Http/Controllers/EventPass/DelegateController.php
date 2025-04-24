@@ -152,7 +152,7 @@ class DelegateController extends Controller
 
     public function destroy($id)
     {
-        $representative = Payment::findOrFail($id);
+        $representative = Payment::where('users_id', $id)->first();
         $representative->delete();
         $company_id = auth()->id();
         $log = ExhibitionLog::where('section', 'delegate')->where('company_id', $company_id)->first();
