@@ -60,14 +60,14 @@
                                 data-title="Custom Table"><i class="fa fa-eye"></i></a>
                         </li>
                         <li><a href="javascript:void(0);" class="add-to-cart" data-name="Custom Table"
-                                data-price="3500000" data-tip="Add to wishlist"
-                                onclick="exhibitionCart('Custom Table','Additional Booth',3500000,3500000,1,'{{ asset('form5/noimage.png') }}')"><i
+                                data-price="3000000" data-tip="Add to wishlist"
+                                onclick="exhibitionCart('Custom Table','Additional Booth',3000000,3000000,1,'{{ asset('form5/noimage.png') }}')"><i
                                     class="fa fa-shopping-cart"></i></a></li>
                     </ul>
                 </div>
                 <div class="product-content">
                     <h3 class="title"><a href="#">Custom Table</a></h3>
-                    <div class="price">IDR 3.500.000</div>
+                    <div class="price">IDR 3.000.000</div>
                 </div>
             </div>
         </div>
