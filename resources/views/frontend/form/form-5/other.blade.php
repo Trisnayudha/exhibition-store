@@ -48,6 +48,52 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="product-grid">
+                <div class="product-image">
+                    <a href="#" class="image">
+                        <img class="pic-1" src="{{ asset('form5/noimage.png') }}">
+                        <img class="pic-2" src="{{ asset('form5/noimage.png') }}">
+                    </a>
+                    <ul class="social">
+                        <li><a href="{{ asset('form5/noimage.png') }}" data-lightbox="image-gallery"
+                                data-title="Backdrop"><i class="fa fa-eye"></i></a>
+                        </li>
+                        <li><a href="javascript:void(0);" class="add-to-cart" data-name="Backdrop" data-price="4500000"
+                                data-tip="Add to wishlist"
+                                onclick="exhibitionCart('Side (Back Wall) Backdrop – 300 x 250 x 10 cm','Additional Booth',4500000,4500000,1,'{{ asset('form5/noimage.png') }}')"><i
+                                    class="fa fa-shopping-cart"></i></a></li>
+                    </ul>
+                </div>
+                <div class="product-content">
+                    <h3 class="title"><a href="#">Side (Back Wall) Backdrop – 300 x 250 x 10 cm</a></h3>
+                    <div class="price">IDR 4.500.000</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="product-grid">
+                <div class="product-image">
+                    <a href="#" class="image">
+                        <img class="pic-1" src="{{ asset('form5/noimage.png') }}">
+                        <img class="pic-2" src="{{ asset('form5/noimage.png') }}">
+                    </a>
+                    <ul class="social">
+                        <li><a href="{{ asset('form5/noimage.png') }}" data-lightbox="image-gallery"
+                                data-title="Backdrop"><i class="fa fa-eye"></i></a>
+                        </li>
+                        <li><a href="javascript:void(0);" class="add-to-cart" data-name="Backdrop" data-price="3750000"
+                                data-tip="Add to wishlist"
+                                onclick="exhibitionCart('Side (Left - Walls) Backdrop 200 x 250 x 10 cm','Additional Booth',3750000,3750000,1,'{{ asset('form5/noimage.png') }}')"><i
+                                    class="fa fa-shopping-cart"></i></a></li>
+                    </ul>
+                </div>
+                <div class="product-content">
+                    <h3 class="title"><a href="#">Side (Left - Walls) Backdrop 200 x 250 x 10 cm</a></h3>
+                    <div class="price">IDR 3.750.000</div>
+                </div>
+            </div>
+        </div>
         {{-- <div class="col-md-3 col-sm-6">
             <div class="product-grid">
                 <div class="product-image">
