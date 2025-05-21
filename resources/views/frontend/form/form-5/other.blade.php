@@ -84,12 +84,12 @@
                         </li>
                         <li><a href="javascript:void(0);" class="add-to-cart" data-name="Backdrop" data-price="3750000"
                                 data-tip="Add to wishlist"
-                                onclick="exhibitionCart('Side (Left) Wall Backdrop 200 x 250 x 10 cm ','Additional Booth',3750000,3750000,1,'{{ asset('form5/noimage.png') }}')"><i
+                                onclick="exhibitionCart('Side Wall Backdrop 200 x 250 x 10 cm ','Additional Booth',3750000,3750000,1,'{{ asset('form5/noimage.png') }}')"><i
                                     class="fa fa-shopping-cart"></i></a></li>
                     </ul>
                 </div>
                 <div class="product-content">
-                    <h3 class="title"><a href="#">Side (Left) Wall Backdrop 200 x 250 x 10 cm </a></h3>
+                    <h3 class="title"><a href="#">Side Wall Backdrop 200 x 250 x 10 cm </a></h3>
                     <div class="price">IDR 3.750.000</div>
                 </div>
             </div>
