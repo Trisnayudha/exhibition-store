@@ -271,8 +271,8 @@
                                 </div> --}}
                                 @else
                                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                        <i><b>Please note that a 30% surcharge will be added to your total order after May
-                                                29,
+                                        <i><b>Please note that a 30% surcharge will be added to your total order after June
+                                                1,
                                                 2025.</b></i>
                                         </strong>
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">

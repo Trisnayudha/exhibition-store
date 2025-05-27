@@ -4,7 +4,7 @@
     <div class="container mt-2">
         @if ($company->deadline <= '2025-05-25')
             {{-- <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <i><b>Please note that a 30% surcharge will be added to your total order after May 25, 2024.</b></i>
+                <i><b>Please note that a 30% surcharge will be added to your total order after June 01, 2025.</b></i>
                 </strong>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -12,7 +12,7 @@
             </div> --}}
         @else
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <i><b>Please note that a 30% surcharge will be added to your total order after May 29, 2025.</b></i>
+                <i><b>Please note that a 30% surcharge will be added to your total order after June 01, 2025.</b></i>
                 </strong>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -76,7 +76,7 @@
                                 $currentDate = date('Y-m-d');
                                 // Surcharge calculation
                                 $surcharge = 0;
-                                if (($company->deadline < '2025-05-25' && $currentDate > '2025-05-25') || ($company->deadline > '2025-05-25' && $currentDate > '2024-05-29')) {
+                                if (($company->deadline < '2025-06-01' && $currentDate > '2025-06-01') || ($company->deadline > '2025-06-01' && $currentDate > '2024-06-01')) {
                                     $surcharge = $totalDue * 0.3;
                                 }
                                 $totalDueWithTaxAndSurcharge = $totalDueWithTax + $surcharge;
