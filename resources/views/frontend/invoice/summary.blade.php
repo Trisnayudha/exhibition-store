@@ -76,7 +76,7 @@
                                 $currentDate = date('Y-m-d');
                                 // Surcharge calculation
                                 $surcharge = 0;
-                                if (($company->deadline < '2025-06-01' && $currentDate > '2025-06-01') || ($company->deadline > '2025-06-01' && $currentDate > '2024-06-01')) {
+                                if (($company->deadline < '2025-06-03' && $currentDate > '2025-06-03') || ($company->deadline > '2025-06-03' && $currentDate > '2024-06-03')) {
                                     $surcharge = $totalDue * 0.3;
                                 }
                                 $totalDueWithTaxAndSurcharge = $totalDueWithTax + $surcharge;
