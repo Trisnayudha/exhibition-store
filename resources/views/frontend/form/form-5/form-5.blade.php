@@ -283,7 +283,7 @@
 
                                 <div id="accordion">
                                     <div class="card">
-                                        <div class="card-header" id="headingOne">
+                                        {{-- <div class="card-header" id="headingOne">
                                             <h5 class="mb-0">
                                                 <button class="btn btn-link" data-toggle="collapse"
                                                     data-target="#collapseOne" aria-expanded="true"
@@ -299,10 +299,10 @@
                                             <div class="card-body">
                                                 @include('frontend.form.form-5.furniture')
                                             </div>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                     <div class="card">
-                                        <div class="card-header" id="headingTwo">
+                                        {{-- <div class="card-header" id="headingTwo">
                                             <h5 class="mb-0">
                                                 <button class="btn btn-link collapsed" data-toggle="collapse"
                                                     data-target="#collapseTwo" aria-expanded="false"
@@ -316,7 +316,7 @@
                                             <div class="card-body">
                                                 @include('frontend.form.form-5.lighting')
                                             </div>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                     <div class="card">
                                         <div class="card-header" id="headingThree">
@@ -337,7 +337,7 @@
                                         </div>
                                     </div>
                                     <div class="card">
-                                        <div class="card-header" id="headingFive">
+                                        {{-- <div class="card-header" id="headingFive">
                                             <h5 class="mb-0">
                                                 <button class="btn btn-link collapsed" data-toggle="collapse"
                                                     data-target="#collapseFive" aria-expanded="false"
@@ -352,10 +352,10 @@
                                                 @include('frontend.form.form-5.other')
 
                                             </div>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                     <div class="card">
-                                        <div class="card-header" id="headingFour">
+                                        {{-- <div class="card-header" id="headingFour">
                                             <h5 class="mb-0">
                                                 <button class="btn btn-link collapsed" data-toggle="collapse"
                                                     data-target="#collapseFour" aria-expanded="false"
@@ -370,7 +370,7 @@
                                                 @include('frontend.form.form-5.design')
 
                                             </div>
-                                        </div>
+                                        </div> --}}
                                     </div>
 
                                 </div>
