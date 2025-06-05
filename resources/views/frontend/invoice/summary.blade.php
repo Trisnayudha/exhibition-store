@@ -70,17 +70,17 @@
                                 foreach ($items as $key) {
                                     $totalDue += $key->price * $key->quantity;
                                 }
-                                
+
                                 $totalPPN = $totalDue * $tax;
                                 $totalDueWithTax = $totalDue + $totalPPN;
                                 $currentDate = date('Y-m-d');
                                 // Surcharge calculation
                                 $surcharge = 0;
-                                if (($company->deadline < '2025-06-03' && $currentDate > '2025-06-03') || ($company->deadline > '2025-06-03' && $currentDate > '2024-06-03')) {
-                                    $surcharge = $totalDue * 0.3;
-                                }
+                                // if (($company->deadline < '2025-06-0' && $currentDate > '2025-06-03') || ($company->deadline > '2025-06-03' && $currentDate > '2024-06-03')) {
+                                //     $surcharge = $totalDue * 0.3;
+                                // }
                                 $totalDueWithTaxAndSurcharge = $totalDueWithTax + $surcharge;
-                                
+
                                 $totalUSD = $totalDueWithTaxAndSurcharge / $usdCurrency; // Convert to USD
                                 $formattedTotalUSD = number_format($totalUSD, 2, ',', '.'); // Format as USD
                                 ?>
