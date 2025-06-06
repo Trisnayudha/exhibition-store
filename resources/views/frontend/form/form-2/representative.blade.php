@@ -158,7 +158,6 @@
         var linkedin = $('#representative_edit_linkedin').val();
         var imageInput = $('#representative_edit_image')[0];
 
-        // Validasi input
         if (!name || !position || !email || !short_bio || !linkedin) {
             Swal.fire({
                 title: 'Warning',
@@ -166,34 +165,35 @@
                 icon: 'warning',
                 confirmButtonText: 'OK'
             });
-
             return;
         }
 
         var csrfToken = $('meta[name="csrf-token"]').attr('content');
 
-        // Create a JSON object
-        var jsonData = {
-            id: id,
-            name: name,
-            position: position,
-            email: email,
-            short_bio: short_bio,
-            linkedin: linkedin
-        };
+        // Buat FormData baru
+        var formData = new FormData();
+        formData.append('name', name);
+        formData.append('position', position);
+        formData.append('email', email);
+        formData.append('short_bio', short_bio);
+        formData.append('linkedin', linkedin);
 
-        // Append image data if present
+        // Jika ada file, tambahkan
         if (imageInput.files[0]) {
-            jsonData.image = imageInput.files[0];
+            formData.append('image', imageInput.files[0]);
         }
-        // Send data to the server using Ajax
-        $('.loading-wrapper, .overlay').show(); // Menampilkan loader dan overlay
+
+        // Untuk memaksa Laravel mengenali ini sebagai PUT
+        formData.append('_method', 'PUT');
+
+        $('.loading-wrapper, .overlay').show();
 
         $.ajax({
-            type: 'PUT',
+            type: 'POST', // tetap POST, tapi dengan _method=PUT di FormData
             url: '{{ url('/representative') }}/' + id,
-            data: JSON.stringify(jsonData),
-            contentType: 'application/json',
+            data: formData,
+            processData: false,
+            contentType: false,
             headers: {
                 'X-CSRF-TOKEN': csrfToken
             },
@@ -202,11 +202,11 @@
                 loadRepresentative();
                 loadLogRepresentative();
                 $('#representativeEditModal').modal('hide');
-                $('.loading-wrapper, .overlay').hide(); // Menampilkan loader dan overlay
-
+                $('.loading-wrapper, .overlay').hide();
             },
             error: function(error) {
                 console.error('Error:', error);
+                $('.loading-wrapper, .overlay').hide();
             }
         });
     }
