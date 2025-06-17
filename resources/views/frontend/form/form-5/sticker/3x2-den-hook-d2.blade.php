@@ -57,7 +57,7 @@
                                 <input type="hidden" name="table-doof-section-basic" id="table-doof-section-basic"
                                     value="Additional Sticker">
                                 <input type="hidden" name="table-doof-price-basic" id="table-doof-price-basic"
-                                    value="105000">
+                                    value="1050000">
                                 <input type="hidden" name="table-doof-image-basic" id="table-doof-image-basic"
                                     value="{{ asset('form5/sticker/3x2_den_hook_d2.png') }}">
 
