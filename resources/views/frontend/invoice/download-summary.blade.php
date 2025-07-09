@@ -171,7 +171,7 @@
                     }
                     
                     $totalPPN = $totalDue * $tax;
-                    $totalDueWithTax = $totalDue + $totalPPN;
+                    $totalDueWithTaxAndSurcharge = $totalDue + $totalPPN + $surcharge;
                     ?>
 
                     <tr>
@@ -184,9 +184,17 @@
                             <th colspan="2" class="text-right">Rp. {{ number_format($totalPPN, 2, ',', '.') }}</th>
                         </tr>
                     @endif
+                    @if ($surcharge > 0)
+                        <tr>
+                            <th colspan="2" class="text-right">Surcharge 30%</th>
+                            <th colspan="2" class="text-right">IDR
+                                {{ number_format($surcharge, 2, ',', '.') }}</th>
+                        </tr>
+                    @endif
                     <tr>
                         <th colspan="2" class="text-right">Total</th>
-                        <th colspan="2" class="text-right">Rp. {{ number_format($totalDueWithTax, 2, ',', '.') }}
+                        <th colspan="2" class="text-right">Rp.
+                            {{ number_format($totalDueWithTaxAndSurcharge, 2, ',', '.') }}
                         </th>
                     </tr>
                 </tbody>

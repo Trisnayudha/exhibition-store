@@ -148,6 +148,8 @@
                                             @csrf
                                             <input type="hidden" name="code_payment" value="{{ $codePayment }}">
                                             <input type="hidden" name="total_price" value="{{ $totalDue }}">
+                                            <input type="hidden" name="vat" value="{{ $totalPPN }}">
+                                            <input type="hidden" name="surcharge" value="{{ $surcharge }}">
                                             <button type="submit" class="btn btn-light btn-block loadpayment">Payment
                                                 link</button>
                                         </form>
@@ -210,7 +212,8 @@
                 @csrf
                 <input type="hidden" name="code_payment" value="{{ $codePayment }}">
                 <input type="hidden" name="total_price" value="{{ $totalDue }}">
-
+                <input type="hidden" name="vat" value="{{ $totalPPN }}">
+                <input type="hidden" name="surchange" value="{{ $surcharge }}">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="uploadReceiptModalLabel">Upload Payment Receipt</h5>
