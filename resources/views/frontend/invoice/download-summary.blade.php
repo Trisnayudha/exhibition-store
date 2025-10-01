@@ -171,7 +171,7 @@
                     }
                     
                     $totalPPN = $totalDue * $tax;
-                    $totalDueWithTaxAndSurcharge = $totalDue + $totalPPN + $surcharge;
+                    $totalDueWithTaxAndSurcharge = $totalDue + $totalPPN + ($surcharge ?? 0);
                     ?>
 
                     <tr>
