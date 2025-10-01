@@ -58,6 +58,7 @@ class InvoiceController extends Controller
         $findPayment = ExhibitionPayment::where('code_payment', $code_payment)->first();
         $data['company'] = Company::where('id', $id)->first();
         $data['codePayment'] = strtoupper(Str::random(7));
+        $data['surcharge'] = $findPayment->surcharge;
         $data['code_payment'] = $findPayment != null ? $code_payment : 'ADDITIONAL-' . $data['codePayment'];
         if (empty($findPayment)) {
             $data['items'] = ExhibitionCartList::where('company_id', $id)->whereNull('payment_id')->get();
