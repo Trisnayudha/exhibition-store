@@ -4,8 +4,8 @@
     <div class="container-fluid mt-2">
         <div class="card">
             <div class="card-body">
-                <img src="https://indonesiaminer.com/img/topbannerwestin.png" alt="" width="100%"
-                    style="border-radius:20px" height="0%" class="mb-2">
+                <img src="https://sin1.contabostorage.com/ee5317510fad4e33b9e308839348b77b:indonesiaminer/web/img/topbannerwestin.png"
+                    alt="" width="100%" style="border-radius:20px" height="0%" class="mb-2">
                 <div class="alert alert-primary" role="alert">
                     <h4 class="alert-heading"> Welcome to the Indonesia Miner Conference & Exhibition 2025 Sponsor &
                         Exhibitor Portal - your
