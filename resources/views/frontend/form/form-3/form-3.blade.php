@@ -18,11 +18,11 @@
         <div class="container">
             @if ($data->deadline_3 != null)
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <p><b> Deadline: Please complete the required form by
-                            {{ \Carbon\Carbon::parse($data->deadline_3)->format('d F Y') }}.</b></p>
-                    <p>Please kindly notify our operations team in advance if you need to submit any details after the
-                        specified deadline or make any amendments to your submission. This will help ensure that all
-                        information is processed according to your final entries.</p>
+                    <p><b> 🔔 Form Deadline:
+                            {{ \Carbon\Carbon::parse($data->deadline)->format('d F Y') }}.</b></p>
+                    <p>Running behind or need to update something later? Just give our operations team a heads-up so we
+                        can help keep things on track.
+                    </p>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -98,10 +98,12 @@
                                         </div>
                                     @endif
                                     <div class="alert alert-info alert-dismissible fade show" role="alert">
-                                        <p>Promotional content will be posted on Instagram (@indonesia_miner) and LinkedIn
-                                            (Indonesia Miner) according to the next available slot in our marketing
-                                            timeline, once our operations team receives your approval of the provided
-                                            preview.</p>
+                                        <p>Prior to scheduling, a preview of your promotional content will be shared for
+                                            your approval. Once approved, your content will be posted on Instagram
+                                            (@indonesia_miner) and LinkedIn (Indonesia Miner) according to the next
+                                            available marketing slot. Please note that late submissions may impact the
+                                            timing of your content’s release.
+                                        </p>
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -143,7 +145,7 @@
                                         <div id="imagePreviewContainer"></div>
                                     </div>
 
-                                    <div class="form-group">
+                                    {{-- <div class="form-group">
                                         <label for="pdfSocial">PDF <small>Max Upload 5 PDF</small></label>
                                         <p><small><i>For LinkedIn (Indonesia Miner)</i></small></p>
                                         @if (!isset($sosmed['listPdf']) || count($sosmed['listPdf']) < 5)
@@ -165,7 +167,7 @@
                                             @endforeach
                                         @endif
                                         <div id="pdfPreviewContainer"></div>
-                                    </div>
+                                    </div> --}}
 
                                     <div class="form-group">
                                         <label for="linkSocialMedia">Linkable to (Please provide the URL with

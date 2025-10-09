@@ -36,6 +36,12 @@
 
     <div class="form-group">
         <label for=""> Value Propositions</label>
+        <br>
+        <small>
+            <i>
+                Highlight your company’s core strengths that represent your brand.
+            </i>
+        </small>
         <input type="text" name="info_one" id="info_one" class="form-control" placeholder="Value Proposition 1"
             value="{{ old('info_one', $data->info_one) }}">
     </div>
@@ -50,7 +56,11 @@
     <div class="form-group">
         <label for="">Social Media</label>
         <p>
-            <small>Please input URL (URL should include https://)</small>
+            <small>
+                <i>
+                    Provide your official company social media links, including the full URL starting with https://
+                </i>
+            </small>
         </p>
 
         <div class="input-group mb-3">
@@ -89,9 +99,18 @@
 
     <div class="form-group">
         <label for="">Videos</label>
-        <p>
-            <small>Please input URL (URL should include https://)</small>
+
+        <p><small><i>Share links to your company videos (e.g., company profile, product demos, project highlights). The
+                    Main Video field is for the key video content you want to feature in your profile.
+                </i></small>
+            <br>
+            <small>
+                <i>
+                    Please input URL (URL should include https://)
+                </i>
+            </small>
         </p>
+
 
         @for ($i = 0; $i < 4; $i++)
             <div class="input-group mb-3">

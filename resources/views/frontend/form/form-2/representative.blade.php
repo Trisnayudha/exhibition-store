@@ -1,4 +1,12 @@
 <div class="container mt-5">
+    <p>
+        <small>
+            <i>
+                This section will display your company representative with details including their photo, name, and job
+                title.
+            </i>
+        </small>
+    </p>
     <div class="logger-representative">
 
     </div>

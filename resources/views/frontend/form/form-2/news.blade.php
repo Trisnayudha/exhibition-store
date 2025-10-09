@@ -1,4 +1,12 @@
 <div class="container mt-5">
+    <p>
+        <small>
+            <i>
+                Use this section to share company news, press releases, and recent announcements, keeping participants
+                informed about your latest developments, milestones, and important updates.
+            </i>
+        </small>
+    </p>
     <div class="logger-news">
 
     </div>

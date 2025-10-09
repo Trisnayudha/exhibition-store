@@ -1,4 +1,13 @@
 <div class="container mt-5">
+    <p>
+        <small>
+            <i>
+                Upload supporting materials such as brochures, presentations, or downloadable documents that showcase
+                your company and offerings.
+
+            </i>
+        </small>
+    </p>
     <div class="logger-media">
 
     </div>

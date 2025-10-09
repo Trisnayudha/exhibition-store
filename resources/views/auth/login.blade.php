@@ -20,7 +20,7 @@
 <body class="text-center">
     <form class="form-signin" action="{{ route('login') }}" method="POST">
         @csrf
-        <img class="mb-4" src="{{ asset('logo.png') }}" alt="" height="100px">
+        <img class="mb-4" src="{{ asset('logo_2026.png') }}" alt="" height="130px">
         <h1 class="h3 mb-3 font-weight-normal">Please sign in Sponsor & Exhibitor Portal</h1>
 
         <!-- Display errors at the top of the form -->
@@ -51,7 +51,7 @@
 
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-        <p class="mt-5 mb-3 text-muted">&copy; 2024</p>
+        <p class="mt-5 mb-3 text-muted">&copy; 2026</p>
     </form>
 </body>
 

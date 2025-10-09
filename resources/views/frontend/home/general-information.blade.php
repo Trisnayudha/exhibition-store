@@ -14,9 +14,9 @@
                 <div class="card border-info mb-3">
                     <div class="card-body text-info">
                         <h5 class="card-title">Event Details</h5>
-                        <p>Event Title : Indonesia Miner Conference & Exhibition 2025</p>
-                        <p>Date : 10 - 12 June 2025</p>
-                        <p>Venue : The Westin Hotel, Jakarta - Indonesia</p>
+                        <p>Event Title : Indonesia Miner Conference & Exhibition 2026</p>
+                        <p>Date : 5 - 7 May 2026</p>
+                        <p>Venue : The Westin Hotel Jakarta, Indonesia</p>
                     </div>
                 </div>
                 <div class="card border-info mb-3">
@@ -114,18 +114,18 @@
                                     </div>
                                     <div class="card-body text-info text-center">
                                         <p>
-                                            PT. Parama Arsa
+                                            PT. Bestara Pilar Utama
                                         </p>
-                                        <p>Mr. Nugraha Winasis(Inu)</p>
+                                        <p>Mr. Fendi Kristanto (Fendi)</p>
                                         <p>
-                                            <a href="mailto:info@parama-arsa.com"> E: info@parama-arsa.com</a> /
-                                            <a
-                                                href="mailto:parama.arsa.multikreasi@gmail.com">parama.arsa.multikreasi@gmail.com</a>
-
+                                            <a href="mailto:bestarapilarutama01@gmail.com"> E:
+                                                bestarapilarutama01@gmail.com
+                                            </a>
                                         </p>
                                         <p>
-                                            <a href="https://wa.me/+6287777368791" target="_blank">M:
-                                                +6287777368791 </a>
+                                            <a href="https://wa.me/6282118122057" target="_blank">M:
+                                                +6282118122057
+                                            </a>
                                         </p>
                                         <p style="color:white">.</p>
                                     </div>
@@ -159,12 +159,12 @@
                             <div class="col">
                                 <div class="card border-info mb-3">
                                     <div class="card-body text-info">
-                                        <h5 class="card-title">SETUP DAYS</h5>
+                                        <h5 class="card-title">SETUP DAYS - MAY 4, 2026</h5>
                                         <div class="row">
                                             <div class="col-6">
-                                                <p><b>June 9, 2025</b></p>
-                                                <p>Set Up by Stand Contractor</p>
                                                 <p><b>12.00 AM - 12.00 PM (Jakarta Time)</b></p>
+                                                <p>Set Up by Stand Contractor</p>
+                                                <p><b>05:00 PM - 12:00 AM (Jakarta Time)</b></p>
                                                 <p>Set Up by Exhibitor</p>
                                                 <p><b>05:00 PM - 12:00 AM (Jakarta Time)</b></p>
                                             </div>
@@ -175,22 +175,22 @@
                         </div>
                         <div class="card border-info mb-3">
                             <div class="card-body text-info">
-                                <h5 class="card-title">SHOW DAYS</h5>
-                                <p>Registration will be open at 7 AM every day.</p>
-                                <p><b>June 10, 2025</b></p>
-                                <p>08.00 AM - 05.00 PM (Jakarta Time): Conference & Exhibition Day 1</p>
-                                <p><b>June 11, 2025</b></p>
-                                <p>08.30 AM - 05.00 PM (Jakarta Time): Conference & Exhibition Day 2</p>
-                                <p><b>June 12, 2025</b></p>
-                                <p>08.30 AM - 05.00 PM (Jakarta Time): Conference & Exhibition Day 3</p>
+                                <h5 class="card-title">SHOW DAYS - Registration will be open at 07.00 AM every day.</h5>
+                                <p><b>Day 1 - May 5, 2026</b></p>
+                                <p>08.00 AM - 05.00 PM (Jakarta Time) <br> Conference & Exhibition Day 1</p>
+                                <p><b>Day 2 - May 6, 2026</b></p>
+                                <p>08.30 AM - 05.00 PM (Jakarta Time) <br> Conference & Exhibition Day 2</p>
+                                <p><b>Day 3 - May 7, 2026</b></p>
+                                <p>08.30 AM - 05.00 PM (Jakarta Time) <br> Conference & Exhibition Day 3</p>
                             </div>
                         </div>
                         <div class="card border-info mb-3">
                             <div class="card-body text-info">
-                                <h5 class="card-title">DISMANTLING DAY</h5>
-                                <p><b>June 12, 2025</b></p>
-                                <p>05.00 PM - 9.00 PM (Jakarta Time): Dismissal Booth Display</p>
-                                <p><small><i>No exhibits may be dismantled prior to closing time</i></small></p>
+                                <h5 class="card-title">DISMANTLING DAY - MAY 7, 2026</h5>
+                                <p>05.00 PM - 9.00 PM (Jakarta Time)</p>
+                                <p>Dismissal Booth Display
+                                </p>
+                                <p><small><i>⚠️ No exhibits may be dismantled prior to closing time</i></small></p>
                             </div>
                         </div>
                     </div>

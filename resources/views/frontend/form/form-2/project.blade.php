@@ -1,4 +1,12 @@
 <div class="container mt-5">
+    <p>
+        <small>
+            <i>
+                Showcase key projects your company has delivered or is actively involved in to highlight your
+                capabilities
+            </i>
+        </small>
+    </p>
     <div class="logger-project">
 
     </div>

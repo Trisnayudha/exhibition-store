@@ -4,34 +4,48 @@
     <div class="container-fluid mt-2">
         <div class="card">
             <div class="card-body">
-                <img src="https://sin1.contabostorage.com/ee5317510fad4e33b9e308839348b77b:indonesiaminer/web/img/topbannerwestin.png"
-                    alt="" width="100%" style="border-radius:20px" height="0%" class="mb-2">
+                <img src="{{ asset('images/homepage.png') }}" alt="" width="100%" style="border-radius:20px"
+                    height="0%" class="mb-2">
                 <div class="alert alert-primary" role="alert">
-                    <h4 class="alert-heading"> Welcome to the Indonesia Miner Conference & Exhibition 2025 Sponsor &
-                        Exhibitor Portal - your
-                        all-in-one platform for submitting key information related to your participation package.</h4>
+                    <h4 class="alert-heading"> Welcome to the Sponsor & Exhibitor Portal for Indonesia Miner Conference &
+                        Exhibition 2026!
+                    </h4>
                     <p>
-                        This platform also allows you to purchase additional event passes at a special discounted rate, as
-                        well
-                        as rent exhibition items, ensuring you have everything you need before the event days.
+
+                        This portal is your central hub for managing all aspects of your participation in the event.
+
                     </p>
                     <p>
-                        Please note that each form has its own deadline. Kindly ensure that you complete and submit them
-                        before
-                        the specified date. If you encounter any issues requiring a late submission, we ask that you notify
-                        our
-                        operational team promptly, as delays in submission may affect the processing timeline.
+                        Here, you can:
                     </p>
+                    <ul>
+                        <li>
+                            Submit all necessary details and key information related to your package.
+                        </li>
+                        <li>
+                            Purchase additional event passes at special discounted rates to bring more team members or
+                            guests to the conference.
+                        </li>
+                        <li>
+                            Arrange extra exhibition needs (such as furniture, equipment, or other booth essentials) not
+                            included in your participation package.
+                        </li>
+                    </ul>
                     <p>
-                        In addition to the above, we are excited about your participation in our upcoming event. We truly
-                        appreciate your support and attention to this matter.
+                        🔔 Important:
+                        <br>
+                        Each form comes with its own deadline. Please ensure all submissions are completed on time. If you
+                        foresee any delays or need help or an extension, just let our operational team know.
+
+                    </p>
+                    <p>We’re thrilled to have you on board and truly appreciate your involvement in the event!
                     </p>
                     <hr>
                     <p style="margin-bottom: 0px;">
                         The Operational Team
                     </p>
                     <p style="margin-top: 0px">
-                        Indonesia Miner Conference & Exhibition 2025
+                        Indonesia Miner Conference & Exhibition 2026
                     </p>
                 </div>
                 <h1>Form Progress</h1>
