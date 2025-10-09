@@ -100,9 +100,11 @@
                                             <div id="epFour" class="collapse" aria-labelledby="eventPassThree"
                                                 data-parent="#eventPass">
                                                 <div class="card-body">
-                                                    To collect your badge, please show the barcode we send to your
-                                                    registered email at the registration area starts June 9, 2025 at 5 pm
-                                                    (Jakarta time).
+                                                    To collect your badge, please present the barcode included in your
+                                                    e-ticket, which has been sent to your registered email. Badge collection
+                                                    begins on May 4, 2026, at 5:00 PM (Jakarta time) at the registration
+                                                    area.
+
                                                 </div>
                                             </div>
                                         </div>
@@ -376,7 +378,7 @@
                                                 data-parent="#IMD">
                                                 <div class="card-body">
                                                     Your Online Directory profile will be available for viewing starting on
-                                                    June 9, 2025 until July 9, 2025.
+                                                    May 4, 2026 until June 4, 2026.
                                                 </div>
                                             </div>
                                         </div>

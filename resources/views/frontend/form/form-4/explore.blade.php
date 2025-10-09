@@ -1,52 +1,20 @@
 <section id="delegate-pass">
-    <h4>Mining Pass</h4>
+    <h4>Explore Pass</h4>
     <div class="alert alert-info" role="alert">
-        <p>Your Wishlist includes representatives who meet the Mining Pass criteria that you'd like us to invite on your
-            company’s behalf to attend Indonesia Miner Conference & Exhibition 2026.
+        <p>Planning to bring someone from your network such as a business partner, agent, or principal to the Indonesia
+            Miner Conference & Exhibition 2026?
         </p>
-        <p>Our team will manage the entire process - from sending invitations and handling follow-ups to keeping you
-            updated with regular progress reports. The Invitation Wishlist submitted will be assessed before proceeding
-            with the invitation process. After the assessment, we will inform you which invitations are approved for
-            processing and which cannot be accommodated.
-        </p>
-        <hr>
-        <p>
-            Please add the names of the representatives you wish to invite/ include in your wishlist. Invitations will
-            only be processed for individuals from the following company categories who meet the Mining Pass criteria:
 
-        </p>
-        <ul>
-            <li>
-                Mining Companies (Coal & Minerals)
-            </li>
-            <li>
-                Smelter Companies
-            </li>
-            <li>
-                Power Plant Companies
-            </li>
-            <li>
-                Mining Contractors
-            </li>
-        </ul>
-        <p>
-            Wishlist entries that meet the criteria will be invited. Upon confirmation, they will receive a Mining Pass
-            granting 3-day access to Indonesia Miner Conference & Exhibition 2026.
-
-        </p>
-        <b>Wishlist Detail</b>
-        <p>
-            For optimal processing, please provide Company Name, Full Name, Job Title, Email, and Mobile Number. Should
-            any details be missing, the minimum requirements are Company Name and Job Title. Please note, incomplete
-            data may result in longer processing times as we support filling in missing information.
-
+        <p>Provide their details here. We'll issue them an Explore Pass, which provides 3-day access to the exhibition
+            area only. This pass does not include entry to conference sessions or networking functions such as coffee
+            breaks and lunch.
         </p>
     </div>
     <div class="alert alert-danger" role="alert">
         Please Note: Company, Name and Job Title will be printed on the badge
     </div>
-    <div class="logger-mining"></div>
-    <button class="btn btn-primary mb-2" onclick="tambahMining()">Upload Data</button>
+    <div class="logger-explore"></div>
+    <button class="btn btn-primary mb-2" onclick="tambahExplore()">Upload Data</button>
     <div class="table-responsive">
 
         <table class="table">
@@ -56,14 +24,14 @@
                     <th>Created at</th>
                 </tr>
             </thead>
-            <tbody id="tabelMining">
+            <tbody id="tabelExplore">
                 <!-- Isi tabel akan ditambahkan secara dinamis di sini -->
             </tbody>
         </table>
     </div>
     @if (!empty($progress))
         <div class="mt-5">
-            <h2>Progress Reporting Mining Pass</h2>
+            <h2>Progress Reporting Explore Pass</h2>
 
             <div class="alert alert-warning alert-dismissible fade show" role="alert">
                 Last update :
@@ -87,12 +55,12 @@
 
 
 <!-- Modal Part 1 -->
-<div class="modal fade" id="miningModal" tabindex="-1" role="dialog" aria-labelledby="addminingModalLabel"
+<div class="modal fade" id="exploreModal" tabindex="-1" role="dialog" aria-labelledby="addexploreModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="addminingModalLabel">Add Mining Pass</h5>
+                <h5 class="modal-title" id="addexploreModalLabel">Add Explore Pass</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -104,7 +72,7 @@
                         <p>Please Note: Before uploading an Excel file, make sure to use the provided Excel file
                             template.</p>
 
-                        <a href="{{ asset('form4/IM2025_Mining_Pass_Form.xlsx') }}" class="btn btn-info text-white"
+                        <a href="{{ asset('form4/IM2026_Explore_Invitation.xlsx') }}" class="btn btn-info text-white"
                             download>EXCEL TEMPLATE: access here</a>
                     </div>
                     <div class="form-group">
@@ -124,16 +92,16 @@
 <script>
     // Load data on page load
     $(document).ready(function() {
-        loadMining();
-        loadLogMining();
+        loadExplore();
+        loadLogExplore();
     });
 
     // Function to open the input modal
-    function tambahMining() {
-        $('#miningModal').modal('show');
+    function tambahExplore() {
+        $('#exploreModal').modal('show');
     }
 
-    function hapusMining(index) {
+    function hapusExplore(index) {
         var csrfToken = $('meta[name="csrf-token"]').attr('content');
 
         // Konfirmasi pengguna sebelum menghapus
@@ -149,14 +117,14 @@
                 // Kirim permintaan penghapusan ke server menggunakan Ajax
                 $.ajax({
                     type: 'DELETE',
-                    url: '{{ url('/mining') }}/' + index,
+                    url: '{{ url('/explore') }}/' + index,
                     data: {
                         _token: csrfToken
                     },
                     success: function(response) {
                         console.log('Data berhasil dihapus:', response);
-                        loadMining();
-                        loadLogMining();
+                        loadExplore();
+                        loadLogExplore();
                     },
                     error: function(error) {
                         console.error('Error:', error);
@@ -166,7 +134,7 @@
         });
     }
 
-    function simpanMining() {
+    function simpanExplore() {
         // File Excel yang dipilih
         var fileInput = $('#file_excel')[0].files[0];
 
@@ -191,7 +159,7 @@
         // Kirim data ke server menggunakan Ajax dengan FormData
         $.ajax({
             type: 'POST',
-            url: '{{ url('/mining') }}',
+            url: '{{ url('/explore') }}',
             data: formData,
             processData: false,
             contentType: false,
@@ -200,8 +168,8 @@
             },
             success: function(response) {
                 console.log('Data berhasil disimpan:', response);
-                loadMining();
-                loadLogMining();
+                loadExplore();
+                loadLogExplore();
                 $('#miningModal').modal('hide');
 
                 // Membersihkan inputan modal
@@ -217,14 +185,14 @@
 
 
 
-    function loadMining() {
+    function loadExplore() {
         // Clear existing table rows
-        $('#tabelMining').empty();
+        $('#tabelExplore').empty();
 
         // Retrieve data from the server using Ajax
         $.ajax({
             type: 'GET',
-            url: '{{ url('/mining') }}', // Replace with the correct API URL
+            url: '{{ url('/explore') }}', // Replace with the correct API URL
             success: function(response) {
                 var data = response.data;
 
@@ -261,7 +229,7 @@
                         '</tr>';
 
                     // Append the row to the table body
-                    $('#tabelMining').append(row);
+                    $('#tabelExplore').append(row);
                 }
             },
             error: function(error) {

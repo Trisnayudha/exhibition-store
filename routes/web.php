@@ -96,6 +96,7 @@ Route::resource('exhibitor', ExhibitorController::class);
 Route::post('exhibitor/additional', [ExhibitorController::class, 'storeAdditional']);
 Route::resource('working', WorkingController::class);
 Route::resource('mining', MiningController::class);
+Route::resource('explore', MiningController::class);
 Route::resource('additional', AdditionalController::class);
 
 Route::post('promotional/advertisement', [PromotionalController::class, 'advertisement']);

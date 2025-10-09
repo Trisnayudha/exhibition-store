@@ -20,7 +20,7 @@
                     <h1>ACCOMMODATION</h1>
                     </p>
                     <div class="text-center">
-                        OFFICIAL HOTEL OF THE INDONESIA MINER 2025
+                        OFFICIAL HOTEL OF THE INDONESIA MINER 2026
                         <div>
                             <img src="https://indonesiaminer.com/img/logowestin.png" alt="" height="70"
                                 class="mt-2">
@@ -31,7 +31,7 @@
                         city’s leading business, commercial, and shopping district. Its central location gives guests of the
                         hotel an advantage during sightseeing, with many
                         places of interest and tourist attractions located within close proximity to the hotel.</p>
-                    <p>Please find the special room rate for Indonesia Miner 2025 Participants</p>
+                    <p>Please find the special room rate for Indonesia Miner 2026 Participants</p>
                     <div class="row">
                         <div class="col" style="max-width: 25rem">
                             <img src="https://indonesiaminer.com/img/BEDROOM.jpg" alt="" height="250">
@@ -40,7 +40,7 @@
 
                         <div class="col">
                             <p><b>Westin Room *</b></p>
-                            <p>IDR 3.000.000 net / room / night</p>
+                            <p>IDR 3.100.000 net / room / night</p>
                             <p>Inclusive of:</p>
                             <ul>
                                 <li>
@@ -51,13 +51,13 @@
                                     jacuzzi</li>
                             </ul>
                             <p>Please book through the following link</p>
-                            <a href="https://indonesiaminer.com/westin/booking" target="_blank">INDONESIA MINER 2025: The
+                            <a href="https://indonesiaminer.com/westin/booking" target="_blank">INDONESIA MINER 2026: The
                                 Westin Hotel
                                 Jakarta</a>
                         </div>
                     </div>
                     <hr>
-                    <p>Accommodation Options near Indonesia Miner 2025 Venue</p>
+                    <p>Accommodation Options near Indonesia Miner 2026 Venue</p>
                     <div class="row">
                         <div class="col" style="max-width: 25rem">
                             <img src="https://static51.com-hotel.com/uploads/hotel/60134/photo/js-luwansa-hotel-convention-center_15572948901.jpg"
@@ -70,12 +70,12 @@
                             There is also a special price for Indonesia Miner participants, which you can reserve through
                             the following link:
                             <p>
-                                <a href="https://indonesiaminer.com/luwansa/booking" target="_blank">INDONESIA MINER 2025:
+                                <a href="https://indonesiaminer.com/luwansa/booking" target="_blank">INDONESIA MINER 2026:
                                     JS
                                     Luwansa Hotel
                                     Jakarta</a>
                             </p>
-                            <p>IDR 1.300.000 net / room /night
+                            <p>IDR X.XXX.XXX net / room /night
                             </p>
                             <p>Inclusive of:</p>
                             <ul>

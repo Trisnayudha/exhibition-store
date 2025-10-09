@@ -39,7 +39,13 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="pills-wishlist-tab" data-toggle="pill" href="#pills-wishlist"
-                                role="tab" aria-controls="pills-wishlist" aria-selected="false">Mining Pass</a>
+                                role="tab" aria-controls="pills-wishlist" aria-selected="false">Wishlist for Mining
+                                Pass</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="pills-explore-tab" data-toggle="pill" href="#pills-explore"
+                                role="tab" aria-controls="pills-explore" aria-selected="false">Explore Pass
+                            </a>
                         </li>
                     </ul>
 
@@ -114,7 +120,8 @@
                         </div>
 
                         <!-- Tab Mining Pass -->
-                        <div class="tab-pane fade" id="pills-wishlist" role="tabpanel" aria-labelledby="pills-wishlist-tab">
+                        <div class="tab-pane fade" id="pills-wishlist" role="tabpanel"
+                            aria-labelledby="pills-wishlist-tab">
                             <div class="row">
                                 <div class="col-3">
                                     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
@@ -132,6 +139,53 @@
                                         <div class="tab-pane fade show active" id="v-pills-visitor" role="tabpanel"
                                             aria-labelledby="v-pills-visitor-tab">
                                             @include('frontend.form.form-4.mining')
+                                        </div>
+                                    </div>
+
+                                    @if ($isLocked)
+                                        <!-- Overlay hanya di area form mining pass -->
+                                        <div class="form-lock-overlay"
+                                            style="
+                                            position: absolute;
+                                            top:0; left:0; width:100%; height:100%;
+                                            display:flex; flex-direction:column; justify-content:center; align-items:center;
+                                            background: rgba(0,0,0,0.5);
+                                            color:#fff;
+                                            z-index: 999;
+                                        ">
+                                            <i class="fas fa-lock" style="font-size:80px;"></i>
+                                            <h3 style="margin-top:20px; text-align:center;">
+                                                This form is locked because the deadline has passed.
+                                            </h3>
+                                            <p style="max-width:70%; text-align:center;">
+                                                Please contact our operations team if you need further assistance.
+                                                You can still navigate between sections using the Next/Previous buttons.
+                                            </p>
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="pills-explore" role="tabpanel"
+                            aria-labelledby="pills-explore-tab">
+                            <div class="row">
+                                <div class="col-3">
+                                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
+                                        aria-orientation="vertical">
+                                        <a class="nav-link active" id="v-pills-visitor-tab" data-toggle="pill"
+                                            href="#v-pills-visitor" role="tab" aria-controls="v-pills-visitor"
+                                            aria-selected="true">Explore Pass</a>
+                                    </div>
+                                </div>
+
+                                <!-- Area form di mining pass yang akan dikunci jika $isLocked true -->
+                                <div class="col-9"
+                                    style="position: relative; @if ($isLocked) pointer-events:none; opacity:0.7; @endif">
+                                    <div class="tab-content" id="v-pills-tabContent">
+                                        <div class="tab-pane fade show active" id="v-pills-visitor" role="tabpanel"
+                                            aria-labelledby="v-pills-visitor-tab">
+                                            @include('frontend.form.form-4.explore')
                                         </div>
                                     </div>
 
