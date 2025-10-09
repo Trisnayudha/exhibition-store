@@ -19,7 +19,7 @@ class MiningController extends Controller
     public function index()
     {
         $id = auth()->id();
-        $data = ExhibitionMiningPass::where('company_id', $id)->get();
+        $data = ExhibitionMiningPass::where('company_id', $id)->where('type', 'mining')->get();
         return response()->json(['data' => $data]);
     }
 
@@ -44,6 +44,7 @@ class MiningController extends Controller
         $save = new ExhibitionMiningPass();
         $save->file = $db;
         $save->company_id = $id;
+        $save->type = 'mining';
         $save->save();
 
         // Simpan log jika perlu

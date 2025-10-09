@@ -19,7 +19,7 @@ class ExploreController extends Controller
     public function index()
     {
         $id = auth()->id();
-        $data = ExhibitionMiningPass::where('company_id', $id)->get();
+        $data = ExhibitionMiningPass::where('company_id', $id)->where('type', 'explore')->get();
         return response()->json(['data' => $data]);
     }
 
@@ -44,6 +44,7 @@ class ExploreController extends Controller
         $save = new ExhibitionMiningPass();
         $save->file = $db;
         $save->company_id = $id;
+        $save->type = 'explore';
         $save->save();
 
         // Simpan log jika perlu
