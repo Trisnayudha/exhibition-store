@@ -166,7 +166,6 @@
                                                 <p>Set Up by Stand Contractor</p>
                                                 <p><b>05:00 PM - 12:00 AM (Jakarta Time)</b></p>
                                                 <p>Set Up by Exhibitor</p>
-                                                <p><b>05:00 PM - 12:00 AM (Jakarta Time)</b></p>
                                             </div>
                                         </div>
                                     </div>

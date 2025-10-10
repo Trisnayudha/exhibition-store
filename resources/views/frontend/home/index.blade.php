@@ -4,7 +4,7 @@
     <div class="container-fluid mt-2">
         <div class="card">
             <div class="card-body">
-                <img src="{{ asset('images/homepage.png') }}" alt="" width="100%" style="border-radius:20px"
+                <img src="{{ asset('images/homepage_new.png') }}" alt="" width="100%" style="border-radius:20px"
                     height="0%" class="mb-2">
                 <div class="alert alert-primary" role="alert">
                     <h4 class="alert-heading"> Welcome to the Sponsor & Exhibitor Portal for Indonesia Miner Conference &

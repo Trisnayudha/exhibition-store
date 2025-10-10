@@ -278,7 +278,7 @@
                     <use xlink:href="#bootstrap"></use>
                 </svg>
             </a>
-            <span class="mb-3 mb-md-0 text-muted">© 2024 PT Media Mitrakarya Indonesia</span>
+            <span class="mb-3 mb-md-0 text-muted">© 2025 PT Media Mitrakarya Indonesia</span>
         </div>
 
         <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
