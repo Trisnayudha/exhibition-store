@@ -430,33 +430,35 @@
     }
 
     function simpanAdditional() {
-        var companyType = $('#company_typeAdditional').val();
-        var companyName = $('#companyAdditional').val();
-        var phoneCode = $('#phone_codeAdditional').val();
-        var phoneNumber = $('#phoneAdditional').val();
-        var name = $('#nameAdditional').val();
-        var email = $('#emailAdditional').val();
-        var position = $('#positionAdditional').val();
-        var address = $('#addressAdditional').val();
-        var city = $('#cityAdditional').val();
-        var country = $('#countryAdditional').val();
-        var postalCode = $('#postalCodeAdditional').val();
+        const companyType = $('#company_typeAdditional').val();
+        const companyName = $('#companyAdditional').val();
+        const phoneCode = $('#phone_codeAdditional').val();
+        const phoneNumber = $('#phoneAdditional').val();
+        const name = $('#nameAdditional').val();
+        const email = $('#emailAdditional').val();
+        const position = $('#positionAdditional').val();
+        const address = $('#addressAdditional').val();
+        const city = $('#cityAdditional').val();
+        const country = $('#countryAdditional').val();
+        const postalCode = $('#postalCodeAdditional').val();
+        // Optional: if you send events_id from the form
+        const eventsId = $('#eventsIdAdditional')
+            .val(); // e.g. <input type="hidden" id="eventsIdAdditional" value="14" />
 
-        // Validasi input
+        // Basic validation (client-side)
         if (!companyType || !companyName || !phoneCode || !phoneNumber || !name || !email || !position) {
-            // Menampilkan swal menggunakan Swal 2
             Swal.fire({
-                title: 'Peringatan',
-                text: 'Harap isi semua kolom yang diperlukan!',
+                title: 'Incomplete Information',
+                text: 'Please fill out all required fields before submitting.',
                 icon: 'warning',
                 confirmButtonText: 'OK'
             });
             return;
         }
 
-        var csrfToken = $('meta[name="csrf-token"]').attr('content');
+        const csrfToken = $('meta[name="csrf-token"]').attr('content');
 
-        var formData = new FormData();
+        const formData = new FormData();
         formData.append('company_type', companyType);
         formData.append('company_name', companyName);
         formData.append('phone_code', phoneCode);
@@ -468,44 +470,89 @@
         formData.append('city', city);
         formData.append('country', country);
         formData.append('post_code', postalCode);
-        $('.loading-wrapper, .overlay').show(); // Menampilkan loader dan overlay
+        if (eventsId) formData.append('events_id', eventsId);
 
-        // Kirim data ke server menggunakan Ajax dengan FormData
+        $('.loading-wrapper, .overlay').show();
+
         $.ajax({
-            type: 'POST',
-            url: '{{ url('/additional') }}',
-            data: formData,
-            processData: false,
-            contentType: false,
-            headers: {
-                'X-CSRF-TOKEN': csrfToken
-            },
-            success: function(response) {
-                console.log('Data berhasil disimpan:', response);
+                type: 'POST',
+                url: '/additional',
+                data: formData,
+                processData: false,
+                contentType: false,
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken
+                },
+                dataType: 'json'
+            })
+            .done(function(res) {
+                Swal.fire({
+                    title: 'Saved Successfully',
+                    text: res?.message || 'The additional delegate has been added successfully.',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                });
+
                 loadAdditional();
                 loadLogAdditional();
                 $('#additionalModal').modal('hide');
 
-                // Membersihkan inputan modal
-                $('#company_typeDelegate').val('');
-                $('#companyDelegate').val('');
-                $('#phone_codeDelegate').val('');
-                $('#phoneDelegate').val('');
-                $('#nameDelegate').val('');
-                $('#emailDelegate').val('');
-                $('#positionDelegate').val('');
-                $('#addressDelegate').val('');
-                $('#cityDelegate').val('');
-                $('#countryDelegate').val('');
-                $('#postalCodeDelegate').val('');
-                delegateCart(response.payment, response.user);
-                $('.loading-wrapper, .overlay').hide(); // Menampilkan loader dan overlay
+                // Clear inputs (Additional form)
+                $('#company_typeAdditional').val('');
+                $('#companyAdditional').val('');
+                $('#phone_codeAdditional').val('');
+                $('#phoneAdditional').val('');
+                $('#nameAdditional').val('');
+                $('#emailAdditional').val('');
+                $('#positionAdditional').val('');
+                $('#addressAdditional').val('');
+                $('#cityAdditional').val('');
+                $('#countryAdditional').val('');
+                $('#postalCodeAdditional').val('');
 
-            },
-            error: function(error) {
-                console.error('Error:', error);
-            }
-        });
+                // If backend returns payment & user, keep this
+                if (typeof delegateCart === 'function') {
+                    try {
+                        delegateCart(res?.data?.payment || res?.payment, res?.data?.user || res?.user);
+                    } catch (e) {}
+                }
+            })
+            .fail(function(xhr) {
+                const status = xhr.status;
+                let msg = 'An unexpected error occurred. Please try again later.';
+
+                if (status === 0) {
+                    msg = 'Network error. Please check your internet connection.';
+                } else if (status === 422) {
+                    const r = xhr.responseJSON || {};
+                    if (r.errors && typeof r.errors === 'object') {
+                        const messages = Object.values(r.errors).flat().slice(0, 3).join(' ');
+                        msg = messages || r.message || 'Some fields are invalid. Please review your input.';
+                    } else {
+                        msg = r.message || 'Some fields are invalid. Please review your input.';
+                    }
+                } else if (status === 409) {
+                    msg = (xhr.responseJSON && xhr.responseJSON.message) ||
+                        'This email is already associated with an active delegate for this event under your company.';
+                } else if (status === 401 || status === 403) {
+                    msg = 'You are not authorized to perform this action. Please sign in again.';
+                } else if (status >= 500) {
+                    msg = (xhr.responseJSON && xhr.responseJSON.message) ||
+                        'A server error occurred. Please contact support if the issue persists.';
+                } else {
+                    msg = (xhr.responseJSON && (xhr.responseJSON.message || xhr.responseJSON.error)) || msg;
+                }
+
+                Swal.fire({
+                    title: 'Save Failed',
+                    text: msg,
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+            })
+            .always(function() {
+                $('.loading-wrapper, .overlay').hide();
+            });
     }
 
 

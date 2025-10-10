@@ -467,33 +467,32 @@
     }
 
     function simpanDelegate() {
-        var companyType = $('#company_typeDelegate').val();
-        var companyName = $('#companyDelegate').val();
-        var phoneCode = $('#phone_codeDelegate').val();
-        var phoneNumber = $('#phoneDelegate').val();
-        var name = $('#nameDelegate').val();
-        var email = $('#emailDelegate').val();
-        var position = $('#positionDelegate').val();
-        var address = $('#addressDelegate').val();
-        var city = $('#cityDelegate').val();
-        var country = $('#countryDelegate').val();
-        var postalCode = $('#postalCodeDelegate').val();
+        const companyType = $('#company_typeDelegate').val();
+        const companyName = $('#companyDelegate').val();
+        const phoneCode = $('#phone_codeDelegate').val();
+        const phoneNumber = $('#phoneDelegate').val();
+        const name = $('#nameDelegate').val();
+        const email = $('#emailDelegate').val();
+        const position = $('#positionDelegate').val();
+        const address = $('#addressDelegate').val();
+        const city = $('#cityDelegate').val();
+        const country = $('#countryDelegate').val();
+        const postalCode = $('#postalCodeDelegate').val();
 
-        // Validasi input
+        // Basic validation (client-side)
         if (!companyType || !companyName || !phoneCode || !phoneNumber || !name || !email || !position) {
-            // Menampilkan swal menggunakan Swal 2
             Swal.fire({
-                title: 'Peringatan',
-                text: 'Harap isi semua kolom yang diperlukan!',
+                title: 'Incomplete Information',
+                text: 'Please fill out all required fields before submitting.',
                 icon: 'warning',
                 confirmButtonText: 'OK'
             });
             return;
         }
 
-        var csrfToken = $('meta[name="csrf-token"]').attr('content');
+        const csrfToken = $('meta[name="csrf-token"]').attr('content');
 
-        var formData = new FormData();
+        const formData = new FormData();
         formData.append('company_type', companyType);
         formData.append('company_name', companyName);
         formData.append('phone_code', phoneCode);
@@ -506,25 +505,32 @@
         formData.append('country', country);
         formData.append('post_code', postalCode);
 
-        // Kirim data ke server menggunakan Ajax dengan FormData
-        $('.loading-wrapper, .overlay').show(); // Menampilkan loader dan overlay
+        $('.loading-wrapper, .overlay').show();
 
         $.ajax({
-            type: 'POST',
-            url: '{{ url('/delegate') }}',
-            data: formData,
-            processData: false,
-            contentType: false,
-            headers: {
-                'X-CSRF-TOKEN': csrfToken
-            },
-            success: function(response) {
-                console.log('Data berhasil disimpan:', response);
+                type: 'POST',
+                url: '/delegate',
+                data: formData,
+                processData: false,
+                contentType: false,
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken
+                },
+                dataType: 'json'
+            })
+            .done(function(res) {
+                Swal.fire({
+                    title: 'Saved Successfully',
+                    text: res?.message || 'The delegate has been added successfully.',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                });
+
                 loadDelegate();
                 loadLogDelegate();
                 $('#delegateModal').modal('hide');
 
-                // Membersihkan inputan modal
+                // Clear inputs only on success
                 $('#company_typeDelegate').val('');
                 $('#companyDelegate').val('');
                 $('#phone_codeDelegate').val('');
@@ -536,14 +542,51 @@
                 $('#cityDelegate').val('');
                 $('#countryDelegate').val('');
                 $('#postalCodeDelegate').val('');
-                $('.loading-wrapper, .overlay').hide(); // Menampilkan loader dan overlay
+            })
+            .fail(function(xhr) {
+                const status = xhr.status;
+                let msg = 'An unexpected error occurred. Please try again later.';
 
-            },
-            error: function(error) {
-                console.error('Error:', error);
-            }
-        });
+                if (status === 0) {
+                    msg = 'Network error. Please check your internet connection.';
+                } else if (status === 422) {
+                    // Laravel validation error
+                    const r = xhr.responseJSON || {};
+                    if (r.errors && typeof r.errors === 'object') {
+                        // Combine first few messages for clarity
+                        const messages = Object.values(r.errors)
+                            .flat()
+                            .slice(0, 3)
+                            .join(' ');
+                        msg = messages || r.message || 'Some fields are invalid. Please review your input.';
+                    } else {
+                        msg = r.message || 'Some fields are invalid. Please review your input.';
+                    }
+                } else if (status === 409) {
+                    // Conflict: duplicate email/payment etc.
+                    msg = (xhr.responseJSON && xhr.responseJSON.message) ||
+                        'This email is already associated with an existing delegate. Please use a different email.';
+                } else if (status === 401 || status === 403) {
+                    msg = 'You are not authorized to perform this action. Please sign in again.';
+                } else if (status >= 500) {
+                    msg = (xhr.responseJSON && xhr.responseJSON.message) ||
+                        'A server error occurred. Please contact support if the issue persists.';
+                } else {
+                    msg = (xhr.responseJSON && (xhr.responseJSON.message || xhr.responseJSON.error)) || msg;
+                }
+
+                Swal.fire({
+                    title: 'Save Failed',
+                    text: msg,
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+            })
+            .always(function() {
+                $('.loading-wrapper, .overlay').hide();
+            });
     }
+
 
 
     function loadDelegate() {
