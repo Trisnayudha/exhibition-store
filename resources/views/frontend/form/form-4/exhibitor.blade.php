@@ -598,33 +598,36 @@
     }
 
     function simpanExhibitor() {
-        var companyType = $('#company_typeExhibitor').val();
-        var companyName = $('#companyExhibitor').val();
-        var phoneCode = $('#phone_codeExhibitor').val();
-        var phoneNumber = $('#phoneExhibitor').val();
-        var name = $('#nameExhibitor').val();
-        var email = $('#emailExhibitor').val();
-        var position = $('#positionExhibitor').val();
-        var address = $('#addressExhibitor').val();
-        var city = $('#cityExhibitor').val();
-        var country = $('#countryExhibitor').val();
-        var postalCode = $('#postalCodeExhibitor').val();
-        var upgradeExhibitor = $('#upgradeExhibitor').is(':checked');
-        // Validasi input
+        const companyType = $('#company_typeExhibitor').val();
+        const companyName = $('#companyExhibitor').val();
+        const phoneCode = $('#phone_codeExhibitor').val();
+        const phoneNumber = $('#phoneExhibitor').val();
+        const name = $('#nameExhibitor').val();
+        const email = $('#emailExhibitor').val();
+        const position = $('#positionExhibitor').val();
+        const address = $('#addressExhibitor').val();
+        const city = $('#cityExhibitor').val();
+        const country = $('#countryExhibitor').val();
+        const postalCode = $('#postalCodeExhibitor').val();
+        const upgradeExhibitor = $('#upgradeExhibitor').is(':checked'); // boolean -> FormData => "true"/"false"
+        // Optional: if you pass event id from form
+        const eventsId = $('#eventsIdExhibitor')
+    .val(); // e.g. <input type="hidden" id="eventsIdExhibitor" value="14" />
+
+        // Basic validation (client-side)
         if (!companyType || !companyName || !phoneCode || !phoneNumber || !name || !email || !position) {
-            // Menampilkan swal menggunakan Swal 2
             Swal.fire({
-                title: 'Peringatan',
-                text: 'Harap isi semua kolom yang diperlukan!',
+                title: 'Incomplete Information',
+                text: 'Please fill out all required fields before submitting.',
                 icon: 'warning',
                 confirmButtonText: 'OK'
             });
             return;
         }
 
-        var csrfToken = $('meta[name="csrf-token"]').attr('content');
+        const csrfToken = $('meta[name="csrf-token"]').attr('content');
 
-        var formData = new FormData();
+        const formData = new FormData();
         formData.append('company_type', companyType);
         formData.append('company_name', companyName);
         formData.append('phone_code', phoneCode);
@@ -637,50 +640,99 @@
         formData.append('country', country);
         formData.append('post_code', postalCode);
         formData.append('upgrade_exhibitor', upgradeExhibitor);
+        if (eventsId) formData.append('events_id', eventsId);
 
+        // Optional: prevent double submit
+        const $submitBtn = $('#exhibitorSubmitBtn'); // if you have one
+        $submitBtn.prop('disabled', true);
 
-        // Kirim data ke server menggunakan Ajax dengan FormData
-        $('.loading-wrapper, .overlay').show(); // Menampilkan loader dan overlay
+        $('.loading-wrapper, .overlay').show();
 
         $.ajax({
-            type: 'POST',
-            url: '{{ url('/exhibitor') }}',
-            data: formData,
-            processData: false,
-            contentType: false,
-            headers: {
-                'X-CSRF-TOKEN': csrfToken
-            },
-            success: function(response) {
+                type: 'POST',
+                url: '/exhibitor',
+                data: formData,
+                processData: false,
+                contentType: false,
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken
+                },
+                dataType: 'json'
+            })
+            .done(function(res) {
+                Swal.fire({
+                    title: 'Saved Successfully',
+                    text: res?.message || 'The exhibitor has been added successfully.',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                });
+
                 loadExhibitor();
                 loadLogExhibitor();
                 $('#exhibitorModal').modal('hide');
 
-                // Membersihkan inputan modal
-                $('#company_typeDelegate').val('');
-                $('#companyDelegate').val('');
-                $('#phone_codeDelegate').val('');
-                $('#phoneDelegate').val('');
-                $('#nameDelegate').val('');
-                $('#emailDelegate').val('');
-                $('#positionDelegate').val('');
-                $('#addressDelegate').val('');
-                $('#cityDelegate').val('');
-                $('#countryDelegate').val('');
-                $('#postalCodeDelegate').val('');
+                // Clear inputs (Exhibitor form)
+                $('#company_typeExhibitor').val('');
+                $('#companyExhibitor').val('');
+                $('#phone_codeExhibitor').val('');
+                $('#phoneExhibitor').val('');
+                $('#nameExhibitor').val('');
+                $('#emailExhibitor').val('');
+                $('#positionExhibitor').val('');
+                $('#addressExhibitor').val('');
+                $('#cityExhibitor').val('');
+                $('#countryExhibitor').val('');
+                $('#postalCodeExhibitor').val('');
                 $('#upgradeExhibitor').prop('checked', false);
-                if (upgradeExhibitor == true) {
-                    delegateCart(response.payment, response.user);
+
+                // If upgrade, add to cart (use new response shape first, fallback to legacy)
+                if (upgradeExhibitor && typeof delegateCart === 'function') {
+                    try {
+                        const payment = res?.data?.payment || res?.payment;
+                        const user = res?.data?.user || res?.user;
+                        if (payment && user) delegateCart(payment, user);
+                    } catch (e) {}
                 }
-                $('.loading-wrapper, .overlay').hide(); // Menampilkan loader dan overlay
+            })
+            .fail(function(xhr) {
+                const status = xhr.status;
+                let msg = 'An unexpected error occurred. Please try again later.';
 
-            },
-            error: function(error) {
-                console.error('Error:', error);
-            }
-        });
+                if (status === 0) {
+                    msg = 'Network error. Please check your internet connection.';
+                } else if (status === 422) {
+                    const r = xhr.responseJSON || {};
+                    if (r.errors && typeof r.errors === 'object') {
+                        const messages = Object.values(r.errors).flat().slice(0, 3).join(' ');
+                        msg = messages || r.message || 'Some fields are invalid. Please review your input.';
+                    } else {
+                        msg = r.message || 'Some fields are invalid. Please review your input.';
+                    }
+                } else if (status === 409) {
+                    msg = (xhr.responseJSON && xhr.responseJSON.message) ||
+                        'This email is already associated with an active exhibitor record for this event under your company.';
+                } else if (status === 401 || status === 403) {
+                    msg = 'You are not authorized to perform this action. Please sign in again.';
+                } else if (status >= 500) {
+                    msg = (xhr.responseJSON && xhr.responseJSON.message) ||
+                        'A server error occurred. Please contact support if the issue persists.';
+                } else {
+                    msg = (xhr.responseJSON && (xhr.responseJSON.message || xhr.responseJSON.error)) || msg;
+                }
 
+                Swal.fire({
+                    title: 'Save Failed',
+                    text: msg,
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+            })
+            .always(function() {
+                $('.loading-wrapper, .overlay').hide();
+                $submitBtn.prop('disabled', false);
+            });
     }
+
 
     function simpanAdditionalExhibitor() {
         var companyType = $('#additional_company_typeExhibitor').val();

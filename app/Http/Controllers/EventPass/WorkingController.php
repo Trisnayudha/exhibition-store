@@ -18,6 +18,8 @@ class WorkingController extends Controller
         $id = auth()->id();
         $data = Users::leftjoin('payment', 'users.id', 'payment.users_id')
             ->where('payment.company_id', $id)
+            ->where('payment.events_id', 14)
+
             ->where('payment.type', 'Exhibition Working')
             ->orderby('payment.id', 'desc')
             ->select('users.*', 'payment.*', 'users.id as id', 'payment.id as payment_id')->get();
