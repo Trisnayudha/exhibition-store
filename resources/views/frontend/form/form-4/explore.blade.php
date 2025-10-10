@@ -76,12 +76,12 @@
                             download>EXCEL TEMPLATE: access here</a>
                     </div>
                     <div class="form-group">
-                        <input type="file" name="file_excel" id="file_excel" class="form-control">
+                        <input type="file" name="file_excel_explore" id="file_excel_explore" class="form-control">
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" onclick="simpanMining()">Upload</button>
+                <button type="button" class="btn btn-success" onclick="simpanExplore()">Upload</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>
@@ -136,7 +136,7 @@
 
     function simpanExplore() {
         // File Excel yang dipilih
-        var fileInput = $('#file_excel')[0].files[0];
+        var fileInput = $('#file_excel_explore')[0].files[0];
 
         // Validasi file Excel harus dipilih
         if (!fileInput) {
@@ -151,7 +151,7 @@
         }
 
         var formData = new FormData();
-        formData.append('file_excel', fileInput); // Menambahkan file Excel
+        formData.append('file_excel_explore', fileInput); // Menambahkan file Excel
 
         var csrfToken = $('meta[name="csrf-token"]').attr('content');
         $('.loading-wrapper, .overlay').show(); // Menampilkan loader dan overlay
@@ -173,7 +173,7 @@
                 $('#miningModal').modal('hide');
 
                 // Membersihkan inputan modal
-                $('#file_excel').val(''); // Menghapus file input
+                $('#file_excel_explore').val(''); // Menghapus file input
                 $('.loading-wrapper, .overlay').hide(); // Menampilkan loader dan overlay
 
             },
@@ -242,10 +242,10 @@
 
 
 
-    function loadLogMining() {
+    function loadLogExplore() {
         $.ajax({
             type: 'GET',
-            url: '{{ url('mining/log') }}', // Ganti dengan URL API yang sesuai
+            url: '{{ url('explore/log') }}', // Ganti dengan URL API yang sesuai
             success: function(response) {
                 if (response) {
                     // Parse tanggal dari format ISO

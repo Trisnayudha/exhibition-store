@@ -4,6 +4,7 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\EventPass\AdditionalController;
 use App\Http\Controllers\EventPass\DelegateController;
 use App\Http\Controllers\EventPass\ExhibitorController;
+use App\Http\Controllers\EventPass\ExploreController;
 use App\Http\Controllers\EventPass\MiningController;
 use App\Http\Controllers\EventPass\WorkingController;
 use App\Http\Controllers\ExhibitionCartController;
@@ -77,6 +78,7 @@ Route::get('/delegate/log', [DelegateController::class, 'log']);
 Route::get('/exhibitor/log', [ExhibitorController::class, 'log']);
 Route::get('/working/log', [WorkingController::class, 'log']);
 Route::get('/mining/log', [MiningController::class, 'log']);
+Route::get('/explore/log', [ExploreController::class, 'log']);
 Route::get('/additional/log', [AdditionalController::class, 'log']);
 
 //Crud
@@ -96,7 +98,7 @@ Route::resource('exhibitor', ExhibitorController::class);
 Route::post('exhibitor/additional', [ExhibitorController::class, 'storeAdditional']);
 Route::resource('working', WorkingController::class);
 Route::resource('mining', MiningController::class);
-Route::resource('explore', MiningController::class);
+Route::resource('explore', ExploreController::class);
 Route::resource('additional', AdditionalController::class);
 
 Route::post('promotional/advertisement', [PromotionalController::class, 'advertisement']);

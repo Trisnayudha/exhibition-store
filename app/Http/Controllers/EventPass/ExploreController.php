@@ -28,7 +28,7 @@ class ExploreController extends Controller
         $id = auth()->id();
 
         // Ambil data yang diperlukan dari request
-        $file_excel = $request->file('file_excel');
+        $file_excel = $request->file('file_excel_explore');
 
         // Validasi file Excel harus ada
         if (!$file_excel) {
