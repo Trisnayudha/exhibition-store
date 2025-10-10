@@ -41,7 +41,7 @@ class WorkingController extends Controller
         $event_ticket = 71;
         $type = 'Exhibition Working';
         $code_payment = strtoupper(Str::random(7));
-        $events_id = 13;
+        $events_id = 14;
         $package = 'Working Pass';
         $payment_method = 'Exhibition Portal';
         $status = 'Waiting';
@@ -150,7 +150,7 @@ class WorkingController extends Controller
 
     public function destroy($id)
     {
-        $representative = Payment::where('users_id', $id)->where('events_id', 13)->first();
+        $representative = Payment::where('users_id', $id)->where('events_id', 14)->first();
         $representative->delete();
         $company_id = auth()->id();
         $log = ExhibitionLog::where('section', 'working')->where('company_id', $company_id)->first();

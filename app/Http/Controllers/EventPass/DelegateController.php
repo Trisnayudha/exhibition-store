@@ -43,7 +43,7 @@ class DelegateController extends Controller
         $event_ticket = 69;
         $type = 'Exhibition Delegate';
         $code_payment = strtoupper(Str::random(7));
-        $events_id = 13;
+        $events_id = 14;
         $package = 'Delegate Pass';
         $payment_method = 'Exhibition Portal';
         $status = 'Waiting';
@@ -152,7 +152,7 @@ class DelegateController extends Controller
 
     public function destroy($id)
     {
-        $representative = Payment::where('users_id', $id)->where('events_id', 13)->first();
+        $representative = Payment::where('users_id', $id)->where('events_id', 14)->first();
         $representative->delete();
         $company_id = auth()->id();
         $log = ExhibitionLog::where('section', 'delegate')->where('company_id', $company_id)->first();
