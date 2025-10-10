@@ -36,12 +36,13 @@
 
     <div class="form-group">
         <label for=""> Value Propositions</label>
-        <br>
-        <small>
-            <i>
-                Highlight your company’s core strengths that represent your brand.
-            </i>
-        </small>
+        <p>
+            <small>
+                <i>
+                    Highlight your company’s core strengths that represent your brand.
+                </i>
+            </small>
+        </p>
         <input type="text" name="info_one" id="info_one" class="form-control" placeholder="Value Proposition 1"
             value="{{ old('info_one', $data->info_one) }}">
     </div>

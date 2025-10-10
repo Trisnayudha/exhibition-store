@@ -165,7 +165,7 @@
 
                 var image = news.image;
                 if (image) {
-                    $('#news_image_info').attr('href', 'https://indonesiaminer.com/' + news.image);
+                    $('#news_image_info').attr('href', 'https://s3.indonesiaminer.com/web/' + news.image);
                     $('#news_image_info').text('open link');
                 } else {
                     $('#news_image_info').text('');

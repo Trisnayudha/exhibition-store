@@ -190,7 +190,7 @@
 
                 var image = media.image;
                 if (image) {
-                    $('#media_image_info').attr('href', 'https://indonesiaminer.com/' + media.image);
+                    $('#media_image_info').attr('href', 'https://s3.indonesiaminer.com/web/' + media.image);
                     $('#media_image_info').text('open link');
                 } else {
                     $('#media_image_info').text('');
@@ -198,7 +198,7 @@
 
                 var file = media.file;
                 if (file) {
-                    $('#media_file_info').attr('href', 'https://indonesiaminer.com/' + media.file);
+                    $('#media_file_info').attr('href', 'https://s3.indonesiaminer.com/web/' + media.file);
                     $('#media_file_info').text('open link');
                 } else {
                     $('#media_file_info').text('');

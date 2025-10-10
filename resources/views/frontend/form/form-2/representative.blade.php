@@ -348,7 +348,7 @@
                 var data = response.data;
 
                 // Get the image base URL from the configuration
-                var imageBaseUrl = 'https://indonesiaminer.com/';
+                var imageBaseUrl = 'https://s3.indonesiaminer.com/web/';
 
                 // Iterate through the data and append rows to the table
                 for (var i = 0; i < data.length; i++) {

@@ -181,7 +181,8 @@
 
                 var image = product.image;
                 if (image) {
-                    $('#product_image_info').attr('href', 'https://indonesiaminer.com/' + product.image);
+                    $('#product_image_info').attr('href', 'https://s3.indonesiaminer.com/web/' + product
+                        .image);
                     $('#product_image_info').text('open link');
                 } else {
                     $('#product_image_info').text('');
@@ -189,7 +190,8 @@
 
                 var file = product.file;
                 if (file) {
-                    $('#product_file_info').attr('href', 'https://indonesiaminer.com/' + product.file);
+                    $('#product_file_info').attr('href', 'https://s3.indonesiaminer.com/web/' + product
+                        .file);
                     $('#product_file_info').text('open link');
                 } else {
                     $('#product_file_info').text('');

@@ -165,7 +165,8 @@
 
                 var image = project.image;
                 if (image) {
-                    $('#project_image_info').attr('href', 'https://indonesiaminer.com/' + project.image);
+                    $('#project_image_info').attr('href', 'https://s3.indonesiaminer.com/web/' + project
+                        .image);
                     $('#project_image_info').text('open link');
                 } else {
                     $('#project_image_info').text('');

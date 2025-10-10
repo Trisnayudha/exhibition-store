@@ -22,7 +22,7 @@
                     <div class="text-center">
                         OFFICIAL HOTEL OF THE INDONESIA MINER 2026
                         <div>
-                            <img src="https://indonesiaminer.com/img/logowestin.png" alt="" height="70"
+                            <img src="https://s3.indonesiaminer.com/web/img/logowestin.png" alt="" height="70"
                                 class="mt-2">
                         </div>
                     </div>
@@ -34,7 +34,7 @@
                     <p>Please find the special room rate for Indonesia Miner 2026 Participants</p>
                     <div class="row">
                         <div class="col" style="max-width: 25rem">
-                            <img src="https://indonesiaminer.com/img/BEDROOM.jpg" alt="" height="250">
+                            <img src="https://s3.indonesiaminer.com/web/img/BEDROOM.jpg" alt="" height="250">
                             <p><small>*Subject to availability</small></p>
                         </div>
 
@@ -75,7 +75,7 @@
                                     Luwansa Hotel
                                     Jakarta</a>
                             </p>
-                            <p>IDR X.XXX.XXX net / room /night
+                            <p>IDR 1.300.000 net / room /night
                             </p>
                             <p>Inclusive of:</p>
                             <ul>

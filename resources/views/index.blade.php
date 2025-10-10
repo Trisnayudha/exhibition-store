@@ -266,7 +266,7 @@
     </div>
     <div class="overlay" style="display: none;"></div>
     <div class="loading-wrapper" style="display: none;">
-        <img src="https://portal.indonesiaminer.com/logo.png" alt="Logo" class="logo">
+        <img src="https://portal.indonesiaminer.com/logo_2026.png" alt="Logo" class="logo">
         <div class="loading"></div>
     </div>
 

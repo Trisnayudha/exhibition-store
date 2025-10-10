@@ -519,7 +519,7 @@
                                                 @if (old('question_term', $data->with_information) === 'Yes') checked @endif>
                                             <label for="question_term">
                                                 <div class="custom-radio-wrapper">
-                                                    <i class="ri-check-line"></i>
+                                                    {{-- <i class="ri-check-line"></i> --}}
                                                     <div class="title-icon">
                                                         <span style="max-width: 100%">I agree to the <a
                                                                 href="{{ url('term-condition') }}" target="_blank">Term &
@@ -541,7 +541,7 @@
 
                                             <label for="question_would1">
                                                 <div class="custom-radio-wrapper">
-                                                    <i class="ri-check-line"></i>
+                                                    {{-- <i class="ri-check-line"></i> --}}
                                                     <div class="title-icon">
                                                         <span style="max-width: 100%">I agree to receive the emails to keep
                                                             me
