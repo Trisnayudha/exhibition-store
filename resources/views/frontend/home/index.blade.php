@@ -32,7 +32,7 @@
                         </li>
                     </ul>
                     <p>
-                        🔔 Important:
+                        <b>🔔 Important</b>:
                         <br>
                         Each form comes with its own deadline. Please ensure all submissions are completed on time. If you
                         foresee any delays or need help or an extension, just let our operational team know.
@@ -48,7 +48,7 @@
                         Indonesia Miner Conference & Exhibition 2026
                     </p>
                 </div>
-                <h1>Form Progress</h1>
+                <h1>Progress Form</h1>
                 <div class="row justify-content-center"> <!-- Menyelaraskan ke tengah -->
                     <div class="col-sm-2 mb-2">
                         <a href="{{ url('form?type=company-information') }}">

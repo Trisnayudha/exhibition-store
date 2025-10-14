@@ -57,79 +57,102 @@ class CompanyController extends Controller
     {
         $id = auth()->id();
 
-        //Company Information
-        $company_web = $request->company_web;
-        $email = $request->email;
-        $desc =  $request->desc;
-        $nonresidence = $request->nonresidence;
-        $answerresidence = $request->answerresidence;
-        $company_address = $request->company_address;
-        $company_phone = $request->company_phone;
-        $post_code = $request->post_code;
-        $category_id = $request->company_category;
-        $country = $request->country;
-        $state = $request->state;
-        $city = $request->city;
-        $npwp = $request->npwp;
+        // Validate only what's relevant here (add/merge others as needed)
+        $request->validate([
+            'company_web'  => 'required|string',
+            'email'        => 'nullable|email',
+            'npwp_file'    => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048', // 2MB
+        ]);
 
-        // $category_name = $request->category_name;
-        $project_type = $request->project_type;
-        // $classify_minerals_name = $request->classify_minerals_name;
-        $classify_minerals_id = $request->classify_minerals == 'Other' ? 0 : $request->classify_minerals;
-        $classify_mining_id = $request->classify_mining == 'Other' ? 0 : $request->classify_mining;
-        $commodities_minerals_coal_id = $request->commodities_minerals_coal == 'Other' ? 0 : $request->commodities_minerals_coal;
-        $commodities_minerals_id = $request->commodities_minerals == 'Other' ? 0 : $request->commodities_minerals;
-        $origin_manufacturer_id = $request->origin_manufacturer == 'Other' ? 0 : $request->origin_manufacturer;
-        $commodities_mining_id = $request->commodities_mining;
-        $question_would = $request->question_would;
-        $ms_company_class_id = $request->ms_company_class_id;
-        $commodities_minerals_other = $request->commodities_minerals_other;
+        $company_web                     = $request->company_web;
+        $email                           = $request->email;
+        $desc                            = $request->desc;
+        $nonresidence                    = $request->nonresidence;
+        $answerresidence                 = $request->answerresidence;
+        $company_address                 = $request->company_address;
+        $company_phone                   = $request->company_phone;
+        $post_code                       = $request->post_code;
+        $category_id                     = $request->company_category;
+        $country                         = $request->country;
+        $state                           = $request->state;
+        $city                            = $request->city;
+
+        // If you still want to keep the NPWP number as text, you can read it here:
+        // $npwp_number = $request->npwp_number;
+
+        $project_type                    = $request->project_type;
+        $classify_minerals_id            = $request->classify_minerals == 'Other' ? 0 : $request->classify_minerals;
+        $classify_mining_id              = $request->classify_mining == 'Other' ? 0 : $request->classify_mining;
+        $commodities_minerals_coal_id    = $request->commodities_minerals_coal == 'Other' ? 0 : $request->commodities_minerals_coal;
+        $commodities_minerals_id         = $request->commodities_minerals == 'Other' ? 0 : $request->commodities_minerals;
+        $origin_manufacturer_id          = $request->origin_manufacturer == 'Other' ? 0 : $request->origin_manufacturer;
+        $commodities_mining_id           = $request->commodities_mining;
+        $question_would                  = $request->question_would;
+        $ms_company_class_id             = $request->ms_company_class_id;
+        $commodities_minerals_other      = $request->commodities_minerals_other;
         $commod_company_minerals_coal_other = $request->commodities_minerals_coal_other;
-        $origin_manufacturer_other = $request->origin_manufacturer_other;
-        $classify_minerals_other = $request->classify_minerals_other;
-        $classify_mining_other = $request->classify_mining_other;
-        $save = Company::where('id', $id)->first();
+        $origin_manufacturer_other       = $request->origin_manufacturer_other;
+        $classify_minerals_other         = $request->classify_minerals_other;
+        $classify_mining_other           = $request->classify_mining_other;
 
-        $save->company_web = $company_web;
-        $save->email = $email;
+        $save = Company::where('id', $id)->firstOrFail();
 
+        // --- handle NPWP file upload ---
+        // Choose disk from config (set to 's3' in .env if you want S3)
+        $disk = config('filesystems.default', 'public');
 
-        $save->company_address = $company_address;
-        $save->country = strtoupper($country);
-        $save->state = strtoupper($state);
-        $save->city = strtoupper($city);
-        $save->post_code = $post_code;
-        $save->desc = $desc;
-        $save->company_phone = $company_phone;
-        $save->nonresidence = $nonresidence;
-        $save->answerresidence = $answerresidence;
-        // $save->ms_company_category_other = $category_name;
-        $save->ms_company_category_id = $category_id;
-        $save->ms_company_project_type_id = $project_type;
-        $save->ms_class_company_minerals_id = $classify_minerals_id;
-        $save->ms_class_company_mining_id = $classify_mining_id;
-        $save->ms_commod_company_minerals_id = $commodities_minerals_id;
-        $save->commod_company_minerals_other = $commodities_minerals_other;
-        $save->commod_company_minerals_coal_other = $commod_company_minerals_coal_other;
-        $save->ms_commod_company_minerals_coal_id = $commodities_minerals_coal_id;
-        $save->ms_commod_company_mining_id = $commodities_mining_id;
-        $save->ms_origin_manufactur_company_id = $origin_manufacturer_id;
-        $save->origin_manufactur_company_other = $origin_manufacturer_other;
-        $save->class_company_mining_other = $classify_mining_other;
-        $save->class_company_minerals_other = $classify_minerals_other;
-        $save->with_information = $question_would;
-        $save->ms_company_class_id = $ms_company_class_id;
-        $save->npwp = $npwp;
-        // $save->type = 'Trial';
-        // $save->class_company_mining_other = $classify_mining_name;
-        // $save->commod_company_minerals_other = $commodities_minerals_name;
-        // $save->commod_company_minerals_coal_other = $commodities_minerals_coal_name;
-        // $save->commod_company_mining_other = $commodities_mining_name;
+        if ($request->hasFile('npwp_file')) {
+            // Delete old file if exists
+            if (!empty($save->npwp_file) && Storage::disk($disk)->exists($save->npwp_file)) {
+                Storage::disk($disk)->delete($save->npwp_file);
+            }
+
+            // Store new file under /npwp
+            $path = $request->file('npwp_file')->store('npwp', 'public');
+            $save->npwp_file = $path;
+
+            // If you previously stored the NPWP number in $save->npwp and no longer use it, you can clear it:
+            // $save->npwp = null;
+        }
+        // --- end NPWP file upload ---
+
+        // assign other fields
+        $save->company_web                         = $company_web;
+        $save->email                               = $email;
+        $save->company_address                     = $company_address;
+        $save->country                             = strtoupper($country);
+        $save->state                               = strtoupper($state);
+        $save->city                                = strtoupper($city);
+        $save->post_code                           = $post_code;
+        $save->desc                                = $desc;
+        $save->company_phone                       = $company_phone;
+        $save->nonresidence                        = $nonresidence;
+        $save->answerresidence                     = $answerresidence;
+        $save->ms_company_category_id              = $category_id;
+        $save->ms_company_project_type_id          = $project_type;
+        $save->ms_class_company_minerals_id        = $classify_minerals_id;
+        $save->ms_class_company_mining_id          = $classify_mining_id;
+        $save->ms_commod_company_minerals_id       = $commodities_minerals_id;
+        $save->commod_company_minerals_other       = $commodities_minerals_other;
+        $save->commod_company_minerals_coal_other  = $commod_company_minerals_coal_other;
+        $save->ms_commod_company_minerals_coal_id  = $commodities_minerals_coal_id;
+        $save->ms_commod_company_mining_id         = $commodities_mining_id;
+        $save->ms_origin_manufactur_company_id     = $origin_manufacturer_id;
+        $save->origin_manufactur_company_other     = $origin_manufacturer_other;
+        $save->class_company_mining_other          = $classify_mining_other;
+        $save->class_company_minerals_other        = $classify_minerals_other;
+        $save->with_information                    = $question_would;
+        $save->ms_company_class_id                 = $ms_company_class_id;
+
+        // If you still keep NPWP number as text:
+        // $save->npwp_number = $npwp_number;
+
+        // If you no longer use old text-based NPWP:
+        // unset($save->npwp); // or leave as-is
+
         $save->save();
-        // dd($request->all());
-        //commodities_minerals
 
-
+        // log
         $log = ExhibitionLog::where('section', 'company_information')->where('company_id', $id)->first();
         if ($log == null) {
             $log = new ExhibitionLog();
@@ -138,7 +161,11 @@ class CompanyController extends Controller
         }
         $log->updated_at = Carbon::now();
         $log->save();
-        return redirect()->back();
+
+        return redirect()->back()->with([
+            'status'  => true,
+            'message' => 'Company information updated successfully.'
+        ]);
     }
 
     public function postGeneral(Request $request)

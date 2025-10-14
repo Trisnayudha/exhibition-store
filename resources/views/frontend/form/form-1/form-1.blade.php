@@ -151,7 +151,7 @@
                     <div class="line"></div>
                     <div class="card border-info mt-2">
                         <div class="card-body" style="margin-bottom:-7px;">
-                            <form action="{{ url('postCompany') }}" method="POST">
+                            <form action="{{ url('postCompany') }}" method="POST" enctype="multipart/form-data">
                                 <div class="row">
 
                                     <div class="container-fluid">
@@ -173,14 +173,32 @@
                                     @csrf
                                     <div class="col-lg-12 col-sm-12">
                                         <div class="form-group">
-                                            <label>NPWP</label>
-                                            <input type="text" name="npwp" id="npwp"
-                                                class="form-control validation" placeholder="Input company website"
-                                                value="{{ old('npwp', $data->npwp) }}">
-                                            <small class="text-muted"> Only for Indonesian Company, <i>No
-                                                    Required</i></small>
+                                            <label>NPWP (File) <small class="text-muted">(PDF/JPG/PNG, max
+                                                    2MB)</small></label>
+
+                                            {{-- Show existing NPWP file (if any) --}}
+                                            @if (!empty($data->npwp_file))
+                                                <div class="mb-2">
+                                                    <a href="{{ Storage::disk(config('filesystems.default'))->url($data->npwp_file) }}"
+                                                        target="_blank" class="btn btn-sm btn-outline-info">
+                                                        View current NPWP
+                                                    </a>
+                                                </div>
+                                            @endif
+
+                                            <input type="file" name="npwp_file" id="npwp_file" class="form-control"
+                                                accept=".pdf,.jpg,.jpeg,.png">
+
+                                            <small class="text-muted d-block">
+                                                Only for Indonesian companies, <i>not required</i>.
+                                            </small>
+
+                                            @error('npwp_file')
+                                                <div class="text-danger small mt-1">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
+
                                     <div class="col-lg-12 col-sm-12">
                                         <div class="form-group">
                                             <label>Company Website <i class="text-danger"

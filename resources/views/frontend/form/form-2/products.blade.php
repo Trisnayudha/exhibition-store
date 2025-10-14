@@ -1,14 +1,16 @@
 <div class="container mt-5">
-    <p>
-        <small>
-            <i>
-                Add your product details here by listing and describing the key products or services your company offers
-            </i>
-        </small>
-    </p>
+
     <div class="logger-product">
 
     </div>
+    <p>
+        <small>
+            <i>
+                Add your product details here by listing and describing the key products or services your company
+                offers
+            </i>
+        </small>
+    </p>
     <!-- Tombol Tambah -->
     <button class="btn btn-primary mb-3" onclick="tambahProduct()">Add</button>
 

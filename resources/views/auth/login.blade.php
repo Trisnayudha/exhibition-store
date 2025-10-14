@@ -21,7 +21,7 @@
     <form class="form-signin" action="{{ route('login') }}" method="POST">
         @csrf
         <img class="mb-4" src="{{ asset('logo_2026.png') }}" alt="" height="130px">
-        <h1 class="h3 mb-3 font-weight-normal">Please sign in <br>Sponsor & Exhibitor Portal</h1>
+        <h1 class="h3 mb-3 font-weight-normal">Sponsor & Exhibitor Portal</h1>
 
         <!-- Display errors at the top of the form -->
         @if (session('status'))

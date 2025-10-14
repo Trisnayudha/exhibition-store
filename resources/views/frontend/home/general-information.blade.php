@@ -35,25 +35,6 @@
                             <div class="col">
                                 <div class="card border-info mb-3">
                                     <div class="card-header bg-transparent border-info text-center">
-                                        CONFERENCE
-                                    </div>
-                                    <div class="card-body text-info text-center">
-                                        <p>Event Manager</p>
-                                        <p>Mrs. Niema Lubis</p>
-
-                                        <p>
-                                            <a href="mailto:niema@indonesiaminer.com">E: niema@indonesiaminer.com</a>
-                                        </p>
-                                        <a href="https://wa.me/+6281315946224" target="_blank">M:
-                                            +6281315946224</a>
-                                    </div>
-                                    <div class="card-footer bg-transparent border-success text-center">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="card border-info mb-3">
-                                    <div class="card-header bg-transparent border-info text-center">
                                         EXHIBITION
                                     </div>
                                     <div class="card-body text-info text-center">
@@ -174,7 +155,9 @@
                         </div>
                         <div class="card border-info mb-3">
                             <div class="card-body text-info">
-                                <h5 class="card-title">SHOW DAYS - Registration will be open at 07.00 AM every day.</h5>
+                                <h5 class="card-title">SHOW DAYS <p> Registration will be open at 07.00 AM every day.
+                                    </p>
+                                </h5>
                                 <p><b>Day 1 - May 5, 2026</b></p>
                                 <p>08.00 AM - 05.00 PM (Jakarta Time) <br> Conference & Exhibition Day 1</p>
                                 <p><b>Day 2 - May 6, 2026</b></p>

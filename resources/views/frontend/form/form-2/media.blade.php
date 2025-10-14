@@ -1,16 +1,17 @@
 <div class="container mt-5">
+
+    <div class="logger-media">
+    </div>
     <p>
         <small>
             <i>
-                Upload supporting materials such as brochures, presentations, or downloadable documents that showcase
+                Upload supporting materials such as brochures, presentations, or downloadable documents that
+                showcase
                 your company and offerings.
 
             </i>
         </small>
     </p>
-    <div class="logger-media">
-
-    </div>
     <!-- Tombol Tambah -->
     <button class="btn btn-primary mb-3" onclick="tambahMedia()">Add</button>
 

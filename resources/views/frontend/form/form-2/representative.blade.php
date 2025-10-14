@@ -1,15 +1,17 @@
 <div class="container mt-5">
+
+    <div class="logger-representative">
+
+    </div>
     <p>
         <small>
             <i>
-                This section will display your company representative with details including their photo, name, and job
+                This section will display your company representative with details including their photo, name, and
+                job
                 title.
             </i>
         </small>
     </p>
-    <div class="logger-representative">
-
-    </div>
     <!-- Tombol Tambah -->
     <button class="btn btn-primary mb-3" onclick="tambahRepresentative()">Add</button>
 

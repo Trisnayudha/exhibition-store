@@ -35,7 +35,7 @@
     </div>
 
     <div class="form-group">
-        <label for=""> Value Propositions</label>
+        <label for=""><b>Value Propositions</b></label>
         <p>
             <small>
                 <i>
@@ -55,7 +55,7 @@
             value="{{ old('info_three', $data->info_three) }}">
     </div>
     <div class="form-group">
-        <label for="">Social Media</label>
+        <label for=""><b>Social Media</b></label>
         <p>
             <small>
                 <i>
@@ -102,14 +102,11 @@
         <label for="">Videos</label>
 
         <p><small><i>Share links to your company videos (e.g., company profile, product demos, project highlights). The
-                    Main Video field is for the key video content you want to feature in your profile.
+                    Main Video field is for the key video content you want to feature in your profile. Please input URL
+                    (URL should include https://)
+                </i>
                 </i></small>
             <br>
-            <small>
-                <i>
-                    Please input URL (URL should include https://)
-                </i>
-            </small>
         </p>
 
 

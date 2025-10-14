@@ -1,4 +1,8 @@
 <div class="container mt-5">
+
+    <div class="logger-project">
+
+    </div>
     <p>
         <small>
             <i>
@@ -7,9 +11,6 @@
             </i>
         </small>
     </p>
-    <div class="logger-project">
-
-    </div>
     <!-- Tombol Tambah -->
     <button class="btn btn-primary mb-3" onclick="tambahProject()">Add</button>
 

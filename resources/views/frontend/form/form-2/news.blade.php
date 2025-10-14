@@ -1,15 +1,17 @@
 <div class="container mt-5">
+
+    <div class="logger-news">
+
+    </div>
     <p>
         <small>
             <i>
-                Use this section to share company news, press releases, and recent announcements, keeping participants
+                Use this section to share company news, press releases, and recent announcements, keeping
+                participants
                 informed about your latest developments, milestones, and important updates.
             </i>
         </small>
     </p>
-    <div class="logger-news">
-
-    </div>
     <!-- Tombol Tambah -->
     <button class="btn btn-primary mb-3" onclick="tambahNews()">Add</button>
 

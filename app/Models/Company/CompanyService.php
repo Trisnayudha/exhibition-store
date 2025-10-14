@@ -91,6 +91,7 @@ class CompanyService extends Model
                 'company.deadline_5',
                 'company.level',
                 'company.size_promotional',
+                'company.npwp_file',
 
                 'company.ms_class_company_minerals_id',
                 'ms_class_company_minerals.name as classify_minerals_name',

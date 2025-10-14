@@ -99,8 +99,9 @@
                                     @endif
                                     <div class="alert alert-info alert-dismissible fade show" role="alert">
                                         <p>Prior to scheduling, a preview of your promotional content will be shared for
-                                            your approval. Once approved, your content will be posted on Instagram
-                                            (@indonesia_miner) and LinkedIn (Indonesia Miner) according to the next
+                                            your approval. Once approved, your content will be posted on LinkedIn (Indonesia
+                                            Miner) and Instagram
+                                            (@indonesia_miner) according to the next
                                             available marketing slot. Please note that late submissions may impact the
                                             timing of your content’s release.
                                         </p>
@@ -120,7 +121,9 @@
                                     <div class="form-group">
                                         <label for="imageSocial">Image (1080 x 1080 px) <small>Max Upload 5
                                                 Image</small></label>
-                                        <p><small><i>For Instagram (@indonesia_miner)</i></small></p>
+                                        <p><small><i>For LinkedIn (Indonesia Miner) and Instagram
+                                                    (@indonesia_miner)</i></small>
+                                        </p>
                                         @if (!isset($sosmed['listImages']) || count($sosmed['listImages']) < 5)
                                             <div id="imageUploadContainer">
                                                 <input type="file" name="imageSocial[]" id="imageSocial"
