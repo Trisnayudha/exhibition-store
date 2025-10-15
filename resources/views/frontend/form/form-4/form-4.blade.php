@@ -44,7 +44,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="pills-explore-tab" data-toggle="pill" href="#pills-explore"
-                                role="tab" aria-controls="pills-explore" aria-selected="false">Explore Pass
+                                role="tab" aria-controls="pills-explore" aria-selected="false">Wishlist for Explore Pass
                             </a>
                         </li>
                     </ul>
