@@ -5,10 +5,10 @@
     </div>
     <p>
         <small>
-            <i>
-                Add your product details here by listing and describing the key products or services your company
-                offers
-            </i>
+
+            Add your product details here by listing and describing the key products or services your company
+            offers
+
         </small>
     </p>
     <!-- Tombol Tambah -->

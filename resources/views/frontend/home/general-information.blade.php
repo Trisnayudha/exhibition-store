@@ -12,7 +12,7 @@
         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
             <div class="card-body">
                 <div class="card border-info mb-3">
-                    <div class="card-body text-info">
+                    <div class="card-body">
                         <h5 class="card-title">Event Details</h5>
                         <p>Event Title : Indonesia Miner Conference & Exhibition 2026</p>
                         <p>Date : 5 - 7 May 2026</p>
@@ -20,7 +20,7 @@
                     </div>
                 </div>
                 <div class="card border-info mb-3">
-                    <div class="card-body text-info">
+                    <div class="card-body">
                         <h5 class="card-title">Organizer</h5>
                         <p><b>Indonesia Miner (PT. Media Mitrakarya Indonesia)</b></p>
                         <p>CIBIS NINE - 11th Floor TB. Simatupang No. 2 Jakarta, Indonesia 12560</p>
@@ -29,7 +29,7 @@
                     </div>
                 </div>
                 <div class="card border-info mb-3">
-                    <div class="card-body text-info">
+                    <div class="card-body">
                         <h5 class="card-title">Contact Person</h5>
                         <div class="row">
                             <div class="col">
@@ -37,7 +37,7 @@
                                     <div class="card-header bg-transparent border-info text-center">
                                         EXHIBITION
                                     </div>
-                                    <div class="card-body text-info text-center">
+                                    <div class="card-body text-center">
                                         <p>Event
                                             Executive</p>
                                         <p>Ms. Riska Noveriena</p>
@@ -53,7 +53,7 @@
                                     <div class="card-header bg-transparent border-info text-center">
                                         DELEGATE
                                     </div>
-                                    <div class="card-body text-info text-center">
+                                    <div class="card-body text-center">
                                         <p>Event Executive</p>
                                         <p>Ms. Callula Aisha</p>
                                         <p>
@@ -72,7 +72,7 @@
                                     <div class="card-header bg-transparent border-info text-center">
                                         VENUE
                                     </div>
-                                    <div class="card-body text-info text-center">
+                                    <div class="card-body text-center">
                                         <p>The Westin Hotel</p>
                                         <p> Senior Catering Sales Manager
                                         </p>
@@ -93,7 +93,7 @@
                                     <div class="card-header bg-transparent border-info text-center">
                                         OFFICIAL STAND CONTRACTOR
                                     </div>
-                                    <div class="card-body text-info text-center">
+                                    <div class="card-body text-center">
                                         <p>
                                             PT. Bestara Pilar Utama
                                         </p>
@@ -117,7 +117,7 @@
                                     <div class="card-header bg-transparent border-info text-center">
                                         FREIGHT FORWARDER
                                     </div>
-                                    <div class="card-body text-info text-center">
+                                    <div class="card-body text-center">
                                         <p> PT. Vissasa Parama Nati</p>
                                         <p>Mr. Andi Mulyadi</p>
                                         <p><a href="mailto:andi@vissasa.co.id" target="_blank">E: andi@vissasa.co.id</a>
@@ -134,12 +134,12 @@
                     </div>
                 </div>
                 <div class="card border-info mb-3">
-                    <div class="card-body text-info">
+                    <div class="card-body">
                         <h5 class="card-title">THE SCHEDULE</h5>
                         <div class="row">
                             <div class="col">
                                 <div class="card border-info mb-3">
-                                    <div class="card-body text-info">
+                                    <div class="card-body">
                                         <h5 class="card-title">SETUP DAYS - MAY 4, 2026</h5>
                                         <div class="row">
                                             <div class="col-6">
@@ -154,10 +154,13 @@
                             </div>
                         </div>
                         <div class="card border-info mb-3">
-                            <div class="card-body text-info">
-                                <h5 class="card-title">SHOW DAYS <p> Registration will be open at 07.00 AM every day.
-                                    </p>
+                            <div class="card-body">
+                                <h5 class="card-title">SHOW DAYS
                                 </h5>
+                                <p>
+                                    <b> Registration will be open at 07.00 AM every day.
+                                    </b>
+                                </p>
                                 <p><b>Day 1 - May 5, 2026</b></p>
                                 <p>08.00 AM - 05.00 PM (Jakarta Time) <br> Conference & Exhibition Day 1</p>
                                 <p><b>Day 2 - May 6, 2026</b></p>
@@ -167,7 +170,7 @@
                             </div>
                         </div>
                         <div class="card border-info mb-3">
-                            <div class="card-body text-info">
+                            <div class="card-body">
                                 <h5 class="card-title">DISMANTLING DAY - MAY 7, 2026</h5>
                                 <p>05.00 PM - 9.00 PM (Jakarta Time)</p>
                                 <p>Dismissal Booth Display

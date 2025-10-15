@@ -4,12 +4,12 @@
     </div>
     <p>
         <small>
-            <i>
-                Upload supporting materials such as brochures, presentations, or downloadable documents that
-                showcase
-                your company and offerings.
 
-            </i>
+            Upload supporting materials such as brochures, presentations, or downloadable documents that
+            showcase
+            your company and offerings.
+
+
         </small>
     </p>
     <!-- Tombol Tambah -->

@@ -19,7 +19,7 @@
         </div>
     @endif
     <div class="form-group">
-        <label for="company_logo">Company Logo</label>
+        <label for="company_logo"><b>Company Logo</b></label>
         <input type="file" class="form-control" name="company_logo" id="company_logo_input">
 
         <small>Dimension 600 x 400 px ( format PNG and Maximum size 500kb )</small>
@@ -99,7 +99,7 @@
     </div>
 
     <div class="form-group">
-        <label for="">Videos</label>
+        <label for=""><b>Videos</b></label>
 
         <p><small><i>Share links to your company videos (e.g., company profile, product demos, project highlights). The
                     Main Video field is for the key video content you want to feature in your profile. Please input URL

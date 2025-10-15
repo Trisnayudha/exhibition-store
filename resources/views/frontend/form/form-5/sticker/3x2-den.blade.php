@@ -98,7 +98,8 @@
                                                 <input type="file" name="file-basic{{ $position }}"
                                                     id="file-basic{{ $position }}">
                                                 <textarea name="note-basic{{ $position }}" id="note-link-basic{{ $position }}"
-                                                    class="form-control mt-2 google-drive-link" placeholder="Upload link Google Drive Anda" style="display: none;"></textarea>
+                                                    class="form-control mt-2 google-drive-link" placeholder="Please provide your Google Drive upload link."
+                                                    style="display: none;"></textarea>
 
                                             </td>
                                         </tr>

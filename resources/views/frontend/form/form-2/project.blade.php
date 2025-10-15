@@ -5,10 +5,10 @@
     </div>
     <p>
         <small>
-            <i>
-                Showcase key projects your company has delivered or is actively involved in to highlight your
-                capabilities
-            </i>
+
+            Showcase key projects your company has delivered or is actively involved in to highlight your
+            capabilities
+
         </small>
     </p>
     <!-- Tombol Tambah -->
