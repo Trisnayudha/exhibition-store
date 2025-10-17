@@ -12,7 +12,7 @@
         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
             <div class="card-body">
                 <div class="card border-info mb-3">
-                    <div class="card-body">
+                    <div class="card-body text-primary">
                         <h5 class="card-title">Event Details</h5>
                         <p>Event Title : Indonesia Miner Conference & Exhibition 2026</p>
                         <p>Date : 5 - 7 May 2026</p>
@@ -20,7 +20,7 @@
                     </div>
                 </div>
                 <div class="card border-info mb-3">
-                    <div class="card-body">
+                    <div class="card-body text-primary">
                         <h5 class="card-title">Organizer</h5>
                         <p><b>Indonesia Miner (PT. Media Mitrakarya Indonesia)</b></p>
                         <p>CIBIS NINE - 11th Floor TB. Simatupang No. 2 Jakarta, Indonesia 12560</p>
@@ -29,7 +29,7 @@
                     </div>
                 </div>
                 <div class="card border-info mb-3">
-                    <div class="card-body">
+                    <div class="card-body text-primary">
                         <h5 class="card-title">Contact Person</h5>
                         <div class="row">
                             <div class="col">
@@ -134,7 +134,7 @@
                     </div>
                 </div>
                 <div class="card border-info mb-3">
-                    <div class="card-body">
+                    <div class="card-body text-primary">
                         <h5 class="card-title">THE SCHEDULE</h5>
                         <div class="row">
                             <div class="col">
